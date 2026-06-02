@@ -27,10 +27,10 @@
 {"@context":"https://schema.org","@type":"ElectronicsStore","name":"Mount Cable India",
 "image":"https://mountcable.com/assets/img/banner-finolex-wires.jpg","url":"https://mountcable.com",
 "telephone":"+918867676700","email":"mountcable@gmail.com","priceRange":"₹₹",
-"foundingDate":"1990","areaServed":"Bengaluru, Karnataka, India",
+"foundingDate":"1991","areaServed":"Bengaluru, Karnataka, India",
 "description":"One of India's largest distributors of Finolex cables and a multi-brand electrical products dealer in Bengaluru, serving individual home builders for over 35 years.",
 "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"20:00"},
-"address":[{"@type":"PostalAddress","streetAddress":"Jayanagar","addressLocality":"Bengaluru","addressRegion":"Karnataka","postalCode":"560011","addressCountry":"IN"}, {"@type":"PostalAddress","streetAddress":"Chickpete","addressLocality":"Bengaluru","addressRegion":"Karnataka","postalCode":"560053","addressCountry":"IN"}]}
+"address":[{"@type":"PostalAddress","streetAddress":"10/3, Sri Complex, BVK Iyengar Road","addressLocality":"Bengaluru","addressRegion":"Karnataka","postalCode":"560053","addressCountry":"IN"}, {"@type":"PostalAddress","streetAddress":"Jayanagar","addressLocality":"Bengaluru","addressRegion":"Karnataka","postalCode":"560011","addressCountry":"IN"}]}
 </script>
 
 </head>
@@ -39,7 +39,7 @@
   <div class="container nav">
     <a class="brand" href="index.html">
       <span class="mark">M</span>
-      <span>Mount Cable<small>India · Est. 1990</small></span>
+      <span>Mount Cable<small>India · Est. 1991</small></span>
     </a>
     <nav class="nav-links" id="navlinks">
       <a href="index.html#finolex">Finolex</a>
@@ -66,52 +66,106 @@
   </div>
 </section>
 
-<section>
+<section class="quote-sec">
   <div class="container quote-wrap">
-    <form class="quote-form" action="https://formsubmit.co/mountcable@gmail.com" method="POST" enctype="multipart/form-data">
+    <form class="qform" action="https://formsubmit.co/mountcable@gmail.com" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="_subject" value="New Quote Request — Mount Cable India">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://mountcable.com/thank-you.html">
-      <h2>Tell us what you need</h2>
-      <div class="fld"><label>Your name *</label><input type="text" name="Name" required placeholder="e.g. Ramesh Kumar"></div>
-      <div class="fld"><label>Phone / WhatsApp number *</label><input type="tel" name="Phone" required placeholder="10-digit mobile number" pattern="[0-9+ ]&#123;10,14&#125;"></div>
-      <div class="fld"><label>Your area in Bangalore</label><input type="text" name="Area" placeholder="e.g. Jayanagar, JP Nagar, Whitefield"></div>
-      <div class="fld"><label>What do you need?</label><textarea name="Requirement" rows="4" placeholder="e.g. Wiring for a 2BHK — Finolex 90M 1.0/1.5/2.5 sqmm, switches, MCB box…"></textarea></div>
-      <div class="fld">
-        <label>📷 Upload a photo of your list / requirement</label>
-        <input type="file" name="attachment" accept="image/*" capture="environment" id="photo">
-        <div class="photo-preview" id="preview"></div>
-        <p class="hint">Snap your wiring list, estimate or site — JPG/PNG. We'll quote from it instantly.</p>
+
+      <div class="qform-head">
+        <h2>Request your instant quote</h2>
+        <p>Fill in a few details and attach a photo — we'll do the rest.</p>
       </div>
-      <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;font-size:16px;padding:15px">Get My Instant Quote →</button>
-      <p class="hint center" style="margin-top:14px">Prefer chat? <a href="https://wa.me/918867676700?text=Hi,%20here's%20my%20requirement%20for%20a%20quote">Send your photo on WhatsApp (+91 88676 76700)</a></p>
+
+      <label class="dropzone" id="dropzone" for="photo">
+        <input type="file" name="attachment" accept="image/*" capture="environment" id="photo" hidden>
+        <div class="dz-default">
+          <div class="dz-icon">📷</div>
+          <div class="dz-title">Tap to add a photo of your list</div>
+          <div class="dz-sub">or drag &amp; drop here · JPG / PNG · wiring list, estimate or site photo</div>
+        </div>
+        <div class="dz-preview" id="preview"></div>
+      </label>
+      <div class="dz-filerow" id="filerow" hidden>
+        <span class="dz-fname" id="fname"></span>
+        <button type="button" class="dz-remove" id="removephoto">Remove</button>
+      </div>
+
+      <div class="qrow">
+        <div class="qfield">
+          <label for="qname">Your name <span class="req">*</span></label>
+          <div class="qinput"><span class="qic">👤</span><input id="qname" type="text" name="Name" required placeholder="e.g. Ramesh Kumar"></div>
+        </div>
+        <div class="qfield">
+          <label for="qphone">Phone / WhatsApp <span class="req">*</span></label>
+          <div class="qinput"><span class="qic">📞</span><input id="qphone" type="tel" name="Phone" required placeholder="10-digit mobile" pattern="[0-9+ ]&#123;10,14&#125;"></div>
+        </div>
+      </div>
+
+      <div class="qfield">
+        <label for="qarea">Your area in Bangalore</label>
+        <div class="qinput"><span class="qic">📍</span>
+          <select id="qarea" name="Area">
+            <option value="" selected disabled>Select your area</option>
+            <option value="Jayanagar">Jayanagar</option><option value="Chickpete">Chickpete</option><option value="Basavanagudi">Basavanagudi</option><option value="JP Nagar">JP Nagar</option><option value="Banashankari">Banashankari</option><option value="BTM Layout">BTM Layout</option><option value="Koramangala">Koramangala</option><option value="HSR Layout">HSR Layout</option><option value="Indiranagar">Indiranagar</option><option value="Rajajinagar">Rajajinagar</option><option value="Malleshwaram">Malleshwaram</option><option value="Whitefield">Whitefield</option><option value="Electronic City">Electronic City</option><option value="Yelahanka">Yelahanka</option>
+            <option value="Other / elsewhere in Bangalore">Other / elsewhere in Bangalore</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="qfield">
+        <label for="qreq">What do you need?</label>
+        <div class="qinput"><textarea id="qreq" name="Requirement" rows="4" placeholder="e.g. Wiring for a 2BHK — Finolex 90M 1.0 / 1.5 / 2.5 sq mm, modular switches, MCB distribution box, LED lights…"></textarea></div>
+      </div>
+
+      <button type="submit" class="btn btn-gold qsubmit">Get My Instant Quote →</button>
+      <div class="qtrust"><span>🔒 Your details stay private</span><span>·</span><span>⚡ Reply within minutes</span></div>
+      <p class="qalt">Prefer to chat? <a href="https://wa.me/918867676700?text=Hi,%20here's%20my%20requirement%20for%20a%20quote">Send your photo on WhatsApp</a> or call <a href="tel:+918867676700">+91 88676 76700</a></p>
     </form>
+
     <aside class="quote-side">
       <div class="qs-card">
+        <div class="qs-steps">
+          <div class="qs-step"><span class="qs-num">1</span><div><strong>Share your list</strong><br>Snap a photo or type what you need.</div></div>
+          <div class="qs-step"><span class="qs-num">2</span><div><strong>Get your quote</strong><br>Genuine material at distributor price.</div></div>
+          <div class="qs-step"><span class="qs-num">3</span><div><strong>Delivered in 3 hrs</strong><br>Free to your site. Pay on delivery.</div></div>
+        </div>
         <h3>Why builders quote with us</h3>
         <ul class="tick-list">
           <li><strong>35 years</strong> of trust with Bengaluru home builders.</li>
           <li><strong>100% original Finolex</strong> — every range always in stock.</li>
-          <li><strong>3-hour free delivery</strong> to your site across Bangalore.</li>
+          <li><strong>Free 3-hour delivery</strong> across all of Bangalore.</li>
           <li><strong>Pay at your site</strong> — cash, UPI, card or transfer.</li>
-          <li><strong>Free pickup</strong> of any excess stock you over-order.</li>
         </ul>
         <div class="qs-call">
           <span>Need it urgently?</span>
-          <a class="btn btn-dark" href="tel:+918867676700">📞 Call +91 88676 76700</a>
+          <a class="btn" style="background:#fff;color:var(--navy);width:100%;justify-content:center" href="tel:+918867676700">📞 Call +91 88676 76700</a>
         </div>
       </div>
     </aside>
   </div>
 </section>
 <script>
-  var p=document.getElementById('photo');
-  if(p)p.addEventListener('change',function(){
-    var f=this.files&&this.files[0];var v=document.getElementById('preview');
-    if(f){var r=new FileReader();r.onload=function(e){v.innerHTML='<img src="'+e.target.result+'" alt="preview">';};r.readAsDataURL(f);}
-    else v.innerHTML='';
-  });
+(function(){
+  var input=document.getElementById('photo'),zone=document.getElementById('dropzone'),
+      prev=document.getElementById('preview'),frow=document.getElementById('filerow'),
+      fname=document.getElementById('fname'),rm=document.getElementById('removephoto');
+  function show(f){
+    if(!f){clear();return;}
+    var r=new FileReader();
+    r.onload=function(e){prev.innerHTML='<img src="'+e.target.result+'" alt="Your uploaded requirement">';
+      zone.classList.add('has-file');fname.textContent=f.name;frow.hidden=false;};
+    r.readAsDataURL(f);
+  }
+  function clear(){prev.innerHTML='';zone.classList.remove('has-file');frow.hidden=true;input.value='';}
+  input.addEventListener('change',function(){show(this.files&&this.files[0]);});
+  rm.addEventListener('click',function(e){e.preventDefault();clear();});
+  ['dragover','dragenter'].forEach(function(ev){zone.addEventListener(ev,function(e){e.preventDefault();zone.classList.add('drag');});});
+  ['dragleave','dragend','drop'].forEach(function(ev){zone.addEventListener(ev,function(e){e.preventDefault();zone.classList.remove('drag');});});
+  zone.addEventListener('drop',function(e){var fs=e.dataTransfer&&e.dataTransfer.files;if(fs&&fs.length){input.files=fs;show(fs[0]);}});
+})();
 </script>
 
 <section class="cta-band">
@@ -149,7 +203,7 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Mount Cable India · Serving Bengaluru since 1990. All rights reserved.</span>
+      <span>© 2026 Mount Cable India · Serving Bengaluru since 1991. All rights reserved.</span>
       <span>Jayanagar · Chickpete · Free delivery across Bangalore</span>
     </div>
   </div>

@@ -9,7 +9,7 @@ Generates: home, per-brand pages, product-category pages, Bengaluru area
 
 Run:  python3 build.py
 """
-import os, html, json
+import os, html, json, urllib.parse
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -25,8 +25,12 @@ WHATSAPP = "918867676700"
 YEARS = "35"
 
 OFFICES = [
-    {"tag": "Showroom 1", "area": "Jayanagar", "addr": "Jayanagar, Bengaluru, Karnataka 560011"},
-    {"tag": "Showroom 2", "area": "Chickpete", "addr": "Chickpete, Bengaluru, Karnataka 560053"},
+    {"tag": "Main Showroom", "area": "BVK Iyengar Road", "street": "10/3, Sri Complex, BVK Iyengar Road",
+     "addr": "10/3, Sri Complex, BVK Iyengar Road, Near Rama Temple, Bengaluru, Karnataka 560053",
+     "pin": "560053", "map": "Mount Cable India, 10/3 Sri Complex, BVK Iyengar Road, Bengaluru 560053"},
+    {"tag": "Showroom 2", "area": "Jayanagar", "street": "Jayanagar",
+     "addr": "Jayanagar, Bengaluru, Karnataka 560011",
+     "pin": "560011", "map": "Jayanagar, Bengaluru"},
 ]
 
 # Which brands have a downloaded logo file (others fall back to a wordmark)
@@ -354,13 +358,13 @@ def url_for(path):
 
 def local_business_jsonld():
     addrs = ", ".join(
-        f'{{"@type":"PostalAddress","streetAddress":"{o["area"]}","addressLocality":"Bengaluru","addressRegion":"Karnataka","postalCode":"{o["addr"].split()[-1]}","addressCountry":"IN"}}'
+        f'{{"@type":"PostalAddress","streetAddress":"{o["street"]}","addressLocality":"Bengaluru","addressRegion":"Karnataka","postalCode":"{o["pin"]}","addressCountry":"IN"}}'
         for o in OFFICES)
     return ("""<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ElectronicsStore","name":"Mount Cable India",
 "image":\"""" + SITE_URL + """/assets/img/banner-finolex-wires.jpg","url":\"""" + SITE_URL + """",
 "telephone":\"""" + PHONE_HREF + """","email":\"""" + EMAIL + """","priceRange":"₹₹",
-"foundingDate":"1990","areaServed":"Bengaluru, Karnataka, India",
+"foundingDate":"1991","areaServed":"Bengaluru, Karnataka, India",
 "description":"One of India's largest distributors of Finolex cables and a multi-brand electrical products dealer in Bengaluru, serving individual home builders for over """ + YEARS + """ years.",
 "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"20:00"},
 "address":[""" + addrs + """]}
@@ -405,7 +409,7 @@ def header(prefix=""):
   <div class="container nav">
     <a class="brand" href="{prefix}index.html">
       <span class="mark">M</span>
-      <span>Mount Cable<small>India · Est. 1990</small></span>
+      <span>Mount Cable<small>India · Est. 1991</small></span>
     </a>
     <nav class="nav-links" id="navlinks">
       <a href="{prefix}index.html#finolex">Finolex</a>
@@ -474,7 +478,7 @@ def footer(prefix=""):
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Mount Cable India · Serving Bengaluru since 1990. All rights reserved.</span>
+      <span>© 2026 Mount Cable India · Serving Bengaluru since 1991. All rights reserved.</span>
       <span>Jayanagar · Chickpete · Free delivery across Bangalore</span>
     </div>
   </div>
@@ -527,6 +531,8 @@ def build_index():
         <p><span class="pi">📍</span> {html.escape(o['addr'])}</p>
         <p><span class="pi">📞</span> <a href="tel:{PHONE_HREF}">{PHONE}</a></p>
         <p><span class="pi">🕘</span> Mon–Sat, 10:00 AM – 8:00 PM</p>
+        <a class="office-dir" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query={urllib.parse.quote(o['map'])}">🧭 Get directions →</a>
+        <iframe class="map-embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q={urllib.parse.quote(o['map'])}&output=embed" title="{html.escape(o['area'])} map"></iframe>
       </div>""" for o in OFFICES)
 
     faq_q = ",".join(
@@ -647,11 +653,12 @@ def build_index():
 <section class="bg-soft" id="areas">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">Local Delivery</p>
-      <h2>Areas we serve across Bangalore</h2>
-      <p>Free 3-hour delivery to your home site. Find your area for local pricing and stock.</p>
+      <p class="eyebrow">Free Delivery · All Bengaluru</p>
+      <h2>We serve all of Bangalore</h2>
+      <p>Wherever your home or site is in Bengaluru, we deliver 100% original material free, within 3 hours of confirmation. Here are some of the localities we cover — tap yours for local stock &amp; pricing:</p>
     </div>
     <div class="area-grid">{areas}</div>
+    <p class="area-note">…and every other locality across Bengaluru — North, South, East &amp; West. <a href="quote.html">Tell us your area</a> and we'll deliver to you.</p>
   </div>
 </section>
 
@@ -894,6 +901,7 @@ def build_quote():
     path = "quote.html"
     title = "Get an Instant Quote — Upload Your Requirement | Mount Cable India"
     desc = f"Building your home? Upload a photo of your wiring list or requirement and get an instant quote on 100% original Finolex wires & electrical material. Free 3-hour delivery across Bangalore. {YEARS} years of trust."
+    area_opts = "".join(f'<option value="{html.escape(a[1])}">{html.escape(a[1])}</option>' for a in AREAS)
     body = head(title, desc, path)
     body += header()
     body += f"""
@@ -906,52 +914,106 @@ def build_quote():
   </div>
 </section>
 
-<section>
+<section class="quote-sec">
   <div class="container quote-wrap">
-    <form class="quote-form" action="https://formsubmit.co/{EMAIL}" method="POST" enctype="multipart/form-data">
+    <form class="qform" action="https://formsubmit.co/{EMAIL}" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="_subject" value="New Quote Request — Mount Cable India">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="{SITE_URL}/thank-you.html">
-      <h2>Tell us what you need</h2>
-      <div class="fld"><label>Your name *</label><input type="text" name="Name" required placeholder="e.g. Ramesh Kumar"></div>
-      <div class="fld"><label>Phone / WhatsApp number *</label><input type="tel" name="Phone" required placeholder="10-digit mobile number" pattern="[0-9+ ]&#123;10,14&#125;"></div>
-      <div class="fld"><label>Your area in Bangalore</label><input type="text" name="Area" placeholder="e.g. Jayanagar, JP Nagar, Whitefield"></div>
-      <div class="fld"><label>What do you need?</label><textarea name="Requirement" rows="4" placeholder="e.g. Wiring for a 2BHK — Finolex 90M 1.0/1.5/2.5 sqmm, switches, MCB box…"></textarea></div>
-      <div class="fld">
-        <label>📷 Upload a photo of your list / requirement</label>
-        <input type="file" name="attachment" accept="image/*" capture="environment" id="photo">
-        <div class="photo-preview" id="preview"></div>
-        <p class="hint">Snap your wiring list, estimate or site — JPG/PNG. We'll quote from it instantly.</p>
+
+      <div class="qform-head">
+        <h2>Request your instant quote</h2>
+        <p>Fill in a few details and attach a photo — we'll do the rest.</p>
       </div>
-      <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;font-size:16px;padding:15px">Get My Instant Quote →</button>
-      <p class="hint center" style="margin-top:14px">Prefer chat? <a href="https://wa.me/{WHATSAPP}?text=Hi,%20here's%20my%20requirement%20for%20a%20quote">Send your photo on WhatsApp ({PHONE})</a></p>
+
+      <label class="dropzone" id="dropzone" for="photo">
+        <input type="file" name="attachment" accept="image/*" capture="environment" id="photo" hidden>
+        <div class="dz-default">
+          <div class="dz-icon">📷</div>
+          <div class="dz-title">Tap to add a photo of your list</div>
+          <div class="dz-sub">or drag &amp; drop here · JPG / PNG · wiring list, estimate or site photo</div>
+        </div>
+        <div class="dz-preview" id="preview"></div>
+      </label>
+      <div class="dz-filerow" id="filerow" hidden>
+        <span class="dz-fname" id="fname"></span>
+        <button type="button" class="dz-remove" id="removephoto">Remove</button>
+      </div>
+
+      <div class="qrow">
+        <div class="qfield">
+          <label for="qname">Your name <span class="req">*</span></label>
+          <div class="qinput"><span class="qic">👤</span><input id="qname" type="text" name="Name" required placeholder="e.g. Ramesh Kumar"></div>
+        </div>
+        <div class="qfield">
+          <label for="qphone">Phone / WhatsApp <span class="req">*</span></label>
+          <div class="qinput"><span class="qic">📞</span><input id="qphone" type="tel" name="Phone" required placeholder="10-digit mobile" pattern="[0-9+ ]&#123;10,14&#125;"></div>
+        </div>
+      </div>
+
+      <div class="qfield">
+        <label for="qarea">Your area in Bangalore</label>
+        <div class="qinput"><span class="qic">📍</span>
+          <select id="qarea" name="Area">
+            <option value="" selected disabled>Select your area</option>
+            {area_opts}
+            <option value="Other / elsewhere in Bangalore">Other / elsewhere in Bangalore</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="qfield">
+        <label for="qreq">What do you need?</label>
+        <div class="qinput"><textarea id="qreq" name="Requirement" rows="4" placeholder="e.g. Wiring for a 2BHK — Finolex 90M 1.0 / 1.5 / 2.5 sq mm, modular switches, MCB distribution box, LED lights…"></textarea></div>
+      </div>
+
+      <button type="submit" class="btn btn-gold qsubmit">Get My Instant Quote →</button>
+      <div class="qtrust"><span>🔒 Your details stay private</span><span>·</span><span>⚡ Reply within minutes</span></div>
+      <p class="qalt">Prefer to chat? <a href="https://wa.me/{WHATSAPP}?text=Hi,%20here's%20my%20requirement%20for%20a%20quote">Send your photo on WhatsApp</a> or call <a href="tel:{PHONE_HREF}">{PHONE}</a></p>
     </form>
+
     <aside class="quote-side">
       <div class="qs-card">
+        <div class="qs-steps">
+          <div class="qs-step"><span class="qs-num">1</span><div><strong>Share your list</strong><br>Snap a photo or type what you need.</div></div>
+          <div class="qs-step"><span class="qs-num">2</span><div><strong>Get your quote</strong><br>Genuine material at distributor price.</div></div>
+          <div class="qs-step"><span class="qs-num">3</span><div><strong>Delivered in 3 hrs</strong><br>Free to your site. Pay on delivery.</div></div>
+        </div>
         <h3>Why builders quote with us</h3>
         <ul class="tick-list">
           <li><strong>{YEARS} years</strong> of trust with Bengaluru home builders.</li>
           <li><strong>100% original Finolex</strong> — every range always in stock.</li>
-          <li><strong>3-hour free delivery</strong> to your site across Bangalore.</li>
+          <li><strong>Free 3-hour delivery</strong> across all of Bangalore.</li>
           <li><strong>Pay at your site</strong> — cash, UPI, card or transfer.</li>
-          <li><strong>Free pickup</strong> of any excess stock you over-order.</li>
         </ul>
         <div class="qs-call">
           <span>Need it urgently?</span>
-          <a class="btn btn-dark" href="tel:{PHONE_HREF}">📞 Call {PHONE}</a>
+          <a class="btn" style="background:#fff;color:var(--navy);width:100%;justify-content:center" href="tel:{PHONE_HREF}">📞 Call {PHONE}</a>
         </div>
       </div>
     </aside>
   </div>
 </section>
 <script>
-  var p=document.getElementById('photo');
-  if(p)p.addEventListener('change',function(){{
-    var f=this.files&&this.files[0];var v=document.getElementById('preview');
-    if(f){{var r=new FileReader();r.onload=function(e){{v.innerHTML='<img src="'+e.target.result+'" alt="preview">';}};r.readAsDataURL(f);}}
-    else v.innerHTML='';
-  }});
+(function(){{
+  var input=document.getElementById('photo'),zone=document.getElementById('dropzone'),
+      prev=document.getElementById('preview'),frow=document.getElementById('filerow'),
+      fname=document.getElementById('fname'),rm=document.getElementById('removephoto');
+  function show(f){{
+    if(!f){{clear();return;}}
+    var r=new FileReader();
+    r.onload=function(e){{prev.innerHTML='<img src="'+e.target.result+'" alt="Your uploaded requirement">';
+      zone.classList.add('has-file');fname.textContent=f.name;frow.hidden=false;}};
+    r.readAsDataURL(f);
+  }}
+  function clear(){{prev.innerHTML='';zone.classList.remove('has-file');frow.hidden=true;input.value='';}}
+  input.addEventListener('change',function(){{show(this.files&&this.files[0]);}});
+  rm.addEventListener('click',function(e){{e.preventDefault();clear();}});
+  ['dragover','dragenter'].forEach(function(ev){{zone.addEventListener(ev,function(e){{e.preventDefault();zone.classList.add('drag');}});}});
+  ['dragleave','dragend','drop'].forEach(function(ev){{zone.addEventListener(ev,function(e){{e.preventDefault();zone.classList.remove('drag');}});}});
+  zone.addEventListener('drop',function(e){{var fs=e.dataTransfer&&e.dataTransfer.files;if(fs&&fs.length){{input.files=fs;show(fs[0]);}}}});
+}})();
 </script>
 """
     body += footer()

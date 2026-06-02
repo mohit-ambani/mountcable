@@ -218,24 +218,61 @@ section{padding:84px 0}
 .area-chip:hover{background:var(--navy);color:#fff;border-color:var(--navy);transform:translateY(-2px)}
 
 /* Quote page */
-.quote-wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:36px;align-items:start}
-.quote-form{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px;box-shadow:var(--shadow)}
-.quote-form h2{font-size:24px;margin-bottom:22px}
-.fld{margin-bottom:20px}
-.fld label{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px;color:var(--ink)}
-.fld input,.fld textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:13px 15px;font:inherit;font-size:15px;background:var(--bg);transition:.18s}
-.fld input:focus,.fld textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(30,107,214,.12)}
-.fld input[type=file]{padding:11px;background:#fff;cursor:pointer}
-.photo-preview{margin-top:12px}
-.photo-preview img{max-height:220px;border-radius:12px;border:1px solid var(--line)}
-.hint{font-size:13px;color:var(--muted);margin:8px 0 0}
-.qs-card{background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#fff;border-radius:var(--radius);padding:30px;position:sticky;top:96px}
-.qs-card h3{color:#fff;font-size:20px;margin-bottom:14px}
+/* Map embed + directions (offices) */
+.office-dir{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--blue);font-size:14.5px;margin:14px 0 4px}
+.office-dir:hover{text-decoration:underline}
+.map-embed{width:100%;height:220px;border:0;border-radius:13px;margin-top:14px;display:block;filter:saturate(1.05)}
+.area-note{text-align:center;color:var(--muted);font-size:15px;margin:26px auto 0;max-width:620px}
+.area-note a{color:var(--blue);font-weight:600}
+
+/* ===== Quote page (redesigned) ===== */
+.quote-sec{padding-top:56px}
+.quote-wrap{display:grid;grid-template-columns:1.6fr 1fr;gap:32px;align-items:start}
+.qform{background:#fff;border:1px solid var(--line);border-radius:20px;padding:36px;box-shadow:var(--shadow-lg)}
+.qform-head{margin-bottom:24px}
+.qform-head h2{font-size:25px;margin-bottom:6px}
+.qform-head p{color:var(--muted);font-size:15px;margin:0}
+/* Dropzone */
+.dropzone{display:block;border:2px dashed #C5D0E0;border-radius:16px;background:linear-gradient(180deg,#F8FAFD,#F1F5FB);padding:30px 22px;text-align:center;cursor:pointer;transition:.2s;margin-bottom:8px}
+.dropzone:hover{border-color:var(--blue);background:#F3F8FF}
+.dropzone.drag{border-color:var(--blue);background:#EAF2FF;transform:scale(1.005)}
+.dropzone.has-file{border-style:solid;border-color:var(--line);background:#fff;padding:14px}
+.dz-icon{font-size:34px;margin-bottom:10px}
+.dz-title{font-weight:700;font-size:16px;color:var(--ink)}
+.dz-sub{font-size:13px;color:var(--muted);margin-top:5px}
+.dropzone.has-file .dz-default{display:none}
+.dz-preview{display:none}
+.dropzone.has-file .dz-preview{display:block}
+.dz-preview img{width:100%;max-height:320px;object-fit:contain;border-radius:11px}
+.dz-filerow{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#EEF4FF;border-radius:10px;padding:9px 14px;font-size:13.5px;margin-bottom:18px}
+.dz-fname{color:var(--navy);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dz-remove{border:0;background:none;color:#C8102E;font-weight:700;cursor:pointer;font-size:13.5px;flex:0 0 auto}
+/* Fields */
+.qrow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.qfield{margin-bottom:18px}
+.qfield label{display:block;font-weight:600;font-size:14px;margin-bottom:7px;color:var(--ink)}
+.qfield .req{color:#C8102E}
+.qinput{position:relative;display:flex;align-items:center}
+.qic{position:absolute;left:14px;font-size:15px;opacity:.65;pointer-events:none}
+.qinput input,.qinput select,.qinput textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:14px 15px 14px 42px;font:inherit;font-size:15px;background:var(--bg);transition:.18s;color:var(--ink)}
+.qinput textarea{padding-left:15px;resize:vertical;min-height:104px}
+.qinput select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235B6675' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.qinput input:focus,.qinput select:focus,.qinput textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(30,107,214,.12)}
+.qsubmit{width:100%;justify-content:center;font-size:16.5px;padding:16px;margin-top:6px}
+.qtrust{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;color:var(--muted);font-size:12.5px;margin-top:14px}
+.qalt{text-align:center;font-size:14px;color:var(--muted);margin:14px 0 0}
+.qalt a{color:var(--blue);font-weight:600}
+/* Side card */
+.qs-card{background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#fff;border-radius:20px;padding:30px;position:sticky;top:96px;box-shadow:var(--shadow-lg)}
+.qs-steps{display:flex;flex-direction:column;gap:14px;margin-bottom:24px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.14)}
+.qs-step{display:flex;gap:13px;align-items:flex-start;font-size:14px;color:#C7D3E6;line-height:1.4}
+.qs-step strong{color:#fff}
+.qs-num{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231a05;font-weight:800;display:grid;place-items:center;font-size:14px}
+.qs-card h3{color:#fff;font-size:19px;margin-bottom:14px}
 .qs-card .tick-list li{color:#E4ECF7}
 .qs-card .tick-list li strong{color:#fff}
-.qs-call{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.15)}
+.qs-call{margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.15)}
 .qs-call span{display:block;color:#AFC0DA;font-size:14px;margin-bottom:10px}
-.qs-call .btn{width:100%;justify-content:center;background:#fff;color:var(--navy)}
 
 .container.narrow{max-width:820px}
 
@@ -282,6 +319,7 @@ section{padding:84px 0}
   .blog-grid{grid-template-columns:1fr}
   .fs-floatcard{position:static;margin-top:18px;left:0;right:0}
   .quote-wrap{grid-template-columns:1fr}
+  .qrow{grid-template-columns:1fr}
   .qs-card{position:static}
   .nav-links,.nav-cta .btn-outline{display:none}
   .nav-toggle{display:block}
