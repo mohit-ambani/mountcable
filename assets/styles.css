@@ -231,6 +231,16 @@ a.prod:hover .go{color:var(--blue)}
 .area-note{text-align:center;color:var(--muted);font-size:15px;margin:26px auto 0;max-width:620px}
 .area-note a{color:var(--blue);font-weight:600}
 
+/* Price table */
+.ptable-wrap{overflow-x:auto;margin:16px 0}
+.ptable{width:100%;border-collapse:collapse;font-size:15px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.ptable th,.ptable td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line)}
+.ptable th{background:var(--navy);color:#fff;font-weight:700;font-size:14px}
+.ptable tr:last-child td{border-bottom:0}
+.ptable tbody tr:nth-child(even){background:var(--bg)}
+.ptable td:first-child{font-weight:700;color:var(--navy);white-space:nowrap}
+.ptable-note{font-size:14.5px;color:var(--muted);margin-top:12px}
+
 /* Google review section + page */
 .review-sec{padding:64px 0}
 .review-card{display:grid;grid-template-columns:1.5fr auto;gap:36px;align-items:center;background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#fff;border-radius:var(--radius);padding:40px;box-shadow:var(--shadow-lg)}

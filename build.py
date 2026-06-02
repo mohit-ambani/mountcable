@@ -155,6 +155,37 @@ AREAS = [
 # High-intent Finolex SEO landing pages (root-level).
 # slug, title, h1, desc, badge, intro, sections[(h2, html)], faqs[(q,a)]
 SEO_PAGES = [
+ {"slug": "finolex-wire-price-list-bangalore",
+  "title": "Finolex Wire Price List in Bangalore (2026) | Distributor Rate — Mount Cable India",
+  "h1": "Finolex wire price list in Bangalore — get today's distributor rate",
+  "desc": "Looking for the Finolex wire price list in Bangalore? Get today's genuine distributor rate for every Finolex range (90M, 180M, 300M, FRLS, Ultra) and gauge (1.0, 1.5, 2.5, 4.0 sq mm). 100% original, free 3-hour delivery. WhatsApp +91 88676 76700 for the latest price list.",
+  "badge": "💰 Live Distributor Pricing · Updated Daily",
+  "intro": "Want the latest Finolex wire price list in Bangalore? Because wire prices move with the copper market, we don't publish fixed figures that go stale — instead we send you today's genuine distributor rate within minutes. Message us your sizes and we'll share the current Finolex price list right away.",
+  "sections": [
+    ("Why Finolex wire prices change",
+     "<p>Finolex house wire is made largely of copper, so its price tracks the global copper market and can change frequently. Anyone showing a fixed 'price list' that never updates is quoting stale rates. We quote the <strong>live distributor rate</strong> on the day you order — the same rate your local shop pays, passed straight to you.</p>"),
+    ("Finolex wire sizes &amp; where each is used",
+     "<p>Use this guide to work out which gauges you need, then message us for today's rate on each:</p>"
+     "<div class=\"ptable-wrap\"><table class=\"ptable\"><thead><tr><th>Size</th><th>Typical use in a home</th><th>Coil options</th></tr></thead><tbody>"
+     "<tr><td>0.75 sq mm</td><td>Lighting points, bulbs, tube lights</td><td>90M</td></tr>"
+     "<tr><td>1.0 sq mm</td><td>Lights &amp; fan points, general 5A circuits</td><td>90M / 180M</td></tr>"
+     "<tr><td>1.5 sq mm</td><td>Fan &amp; light circuits, utility points</td><td>90M / 180M / 300M</td></tr>"
+     "<tr><td>2.5 sq mm</td><td>6A/16A sockets, fridge, TV, kitchen points</td><td>90M / 180M / 300M</td></tr>"
+     "<tr><td>4.0 sq mm</td><td>Air-conditioners, geysers, heavy 16A loads</td><td>90M / 180M</td></tr>"
+     "<tr><td>6.0 sq mm</td><td>Sub-mains, heavy kitchen / longer runs</td><td>90M / 180M</td></tr>"
+     "</tbody></table></div>"
+     "<p class=\"ptable-note\">Available in FR, FR-LSH (Flamegard) and Finolex Ultra grades. <a href=\"blog/fr-vs-frls-vs-finolex-ultra.html\">Which grade should you choose?</a></p>"),
+    ("Get today's Finolex price list — in minutes",
+     "<p>Send us your list of sizes and quantities (or a photo of your estimate) and we'll reply with the current Finolex price list at distributor rates. <a href=\"quote.html\">Upload your list here</a> or WhatsApp <a href=\"https://wa.me/918867676700\">+91 88676 76700</a>. Free 3-hour delivery across Bangalore, pay at your site.</p>"),
+    ("Distributor price vs local shop (MRP)",
+     "<p>Local shops usually sell close to MRP. As one of India's largest Finolex distributors, we give you the distributor rate — which, across a full house of wiring, saves a meaningful amount. Same 100% original Finolex, lower price. See the <a href=\"brands/finolex.html\">full Finolex range</a>.</p>"),
+  ],
+  "faqs": [
+    ("What is the price of Finolex wire in Bangalore today?", "Finolex wire prices change daily with the copper market, so we quote a live distributor rate rather than a fixed list. Message us your sizes on WhatsApp at +91 88676 76700 and we'll send today's exact Finolex price list within minutes."),
+    ("Do you have a Finolex wire price list 2026 PDF?", "Yes — we share the latest Finolex price list directly on WhatsApp or email, updated to the current copper rate (a static PDF goes out of date quickly). Send us your requirement and we'll forward the current list."),
+    ("What is the price of Finolex 2.5 sq mm wire?", "The rate for 2.5 sq mm depends on the grade (FR, FR-LSH or Ultra), coil length (90M/180M/300M) and the day's copper price. Ask us for the current rate — as a distributor we offer it below typical MRP."),
+    ("Is Finolex wire cheaper from a distributor than a local shop?", "Yes. Local shops sell near MRP, while we pass on the distributor rate. For a full house of wiring the saving is significant — for the same 100% original Finolex product."),
+  ]},
  {"slug": "finolex-dealer-near-me",
   "title": "Finolex Dealer Near Me | Authorized Finolex Distributor in Bangalore",
   "h1": "Finolex dealer near me — we bring Finolex to your doorstep",
@@ -535,6 +566,7 @@ def footer(prefix=""):
         <h4>Shop By Category</h4>
         {cats}
         <h4 style="margin-top:18px">Finolex</h4>
+        <a href="{prefix}finolex-wire-price-list-bangalore.html">Finolex Price List Bangalore</a>
         <a href="{prefix}original-finolex-wires.html">Original Finolex Wires</a>
         <a href="{prefix}finolex-dealer-near-me.html">Finolex Dealer Near Me</a>
         <a href="{prefix}review.html">★ Review us on Google</a>
@@ -926,24 +958,54 @@ def build_area(a):
     path = f"areas/{slug}.html"
     cats = "".join(f'<a class="area-chip" href="../{c[0]}.html">{html.escape(c[2])}</a>' for c in CATEGORIES)
     fbrands = "".join(brand_tile(b, prefix="../") for b in BRANDS if b[3])
-    title = f"Electrical Shop & Finolex Wire Dealer in {name}, Bangalore | Mount Cable India"
-    desc = f"Looking for electrical products or a Finolex wire dealer in {name}, Bangalore? Mount Cable India delivers 100% original Finolex wires, switches, cables, pipes & lighting to {name} in 3 hours, free. {YEARS} years of trust. Call {PHONE}."
+    is_chick = (slug == "chickpete")
+    main = OFFICES[0]  # BVK Iyengar Road showroom
+    if is_chick:
+        title = f"Finolex Wire Dealer in Chickpet (BVK Iyengar Road), Bangalore | Mount Cable India"
+        desc = f"Mount Cable India is a Finolex wire dealer & wholesale distributor in Chickpet, Bangalore — at {main['street']}, 560053. 100% original Finolex wires, all ranges in stock, distributor prices, free 3-hour delivery. {YEARS} years. Call {PHONE}."
+        badge = "📍 Our Showroom · BVK Iyengar Road, Chickpet"
+        h1 = "Finolex wire dealer in Chickpet — BVK Iyengar Road, Bangalore"
+        intro = (f"Our main showroom is right here in Chickpet, at {main['street']}, near Rama Temple (560053). "
+                 f"Mount Cable India is one of India's largest Finolex distributors and a wholesale wire dealer in Chickpet — "
+                 f"walk in, or get 100% original Finolex wires delivered free across Bangalore within 3 hours.")
+    else:
+        title = f"Electrical Shop & Finolex Wire Dealer in {name}, Bangalore | Mount Cable India"
+        desc = f"Looking for electrical products or a Finolex wire dealer in {name}, Bangalore? Mount Cable India delivers 100% original Finolex wires, switches, cables, pipes & lighting to {name} in 3 hours, free. {YEARS} years of trust. Call {PHONE}."
+        badge = f"📍 Free 3-Hour Delivery in {name}"
+        h1 = f"Electrical products &amp; Finolex wire dealer in {html.escape(name)}, Bangalore"
+        intro = (f"Building or wiring a home in {html.escape(name)}? Mount Cable India delivers 100% original Finolex wires "
+                 f"and every electrical essential to {html.escape(name)} and nearby {html.escape(nearby)} — within 3 hours of confirmation, free of cost.")
     crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Areas We Serve", SITE_URL + "/index.html#areas"), (name, url_for(path))])
+    chick_map = (f"""
+<section>
+  <div class="container">
+    <div class="office" style="max-width:760px;margin:0 auto">
+      <span class="tag">Visit Our Showroom</span>
+      <h3>Mount Cable India — Chickpet</h3>
+      <p><span class="pi">📍</span> {html.escape(main['addr'])}</p>
+      <p><span class="pi">📞</span> <a href="tel:{PHONE_HREF}">{PHONE}</a></p>
+      <p><span class="pi">🕘</span> Mon–Sat, 10:00 AM – 8:00 PM</p>
+      <a class="office-dir" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query={urllib.parse.quote(main['map'])}">🧭 Get directions →</a>
+      <iframe class="map-embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q={urllib.parse.quote(main['map'])}&output=embed" title="Mount Cable India Chickpet map"></iframe>
+    </div>
+  </div>
+</section>""") if is_chick else ""
     body = head(title, desc, path, css_prefix="../", extra_jsonld=crumbs)
     body += header(prefix="../")
     body += f"""
 <section class="bp-hero">
   <div class="container">
     <div class="crumbs"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../index.html#areas">Areas We Serve</a> &nbsp;/&nbsp; {html.escape(name)}</div>
-    <span class="badge">📍 Free 3-Hour Delivery in {html.escape(name)}</span>
-    <h1>Electrical products &amp; Finolex wire dealer in {html.escape(name)}, Bangalore</h1>
-    <p>Building or wiring a home in {html.escape(name)}? Mount Cable India delivers 100% original Finolex wires and every electrical essential to {html.escape(name)} and nearby {html.escape(nearby)} — within 3 hours of confirmation, free of cost.</p>
+    <span class="badge">{badge}</span>
+    <h1>{h1}</h1>
+    <p>{intro}</p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="../quote.html">📷 Upload Your List — Get a Quote</a>
       <a class="btn btn-ghost" href="tel:{PHONE_HREF}">📞 Call {PHONE}</a>
     </div>
   </div>
 </section>
+{chick_map}
 
 <section>
   <div class="container split">
