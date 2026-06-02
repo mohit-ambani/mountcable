@@ -110,6 +110,9 @@ section{padding:84px 0}
 .fs-logo{font-family:'Plus Jakarta Sans';font-weight:800;font-size:42px;color:#0054A6;letter-spacing:-.02em}
 .fs-badge{display:inline-block;font-size:12.5px;font-weight:700;color:#0054A6;background:rgba(0,84,166,.1);padding:6px 14px;border-radius:100px;margin:12px 0 16px}
 .fs-card p{color:var(--muted);font-size:15px;margin:0 0 18px}
+.fs-ranges-label{color:#fff;font-weight:700;font-size:14.5px;margin:22px 0 12px}
+.fs-chips{margin-bottom:8px}
+.fs-chips .chip{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22);color:#EAF1FB;font-size:13px;padding:7px 14px}
 
 /* Features */
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}

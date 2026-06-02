@@ -31,9 +31,9 @@ CATEGORIES = [
 # slug, name, color, featured(bool), tagline, products[], blurb
 BRANDS = [
     ("finolex", "Finolex", "#0054A6", True,
-     "Our flagship brand — 100% original Finolex wires & cables for your home.",
-     ["House Wires (FR / FR-LSH)", "Power & Control Cables", "Switches & Sockets", "PVC Conduits & Fittings", "Water Heaters", "Fans"],
-     "Finolex is India's most trusted name in house wiring, known for safety-first FR and flame-retardant cables that meet strict IS standards. Mount Cable India is one of the largest distributors of Finolex cables in India — and our surety is that we sell only 100% original Finolex wires. If you're building your home, this is the wiring you can trust for life."),
+     "Our flagship — 100% original Finolex wires & cables, every range always in stock.",
+     ["Finolex 90M Silver", "Finolex 90M Gold", "Finolex 90M FRLS", "Finolex 180M", "Finolex 300M", "Finolex 300M FRLS", "Finolex Ultra", "Co-Axial Cables", "Telephone Cables", "Internet / LAN Cables"],
+     "Finolex is India's most trusted name in house wiring. Mount Cable India is one of the largest distributors of Finolex cables in India — and our surety is that we sell only 100% original Finolex wires. Every range — 90M Silver, 90M Gold, 90M FRLS, 180M, 300M, 300M FRLS, Finolex Ultra, plus co-axial, telephone and internet cables — is in stock and always available. Confirm your order and we deliver to your site within 3 hours, and collect payment right at your site."),
     ("polycab", "Polycab", "#E4002B", True,
      "India's largest wires & cables maker and a complete FMEG brand.",
      ["Wires & Cables", "Power & Control Cables", "Fans", "LED Lighting", "Switchgear", "Conduits"],
@@ -209,7 +209,7 @@ def build_index():
   <div class="container hero-inner">
     <span class="hero-badge"><span class="dot"></span> One of India's largest Finolex distributors</span>
     <h1>Building your home? Get <span class="accent">100% original Finolex wires</span> at distributor prices.</h1>
-    <p class="lead">Mount Cable India is one of the largest distributors of Finolex cables in India — plus every other electrical brand your new home needs. <strong>Free delivery across Bangalore</strong>, all payment modes accepted, and far better service than your local outlet.</p>
+    <p class="lead">Mount Cable India is one of the largest distributors of Finolex cables in India. Every range is always in stock — and once your order is confirmed, we <strong>deliver to your site within 3 hours</strong> and collect payment right there. Free delivery across Bangalore.</p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="https://wa.me/{WHATSAPP}?text=Hi,%20I'm%20building%20my%20home%20and%20need%20a%20quote%20for%20electrical%20material">💬 WhatsApp 88676 76700</a>
       <a class="btn btn-ghost" href="tel:{PHONE_HREF}">📞 Call for a Quote</a>
@@ -219,9 +219,9 @@ def build_index():
 <div class="trust">
   <div class="container">
     <div class="item"><div class="n">100%</div><div class="l">Original Finolex Wires</div></div>
+    <div class="item"><div class="n">3 Hrs</div><div class="l">Delivery to Your Site</div></div>
+    <div class="item"><div class="n">Always</div><div class="l">In Stock</div></div>
     <div class="item"><div class="n">Free</div><div class="l">Delivery in Bangalore</div></div>
-    <div class="item"><div class="n">13+</div><div class="l">Trusted Brands</div></div>
-    <div class="item"><div class="n">All</div><div class="l">Payment Modes Accepted</div></div>
   </div>
 </div>
 
@@ -232,17 +232,30 @@ def build_index():
         <p class="eyebrow">Our Flagship</p>
         <h2>One of India's largest Finolex distributors</h2>
         <p class="muted">Wiring a home is a once-in-a-lifetime decision — so it has to be right. Our surety to you: <strong>we sell only 100% original Finolex wires</strong>, sealed and warranty-backed, at genuine distributor prices. No fakes, no seconds, no compromises.</p>
+        <p class="fs-ranges-label">Every Finolex range — always in stock:</p>
+        <div class="chip-row fs-chips">
+          <span class="chip">90M Silver</span>
+          <span class="chip">90M Gold</span>
+          <span class="chip">90M FRLS</span>
+          <span class="chip">180M</span>
+          <span class="chip">300M</span>
+          <span class="chip">300M FRLS</span>
+          <span class="chip">Finolex Ultra</span>
+          <span class="chip">Co-Axial Cables</span>
+          <span class="chip">Telephone Cables</span>
+          <span class="chip">Internet / LAN Cables</span>
+        </div>
         <ul class="tick-list">
-          <li><strong>100% genuine Finolex</strong> — FR &amp; flame-retardant house wires that protect your family for decades.</li>
-          <li><strong>Distributor pricing</strong> — the rate your local shop pays, passed straight to you.</li>
-          <li><strong>Right size, right load</strong> — we help you pick the correct wire gauge for every room.</li>
+          <li><strong>Always in stock</strong> — every Finolex range is available and ready to dispatch, no waiting.</li>
+          <li><strong>3-hour site delivery</strong> — confirm your order and we deliver to your site within 3 hours.</li>
+          <li><strong>Pay at your site</strong> — we collect payment right at your site, in any mode you prefer.</li>
         </ul>
         <a class="btn btn-dark" href="brands/finolex.html">Explore Finolex range →</a>
       </div>
       <div class="fs-card">
         <div class="fs-logo">Finolex</div>
-        <div class="fs-badge">★ 100% Original · Authorized Distributor</div>
-        <p>Building your house? Send us your wiring list and we'll prepare a complete Finolex quote — delivered free across Bangalore.</p>
+        <div class="fs-badge">★ 100% Original · All Ranges In Stock</div>
+        <p>Building your house? Send us your wiring list and we'll prepare a complete Finolex quote. Once confirmed, we deliver to your site in <strong>3 hours</strong> — and you pay at your site, any mode.</p>
         <a class="btn btn-gold" style="width:100%;justify-content:center" href="https://wa.me/{WHATSAPP}?text=Hi,%20please%20send%20me%20a%20Finolex%20wiring%20quote%20for%20my%20home">💬 Get a Finolex Quote</a>
       </div>
     </div>
@@ -291,11 +304,11 @@ def build_index():
     </div>
     <div class="feat-grid">
       <div class="feat"><div class="ic">✓</div><h3>100% Original Material</h3><p>Genuine, brand-sealed and warranty-backed — especially our 100% original Finolex wires. What you pay for is what you get.</p></div>
-      <div class="feat"><div class="ic">🚚</div><h3>Free Delivery Across Bangalore</h3><p>Your material reaches your site at no extra cost — no need to arrange transport or make repeated shop trips.</p></div>
-      <div class="feat"><div class="ic">↩️</div><h3>Free Pickup of Excess Stock</h3><p>Ordered a little extra? No worries. If you have surplus material left over, we'll pick it up free of charge.</p></div>
-      <div class="feat"><div class="ic">₹</div><h3>Distributor Prices, Better Service</h3><p>You get genuine distributor pricing and 100% better service than your local nearby outlet — that's our commitment.</p></div>
-      <div class="feat"><div class="ic">💳</div><h3>All Payment Modes Accepted</h3><p>Cash, UPI, cards, bank transfer — pay however is easiest for you. No payment worries at all.</p></div>
-      <div class="feat"><div class="ic">🧭</div><h3>Expert Guidance</h3><p>First time wiring a home? We'll help you choose the right wires, gauges and brands for every part of your house.</p></div>
+      <div class="feat"><div class="ic">⏱️</div><h3>3-Hour Site Delivery</h3><p>Confirm your order and your material reaches your site within 3 hours — free across Bangalore. No transport to arrange, no repeated shop trips.</p></div>
+      <div class="feat"><div class="ic">📦</div><h3>Always In Stock</h3><p>Every Finolex range and electrical essential is in stock and always available — so your work never stops for want of material.</p></div>
+      <div class="feat"><div class="ic">💳</div><h3>Pay At Your Site</h3><p>We collect payment right at your site, in any mode — cash, UPI, card or bank transfer. No advance hassles.</p></div>
+      <div class="feat"><div class="ic">↩️</div><h3>Free Pickup of Excess Stock</h3><p>Ordered a little extra? If you have surplus material left over, we'll pick it up free of charge.</p></div>
+      <div class="feat"><div class="ic">₹</div><h3>Distributor Prices, Better Service</h3><p>Genuine distributor pricing and 100% better service than your local nearby outlet — plus expert guidance on choosing the right wires for every room.</p></div>
     </div>
   </div>
 </section>
