@@ -133,6 +133,55 @@ AREAS = [
     ("yelahanka", "Yelahanka", "Hebbal, Jakkur, Doddaballapur Road and Vidyaranyapura"),
 ]
 
+# High-intent Finolex SEO landing pages (root-level).
+# slug, title, h1, desc, badge, intro, sections[(h2, html)], faqs[(q,a)]
+SEO_PAGES = [
+ {"slug": "finolex-dealer-near-me",
+  "title": "Finolex Dealer Near Me | Authorized Finolex Distributor in Bangalore",
+  "h1": "Finolex dealer near me — we bring Finolex to your doorstep",
+  "desc": "Searching for a Finolex dealer near me in Bangalore? Mount Cable India is an authorized Finolex distributor with free 3-hour delivery to your site across Bangalore. 100% original Finolex wires, all ranges in stock, distributor prices. Call +91 88676 76700.",
+  "badge": "📍 Authorized Finolex Dealer · Free 3-Hour Delivery",
+  "intro": "Looking for a 'Finolex dealer near me' in Bangalore? The nearest Finolex dealer is the one that comes to you. Mount Cable India is one of India's largest Finolex distributors, and we deliver 100% original Finolex wires free to your site — anywhere in Bangalore — within 3 hours of confirmation.",
+  "sections": [
+    ("The nearest Finolex dealer is the one that delivers to you",
+     "<p>Instead of driving around looking for a Finolex shop, let the dealer come to you. We hold every Finolex range in stock and deliver free to your home or site across Bangalore within 3 hours of confirming your order — and you pay right at your site, in any mode. For over 35 years, that's how Bengaluru's home builders have wired their homes with us.</p>"),
+    ("Finolex ranges we keep in stock — always",
+     "<p>Whatever your wiring needs, the range is ready to dispatch: <strong>Finolex 90M Silver, 90M Gold, 90M FRLS, 180M, 300M, 300M FRLS and Finolex Ultra</strong>, plus co-axial, telephone and internet/LAN cables. See the full <a href=\"brands/finolex.html\">Finolex range and product photos</a>, or read our <a href=\"blog/house-wiring-wire-size-guide.html\">wire-size guide</a> to choose the right gauge.</p>"),
+    ("Areas we deliver to across Bangalore",
+     "<p>We deliver to all major localities — find yours below for local stock and pricing.</p>{areas}"),
+    ("How to order from your nearest Finolex dealer",
+     "<p>It takes a minute: <a href=\"quote.html\">upload a photo of your wiring list</a> for an instant quote, WhatsApp us, or call <a href=\"tel:+918867676700\">+91 88676 76700</a>. Confirm, and your genuine Finolex wires arrive at your site within 3 hours.</p>"),
+  ],
+  "faqs": [
+    ("Is there a Finolex dealer near me in Bangalore?", "Yes — Mount Cable India is an authorized Finolex dealer serving all of Bangalore. Rather than asking you to travel, we deliver 100% original Finolex wires free to your site within 3 hours, so the nearest Finolex dealer effectively comes to you."),
+    ("How fast can you deliver Finolex wires to my location?", "Once your order is confirmed, we deliver to your site within 3 hours, free across Bangalore. Every Finolex range is in stock, so there's no waiting."),
+    ("Do I have to visit your showroom to buy Finolex wires?", "No. You can order entirely online — upload your list or WhatsApp us — and we deliver to your door. You're also welcome to visit our Jayanagar or Chickpete showrooms if you prefer."),
+    ("Are you an authorized Finolex dealer?", "Yes. Mount Cable India is one of the largest distributors of Finolex cables in India, sourcing only through authorized channels — so every wire is 100% genuine and warranty-backed."),
+  ]},
+ {"slug": "original-finolex-wires",
+  "title": "Original Finolex Wires | 100% Genuine at Distributor Price, Bangalore",
+  "h1": "100% original Finolex wires — guaranteed genuine",
+  "desc": "Buy 100% original Finolex wires in Bangalore from Mount Cable India, an authorized Finolex distributor. Sealed, warranty-backed, all ranges in stock, distributor prices, free 3-hour delivery. Learn how to verify genuine Finolex wire.",
+  "badge": "✓ 100% Original · Authorized Distributor",
+  "intro": "Want 100% original Finolex wires for your home? Our surety is simple: Mount Cable India sells only genuine, sealed, warranty-backed Finolex wires, sourced through authorized channels — at honest distributor prices. No fakes, no seconds, no compromises.",
+  "sections": [
+    ("Why buying original Finolex wire matters",
+     "<p>Wire sits hidden inside your walls for decades. Counterfeit or sub-standard wire uses less or impure copper and weaker insulation, which can overheat and become a fire risk. For a once-in-a-lifetime decision like wiring your home, genuine wire is non-negotiable.</p>"),
+    ("How we guarantee your Finolex wires are original",
+     "<p>As one of India's largest Finolex distributors, we source directly through Finolex's authorized channel. Every coil reaches you brand-sealed and warranty-backed. Want to verify it yourself? Read our guide on <a href=\"blog/how-to-identify-original-finolex-wire.html\">how to identify 100% original Finolex wire</a>.</p>"),
+    ("Every original Finolex range, in stock",
+     "<p>We stock the complete genuine range — <strong>90M Silver, 90M Gold, 90M FRLS, 180M, 300M, 300M FRLS, Finolex Ultra</strong>, plus co-axial, telephone and internet/LAN cables. Not sure which grade? Compare <a href=\"blog/fr-vs-frls-vs-finolex-ultra.html\">FR vs FR-LSH vs Finolex Ultra</a>, or see the <a href=\"brands/finolex.html\">full Finolex range</a>.</p>"),
+    ("Original wire, distributor price, delivered free",
+     "<p>Genuine doesn't have to mean expensive. You get the distributor rate — the same your local shop pays — with free 3-hour site delivery across Bangalore and payment collected at your site. <a href=\"quote.html\">Upload your list for an instant quote.</a></p>"),
+  ],
+  "faqs": [
+    ("Where can I buy 100% original Finolex wires in Bangalore?", "From Mount Cable India — an authorized Finolex distributor. We supply only genuine, sealed, warranty-backed Finolex wires at distributor prices, with free 3-hour delivery across Bangalore."),
+    ("How do I know if a Finolex wire is genuine?", "Buy from an authorized distributor, check the sealed packaging and clean printing, look for clear repeated markings and standards marks along the wire, and verify the sequential metre marking. Our detailed guide explains each check."),
+    ("Are your Finolex wires sealed and warranty-backed?", "Yes. Every coil is brand-sealed and warranty-backed, sourced through Finolex's authorized channel — that is our surety to you."),
+    ("Is original Finolex wire more expensive?", "Genuine wire has a real copper cost, but as a distributor we pass on the distributor rate, so you pay far less than near-MRP local shop prices for the same 100% original product."),
+  ]},
+]
+
 BLOG_DATE = "2026-06-02"
 BLOG_DATE_DISP = "June 2, 2026"
 
@@ -419,6 +468,9 @@ def footer(prefix=""):
       <div>
         <h4>Shop By Category</h4>
         {cats}
+        <h4 style="margin-top:18px">Finolex</h4>
+        <a href="{prefix}original-finolex-wires.html">Original Finolex Wires</a>
+        <a href="{prefix}finolex-dealer-near-me.html">Finolex Dealer Near Me</a>
       </div>
     </div>
     <div class="foot-bottom">
@@ -1000,8 +1052,54 @@ def build_blog_post(p):
     body += footer(prefix="../")
     write(path, body)
 
+def build_seo_page(p):
+    path = f"{p['slug']}.html"
+    areas_html = '<div class="area-grid" style="justify-content:flex-start;margin-top:14px">' + \
+        "".join(f'<a class="area-chip" href="areas/{a[0]}.html">{html.escape(a[1])}</a>' for a in AREAS) + "</div>"
+    secs = ""
+    for h2, htmlc in p["sections"]:
+        secs += f"<h2>{html.escape(h2)}</h2>{htmlc.replace('{areas}', areas_html)}"
+    faq_html = "".join(
+        f'<details class="faq"><summary>{html.escape(q)}</summary><div class="faq-a">{html.escape(a)}</div></details>'
+        for q, a in p["faqs"])
+    faq_q = ",".join(
+        f'{{"@type":"Question","name":{_json(q)},"acceptedAnswer":{{"@type":"Answer","text":{_json(a)}}}}}'
+        for q, a in p["faqs"])
+    faq_ld = f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{faq_q}]}}</script>'
+    crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), (p["h1"], url_for(path))])
+    body = head(p["title"], p["desc"], path, extra_jsonld=faq_ld + crumbs)
+    body += header()
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; {html.escape(p['h1'])}</div>
+    <span class="badge">{p['badge']}</span>
+    <h1>{html.escape(p['h1'])}</h1>
+    <p>{html.escape(p['intro'])}</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="quote.html">📷 Upload Your List — Get a Quote</a>
+      <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}">💬 WhatsApp {PHONE}</a>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container narrow">
+    <div class="post-body">{secs}</div>
+  </div>
+</section>
+<section class="bg-soft">
+  <div class="container narrow">
+    <div class="section-head"><p class="eyebrow">Questions, Answered</p><h2>Frequently asked questions</h2></div>
+    <div class="faq-list">{faq_html}</div>
+  </div>
+</section>
+"""
+    body += footer()
+    write(path, body)
+
 def build_sitemap():
     paths = ["index.html", "quote.html", "blog.html", "thank-you.html"]
+    paths += [f"{p['slug']}.html" for p in SEO_PAGES]
     paths += [f"{c[0]}.html" for c in CATEGORIES]
     paths += [f"brands/{b[0]}.html" for b in BRANDS]
     paths += [f"areas/{a[0]}.html" for a in AREAS]
@@ -1031,8 +1129,9 @@ if __name__ == "__main__":
     build_thankyou()
     build_blog_index()
     for p in BLOG: build_blog_post(p)
+    for p in SEO_PAGES: build_seo_page(p)
     build_sitemap()
-    total = 1 + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 3 + len(BLOG)
+    total = 1 + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 3 + len(BLOG) + len(SEO_PAGES)
     print(f"Done — {total} pages + sitemap.xml + robots.txt")
     print(f"  1 home, {len(BRANDS)} brands, {len(CATEGORIES)} categories, {len(AREAS)} areas, "
-          f"blog index + {len(BLOG)} posts, quote, thank-you")
+          f"{len(SEO_PAGES)} Finolex SEO pages, blog index + {len(BLOG)} posts, quote, thank-you")
