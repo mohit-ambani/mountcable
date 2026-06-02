@@ -97,6 +97,20 @@ section{padding:84px 0}
 .brand-tile .name{font-family:'Plus Jakarta Sans';font-weight:800;font-size:19px;letter-spacing:-.02em}
 .brand-tile .tag{font-size:12px;color:var(--muted);margin-top:4px;font-weight:500}
 
+/* Finolex spotlight */
+.finolex-spot{background:linear-gradient(160deg,#06223F,#0A1A33);color:#fff;position:relative;overflow:hidden}
+.finolex-spot:before{content:"";position:absolute;inset:0;background:radial-gradient(700px 380px at 90% 10%,rgba(0,84,166,.45),transparent 60%)}
+.fs-grid{position:relative;display:grid;grid-template-columns:1.35fr 1fr;gap:48px;align-items:center}
+.finolex-spot .eyebrow{color:var(--gold)}
+.finolex-spot h2{color:#fff;font-size:clamp(26px,3.6vw,38px);margin-bottom:16px}
+.finolex-spot .muted{color:#C7D3E6;font-size:16.5px}
+.finolex-spot .tick-list li{color:#E4ECF7}
+.finolex-spot .tick-list li strong{color:#fff}
+.fs-card{background:#fff;border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-lg);color:var(--ink)}
+.fs-logo{font-family:'Plus Jakarta Sans';font-weight:800;font-size:42px;color:#0054A6;letter-spacing:-.02em}
+.fs-badge{display:inline-block;font-size:12.5px;font-weight:700;color:#0054A6;background:rgba(0,84,166,.1);padding:6px 14px;border-radius:100px;margin:12px 0 16px}
+.fs-card p{color:var(--muted);font-size:15px;margin:0 0 18px}
+
 /* Features */
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .feat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px}
@@ -161,7 +175,9 @@ section{padding:84px 0}
   .nav-links,.nav-cta .btn-outline{display:none}
   .nav-toggle{display:block}
   .nav-links.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:#fff;padding:18px 24px;gap:14px;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
-  .dist-grid,.feat-grid{grid-template-columns:1fr}
+  .dist-grid{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr}
+  .fs-grid{grid-template-columns:1fr;gap:32px}
   .brand-grid,.cat-grid{grid-template-columns:repeat(2,1fr)}
   .office-grid,.split{grid-template-columns:1fr}
   .trust .container{grid-template-columns:repeat(2,1fr);gap:18px}

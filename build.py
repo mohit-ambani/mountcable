@@ -9,10 +9,10 @@ import os, html
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
-PHONE = "+91 98800 00000"          # TODO: replace with real number
-PHONE_HREF = "+919880000000"
-EMAIL = "sales@mountcable.com"     # TODO: replace with real email
-WHATSAPP = "919880000000"
+PHONE = "+91 88676 76700"
+PHONE_HREF = "+918867676700"
+EMAIL = "mountcable@gmail.com"
+WHATSAPP = "918867676700"
 
 OFFICES = [
     {"tag": "Showroom 1", "area": "Jayanagar", "addr": "Jayanagar, Bengaluru, Karnataka 560011"},
@@ -30,6 +30,10 @@ CATEGORIES = [
 
 # slug, name, color, featured(bool), tagline, products[], blurb
 BRANDS = [
+    ("finolex", "Finolex", "#0054A6", True,
+     "Our flagship brand — 100% original Finolex wires & cables for your home.",
+     ["House Wires (FR / FR-LSH)", "Power & Control Cables", "Switches & Sockets", "PVC Conduits & Fittings", "Water Heaters", "Fans"],
+     "Finolex is India's most trusted name in house wiring, known for safety-first FR and flame-retardant cables that meet strict IS standards. Mount Cable India is one of the largest distributors of Finolex cables in India — and our surety is that we sell only 100% original Finolex wires. If you're building your home, this is the wiring you can trust for life."),
     ("polycab", "Polycab", "#E4002B", True,
      "India's largest wires & cables maker and a complete FMEG brand.",
      ["Wires & Cables", "Power & Control Cables", "Fans", "LED Lighting", "Switchgear", "Conduits"],
@@ -140,7 +144,7 @@ def footer(prefix=""):
     <div class="foot-grid">
       <div>
         <div class="foot-brand"><span class="mark" style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--navy-3),var(--navy));display:grid;place-items:center;color:var(--gold)">M</span> Mount Cable India</div>
-        <p>Multi-brand electrical products dealers &amp; distributors in Bengaluru — switches, wires &amp; cables, pipes, lighting and switchgear from India's leading brands, at genuine distributor pricing.</p>
+        <p>One of India's largest distributors of Finolex cables, and a multi-brand electrical dealer in Bengaluru. 100% original material, free delivery across Bangalore and distributor pricing for everyone building their home.</p>
         <p>📞 <a href="tel:{PHONE_HREF}">{PHONE}</a><br>✉️ <a href="mailto:{EMAIL}">{EMAIL}</a></p>
       </div>
       <div>
@@ -203,30 +207,54 @@ def build_index():
     body += f"""
 <section class="hero">
   <div class="container hero-inner">
-    <span class="hero-badge"><span class="dot"></span> Jayanagar &amp; Chickpete · Bengaluru</span>
-    <h1>Your one-stop shop for <span class="accent">multi-brand electrical products</span></h1>
-    <p class="lead">Dealers &amp; distributors of switches, wires &amp; cables, pipes, lighting and switchgear — from <strong>Polycab, KEI, Anchor by Panasonic, RR Kabel, Schneider</strong> and more. 100% original material at genuine distributor prices.</p>
+    <span class="hero-badge"><span class="dot"></span> One of India's largest Finolex distributors</span>
+    <h1>Building your home? Get <span class="accent">100% original Finolex wires</span> at distributor prices.</h1>
+    <p class="lead">Mount Cable India is one of the largest distributors of Finolex cables in India — plus every other electrical brand your new home needs. <strong>Free delivery across Bangalore</strong>, all payment modes accepted, and far better service than your local outlet.</p>
     <div class="hero-actions">
-      <a class="btn btn-gold" href="#brands">Explore Brands</a>
-      <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}">💬 Get a Quote</a>
+      <a class="btn btn-gold" href="https://wa.me/{WHATSAPP}?text=Hi,%20I'm%20building%20my%20home%20and%20need%20a%20quote%20for%20electrical%20material">💬 WhatsApp 88676 76700</a>
+      <a class="btn btn-ghost" href="tel:{PHONE_HREF}">📞 Call for a Quote</a>
     </div>
   </div>
 </section>
 <div class="trust">
   <div class="container">
-    <div class="item"><div class="n">12+</div><div class="l">Leading Brands</div></div>
-    <div class="item"><div class="n">100%</div><div class="l">Original Material</div></div>
-    <div class="item"><div class="n">100%</div><div class="l">Distributor Price</div></div>
-    <div class="item"><div class="n">2</div><div class="l">Bengaluru Showrooms</div></div>
+    <div class="item"><div class="n">100%</div><div class="l">Original Finolex Wires</div></div>
+    <div class="item"><div class="n">Free</div><div class="l">Delivery in Bangalore</div></div>
+    <div class="item"><div class="n">13+</div><div class="l">Trusted Brands</div></div>
+    <div class="item"><div class="n">All</div><div class="l">Payment Modes Accepted</div></div>
   </div>
 </div>
+
+<section class="finolex-spot" id="finolex">
+  <div class="container">
+    <div class="fs-grid">
+      <div>
+        <p class="eyebrow">Our Flagship</p>
+        <h2>One of India's largest Finolex distributors</h2>
+        <p class="muted">Wiring a home is a once-in-a-lifetime decision — so it has to be right. Our surety to you: <strong>we sell only 100% original Finolex wires</strong>, sealed and warranty-backed, at genuine distributor prices. No fakes, no seconds, no compromises.</p>
+        <ul class="tick-list">
+          <li><strong>100% genuine Finolex</strong> — FR &amp; flame-retardant house wires that protect your family for decades.</li>
+          <li><strong>Distributor pricing</strong> — the rate your local shop pays, passed straight to you.</li>
+          <li><strong>Right size, right load</strong> — we help you pick the correct wire gauge for every room.</li>
+        </ul>
+        <a class="btn btn-dark" href="brands/finolex.html">Explore Finolex range →</a>
+      </div>
+      <div class="fs-card">
+        <div class="fs-logo">Finolex</div>
+        <div class="fs-badge">★ 100% Original · Authorized Distributor</div>
+        <p>Building your house? Send us your wiring list and we'll prepare a complete Finolex quote — delivered free across Bangalore.</p>
+        <a class="btn btn-gold" style="width:100%;justify-content:center" href="https://wa.me/{WHATSAPP}?text=Hi,%20please%20send%20me%20a%20Finolex%20wiring%20quote%20for%20my%20home">💬 Get a Finolex Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="categories">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">What We Supply</p>
-      <h2>Everything electrical, under one roof</h2>
-      <p>From the first switch to the final cable run — Mount Cable India stocks every category your project needs.</p>
+      <h2>Everything for your new home, under one roof</h2>
+      <p>From the first switch to the final cable run — Mount Cable India stocks every category your house needs.</p>
     </div>
     <div class="cat-grid">{cats}</div>
   </div>
@@ -257,13 +285,17 @@ def build_index():
 <section class="bg-soft" id="why">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">Why Mount Cable India</p>
-      <h2>The distributor contractors trust</h2>
+      <p class="eyebrow">Built for Home Builders</p>
+      <h2>Why families building their home choose us</h2>
+      <p>Buying electrical material for your own house should be simple, honest and stress-free. Here's our promise.</p>
     </div>
     <div class="feat-grid">
-      <div class="feat"><div class="ic">✓</div><h3>100% Original Material</h3><p>Every product is genuine, brand-sealed and warranty-backed — sourced directly through authorized channels.</p></div>
-      <div class="feat"><div class="ic">₹</div><h3>100% Distributor Price</h3><p>We pass on the best possible pricing to electricians, contractors and builders — no middlemen.</p></div>
-      <div class="feat"><div class="ic">📦</div><h3>Ready Stock &amp; Fast Supply</h3><p>Deep inventory across 12+ brands at two Bengaluru showrooms means quick fulfilment for projects big and small.</p></div>
+      <div class="feat"><div class="ic">✓</div><h3>100% Original Material</h3><p>Genuine, brand-sealed and warranty-backed — especially our 100% original Finolex wires. What you pay for is what you get.</p></div>
+      <div class="feat"><div class="ic">🚚</div><h3>Free Delivery Across Bangalore</h3><p>Your material reaches your site at no extra cost — no need to arrange transport or make repeated shop trips.</p></div>
+      <div class="feat"><div class="ic">↩️</div><h3>Free Pickup of Excess Stock</h3><p>Ordered a little extra? No worries. If you have surplus material left over, we'll pick it up free of charge.</p></div>
+      <div class="feat"><div class="ic">₹</div><h3>Distributor Prices, Better Service</h3><p>You get genuine distributor pricing and 100% better service than your local nearby outlet — that's our commitment.</p></div>
+      <div class="feat"><div class="ic">💳</div><h3>All Payment Modes Accepted</h3><p>Cash, UPI, cards, bank transfer — pay however is easiest for you. No payment worries at all.</p></div>
+      <div class="feat"><div class="ic">🧭</div><h3>Expert Guidance</h3><p>First time wiring a home? We'll help you choose the right wires, gauges and brands for every part of your house.</p></div>
     </div>
   </div>
 </section>
@@ -317,9 +349,9 @@ def build_brand(b):
       <h2 style="margin-top:34px">Why buy {html.escape(name)} from Mount Cable</h2>
       <ul class="tick-list">
         <li><strong>100% genuine &amp; warranty-backed</strong> — sourced through authorized channels only.</li>
-        <li><strong>Distributor pricing</strong> — the best rates for electricians, contractors &amp; builders.</li>
-        <li><strong>Ready stock</strong> at our Jayanagar and Chickpete showrooms for fast supply.</li>
-        <li><strong>Expert guidance</strong> on selecting the right {html.escape(name)} products for your project.</li>
+        <li><strong>Distributor pricing</strong> — the best rates whether you're building your own home or running a project.</li>
+        <li><strong>Free delivery across Bangalore</strong> and free pickup of any excess stock you've over-ordered.</li>
+        <li><strong>All payment modes accepted</strong> plus expert guidance on choosing the right {html.escape(name)} products.</li>
       </ul>
     </div>
     <aside>
