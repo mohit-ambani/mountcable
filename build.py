@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Static site generator for Mount Cable India.
 
-Generates index.html and one landing page per electrical brand.
+Multi-brand electrical products dealers & distributors, Bengaluru.
+Generates index.html and one landing page per brand.
 Run:  python3 build.py
 """
 import os, html
@@ -18,67 +19,65 @@ OFFICES = [
     {"tag": "Showroom 2", "area": "Chickpete", "addr": "Chickpete, Bengaluru, Karnataka 560053"},
 ]
 
-# slug, name, color, tier, tagline, categories[], blurb
-BRANDS = [
-    ("finolex", "Finolex", "#0054A6", "Authorized Distributor",
-     "Wires, cables & electrical essentials from one of India's most trusted names.",
-     ["House Wires (FR / FR-LSH)", "Power & Control Cables", "Switches & Accessories", "Conduits & Fittings", "Water Heaters", "Fans"],
-     "Finolex is a household name in Indian wiring, known for safety-first FR and flame-retardant cables that meet stringent IS standards. As an authorized Finolex distributor in Bengaluru, Mount Cable India supplies the complete range at genuine distributor pricing."),
-    ("polycab", "Polycab", "#E4002B", "Authorized Distributor",
-     "India's largest wires & cables manufacturer and a full-line FMEG brand.",
-     ["Wires & Cables", "Fans", "LED Lighting", "Switches & Switchgear", "Pumps & Motors", "Conduits"],
-     "Polycab leads the Indian wires & cables market and offers a complete FMEG portfolio. Mount Cable India is an authorized Polycab distributor in Bengaluru, stocking everything from house wiring to fans, lighting and switchgear."),
-    ("wipro", "Wipro", "#5C2D91", "Authorized Distributor",
-     "Premium lighting, fans and modular wiring devices.",
-     ["LED Lighting", "Smart Lighting", "Ceiling & Decorative Fans", "Modular Switches", "Battens & Panels"],
-     "Wipro Lighting and Consumer Care brings energy-efficient LED lighting and stylish fans to homes and offices. As an authorized Wipro distributor, Mount Cable India offers the full catalogue with reliable stock and distributor pricing."),
-    ("havells", "Havells", "#E2231A", "Authorized Dealer",
-     "A complete electrical brand — wires, switchgear, fans, lighting & appliances.",
-     ["Wires & Cables", "Switchgear & MCBs", "Fans", "LED Lighting", "Modular Switches", "Home Appliances"],
-     "Havells is one of India's most recognised electrical brands. Mount Cable India is an authorized Havells dealer in Bengaluru offering its wide range of wires, switchgear, fans, lighting and appliances."),
-    ("legrand", "Legrand", "#E2001A", "Authorized Dealer",
-     "Global leader in wiring devices, modular switches and home automation.",
-     ["Modular Switches (Myrius, Arteor)", "Wiring Devices", "MCBs & DBs", "Home Automation", "Cable Management"],
-     "Legrand sets the global benchmark for premium modular switches and electrical infrastructure. Mount Cable India stocks Legrand's Myrius and Arteor ranges along with protection devices for residential and commercial projects."),
-    ("schneider", "Schneider Electric", "#3DCD58", "Authorized Dealer",
-     "World-class switches, distribution boards and circuit protection.",
-     ["Modular Switches (Livia, Zencelo)", "MCBs & RCCBs", "Distribution Boards", "Industrial Switchgear", "Home Automation"],
-     "Schneider Electric delivers safe, smart and reliable electrical solutions worldwide. Mount Cable India supplies its modular switch ranges and protection devices for homes, offices and industry."),
-    ("gm-modular", "GM Modular", "#D81E27", "Authorized Dealer",
-     "Modular switches, wires, fans and lighting under one roof.",
-     ["Modular Switches & Plates", "Wires & Cables", "LED Lighting", "Fans", "Wiring Accessories"],
-     "GM Modular offers a versatile range of modular switches, wiring accessories and home electricals. Mount Cable India keeps the popular GM ranges in stock for quick supply across Bengaluru."),
-    ("goldmedal", "Goldmedal", "#C8102E", "Authorized Dealer",
-     "Modular switches, wires and the Espelio smart-home ecosystem.",
-     ["Modular Switches", "Wires & Cables", "Smart Home (Espelio)", "Fans & Lighting", "Wiring Accessories"],
-     "Goldmedal is a fast-growing electrical brand known for stylish modular switches and smart-home devices. Mount Cable India is an authorized Goldmedal dealer serving Bengaluru."),
-    ("cona", "Cona", "#C8102E", "Authorized Dealer",
-     "Trusted switches and wiring accessories for everyday installations.",
-     ["Piano & Modular Switches", "Plates & Frames", "Wiring Accessories", "Plug-tops & Sockets"],
-     "Cona has been a dependable name in Indian switches and wiring accessories for decades. Mount Cable India supplies the full Cona range at distributor pricing."),
-    ("lisha", "Lisha", "#16A34A", "Authorized Dealer",
-     "Value-driven modular switches and electrical accessories.",
-     ["Modular Switches", "Plates & Frames", "Wiring Accessories", "Industrial Plugs & Sockets"],
-     "Lisha offers reliable, value-for-money modular switches and accessories. Mount Cable India keeps Lisha's range readily available for electricians and contractors."),
-    ("hifi", "Hifi", "#0067B1", "Authorized Dealer",
-     "Affordable switches and wiring accessories you can rely on.",
-     ["Switches & Sockets", "Modular Plates", "Wiring Accessories", "Holders & Plug-tops"],
-     "Hifi provides economical and durable switches and wiring accessories. Mount Cable India stocks the Hifi range for fast, cost-effective supply."),
-    ("norisys", "Norisys", "#111827", "Authorized Dealer",
-     "Designer modular switches that elevate any interior.",
-     ["Premium Modular Switches", "Designer Plates", "Glass & Metal Finishes", "Wiring Accessories"],
-     "Norisys is known for premium, design-led modular switches with distinctive finishes. Mount Cable India supplies the Norisys range for architects, interior designers and discerning homeowners."),
-    ("indo-asian", "Indo Asian", "#C8102E", "Authorized Dealer",
-     "Dependable circuit protection — MCBs, RCCBs and distribution boards.",
-     ["MCBs & Isolators", "RCCBs", "Distribution Boards", "Changeover Switches"],
-     "Indo Asian is a respected name in circuit protection and switchgear. Mount Cable India supplies its MCBs, RCCBs and distribution boards for safe, code-compliant installations."),
+# 5 product categories from the business profile
+CATEGORIES = [
+    ("🔌", "Switches & Sockets", "Modular switches, plates, sockets and wiring accessories from Anchor, Schneider, Legrand, Greatwhite & more."),
+    ("⚡", "Wires & Cables", "House wiring, power, control & flexible cables from Polycab, KEI, RR Kabel, V-Guard & Univyin."),
+    ("🧰", "Pipes & Conduits", "PVC conduits, casing-capping, pipes, bends and fittings from Precision Pipes and leading brands."),
+    ("💡", "Lighting", "LED bulbs, panels, battens, downlights and decorative lighting for home and commercial use."),
+    ("🛡️", "Switchgears & Accessories", "MCBs, RCCBs, distribution boards, 3M tapes, connectors and electrical accessories."),
 ]
 
-CATEGORIES = [
-    ("⚡", "Wires & Cables", "House wiring, power, control & flexible cables from Finolex, Polycab & Havells."),
-    ("🔌", "Switches & Modular", "Designer & modular switch ranges from Legrand, Schneider, GM, Goldmedal & more."),
-    ("💡", "Lighting & Fans", "LED lighting, panels, battens and ceiling fans for home and commercial use."),
-    ("🛡️", "Switchgear & MCBs", "MCBs, RCCBs, distribution boards & isolators for safe circuit protection."),
+# slug, name, color, featured(bool), tagline, products[], blurb
+BRANDS = [
+    ("polycab", "Polycab", "#E4002B", True,
+     "India's largest wires & cables maker and a complete FMEG brand.",
+     ["Wires & Cables", "Power & Control Cables", "Fans", "LED Lighting", "Switchgear", "Conduits"],
+     "Polycab is India's No.1 wires & cables manufacturer and offers a full FMEG portfolio. Mount Cable India supplies the complete Polycab range — from house wiring to fans, lighting and switchgear — at genuine distributor pricing."),
+    ("kei", "KEI", "#ED1C24", True,
+     "High-quality wires, power cables and stainless steel wires.",
+     ["House Wires (FR / FR-LSH)", "LT & HT Power Cables", "Control & Instrumentation Cables", "Flexible Cables", "Stainless Steel Wires"],
+     "KEI Industries is a trusted name for housing wires, power cables and specialty conductors built to strict IS standards. Mount Cable India stocks the KEI range for residential, commercial and industrial projects."),
+    ("anchor-panasonic", "Anchor by Panasonic", "#0B5DAA", True,
+     "Switches, wiring devices, lighting and fans backed by Panasonic.",
+     ["Modular Switches & Sockets", "Piano Switches", "Wires & Cables", "LED Lighting", "Fans", "Conduits"],
+     "Anchor by Panasonic combines India's most familiar switch brand with Panasonic's global engineering. Mount Cable India is an authorized Anchor dealer offering its full range of switches, wiring devices, lighting and fans."),
+    ("greatwhite", "Greatwhite", "#ED1C24", False,
+     "Modern modular switches, wires, fans and lighting.",
+     ["Modular Switches (Fiana, Myrah)", "Wires & Cables", "Fans", "LED Lighting", "Home Automation"],
+     "Greatwhite Global brings contemporary design to modular switches, wiring and home electricals. Mount Cable India supplies the Greatwhite range across Bengaluru."),
+    ("v-guard", "V-Guard", "#ED1C24", False,
+     "Wires, cables, stabilizers, pumps, fans and home appliances.",
+     ["Wires & Cables", "Voltage Stabilizers", "Pumps & Motors", "Fans", "Water Heaters", "Switchgear"],
+     "V-Guard is a leading consumer electrical brand known for stabilizers, wires and home appliances. Mount Cable India offers the V-Guard range with genuine warranty and distributor pricing."),
+    ("rr-kabel", "RR Kabel", "#E2231A", True,
+     "Premium wires & cables plus a growing FMEG range.",
+     ["House Wires (FireX / HF)", "Power & Flexible Cables", "Fans", "LED Lighting", "Switches", "Conduits"],
+     "RR Kabel is a globally recognised wires & cables brand with a strong FMEG portfolio. Mount Cable India supplies RR Kabel housing wires, cables, fans and lighting at the best distributor rates."),
+    ("precision-pipes", "Precision Pipes", "#0E7C4A", False,
+     "PVC conduits, pipes and fittings for clean electrical runs.",
+     ["PVC Electrical Conduits", "Casing & Capping", "Bends, Couplers & Fittings", "Junction Boxes"],
+     "Precision Pipes manufactures durable PVC conduits and electrical piping systems. Mount Cable India stocks the full range for safe, tidy cable management on every project."),
+    ("schneider", "Schneider Electric", "#3DCD58", True,
+     "World-class switches, switchgear and circuit protection.",
+     ["Modular Switches (Livia, Zencelo)", "MCBs & RCCBs", "Distribution Boards", "Industrial Switchgear", "Home Automation"],
+     "Schneider Electric delivers safe, smart and reliable electrical solutions worldwide. Mount Cable India supplies its modular switch ranges and protection devices for homes, offices and industry."),
+    ("3m", "3M", "#E2231A", False,
+     "Electrical tapes, connectors and cable accessories you can trust.",
+     ["Electrical Insulation Tapes", "Cable Connectors & Lugs", "Cable Jointing Kits", "Heat-shrink & Accessories"],
+     "3M sets the global standard for electrical tapes, connectors and cable jointing solutions. Mount Cable India stocks genuine 3M electrical accessories for professional installations."),
+    ("legrand", "Legrand", "#E2001A", False,
+     "Global leader in wiring devices and modular switches.",
+     ["Modular Switches (Myrius, Arteor)", "Wiring Devices", "MCBs & DBs", "Home Automation", "Cable Management"],
+     "Legrand sets the global benchmark for premium modular switches and electrical infrastructure. Mount Cable India stocks Legrand's Myrius and Arteor ranges along with protection devices."),
+    ("hpl", "HPL", "#C8102E", False,
+     "Switchgear, MCBs, wires, lighting and energy meters.",
+     ["MCBs, RCCBs & Isolators", "Distribution Boards", "Wires & Cables", "LED Lighting", "Energy Meters"],
+     "HPL is a well-established Indian brand for switchgear, wires, lighting and metering. Mount Cable India supplies the HPL range for residential and industrial requirements."),
+    ("univyin-cables", "Univyin Cables", "#1E6BD6", False,
+     "Reliable wires and flexible cables at value pricing.",
+     ["House Wires", "Multi-core Flexible Cables", "Submersible Cables", "Power Cables"],
+     "Univyin Cables offers dependable wires and flexible cables for everyday wiring needs. Mount Cable India keeps the range in ready stock for fast, economical supply."),
 ]
 
 def head(title, desc, css_prefix=""):
@@ -105,9 +104,9 @@ def header(prefix=""):
       <span>Mount Cable<small>India · Bengaluru</small></span>
     </a>
     <nav class="nav-links" id="navlinks">
-      <a href="{prefix}index.html#distributors">Distributors</a>
-      <a href="{prefix}index.html#brands">All Brands</a>
       <a href="{prefix}index.html#categories">Categories</a>
+      <a href="{prefix}index.html#brands">Brands</a>
+      <a href="{prefix}index.html#why">Why Us</a>
       <a href="{prefix}index.html#offices">Offices</a>
       <a href="{prefix}index.html#contact">Contact</a>
     </nav>
@@ -122,8 +121,9 @@ def header(prefix=""):
 </header>"""
 
 def footer(prefix=""):
-    dist = "".join(f'<a href="{prefix}brands/{b[0]}.html">{html.escape(b[1])}</a>' for b in BRANDS if "Distributor" in b[3])
-    deal = "".join(f'<a href="{prefix}brands/{b[0]}.html">{html.escape(b[1])}</a>' for b in BRANDS if "Distributor" not in b[3])
+    half = (len(BRANDS) + 1) // 2
+    col1 = "".join(f'<a href="{prefix}brands/{b[0]}.html">{html.escape(b[1])}</a>' for b in BRANDS[:half])
+    col2 = "".join(f'<a href="{prefix}brands/{b[0]}.html">{html.escape(b[1])}</a>' for b in BRANDS[half:])
     return f"""
 <section class="cta-band">
   <div class="container">
@@ -140,16 +140,16 @@ def footer(prefix=""):
     <div class="foot-grid">
       <div>
         <div class="foot-brand"><span class="mark" style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--navy-3),var(--navy));display:grid;place-items:center;color:var(--gold)">M</span> Mount Cable India</div>
-        <p>Authorized distributors of Finolex, Polycab &amp; Wipro and dealers for India's leading electrical brands — serving Bengaluru with genuine products at distributor pricing.</p>
+        <p>Multi-brand electrical products dealers &amp; distributors in Bengaluru — switches, wires &amp; cables, pipes, lighting and switchgear from India's leading brands, at genuine distributor pricing.</p>
         <p>📞 <a href="tel:{PHONE_HREF}">{PHONE}</a><br>✉️ <a href="mailto:{EMAIL}">{EMAIL}</a></p>
       </div>
       <div>
-        <h4>Authorized Distributors</h4>
-        {dist}
+        <h4>Brands</h4>
+        {col1}
       </div>
       <div>
-        <h4>We Also Deal In</h4>
-        {deal}
+        <h4>&nbsp;</h4>
+        {col2}
       </div>
       <div>
         <h4>Our Showrooms</h4>
@@ -168,20 +168,19 @@ def footer(prefix=""):
 </html>"""
 
 def brand_tile(b, prefix=""):
-    short = "Distributor" if "Distributor" in b[3] else "Dealer"
     return f"""<a class="brand-tile" href="{prefix}brands/{b[0]}.html">
       <div class="swatch" style="background:{b[2]}"></div>
       <div class="name" style="color:{b[2]}">{html.escape(b[1])}</div>
-      <div class="tag">Authorized {short}</div>
+      <div class="tag">Dealer &amp; Distributor</div>
     </a>"""
 
 def build_index():
-    dist_cards = ""
-    for b in [x for x in BRANDS if "Distributor" in x[3]]:
-        dist_cards += f"""
+    feat_cards = ""
+    for b in [x for x in BRANDS if x[3]]:
+        feat_cards += f"""
       <a class="dist-card" href="brands/{b[0]}.html">
         <div class="top-accent" style="background:linear-gradient(90deg,{b[2]},{b[2]}99)"></div>
-        <div class="ribbon">★ Authorized Distributor</div>
+        <div class="ribbon">★ Featured Brand</div>
         <div class="brand-logo" style="color:{b[2]}">{html.escape(b[1])}</div>
         <p>{html.escape(b[4])}</p>
         <span class="go">View {html.escape(b[1])} range →</span>
@@ -198,63 +197,64 @@ def build_index():
         <p><span class="pi">🕘</span> Mon–Sat, 10:00 AM – 8:00 PM</p>
       </div>""" for o in OFFICES)
 
-    desc = "Mount Cable India — authorized distributor of Finolex, Polycab & Wipro in Bengaluru. Dealers for Havells, Legrand, Schneider, GM, Goldmedal, Cona, Lisha, Norisys, Indo Asian & more. 100% original material at distributor prices. Showrooms in Jayanagar & Chickpete."
-    body = head("Mount Cable India | Authorized Electrical Distributors in Bengaluru", desc)
+    desc = "Mount Cable India — multi-brand electrical products dealers & distributors in Bengaluru. Switches & sockets, wires & cables, pipes & conduits, lighting and switchgear from Polycab, KEI, Anchor by Panasonic, Greatwhite, V-Guard, RR Kabel, Schneider, Legrand, HPL, 3M & more. 100% original material at distributor prices. Showrooms in Jayanagar & Chickpete."
+    body = head("Mount Cable India | Electrical Dealers & Distributors, Bengaluru", desc)
     body += header()
     body += f"""
 <section class="hero">
   <div class="container hero-inner">
     <span class="hero-badge"><span class="dot"></span> Jayanagar &amp; Chickpete · Bengaluru</span>
-    <h1>Bengaluru's trusted distributor of <span class="accent">India's top electrical brands</span></h1>
-    <p class="lead">Authorized distributors of <strong>Finolex</strong>, <strong>Polycab</strong> &amp; <strong>Wipro</strong> — and dealers for every leading switch, wire &amp; lighting brand. 100% original material at genuine distributor prices.</p>
+    <h1>Your one-stop shop for <span class="accent">multi-brand electrical products</span></h1>
+    <p class="lead">Dealers &amp; distributors of switches, wires &amp; cables, pipes, lighting and switchgear — from <strong>Polycab, KEI, Anchor by Panasonic, RR Kabel, Schneider</strong> and more. 100% original material at genuine distributor prices.</p>
     <div class="hero-actions">
-      <a class="btn btn-gold" href="#distributors">Explore Brands</a>
+      <a class="btn btn-gold" href="#brands">Explore Brands</a>
       <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}">💬 Get a Quote</a>
     </div>
   </div>
 </section>
 <div class="trust">
   <div class="container">
-    <div class="item"><div class="n">13+</div><div class="l">Leading Brands</div></div>
+    <div class="item"><div class="n">12+</div><div class="l">Leading Brands</div></div>
     <div class="item"><div class="n">100%</div><div class="l">Original Material</div></div>
     <div class="item"><div class="n">100%</div><div class="l">Distributor Price</div></div>
     <div class="item"><div class="n">2</div><div class="l">Bengaluru Showrooms</div></div>
   </div>
 </div>
 
-<section id="distributors">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Authorized Distributors</p>
-      <h2>Direct distribution partners</h2>
-      <p>We are official authorized distributors — full ranges, genuine stock and the best pricing, direct from the brand.</p>
-    </div>
-    <div class="dist-grid">{dist_cards}</div>
-  </div>
-</section>
-
-<section class="bg-soft" id="brands">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Brand Directory</p>
-      <h2>Every electrical brand, one trusted partner</h2>
-      <p>From premium modular switches to circuit protection — explore the brands we supply across Bengaluru.</p>
-    </div>
-    <div class="brand-grid">{all_tiles}</div>
-  </div>
-</section>
-
 <section id="categories">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">What We Supply</p>
-      <h2>Product categories</h2>
+      <h2>Everything electrical, under one roof</h2>
+      <p>From the first switch to the final cable run — Mount Cable India stocks every category your project needs.</p>
     </div>
     <div class="cat-grid">{cats}</div>
   </div>
 </section>
 
-<section class="bg-soft">
+<section class="bg-soft" id="featured">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Featured Brands</p>
+      <h2>Trusted names we proudly carry</h2>
+      <p>Full ranges, genuine stock and the best pricing on the brands professionals ask for most.</p>
+    </div>
+    <div class="dist-grid">{feat_cards}</div>
+  </div>
+</section>
+
+<section id="brands">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Brand Directory</p>
+      <h2>Every brand we deal in</h2>
+      <p>Tap any brand to see its product range and request pricing.</p>
+    </div>
+    <div class="brand-grid">{all_tiles}</div>
+  </div>
+</section>
+
+<section class="bg-soft" id="why">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">Why Mount Cable India</p>
@@ -262,8 +262,8 @@ def build_index():
     </div>
     <div class="feat-grid">
       <div class="feat"><div class="ic">✓</div><h3>100% Original Material</h3><p>Every product is genuine, brand-sealed and warranty-backed — sourced directly through authorized channels.</p></div>
-      <div class="feat"><div class="ic">₹</div><h3>100% Distributor Price</h3><p>As authorized distributors we pass on the best possible pricing to electricians, contractors and builders.</p></div>
-      <div class="feat"><div class="ic">📦</div><h3>Ready Stock &amp; Fast Supply</h3><p>Deep inventory across 13+ brands at two Bengaluru showrooms means quick fulfilment for projects big and small.</p></div>
+      <div class="feat"><div class="ic">₹</div><h3>100% Distributor Price</h3><p>We pass on the best possible pricing to electricians, contractors and builders — no middlemen.</p></div>
+      <div class="feat"><div class="ic">📦</div><h3>Ready Stock &amp; Fast Supply</h3><p>Deep inventory across 12+ brands at two Bengaluru showrooms means quick fulfilment for projects big and small.</p></div>
     </div>
   </div>
 </section>
@@ -283,26 +283,22 @@ def build_index():
     write("index.html", body)
 
 def build_brand(b):
-    slug, name, color, tier, tagline, cats, blurb = b
-    short = "Distributor" if "Distributor" in tier else "Dealer"
-    chips = "".join(f'<span class="chip">{html.escape(c)}</span>' for c in cats)
-    related = "".join(brand_tile(x, prefix="../") for x in BRANDS if x[0] != slug)[:0] or \
-              "".join(brand_tile(x, prefix="../") for x in BRANDS if x[0] != slug)
-    # limit related to 4
+    slug, name, color, featured, tagline, prods, blurb = b
+    chips = "".join(f'<span class="chip">{html.escape(p)}</span>' for p in prods)
     rel_list = [x for x in BRANDS if x[0] != slug][:4]
     related = "".join(brand_tile(x, prefix="../") for x in rel_list)
 
-    title = f"{name} {short} in Bengaluru | Mount Cable India"
-    desc = f"Mount Cable India is an authorized {name} {short.lower()} in Bengaluru. {tagline} 100% original material at distributor prices. Showrooms in Jayanagar & Chickpete."
+    title = f"{name} Dealer & Distributor in Bengaluru | Mount Cable India"
+    desc = f"Mount Cable India is an authorized {name} dealer & distributor in Bengaluru. {tagline} 100% original material at distributor prices. Showrooms in Jayanagar & Chickpete."
     body = head(title, desc, css_prefix="../")
     body += header(prefix="../")
     body += f"""
 <section class="bp-hero">
   <div class="container">
     <div class="crumbs"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../index.html#brands">Brands</a> &nbsp;/&nbsp; {html.escape(name)}</div>
-    <span class="badge">★ Authorized {html.escape(tier.split()[-1])}</span>
+    <span class="badge">★ Authorized Dealer &amp; Distributor</span>
     <div class="bp-logo" style="color:{color}">{html.escape(name)}</div>
-    <h1>Authorized {html.escape(name)} {short} in Bengaluru</h1>
+    <h1>{html.escape(name)} dealer &amp; distributor in Bengaluru</h1>
     <p>{html.escape(tagline)}</p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="https://wa.me/{WHATSAPP}?text=Hi,%20I%20need%20a%20quote%20for%20{name.replace(' ','%20')}%20products">💬 Get {html.escape(name)} Quote</a>
