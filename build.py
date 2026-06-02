@@ -34,6 +34,10 @@ PHONE_HREF = "+918867676700"
 EMAIL = "mountcable@gmail.com"
 WHATSAPP = "918867676700"
 YEARS = "35"
+# Google review link (opens the verified Google listing). For a true one-tap
+# write-review funnel, replace with the GBP "Get more reviews" link (g.page/r/.../review)
+# and regenerate assets/review-qr.svg.
+REVIEW_URL = "https://share.google/G4NjwO8AuH9Ae5wJ1"
 
 OFFICES = [
     {"tag": "Main Showroom", "area": "BVK Iyengar Road", "street": "10/3, Sri Complex, BVK Iyengar Road",
@@ -533,6 +537,7 @@ def footer(prefix=""):
         <h4 style="margin-top:18px">Finolex</h4>
         <a href="{prefix}original-finolex-wires.html">Original Finolex Wires</a>
         <a href="{prefix}finolex-dealer-near-me.html">Finolex Dealer Near Me</a>
+        <a href="{prefix}review.html">★ Review us on Google</a>
       </div>
     </div>
     <div class="foot-bottom">
@@ -546,6 +551,28 @@ def footer(prefix=""):
 <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>"""
+
+def review_block(prefix=""):
+    return f"""
+<section class="review-sec" id="review">
+  <div class="container">
+    <div class="review-card">
+      <div class="review-text">
+        <p class="eyebrow">Loved our service?</p>
+        <h2>Leave us a Google review</h2>
+        <p class="muted">Your review helps other home builders in Bangalore find genuine Finolex wires at the right price. It takes 30 seconds — scan the code or tap the button.</p>
+        <div class="review-actions">
+          <a class="btn btn-gold" href="{REVIEW_URL}" target="_blank" rel="noopener">★ Write a Google Review</a>
+          <a class="btn btn-outline" href="{prefix}review.html">View QR &amp; steps</a>
+        </div>
+      </div>
+      <div class="review-qr">
+        <img src="{prefix}assets/review-qr.svg" alt="Scan to review Mount Cable India on Google" width="170" height="170">
+        <span>📷 Scan to review</span>
+      </div>
+    </div>
+  </div>
+</section>"""
 
 def brand_tile(b, prefix=""):
     return f"""<a class="brand-tile" href="{prefix}brands/{b[0]}.html">
@@ -754,6 +781,7 @@ def build_index():
     <div class="office-grid">{offices}</div>
   </div>
 </section>
+{review_block()}
 """
     body += footer()
     write("index.html", body)
@@ -1299,8 +1327,38 @@ def build_finolex_product(r):
     body += footer(prefix="../")
     write(path, body)
 
+def build_review():
+    path = "review.html"
+    title = "Review Mount Cable India on Google | Finolex Distributor, Bengaluru"
+    desc = "Leave a Google review for Mount Cable India — scan the QR code or tap to rate your experience. It helps other Bangalore home builders find genuine Finolex wires."
+    body = head(title, desc, path)
+    body += header()
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Review Us</div>
+    <span class="badge">★ Your Feedback Matters</span>
+    <h1>Review us on Google</h1>
+    <p>Thank you for choosing Mount Cable India! A quick review helps other home builders in Bangalore buy genuine Finolex wires with confidence.</p>
+  </div>
+</section>
+<section>
+  <div class="container narrow center">
+    <div class="qr-big"><img src="assets/review-qr.svg" alt="Scan to review Mount Cable India on Google" width="240" height="240"></div>
+    <a class="btn btn-gold" style="font-size:16.5px;padding:15px 30px" href="{REVIEW_URL}" target="_blank" rel="noopener">★ Write a Google Review</a>
+    <div class="rev-steps">
+      <div class="rev-step"><span class="qs-num">1</span> Scan the QR with your phone camera, or tap the button.</div>
+      <div class="rev-step"><span class="qs-num">2</span> Tap the stars and write a quick line about your experience.</div>
+      <div class="rev-step"><span class="qs-num">3</span> Post — and thank you! It means a lot to us. 🙏</div>
+    </div>
+  </div>
+</section>
+"""
+    body += footer()
+    write(path, body)
+
 def build_sitemap():
-    paths = ["index.html", "quote.html", "blog.html", "thank-you.html"]
+    paths = ["index.html", "quote.html", "blog.html", "review.html", "thank-you.html"]
     paths += [f"{p['slug']}.html" for p in SEO_PAGES]
     paths += [f"{c[0]}.html" for c in CATEGORIES]
     paths += [f"brands/{b[0]}.html" for b in BRANDS]
@@ -1334,6 +1392,7 @@ if __name__ == "__main__":
     for p in BLOG: build_blog_post(p)
     for p in SEO_PAGES: build_seo_page(p)
     for r in FINOLEX_RANGE: build_finolex_product(r)
+    build_review()
     build_sitemap()
     total = 1 + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 3 + len(BLOG) + len(SEO_PAGES) + len(FINOLEX_RANGE)
     print(f"Done — {total} pages + sitemap.xml + robots.txt")
