@@ -467,7 +467,6 @@ def build_index():
 
     all_tiles = "".join(brand_tile(b) for b in BRANDS)
     cats = "".join(f"""<a class="cat" href="{c[0]}.html"><div class="ic">{c[1]}</div><h4>{html.escape(c[2])}</h4><p>{html.escape(c[3])}</p><span class="cat-go">Explore →</span></a>""" for c in CATEGORIES)
-    prods = "".join(f"""<div class="prod"><div class="prod-img"><img src="assets/img/{p[0]}" alt="{html.escape(p[1])}" loading="lazy"></div><h4>{html.escape(p[1])}</h4><p>{html.escape(p[2])}</p></div>""" for p in FINOLEX_PRODUCTS)
     areas = "".join(f'<a class="area-chip" href="areas/{a[0]}.html">{html.escape(a[1])}</a>' for a in AREAS)
     offices = "".join(f"""
       <div class="office">
@@ -539,17 +538,6 @@ def build_index():
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="products">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">In Stock Now</p>
-      <h2>Popular Finolex products for your home</h2>
-      <p>Genuine, sealed and ready to deliver across Bangalore the same day.</p>
-    </div>
-    <div class="prod-grid">{prods}</div>
   </div>
 </section>
 
@@ -656,6 +644,20 @@ def build_brand(b):
     chips = "".join(f'<span class="chip">{html.escape(p)}</span>' for p in prods)
     rel_list = [x for x in BRANDS if x[0] != slug][:4]
     related = "".join(brand_tile(x, prefix="../") for x in rel_list)
+    products_section = ""
+    if slug == "finolex":
+        prods = "".join(f"""<div class="prod"><div class="prod-img"><img src="../assets/img/{p[0]}" alt="{html.escape(p[1])}" loading="lazy"></div><h4>{html.escape(p[1])}</h4><p>{html.escape(p[2])}</p></div>""" for p in FINOLEX_PRODUCTS)
+        products_section = f"""
+<section>
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">In Stock Now</p>
+      <h2>Popular Finolex products for your home</h2>
+      <p>Genuine, sealed and ready to deliver across Bangalore the same day.</p>
+    </div>
+    <div class="prod-grid">{prods}</div>
+  </div>
+</section>"""
     path = f"brands/{slug}.html"
     title = f"{name} Dealer & Distributor in Bengaluru | Mount Cable India"
     desc = f"Authorized {name} dealer & distributor in Bengaluru. {tagline} 100% original material, free 3-hour delivery across Bangalore, distributor prices. {YEARS} years of trust. Showrooms in Jayanagar & Chickpete."
@@ -709,6 +711,7 @@ def build_brand(b):
   </div>
 </section>
 
+{products_section}
 <section class="bg-soft">
   <div class="container">
     <div class="section-head"><p class="eyebrow">More Brands</p><h2>We also supply</h2></div>
