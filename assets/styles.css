@@ -200,6 +200,12 @@ section{padding:84px 0}
 .prod-img img{max-height:160px;max-width:90%;object-fit:contain;mix-blend-mode:multiply}
 .prod h4{font-size:16px;margin-bottom:6px}
 .prod p{font-size:13.5px;color:var(--muted);margin:0}
+a.prod{display:flex;flex-direction:column}
+a.prod p{flex:1}
+.prod .go{display:inline-block;margin-top:12px;font-weight:700;color:var(--navy);font-size:13.5px}
+a.prod:hover .go{color:var(--blue)}
+.pd-imgwrap{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:24px;text-align:center;margin-bottom:26px}
+.pd-imgwrap img{max-height:300px;max-width:100%;object-fit:contain;display:inline-block;mix-blend-mode:multiply}
 
 /* Finolex spotlight visual */
 .fs-visual{position:relative}

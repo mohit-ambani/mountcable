@@ -47,7 +47,7 @@ OFFICES = [
 # Which brands have a downloaded logo file (others fall back to a wordmark)
 LOGO = {
     "finolex": "finolex.svg", "polycab": "polycab.png", "kei": "kei.png",
-    "rr-kabel": "rr-kabel.svg", "v-guard": "v-guard.jpg", "greatwhite": "greatwhite.png",
+    "rr-kabel": "rr-kabel.svg", "v-guard": "v-guard.webp", "greatwhite": "greatwhite.png",
     "hpl": "hpl.png", "anchor-panasonic": "anchor-panasonic.svg",
 }
 
@@ -59,7 +59,7 @@ CATEGORIES = [
     ("wires-and-cables", "⚡", "Wires & Cables",
      "House wiring, power, control and flexible cables from Finolex, Polycab, KEI, RR Kabel, V-Guard and Univyin — every gauge for your home.",
      ["finolex", "polycab", "kei", "rr-kabel", "v-guard", "univyin-cables"],
-     ["FR / FR-LSH House Wires", "Multi-core Flexible Cables", "Power & Control Cables", "Co-Axial Cables", "Telephone & LAN Cables"], "banner-finolex-fr.jpg"),
+     ["FR / FR-LSH House Wires", "Multi-core Flexible Cables", "Power & Control Cables", "Co-Axial Cables", "Telephone & LAN Cables"], "banner-finolex-fr.webp"),
     ("pipes-and-conduits", "🧰", "Pipes & Conduits",
      "PVC electrical conduits, casing-capping, pipes, bends and fittings from Precision Pipes, Finolex and Polycab for clean, safe cable runs.",
      ["precision-pipes", "finolex", "polycab"],
@@ -67,7 +67,7 @@ CATEGORIES = [
     ("lighting", "💡", "Lighting",
      "LED bulbs, panels, battens, downlights and decorative lighting from Finolex, Polycab, V-Guard, HPL and Greatwhite.",
      ["finolex", "polycab", "v-guard", "hpl", "greatwhite"],
-     ["LED Bulbs & Battens", "Panel & Down Lights", "Flood & Street Lights", "Decorative Lighting", "Smart Lighting"], "banner-finolex-led.jpg"),
+     ["LED Bulbs & Battens", "Panel & Down Lights", "Flood & Street Lights", "Decorative Lighting", "Smart Lighting"], "banner-finolex-led.webp"),
     ("switchgear-and-mcb", "🛡️", "Switchgear & MCBs",
      "MCBs, RCCBs, isolators, distribution boards plus 3M tapes, connectors and cable accessories for safe circuit protection.",
      ["schneider", "legrand", "hpl", "3m"],
@@ -351,10 +351,56 @@ BLOG = [
 
 # Featured Finolex products (image, name, desc)
 FINOLEX_PRODUCTS = [
-    ("prod-90m-silver.png", "Finolex 90M Silver", "FR-grade PVC house wire, 90-metre coil — the everyday choice for home wiring."),
-    ("prod-fr-red.png", "Finolex FR House Wire", "New Improved FR PVC insulated wire — high insulation, anti-termite, RoHS compliant."),
-    ("prod-frls-flamegard.png", "Finolex Flamegard FR-LSH", "Flame-retardant, low-smoke & halogen wire for safer homes."),
-    ("prod-finolex-ultra.png", "Finolex Ultra", "E-Beam irradiated, low-smoke zero-halogen premium wire."),
+    ("prod-90m-silver.webp", "Finolex 90M Silver", "FR-grade PVC house wire, 90-metre coil — the everyday choice for home wiring."),
+    ("prod-fr-red.webp", "Finolex FR House Wire", "New Improved FR PVC insulated wire — high insulation, anti-termite, RoHS compliant."),
+    ("prod-frls-flamegard.webp", "Finolex Flamegard FR-LSH", "Flame-retardant, low-smoke & halogen wire for safer homes."),
+    ("prod-finolex-ultra.webp", "Finolex Ultra", "E-Beam irradiated, low-smoke zero-halogen premium wire."),
+]
+
+HOUSE_SIZES = ["0.75 sq mm", "1.0 sq mm", "1.5 sq mm", "2.5 sq mm", "4.0 sq mm", "6.0 sq mm"]
+
+# Finolex ranges → individual product pages. slug, name, image, tagline, grade, coil, sizes[], desc
+FINOLEX_RANGE = [
+    ("90m-silver", "Finolex 90M Silver", "prod-90m-silver.webp",
+     "FR-grade PVC house wire in a 90-metre coil — the dependable everyday choice.",
+     "FR (Flame Retardant)", "90 metres", HOUSE_SIZES,
+     "Finolex 90M Silver is the go-to FR-grade house wire for everyday home wiring. With high insulation resistance, anti-termite and anti-rodent properties and 99.97% pure bare copper conductor, it delivers safe, reliable performance for lighting, fan and socket circuits. Supplied in convenient 90-metre coils across all common gauges."),
+    ("90m-gold", "Finolex 90M Gold", "prod-fr-red.webp",
+     "Premium FR house wire, 90-metre coil — superior finish and performance.",
+     "FR (Flame Retardant)", "90 metres", HOUSE_SIZES,
+     "Finolex 90M Gold is the premium FR house wire for homeowners who want the best. Built on the same New Improved FR technology with high-grade copper and robust insulation, it offers excellent current-carrying capacity and long service life. Ideal for quality-conscious home builders, in 90-metre coils."),
+    ("90m-frls", "Finolex 90M FRLS", "prod-frls-flamegard.webp",
+     "Flame-retardant, low-smoke & halogen house wire — safer for living spaces.",
+     "FR-LSH (Flamegard)", "90 metres", HOUSE_SIZES,
+     "Finolex 90M FRLS (Flamegard) goes beyond flame retardance to emit low smoke and reduced halogen gases in case of fire — protecting your family where it matters most. Recommended for bedrooms, children's rooms and enclosed spaces. Available in 90-metre coils across all gauges."),
+    ("180m", "Finolex 180M", "prod-fr-red.webp",
+     "FR house wire in a 180-metre coil — fewer joins, better value for bigger jobs.",
+     "FR (Flame Retardant)", "180 metres", HOUSE_SIZES,
+     "Finolex 180M offers the same trusted FR-grade quality in a larger 180-metre coil — ideal for medium-to-large homes where longer continuous runs mean fewer joints and better value. High insulation, anti-termite and RoHS compliant."),
+    ("300m", "Finolex 300M", "prod-fr-red.webp",
+     "FR house wire in a 300-metre coil — best value for full-house wiring.",
+     "FR (Flame Retardant)", "300 metres", HOUSE_SIZES,
+     "Finolex 300M comes in a large 300-metre coil — the most economical choice for wiring an entire house or larger project. Genuine FR-grade insulation, 99.97% pure copper and long continuous lengths that reduce wastage and joints."),
+    ("300m-frls", "Finolex 300M FRLS", "prod-frls-flamegard.webp",
+     "Flame-retardant low-smoke & halogen wire in a 300-metre coil.",
+     "FR-LSH (Flamegard)", "300 metres", HOUSE_SIZES,
+     "Finolex 300M FRLS combines the safety of low-smoke, low-halogen Flamegard insulation with the value of a 300-metre coil. The smart choice when you want maximum fire safety across a whole home without compromising on coil economy."),
+    ("ultra", "Finolex Ultra", "prod-finolex-ultra.webp",
+     "E-Beam, low-smoke zero-halogen premium wire — the safest Finolex house wire.",
+     "LSZH (E-Beam irradiated)", "90 / 180 metres", HOUSE_SIZES,
+     "Finolex Ultra is the flagship house wire, using electron-beam (E-Beam) irradiated insulation for superior heat resistance and the lowest smoke and halogen emission. The premium choice for high-end homes and anyone who wants the highest level of electrical fire safety."),
+    ("co-axial-cables", "Finolex Co-Axial Cables", "banner-finolex-wires.webp",
+     "RG-series co-axial cables for crisp TV, dish and CCTV signals.",
+     "Co-Axial", "Multiple lengths", ["RG-6", "RG-11", "RG-59", "CATV / Dish", "CCTV"],
+     "Finolex co-axial cables deliver clear, low-loss signal transmission for cable TV, DTH/dish and CCTV installations. Precision-engineered shielding and conductors ensure minimal interference — wire your home's entertainment and security points right the first time."),
+    ("telephone-cables", "Finolex Telephone Cables", "banner-finolex-wires.webp",
+     "Reliable multi-pair telephone cables for clear home & office lines.",
+     "Telephone", "Multiple lengths", ["1 Pair", "2 Pair", "3 Pair", "5 Pair", "10 Pair"],
+     "Finolex telephone cables provide dependable, noise-free voice connectivity for homes and offices. Available in multiple pair configurations with quality copper conductors for clear, consistent lines."),
+    ("internet-lan-cables", "Finolex Internet / LAN Cables", "banner-finolex-wires.webp",
+     "Cat5e & Cat6 LAN cables for fast, stable home and office networks.",
+     "LAN / Networking", "Box / Reel", ["Cat5e", "Cat6", "UTP", "Outdoor / Armoured"],
+     "Finolex internet and LAN cables (Cat5e, Cat6) deliver fast, stable wired networking for your home or office. Build a reliable backbone for your routers, smart devices and work-from-home setup with genuine Finolex data cable."),
 ]
 
 # ---------- helpers ----------
@@ -378,6 +424,7 @@ def local_business_jsonld():
 "foundingDate":"1991","areaServed":"Bengaluru, Karnataka, India",
 "description":"One of India's largest distributors of Finolex cables and a multi-brand electrical products dealer in Bengaluru, serving individual home builders for over """ + YEARS + """ years.",
 "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"20:00"},
+"sameAs":["https://www.justdial.com/Bangalore/Mount-Cable-INDIA-Near-Rama-Temple-Bvk-Iyengar-Road/080PXX80-XX80-120530111557-V4V6_BZDET","https://www.indiamart.com/mountcableindia/","https://share.google/G4NjwO8AuH9Ae5wJ1"],
 "address":[""" + addrs + """]}
 </script>""")
 
@@ -496,6 +543,7 @@ def footer(prefix=""):
 </footer>
 <script src="{prefix}assets/main.js?v={JS_VER}"></script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>"""
 
@@ -600,7 +648,7 @@ def build_index():
         <a class="btn btn-dark" href="brands/finolex.html">Explore Finolex range →</a>
       </div>
       <div class="fs-visual">
-        <img src="assets/img/banner-finolex-wires.jpg" alt="Finolex wires and cables" loading="lazy">
+        <img src="assets/img/banner-finolex-wires.webp" alt="Finolex wires and cables" loading="lazy">
         <div class="fs-floatcard">
           <div class="fs-badge">★ 100% Original · All Ranges In Stock</div>
           <p>Send us your wiring list — we'll prepare a complete Finolex quote and deliver to your site in <strong>3 hours</strong>.</p>
@@ -717,14 +765,14 @@ def build_brand(b):
     related = "".join(brand_tile(x, prefix="../") for x in rel_list)
     products_section = ""
     if slug == "finolex":
-        prods = "".join(f"""<div class="prod"><div class="prod-img"><img src="../assets/img/{p[0]}" alt="{html.escape(p[1])}" loading="lazy"></div><h4>{html.escape(p[1])}</h4><p>{html.escape(p[2])}</p></div>""" for p in FINOLEX_PRODUCTS)
+        prods = "".join(range_card(r, prefix="../") for r in FINOLEX_RANGE)
         products_section = f"""
 <section>
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">In Stock Now</p>
-      <h2>Popular Finolex products for your home</h2>
-      <p>Genuine, sealed and ready to deliver across Bangalore the same day.</p>
+      <h2>Explore every Finolex range</h2>
+      <p>Genuine, sealed and ready to deliver across Bangalore the same day. Tap any range for details &amp; a quote.</p>
     </div>
     <div class="prod-grid">{prods}</div>
   </div>
@@ -1171,11 +1219,92 @@ def build_seo_page(p):
     body += footer()
     write(path, body)
 
+def range_card(r, prefix=""):
+    slug, name, img = r[0], r[1], r[2]
+    tagline = r[3]
+    return f"""<a class="prod" href="{prefix}finolex/{slug}.html">
+      <div class="prod-img"><img src="{prefix}assets/img/{img}" alt="{html.escape(name)}" loading="lazy"></div>
+      <h4>{html.escape(name)}</h4>
+      <p>{html.escape(tagline)}</p>
+      <span class="go">View details →</span>
+    </a>"""
+
+def build_finolex_product(r):
+    slug, name, img, tagline, grade, coil, sizes, desc = r
+    path = f"finolex/{slug}.html"
+    img_url = f"{SITE_URL}/assets/img/{img}"
+    chips = "".join(f'<span class="chip">{html.escape(s)}</span>' for s in sizes)
+    rel = [x for x in FINOLEX_RANGE if x[0] != slug][:4]
+    related = "".join(range_card(x, prefix="../") for x in rel)
+    title = f"{name} — Buy in Bangalore at Distributor Price | Mount Cable India"
+    desc_meta = f"Buy {name} in Bangalore from Mount Cable India, an authorized Finolex distributor. {tagline} 100% original, in stock, free 3-hour delivery. Grade: {grade}, coil: {coil}."
+    prod_ld = ('<script type="application/ld+json">'
+        + '{"@context":"https://schema.org","@type":"Product",'
+        + f'"name":{_json(name)},"image":"{img_url}","description":{_json(desc)},'
+        + '"brand":{"@type":"Brand","name":"Finolex"},"category":"Electrical Wire & Cable",'
+        + '"offers":{"@type":"Offer","priceCurrency":"INR","availability":"https://schema.org/InStock",'
+        + f'"seller":{{"@type":"Organization","name":"Mount Cable India"}},"url":"{url_for(path)}"}}}}</script>')
+    crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Finolex", SITE_URL + "/brands/finolex.html"), (name, url_for(path))])
+    body = head(title, desc_meta, path, css_prefix="../", extra_jsonld=prod_ld + crumbs)
+    body += header(prefix="../")
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../brands/finolex.html">Finolex</a> &nbsp;/&nbsp; {html.escape(name)}</div>
+    <span class="badge">★ 100% Original · In Stock</span>
+    <h1>{html.escape(name)}</h1>
+    <p>{html.escape(tagline)}</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="../quote.html">📷 Get a Quote</a>
+      <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}?text=Hi,%20I%20need%20a%20quote%20for%20{urllib.parse.quote(name)}">💬 WhatsApp {PHONE}</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container split">
+    <div class="prose">
+      <div class="pd-imgwrap"><img src="../assets/img/{img}" alt="{html.escape(name)}" loading="lazy"></div>
+      <h2>About {html.escape(name)}</h2>
+      <p>{html.escape(desc)}</p>
+      <h2 style="margin-top:30px">Available sizes &amp; variants</h2>
+      <div class="chip-row">{chips}</div>
+      <ul class="tick-list" style="margin-top:24px">
+        <li><strong>Grade:</strong> {html.escape(grade)}</li>
+        <li><strong>Coil / pack:</strong> {html.escape(coil)}</li>
+        <li><strong>100% original Finolex</strong> — sealed &amp; warranty-backed, in stock now.</li>
+        <li><strong>Free 3-hour delivery</strong> across Bangalore · pay at your site.</li>
+      </ul>
+    </div>
+    <aside>
+      <div class="side-card">
+        <h3>Get a price for {html.escape(name)}</h3>
+        <p class="muted" style="font-size:14.5px;margin:6px 0 0">Distributor pricing · all gauges in stock.</p>
+        <div class="row"><span class="pi">📷</span> <a href="../quote.html">Upload your list for a quote</a></div>
+        <div class="row"><span class="pi">💬</span> <a href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a></div>
+        <div class="row"><span class="pi">📞</span> <a href="tel:{PHONE_HREF}">{PHONE}</a></div>
+        <a class="btn btn-gold" style="width:100%;justify-content:center;margin-top:10px" href="../quote.html">Request a Quote</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">More Finolex Ranges</p><h2>Explore the full range</h2></div>
+    <div class="prod-grid">{related}</div>
+  </div>
+</section>
+"""
+    body += footer(prefix="../")
+    write(path, body)
+
 def build_sitemap():
     paths = ["index.html", "quote.html", "blog.html", "thank-you.html"]
     paths += [f"{p['slug']}.html" for p in SEO_PAGES]
     paths += [f"{c[0]}.html" for c in CATEGORIES]
     paths += [f"brands/{b[0]}.html" for b in BRANDS]
+    paths += [f"finolex/{r[0]}.html" for r in FINOLEX_RANGE]
     paths += [f"areas/{a[0]}.html" for a in AREAS]
     paths += [f"blog/{p[0]}.html" for p in BLOG]
     urls = ""
@@ -1204,8 +1333,9 @@ if __name__ == "__main__":
     build_blog_index()
     for p in BLOG: build_blog_post(p)
     for p in SEO_PAGES: build_seo_page(p)
+    for r in FINOLEX_RANGE: build_finolex_product(r)
     build_sitemap()
-    total = 1 + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 3 + len(BLOG) + len(SEO_PAGES)
+    total = 1 + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 3 + len(BLOG) + len(SEO_PAGES) + len(FINOLEX_RANGE)
     print(f"Done — {total} pages + sitemap.xml + robots.txt")
     print(f"  1 home, {len(BRANDS)} brands, {len(CATEGORIES)} categories, {len(AREAS)} areas, "
           f"{len(SEO_PAGES)} Finolex SEO pages, blog index + {len(BLOG)} posts, quote, thank-you")
