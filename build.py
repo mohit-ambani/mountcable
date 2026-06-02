@@ -9,9 +9,13 @@ Generates: home, per-brand pages, product-category pages, Bengaluru area
 
 Run:  python3 build.py
 """
-import os, html
+import os, html, json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+
+def _json(s):
+    """JSON-encode a string for safe embedding in a JSON-LD script."""
+    return json.dumps(s, ensure_ascii=False)
 SITE_URL = "https://mountcable.com"
 
 PHONE = "+91 88676 76700"
@@ -129,6 +133,158 @@ AREAS = [
     ("yelahanka", "Yelahanka", "Hebbal, Jakkur, Doddaballapur Road and Vidyaranyapura"),
 ]
 
+BLOG_DATE = "2026-06-02"
+BLOG_DATE_DISP = "June 2, 2026"
+
+# Home-page FAQs (also emitted as FAQPage structured data)
+FAQS = [
+    ("Is Mount Cable India an authorized Finolex distributor?",
+     "Yes. Mount Cable India is one of the largest distributors of Finolex cables in India. Our surety to every customer is that we sell only 100% original Finolex wires, sealed and warranty-backed, at genuine distributor prices."),
+    ("Do you deliver electrical material across Bangalore?",
+     "Yes — we offer free delivery across Bangalore. Once your order is confirmed, we deliver to your site within 3 hours, and you can pay right at your site in any mode."),
+    ("How do I get a quote for my home wiring?",
+     "The fastest way is to upload a photo of your wiring list, estimate or requirement on our Get a Quote page. You can also WhatsApp or call us at " + PHONE + " and we'll prepare a complete quote."),
+    ("Which Finolex ranges do you keep in stock?",
+     "All of them — Finolex 90M Silver, 90M Gold, 90M FRLS, 180M, 300M, 300M FRLS, Finolex Ultra, plus co-axial, telephone and internet/LAN cables. Every range is in stock and always available."),
+    ("What payment modes do you accept?",
+     "We accept all payment modes — cash, UPI, cards and bank transfer — and we collect payment right at your site, so there are no advance hassles."),
+    ("How long have you been in business?",
+     "We have served Bengaluru's home builders for over " + YEARS + " years. That experience is why families trust us to wire their homes with the right products at the right price."),
+]
+
+# Blog posts (original content). slug, title, excerpt, tag, body(html, prefix="../")
+BLOG = [
+    ("house-wiring-wire-size-guide", "House Wiring Wire-Size Guide: Which Finolex Gauge for Each Room",
+     "0.75, 1.0, 1.5, 2.5, 4.0 or 6.0 sq mm? A simple room-by-room guide to choosing the right wire size for your new home.", "Guide",
+     """<p>One of the first questions every home builder faces is: <em>which wire size do I need?</em> Indian house wires are sold by cross-sectional area in square millimetres (sq mm), and using the right gauge keeps your home safe and your bills low. Here's a simple, practical guide.</p>
+<h2>What the sq mm number means</h2>
+<p>The bigger the sq mm, the more current the wire can safely carry. Under-sizing a wire causes heating and is a fire risk; over-sizing wastes money. Match the gauge to the load.</p>
+<h2>Room-by-room wire size guide</h2>
+<ul>
+<li><strong>0.75 – 1.0 sq mm</strong> — lighting circuits, bulbs, tube lights and ceiling points.</li>
+<li><strong>1.0 – 1.5 sq mm</strong> — fan points and general 5A lighting/utility circuits.</li>
+<li><strong>2.5 sq mm</strong> — 6A/16A power sockets, fridge, TV, washing machine, kitchen points.</li>
+<li><strong>4.0 sq mm</strong> — air-conditioners, geysers and other high-load 16A appliances.</li>
+<li><strong>6.0 sq mm</strong> — sub-mains, heavy kitchen loads and longer runs.</li>
+<li><strong>10 sq mm and above</strong> — main incoming line and meter-to-DB connections (consult your electrician).</li>
+</ul>
+<h2>How many coils will a home need?</h2>
+<p>Finolex wires come in 90-metre, 180-metre and 300-metre coils. As a rough starting point, a 2BHK often needs several 90M coils across the common gauges, while a 3BHK or duplex needs more. The exact count depends on your floor plan and number of points — the easiest way is to share your wiring list with us for a precise material estimate.</p>
+<h2>Don't forget FR vs FR-LSH</h2>
+<p>For most homes, Finolex FR (flame-retardant) is the standard choice. If you want lower smoke and halogen emission in case of fire — recommended for bedrooms, kids' rooms and enclosed spaces — choose <a href="../brands/finolex.html">Finolex FR-LSH or Finolex Ultra</a>. Read our <a href="../blog/fr-vs-frls-vs-finolex-ultra.html">FR vs FR-LSH vs Ultra comparison</a> to decide.</p>
+<p><strong>Not sure what to order?</strong> <a href="../quote.html">Upload your wiring list</a> and we'll prepare a complete, correctly-sized Finolex quote — delivered to your site in 3 hours.</p>"""),
+
+    ("finolex-wire-price-bangalore", "Finolex Wire Price in Bangalore: How to Buy at Distributor Rate",
+     "Why wire prices move, how MRP differs from distributor price, and the simplest way to get today's genuine rate for your home.", "Pricing",
+     """<p>If you're wiring a house, wire is one of your biggest electrical costs — so it pays to understand how Finolex pricing works and how to buy at the genuine distributor rate.</p>
+<h2>What affects the price of house wire</h2>
+<ul>
+<li><strong>Copper rate</strong> — wire prices move with the global copper market, so they change frequently. Always ask for today's rate.</li>
+<li><strong>Cross-section (sq mm)</strong> — thicker wires use more copper and cost more per coil.</li>
+<li><strong>Coil length</strong> — Finolex sells 90M, 180M and 300M coils; per-metre cost usually improves on longer coils.</li>
+<li><strong>Grade</strong> — FR, FR-LSH and Finolex Ultra are priced differently for their safety features.</li>
+</ul>
+<h2>MRP vs distributor price</h2>
+<p>Local shops typically sell near MRP. As one of India's largest Finolex distributors, we pass the distributor rate on to you — the same rate your local shop pays. For a full house, that difference adds up significantly.</p>
+<h2>How to get today's rate</h2>
+<p>Because prices change with copper, we don't publish fixed figures — instead, we give you a live quote. The fastest way: <a href="../quote.html">upload a photo of your wiring list or estimate</a>, or WhatsApp us at """ + PHONE + """. You'll get a complete, itemised quote at distributor pricing, plus free 3-hour delivery and payment collected at your site.</p>
+<p>See the full <a href="../wires-and-cables.html">wires &amp; cables range</a> we stock, or read our <a href="../blog/house-wiring-wire-size-guide.html">wire-size guide</a> first.</p>"""),
+
+    ("fr-vs-frls-vs-finolex-ultra", "FR vs FR-LSH vs Finolex Ultra: Which House Wire Should You Choose?",
+     "A plain-English comparison of Finolex's three main house-wire grades so you can pick the right safety level for your home.", "Comparison",
+     """<p>Finolex house wires come in a few grades, and the names can be confusing. Here's what FR, FR-LSH and Finolex Ultra actually mean — and where each one fits in a home.</p>
+<h2>FR — Flame Retardant</h2>
+<p>The standard, most widely used house wire. FR insulation resists catching fire and slows flame spread. It's a solid, value-for-money choice for general home wiring.</p>
+<h2>FR-LSH — Flame Retardant Low Smoke &amp; Halogen</h2>
+<p>Everything FR does, plus it releases <strong>less smoke and fewer toxic halogen gases</strong> if exposed to fire. In a house fire, smoke and gas are often more dangerous than flames — so FR-LSH (Finolex's Flamegard range) is a smart upgrade for bedrooms, children's rooms, and enclosed or poorly-ventilated areas.</p>
+<h2>Finolex Ultra — E-Beam, Low Smoke Zero Halogen</h2>
+<p>Finolex's premium wire, using electron-beam (E-Beam) irradiated insulation for superior heat resistance and the lowest smoke and halogen emission. It's the safest choice for premium homes and anyone who wants maximum fire safety.</p>
+<h2>Which should you choose?</h2>
+<ul>
+<li><strong>Budget-conscious, general wiring</strong> → Finolex FR.</li>
+<li><strong>Better fire safety for living spaces</strong> → Finolex FR-LSH.</li>
+<li><strong>Premium home, maximum safety</strong> → Finolex Ultra.</li>
+</ul>
+<p>Many builders mix grades — Ultra/FR-LSH for bedrooms and FR for utility areas. We stock <a href="../brands/finolex.html">every Finolex grade and coil length</a>, always in stock. <a href="../quote.html">Share your list</a> and we'll recommend the right mix.</p>"""),
+
+    ("electrical-checklist-building-house-bangalore", "Electrical Materials Checklist for Building a House in Bangalore",
+     "A complete, room-ready checklist of everything electrical you'll need — so nothing holds up your construction.", "Checklist",
+     """<p>Building a home means buying a lot of electrical material. Use this checklist so you order everything in one go and avoid last-minute site delays.</p>
+<h2>Wires &amp; cables</h2>
+<ul>
+<li>House wires across gauges — 1.0, 1.5, 2.5, 4.0 sq mm (<a href="../brands/finolex.html">Finolex</a>, Polycab, KEI, RR Kabel)</li>
+<li>Co-axial cable (TV), telephone cable, and internet/LAN cable</li>
+<li>Bell wire and flexible multi-core cable for appliances</li>
+</ul>
+<h2>Switches, sockets &amp; accessories</h2>
+<ul>
+<li>Modular <a href="../switches-and-sockets.html">switches and sockets</a>, plates and frames</li>
+<li>Fan regulators, bell push, USB sockets, TV/data outlets</li>
+</ul>
+<h2>Protection &amp; distribution</h2>
+<ul>
+<li>Main and sub <a href="../switchgear-and-mcb.html">distribution boards (DBs)</a></li>
+<li>MCBs, RCCBs/RCBOs and isolators sized to your load</li>
+</ul>
+<h2>Pipes, conduits &amp; boxes</h2>
+<ul>
+<li><a href="../pipes-and-conduits.html">PVC conduits</a>, bends, couplers and junction boxes</li>
+<li>Modular mounting boxes and fan hooks/boxes</li>
+</ul>
+<h2>Lighting</h2>
+<ul>
+<li><a href="../lighting.html">LED bulbs, battens, panel and downlights</a>, outdoor/flood lights</li>
+</ul>
+<h2>Earthing &amp; finishing</h2>
+<ul>
+<li>Earthing wire/strip and accessories</li>
+<li>3M insulation tape, connectors, lugs and cable ties</li>
+</ul>
+<p>Don't want to itemise it all yourself? <a href="../quote.html">Upload your house plan or estimate</a> and we'll build the complete material list for you — at distributor prices, delivered free in 3 hours.</p>"""),
+
+    ("how-to-identify-original-finolex-wire", "How to Identify 100% Original Finolex Wire (and Avoid Fakes)",
+     "Counterfeit wire is a real safety risk. Here's how to make sure the Finolex wire you buy is genuine.", "Safety",
+     """<p>Wire is hidden inside your walls for decades — so buying genuine, quality wire is one of the most important safety decisions in your home. Counterfeit and sub-standard wire uses less or impure copper and weaker insulation, which can overheat. Here's how to protect yourself.</p>
+<h2>1. Buy from an authorized distributor</h2>
+<p>The single best safeguard. Authorized distributors source directly through Finolex's official channel, so the product is guaranteed genuine and warranty-backed. Mount Cable India is one of India's largest Finolex distributors — our surety is 100% original Finolex, every time.</p>
+<h2>2. Check the packaging and printing</h2>
+<p>Genuine Finolex boxes are cleanly printed with consistent branding, batch details and grade markings (FR, FR-LSH, etc.). Be wary of blurry print, spelling errors or tampered seals.</p>
+<h2>3. Look for standards markings on the wire</h2>
+<p>Original wire carries clear, repeated printing along its length — brand, size (sq mm), grade and standards mark. The print should be sharp and evenly spaced.</p>
+<h2>4. Sequential metre marking</h2>
+<p>Quality wire is printed with running metre markings so you can verify coil length. Missing or irregular markings are a red flag.</p>
+<h2>5. Don't chase the lowest price</h2>
+<p>If a price looks far below the market, ask why. Genuine wire has a real copper cost. A distributor rate from an authorized seller is the right kind of saving — not a suspiciously cheap "deal".</p>
+<p>Want certainty? Buy your <a href="../brands/finolex.html">Finolex wires</a> from us — sealed, genuine and delivered to your site. <a href="../quote.html">Get a quote here.</a></p>"""),
+
+    ("best-electrical-brands-home-wiring-india", "Best Electrical Brands for Home Wiring in India (2026 Guide)",
+     "From wires to switches to protection — the trusted brands to consider for your home, and what each is known for.", "Guide",
+     """<p>Choosing brands for a new home can be overwhelming. Here's a practical rundown of trusted electrical brands by category, all of which we stock at distributor prices.</p>
+<h2>Wires &amp; cables</h2>
+<ul>
+<li><a href="../brands/finolex.html">Finolex</a> — India's most trusted house wire; FR, FR-LSH and Ultra grades.</li>
+<li><a href="../brands/polycab.html">Polycab</a> — India's largest cables maker, full FMEG range.</li>
+<li><a href="../brands/kei.html">KEI</a> and <a href="../brands/rr-kabel.html">RR Kabel</a> — strong housing-wire and power-cable options.</li>
+<li><a href="../brands/v-guard.html">V-Guard</a> — wires plus stabilizers and appliances.</li>
+</ul>
+<h2>Switches &amp; sockets</h2>
+<ul>
+<li><a href="../brands/anchor-panasonic.html">Anchor by Panasonic</a> — India's most familiar switches, Panasonic-backed.</li>
+<li><a href="../brands/schneider.html">Schneider</a>, <a href="../brands/legrand.html">Legrand</a> and <a href="../brands/greatwhite.html">Greatwhite</a> — premium and modern modular ranges.</li>
+</ul>
+<h2>Circuit protection (MCBs, DBs)</h2>
+<ul>
+<li><a href="../brands/schneider.html">Schneider</a>, <a href="../brands/legrand.html">Legrand</a> and <a href="../brands/hpl.html">HPL</a> — reliable MCBs, RCCBs and distribution boards.</li>
+</ul>
+<h2>Pipes, conduits &amp; accessories</h2>
+<ul>
+<li><a href="../brands/precision-pipes.html">Precision Pipes</a> — PVC conduits and fittings.</li>
+<li><a href="../brands/3m.html">3M</a> — tapes, connectors and cable jointing accessories.</li>
+</ul>
+<h2>The bottom line</h2>
+<p>There's no single "best" brand — the right choice depends on your budget and where the product is used. A good distributor helps you mix the right brands for each part of your home. <a href="../quote.html">Share your requirement</a> and we'll recommend a complete, value-for-money package — delivered free across Bangalore.</p>"""),
+]
+
 # Featured Finolex products (image, name, desc)
 FINOLEX_PRODUCTS = [
     ("prod-90m-silver.png", "Finolex 90M Silver", "FR-grade PVC house wire, 90-metre coil — the everyday choice for home wiring."),
@@ -207,7 +363,7 @@ def header(prefix=""):
       <a href="{prefix}index.html#categories">Categories</a>
       <a href="{prefix}index.html#brands">Brands</a>
       <a href="{prefix}index.html#areas">Areas We Serve</a>
-      <a href="{prefix}index.html#offices">Showrooms</a>
+      <a href="{prefix}blog.html">Blog</a>
     </nav>
     <div class="nav-cta">
       <a class="btn btn-outline" href="tel:{PHONE_HREF}">📞 {PHONE}</a>
@@ -288,6 +444,15 @@ def breadcrumb_jsonld(items):
         for i, (n, u) in enumerate(items))
     return f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{el}]}}</script>'
 
+def blog_card(p, prefix=""):
+    slug, title, excerpt, tag = p[0], p[1], p[2], p[3]
+    return f"""<a class="blog-card" href="{prefix}blog/{slug}.html">
+      <span class="blog-tag">{html.escape(tag)}</span>
+      <h3>{html.escape(title)}</h3>
+      <p>{html.escape(excerpt)}</p>
+      <span class="go">Read guide →</span>
+    </a>"""
+
 # ---------- pages ----------
 def build_index():
     feat_cards = ""
@@ -313,8 +478,16 @@ def build_index():
         <p><span class="pi">🕘</span> Mon–Sat, 10:00 AM – 8:00 PM</p>
       </div>""" for o in OFFICES)
 
+    faq_q = ",".join(
+        f'{{"@type":"Question","name":{_json(q)},"acceptedAnswer":{{"@type":"Answer","text":{_json(a)}}}}}'
+        for q, a in FAQS)
+    faq_jsonld = f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{faq_q}]}}</script>'
+    faq_html = "".join(
+        f'<details class="faq"><summary>{html.escape(q)}</summary><div class="faq-a">{html.escape(a)}</div></details>'
+        for q, a in FAQS)
+    blog_teaser = "".join(blog_card(p, prefix="") for p in BLOG[:3])
     desc = f"Building your home in Bengaluru? Mount Cable India is one of India's largest Finolex distributors & a multi-brand electrical dealer for {YEARS}+ years. 100% original Finolex wires, all ranges in stock, 3-hour free site delivery across Bangalore. Showrooms in Jayanagar & Chickpete."
-    body = head("Mount Cable India | Finolex Distributor & Electrical Dealer, Bengaluru", desc, "index.html")
+    body = head("Mount Cable India | Finolex Distributor & Electrical Dealer, Bengaluru", desc, "index.html", extra_jsonld=faq_jsonld)
     body += header()
     body += f"""
 <section class="hero">
@@ -439,6 +612,28 @@ def build_index():
       <p>Free 3-hour delivery to your home site. Find your area for local pricing and stock.</p>
     </div>
     <div class="area-grid">{areas}</div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container narrow">
+    <div class="section-head">
+      <p class="eyebrow">Questions, Answered</p>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">{faq_html}</div>
+  </div>
+</section>
+
+<section class="bg-soft" id="blog-teaser">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">From Our Blog</p>
+      <h2>Guides for home builders</h2>
+      <p>Practical advice on wires, brands and buying right for your new home.</p>
+    </div>
+    <div class="blog-grid">{blog_teaser}</div>
+    <div class="center" style="margin-top:30px"><a class="btn btn-outline" href="blog.html">View all guides →</a></div>
   </div>
 </section>
 
@@ -728,14 +923,89 @@ def build_thankyou():
     body += footer()
     write(path, body)
 
+def build_blog_index():
+    path = "blog.html"
+    cards = "".join(blog_card(p, prefix="") for p in BLOG)
+    title = "Electrical Guides for Home Builders in Bangalore | Mount Cable India Blog"
+    desc = f"Practical guides for building your home: house-wiring wire sizes, Finolex wire prices in Bangalore, FR vs FR-LSH, materials checklists and how to buy 100% original wire. By Mount Cable India, {YEARS} years trusted."
+    crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Blog", url_for(path))])
+    body = head(title, desc, path, extra_jsonld=crumbs)
+    body += header()
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Blog</div>
+    <span class="badge">📖 Guides for Home Builders</span>
+    <h1>Electrical guides for building your home</h1>
+    <p>Honest, practical advice on wires, brands, pricing and safety — from one of India's largest Finolex distributors.</p>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="blog-grid">{cards}</div>
+  </div>
+</section>
+"""
+    body += footer()
+    write(path, body)
+
+def build_blog_post(p):
+    slug, title, excerpt, tag, bodyhtml = p
+    path = f"blog/{slug}.html"
+    desc = excerpt
+    article_ld = ('<script type="application/ld+json">'
+        + '{"@context":"https://schema.org","@type":"BlogPosting",'
+        + f'"headline":{_json(title)},"description":{_json(excerpt)},'
+        + f'"datePublished":"{BLOG_DATE}","dateModified":"{BLOG_DATE}",'
+        + f'"image":"{SITE_URL}/assets/img/banner-finolex-wires.jpg",'
+        + '"author":{"@type":"Organization","name":"Mount Cable India"},'
+        + '"publisher":{"@type":"Organization","name":"Mount Cable India",'
+        + f'"logo":{{"@type":"ImageObject","url":"{SITE_URL}/assets/logos/finolex.svg"}}}},'
+        + f'"mainEntityOfPage":"{url_for(path)}"}}</script>')
+    crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Blog", SITE_URL + "/blog.html"), (title, url_for(path))])
+    rel = [x for x in BLOG if x[0] != slug][:3]
+    related = "".join(blog_card(x, prefix="../") for x in rel)
+    body = head(f"{title} | Mount Cable India", desc, path, css_prefix="../", extra_jsonld=article_ld + crumbs)
+    body += header(prefix="../")
+    body += f"""
+<article class="post">
+  <div class="container narrow">
+    <div class="crumbs"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../blog.html">Blog</a> &nbsp;/&nbsp; {html.escape(tag)}</div>
+    <span class="blog-tag">{html.escape(tag)}</span>
+    <h1>{html.escape(title)}</h1>
+    <p class="post-meta">By Mount Cable India · {BLOG_DATE_DISP} · {YEARS} years serving Bengaluru</p>
+    <div class="post-body">
+      {bodyhtml}
+    </div>
+    <div class="post-cta">
+      <h3>Ready to order for your home?</h3>
+      <p>Upload your wiring list for an instant quote — 100% original material, free 3-hour delivery across Bangalore.</p>
+      <div class="cta-actions">
+        <a class="btn btn-gold" href="../quote.html">📷 Get a Quote</a>
+        <a class="btn btn-outline" href="https://wa.me/{WHATSAPP}">💬 WhatsApp {PHONE}</a>
+      </div>
+    </div>
+  </div>
+</article>
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">Keep Reading</p><h2>More guides</h2></div>
+    <div class="blog-grid">{related}</div>
+  </div>
+</section>
+"""
+    body += footer(prefix="../")
+    write(path, body)
+
 def build_sitemap():
-    paths = ["index.html", "quote.html", "thank-you.html"]
+    paths = ["index.html", "quote.html", "blog.html", "thank-you.html"]
     paths += [f"{c[0]}.html" for c in CATEGORIES]
     paths += [f"brands/{b[0]}.html" for b in BRANDS]
     paths += [f"areas/{a[0]}.html" for a in AREAS]
+    paths += [f"blog/{p[0]}.html" for p in BLOG]
     urls = ""
     for p in paths:
-        pr = "1.0" if p == "index.html" else ("0.9" if p == "quote.html" else "0.8")
+        pr = "1.0" if p == "index.html" else ("0.9" if p in ("quote.html", "blog.html") else "0.8")
         urls += f"  <url><loc>{url_for(p)}</loc><changefreq>weekly</changefreq><priority>{pr}</priority></url>\n"
     sm = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -756,7 +1026,10 @@ if __name__ == "__main__":
     for a in AREAS: build_area(a)
     build_quote()
     build_thankyou()
+    build_blog_index()
+    for p in BLOG: build_blog_post(p)
     build_sitemap()
-    total = 1 + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 2
+    total = 1 + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 3 + len(BLOG)
     print(f"Done — {total} pages + sitemap.xml + robots.txt")
-    print(f"  1 home, {len(BRANDS)} brands, {len(CATEGORIES)} categories, {len(AREAS)} areas, quote, thank-you")
+    print(f"  1 home, {len(BRANDS)} brands, {len(CATEGORIES)} categories, {len(AREAS)} areas, "
+          f"blog index + {len(BLOG)} posts, quote, thank-you")
