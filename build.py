@@ -48,7 +48,7 @@ OFFICES = [
 LOGO = {
     "finolex": "finolex.svg", "polycab": "polycab.png", "kei": "kei.png",
     "rr-kabel": "rr-kabel.svg", "v-guard": "v-guard.jpg", "greatwhite": "greatwhite.png",
-    "legrand": "legrand.png", "hpl": "hpl.png", "anchor-panasonic": "anchor-panasonic.png",
+    "hpl": "hpl.png", "anchor-panasonic": "anchor-panasonic.svg",
 }
 
 CATEGORIES = [
@@ -495,6 +495,7 @@ def footer(prefix=""):
   </div>
 </footer>
 <script src="{prefix}assets/main.js?v={JS_VER}"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>"""
 
