@@ -9,9 +9,20 @@ Generates: home, per-brand pages, product-category pages, Bengaluru area
 
 Run:  python3 build.py
 """
-import os, html, json, urllib.parse
+import os, html, json, urllib.parse, hashlib
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+
+def _ver(rel):
+    """Content hash of a static asset, for cache-busting its URL."""
+    try:
+        with open(os.path.join(ROOT, rel), "rb") as f:
+            return hashlib.md5(f.read()).hexdigest()[:8]
+    except OSError:
+        return "1"
+
+CSS_VER = _ver("assets/styles.css")
+JS_VER = _ver("assets/main.js")
 
 def _json(s):
     """JSON-encode a string for safe embedding in a JSON-LD script."""
@@ -397,7 +408,7 @@ def head(title, desc, path, css_prefix="", extra_jsonld=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{css_prefix}assets/styles.css">
+<link rel="stylesheet" href="{css_prefix}assets/styles.css?v={CSS_VER}">
 {local_business_jsonld()}
 {extra_jsonld}
 </head>
@@ -483,7 +494,7 @@ def footer(prefix=""):
     </div>
   </div>
 </footer>
-<script src="{prefix}assets/main.js"></script>
+<script src="{prefix}assets/main.js?v={JS_VER}"></script>
 </body>
 </html>"""
 
