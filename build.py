@@ -76,6 +76,14 @@ CATEGORIES = [
      "MCBs, RCCBs, isolators, distribution boards plus 3M tapes, connectors and cable accessories for safe circuit protection.",
      ["schneider", "legrand", "hpl", "3m"],
      ["MCBs & Isolators", "RCCBs & RCBOs", "Distribution Boards", "Changeover Switches", "3M Tapes & Connectors"], ""),
+    ("earthing-products", "🌍", "Earthing Products",
+     "GI and copper-bonded earthing electrodes, strips, wires, chemical earthing compounds and lightning protection for safe, code-compliant earthing.",
+     ["polycab", "kei", "hpl", "3m"],
+     ["GI & Copper-Bonded Electrodes", "Earthing Strips & Wires", "Chemical Earthing Compounds", "Earth Pits & Covers", "Lightning Arresters"], ""),
+    ("internet-networking", "🌐", "Internet & Networking",
+     "Cat5e/Cat6 LAN cables, patch cords, RJ45 connectors, keystones, co-axial and telephone cables from Finolex, Polycab and more for a fast, stable wired home network.",
+     ["finolex", "polycab", "univyin-cables", "3m"],
+     ["Cat5e / Cat6 LAN Cables", "Patch Cords & RJ45 Connectors", "Keystones & Face Plates", "Co-Axial Cables (RG-6 / RG-11)", "Telephone Cables"], ""),
 ]
 
 # slug, name, color, featured(bool), tagline, products[], blurb
@@ -83,7 +91,7 @@ BRANDS = [
     ("finolex", "Finolex", "#0054A6", True,
      "Our flagship — 100% original Finolex wires & cables, every range always in stock.",
      ["Finolex 90M Silver", "Finolex 90M Gold", "Finolex 90M FRLS", "Finolex 180M", "Finolex 300M", "Finolex 300M FRLS", "Finolex Ultra", "Co-Axial Cables", "Telephone Cables", "Internet / LAN Cables"],
-     "Finolex is India's most trusted name in house wiring. Mount Cable India is one of the largest distributors of Finolex cables in India — and our surety is that we sell only 100% original Finolex wires. Every range — 90M Silver, 90M Gold, 90M FRLS, 180M, 300M, 300M FRLS, Finolex Ultra, plus co-axial, telephone and internet cables — is in stock and always available. Confirm your order and we deliver to your site within 3 hours, and collect payment right at your site."),
+     "Finolex is India's most trusted name in house wiring. Mount Cable India is one of the largest distributors of Finolex cables in India — and our surety is that we sell only 100% original Finolex wires. Every range — 90M Silver, 90M Gold, 90M FRLS, 180M, 300M, 300M FRLS, Finolex Ultra, plus co-axial, telephone and internet cables — is in stock and always available. Confirm your order and we deliver to your site by the next day, and collect payment right at your site."),
     ("polycab", "Polycab", "#E4002B", True,
      "India's largest wires & cables maker and a complete FMEG brand.",
      ["Wires & Cables", "Power & Control Cables", "Fans", "LED Lighting", "Switchgear", "Conduits"],
@@ -158,7 +166,7 @@ SEO_PAGES = [
  {"slug": "finolex-wire-price-list-bangalore",
   "title": "Finolex Wire Price List in Bangalore (2026) | Distributor Rate — Mount Cable India",
   "h1": "Finolex wire price list in Bangalore — get today's distributor rate",
-  "desc": "Looking for the Finolex wire price list in Bangalore? Get today's genuine distributor rate for every Finolex range (90M, 180M, 300M, FRLS, Ultra) and gauge (1.0, 1.5, 2.5, 4.0 sq mm). 100% original, free 3-hour delivery. WhatsApp +91 88676 76700 for the latest price list.",
+  "desc": "Looking for the Finolex wire price list in Bangalore? Get today's genuine distributor rate for every Finolex range (90M, 180M, 300M, FRLS, Ultra) and gauge (1.0, 1.5, 2.5, 4.0 sq mm). 100% original, free next-day delivery. WhatsApp +91 88676 76700 for the latest price list.",
   "badge": "💰 Live Distributor Pricing · Updated Daily",
   "intro": "Want the latest Finolex wire price list in Bangalore? Because wire prices move with the copper market, we don't publish fixed figures that go stale — instead we send you today's genuine distributor rate within minutes. Message us your sizes and we'll share the current Finolex price list right away.",
   "sections": [
@@ -176,7 +184,7 @@ SEO_PAGES = [
      "</tbody></table></div>"
      "<p class=\"ptable-note\">Available in FR, FR-LSH (Flamegard) and Finolex Ultra grades. <a href=\"blog/fr-vs-frls-vs-finolex-ultra.html\">Which grade should you choose?</a></p>"),
     ("Get today's Finolex price list — in minutes",
-     "<p>Send us your list of sizes and quantities (or a photo of your estimate) and we'll reply with the current Finolex price list at distributor rates. <a href=\"quote.html\">Upload your list here</a> or WhatsApp <a href=\"https://wa.me/918867676700\">+91 88676 76700</a>. Free 3-hour delivery across Bangalore, pay at your site.</p>"),
+     "<p>Send us your list of sizes and quantities (or a photo of your estimate) and we'll reply with the current Finolex price list at distributor rates. <a href=\"quote.html\">Upload your list here</a> or WhatsApp <a href=\"https://wa.me/918867676700\">+91 88676 76700</a>. Free next-day delivery across Bangalore, pay at your site.</p>"),
     ("Distributor price vs local shop (MRP)",
      "<p>Local shops usually sell close to MRP. As one of India's largest Finolex distributors, we give you the distributor rate — which, across a full house of wiring, saves a meaningful amount. Same 100% original Finolex, lower price. See the <a href=\"brands/finolex.html\">full Finolex range</a>.</p>"),
   ],
@@ -189,29 +197,29 @@ SEO_PAGES = [
  {"slug": "finolex-dealer-near-me",
   "title": "Finolex Dealer Near Me | Authorized Finolex Distributor in Bangalore",
   "h1": "Finolex dealer near me — we bring Finolex to your doorstep",
-  "desc": "Searching for a Finolex dealer near me in Bangalore? Mount Cable India is an authorized Finolex distributor with free 3-hour delivery to your site across Bangalore. 100% original Finolex wires, all ranges in stock, distributor prices. Call +91 88676 76700.",
-  "badge": "📍 Authorized Finolex Dealer · Free 3-Hour Delivery",
-  "intro": "Looking for a 'Finolex dealer near me' in Bangalore? The nearest Finolex dealer is the one that comes to you. Mount Cable India is one of India's largest Finolex distributors, and we deliver 100% original Finolex wires free to your site — anywhere in Bangalore — within 3 hours of confirmation.",
+  "desc": "Searching for a Finolex dealer near me in Bangalore? Mount Cable India is an authorized Finolex distributor with free next-day delivery to your site across Bangalore. 100% original Finolex wires, all ranges in stock, distributor prices. Call +91 88676 76700.",
+  "badge": "📍 Authorized Finolex Dealer · Free Next-Day Delivery",
+  "intro": "Looking for a 'Finolex dealer near me' in Bangalore? The nearest Finolex dealer is the one that comes to you. Mount Cable India is one of India's largest Finolex distributors, and we deliver 100% original Finolex wires free to your site — anywhere in Bangalore — by the next day — often the same day.",
   "sections": [
     ("The nearest Finolex dealer is the one that delivers to you",
-     "<p>Instead of driving around looking for a Finolex shop, let the dealer come to you. We hold every Finolex range in stock and deliver free to your home or site across Bangalore within 3 hours of confirming your order — and you pay right at your site, in any mode. For over 35 years, that's how Bengaluru's home builders have wired their homes with us.</p>"),
+     "<p>Instead of driving around looking for a Finolex shop, let the dealer come to you. We hold every Finolex range in stock and deliver free to your home or site across Bangalore by the next day of ordering — often the same day — and you pay right at your site, in any mode. For over 35 years, that's how Bengaluru's home builders have wired their homes with us.</p>"),
     ("Finolex ranges we keep in stock — always",
      "<p>Whatever your wiring needs, the range is ready to dispatch: <strong>Finolex 90M Silver, 90M Gold, 90M FRLS, 180M, 300M, 300M FRLS and Finolex Ultra</strong>, plus co-axial, telephone and internet/LAN cables. See the full <a href=\"brands/finolex.html\">Finolex range and product photos</a>, or read our <a href=\"blog/house-wiring-wire-size-guide.html\">wire-size guide</a> to choose the right gauge.</p>"),
     ("Areas we deliver to across Bangalore",
      "<p>We deliver to all major localities — find yours below for local stock and pricing.</p>{areas}"),
     ("How to order from your nearest Finolex dealer",
-     "<p>It takes a minute: <a href=\"quote.html\">upload a photo of your wiring list</a> for an instant quote, WhatsApp us, or call <a href=\"tel:+918867676700\">+91 88676 76700</a>. Confirm, and your genuine Finolex wires arrive at your site within 3 hours.</p>"),
+     "<p>It takes a minute: <a href=\"quote.html\">upload a photo of your wiring list</a> for an instant quote, WhatsApp us, or call <a href=\"tel:+918867676700\">+91 88676 76700</a>. Confirm, and your genuine Finolex wires arrive at your site by the next day.</p>"),
   ],
   "faqs": [
-    ("Is there a Finolex dealer near me in Bangalore?", "Yes — Mount Cable India is an authorized Finolex dealer serving all of Bangalore. Rather than asking you to travel, we deliver 100% original Finolex wires free to your site within 3 hours, so the nearest Finolex dealer effectively comes to you."),
-    ("How fast can you deliver Finolex wires to my location?", "Once your order is confirmed, we deliver to your site within 3 hours, free across Bangalore. Every Finolex range is in stock, so there's no waiting."),
+    ("Is there a Finolex dealer near me in Bangalore?", "Yes — Mount Cable India is an authorized Finolex dealer serving all of Bangalore. Rather than asking you to travel, we deliver 100% original Finolex wires free to your site by the next day, so the nearest Finolex dealer effectively comes to you."),
+    ("How fast can you deliver Finolex wires to my location?", "Once your order is confirmed, we deliver to your site by the next day, free across Bangalore. Every Finolex range is in stock, so there's no waiting."),
     ("Do I have to visit your showroom to buy Finolex wires?", "No. You can order entirely online — upload your list or WhatsApp us — and we deliver to your door. You're also welcome to visit our Jayanagar or Chickpete showrooms if you prefer."),
     ("Are you an authorized Finolex dealer?", "Yes. Mount Cable India is one of the largest distributors of Finolex cables in India, sourcing only through authorized channels — so every wire is 100% genuine and warranty-backed."),
   ]},
  {"slug": "original-finolex-wires",
   "title": "Original Finolex Wires | 100% Genuine at Distributor Price, Bangalore",
   "h1": "100% original Finolex wires — guaranteed genuine",
-  "desc": "Buy 100% original Finolex wires in Bangalore from Mount Cable India, an authorized Finolex distributor. Sealed, warranty-backed, all ranges in stock, distributor prices, free 3-hour delivery. Learn how to verify genuine Finolex wire.",
+  "desc": "Buy 100% original Finolex wires in Bangalore from Mount Cable India, an authorized Finolex distributor. Sealed, warranty-backed, all ranges in stock, distributor prices, free next-day delivery. Learn how to verify genuine Finolex wire.",
   "badge": "✓ 100% Original · Authorized Distributor",
   "intro": "Want 100% original Finolex wires for your home? Our surety is simple: Mount Cable India sells only genuine, sealed, warranty-backed Finolex wires, sourced through authorized channels — at honest distributor prices. No fakes, no seconds, no compromises.",
   "sections": [
@@ -222,13 +230,43 @@ SEO_PAGES = [
     ("Every original Finolex range, in stock",
      "<p>We stock the complete genuine range — <strong>90M Silver, 90M Gold, 90M FRLS, 180M, 300M, 300M FRLS, Finolex Ultra</strong>, plus co-axial, telephone and internet/LAN cables. Not sure which grade? Compare <a href=\"blog/fr-vs-frls-vs-finolex-ultra.html\">FR vs FR-LSH vs Finolex Ultra</a>, or see the <a href=\"brands/finolex.html\">full Finolex range</a>.</p>"),
     ("Original wire, distributor price, delivered free",
-     "<p>Genuine doesn't have to mean expensive. You get the distributor rate — the same your local shop pays — with free 3-hour site delivery across Bangalore and payment collected at your site. <a href=\"quote.html\">Upload your list for an instant quote.</a></p>"),
+     "<p>Genuine doesn't have to mean expensive. You get the distributor rate — the same your local shop pays — with free next-day site delivery across Bangalore and payment collected at your site. <a href=\"quote.html\">Upload your list for an instant quote.</a></p>"),
   ],
   "faqs": [
-    ("Where can I buy 100% original Finolex wires in Bangalore?", "From Mount Cable India — an authorized Finolex distributor. We supply only genuine, sealed, warranty-backed Finolex wires at distributor prices, with free 3-hour delivery across Bangalore."),
+    ("Where can I buy 100% original Finolex wires in Bangalore?", "From Mount Cable India — an authorized Finolex distributor. We supply only genuine, sealed, warranty-backed Finolex wires at distributor prices, with free next-day delivery across Bangalore."),
     ("How do I know if a Finolex wire is genuine?", "Buy from an authorized distributor, check the sealed packaging and clean printing, look for clear repeated markings and standards marks along the wire, and verify the sequential metre marking. Our detailed guide explains each check."),
     ("Are your Finolex wires sealed and warranty-backed?", "Yes. Every coil is brand-sealed and warranty-backed, sourced through Finolex's authorized channel — that is our surety to you."),
     ("Is original Finolex wire more expensive?", "Genuine wire has a real copper cost, but as a distributor we pass on the distributor rate, so you pay far less than near-MRP local shop prices for the same 100% original product."),
+  ]},
+ {"slug": "original-vs-duplicate-electrical-products",
+  "title": "Original vs Duplicate Electrical Products: How Shops Fool You & How to Stay Safe | Mount Cable India",
+  "h1": "Original vs duplicate: how buyers get fooled — and how to protect yourself",
+  "desc": "How duplicate electrical products are sold in Bangalore: electrician commissions, fake discounts, showroom fronts and material-included contracts. Use Mount Cable's reference pricing on 88676 76700 — no pressure to buy, exact quote in 60 minutes.",
+  "badge": "Buyer Protection Guide · Reference Pricing on WhatsApp",
+  "intro": "Duplicate wires, switches and MCBs don't reach your home by accident — they reach it through well-practised selling tactics that exploit one fact: you cannot judge electrical quality by looking at it. This guide explains exactly how the duplicate trade works, the four tactics used on honest buyers, and one simple habit that defeats all of them: checking your prices against a reference before you pay.",
+  "sections": [
+    ("Why duplicate electrical products are a serious problem",
+     "<p>Wire disappears inside your walls, and an MCB sits unnoticed in a distribution board — until the day it matters. Counterfeit wire uses less or impure copper and weak insulation that overheats; a fake MCB may simply never trip. Unlike a fake shirt, a fake electrical product can burn your house down. And because the packaging looks near-identical, even experienced buyers get fooled at the counter.</p>"),
+    ("Tactic 1: Commissions to electricians",
+     "<p>Many buyers hand material purchasing to their electrician — and some shops quietly pay electricians a commission for steering purchases their way. The electrician insists on \"his\" shop, the shop bills a premium brand and supplies a look-alike, and the commission comes out of the margin a duplicate makes possible. The homeowner never sees the box.</p><p><strong>Defence:</strong> whoever buys, <em>you</em> verify. See the boxes, scan the QR codes, and check the price against a reference before paying. Read our full guide on <a href=\"blog/electrician-retailer-nexus-duplicate-wires.html\">the electrician–retailer nexus</a>.</p>"),
+    ("Tactic 2: The impossible discount — wires are a 3–5% margin business",
+     "<p>Here is the single most useful fact in this guide: <strong>genuine wires and cables are a 3–5% margin business.</strong> The copper inside a coil has a market cost that every honest seller pays. That means no genuine seller — however large — can sell far below the market rate. A shop offering 15–20% off on a premium wire brand is not being generous; the discount is being funded by what's <em>missing</em> inside the product: copper purity, conductor thickness, insulation quality, or the brand itself.</p><p><strong>Defence:</strong> compare 2–3 sellers. Genuine prices cluster in a narrow band. If one quote is a steal, it is the duplicate. Check our <a href=\"price-lists.html\">brand-wise approximate price lists</a> to know the honest band before you shop.</p>"),
+    ("Tactic 3: Big showrooms that sell confidence, not authenticity",
+     "<p>A large, well-lit showroom feels trustworthy — and in some areas that is exactly the investment being made: an impressive front that makes buyers drop their guard. Showroom size proves marketing budget, not supply chain. The only things that prove authenticity are the <strong>authorisation certificate</strong> from the brand, <strong>QR-verifiable sealed stock</strong>, and a <strong>GST bill naming the brand</strong>.</p><p><strong>Defence:</strong> judge the paperwork, not the interiors. Ask: \"Are you an authorised dealer or distributor of this brand? May I see the certificate?\" — and <a href=\"blog/finolex-qr-code-scan-genuine.html\">scan the QR on every box</a> before paying.</p>"),
+    ("Tactic 4: Material-included contracts",
+     "<p>\"Sir, give me the contract with material — one price, no tension.\" A with-material contract hands the contractor both the purchasing and the incentive: every rupee saved on material is his profit. Buying duplicates at half price while billing you for genuine is the oldest trick in turnkey work — and because the material goes straight from shop to wall, you never inspect it.</p><p><strong>Defence:</strong> either buy material yourself, or contractually require: sealed boxes shown to you before installation, QR verification in your presence, brand-named GST bills in your name, and your right to cross-check prices against a reference distributor. An honest contractor will accept all four without hesitation.</p>"),
+    ("The habit that defeats every tactic: reference pricing",
+     "<p>Every tactic above survives only when you don't know the real price. So before you buy anywhere, do this one thing: <strong>take your complete material list and message it to Mount Cable on <a href=\"https://wa.me/918867676700\">+91 88676 76700</a></strong>. Within 60 minutes you'll have an exact, itemised quote at genuine distributor pricing — for every brand, under one roof.</p><p><strong>There is no pressure to buy from us.</strong> Use our quote purely as your reference price. If a seller is far below it, you're looking at a duplicate. If a seller is far above it, you're being looted. Either way, sixty minutes of checking protects lakhs of rupees of wiring — and the family living behind those walls.</p><p>We collate multiple brands — Finolex, Polycab, KEI, RR Kabel, V-Guard, Anchor, Schneider, Legrand, Greatwhite, HPL and more — under a single roof with justified, transparent pricing. That is why home builders across Bangalore treat Mount Cable as the reference.</p>"),
+    ("If you do buy from us: our four guarantees",
+     "<p>100% genuine products with <strong>QR verification on every single product</strong> at your site before you pay · <strong>free next-day delivery</strong> across Bangalore · <strong>pay on delivery</strong> in any mode · and if you ever find an issue with any product, <strong>we solve it immediately</strong> — replacement first, questions later. <a href=\"quote.html\">Upload your list here</a> to start.</p>"),
+  ],
+  "faqs": [
+    ("How do I know if an electrical product is original or duplicate?", "Run four checks: scan the brand's QR/verification code on the packaging; compare the price with 2-3 sellers (genuine prices cluster — a steal price means duplicate, because wires are a 3-5% margin business); buy only from authorised dealers who can show their brand authorisation certificate; and insist on a GST bill naming the brand. If any check fails, walk away."),
+    ("Why can't a genuine wire seller give a big discount?", "Because genuine wires and cables run on 3-5% margins — the copper inside has a fixed market cost every honest seller pays. A seller offering 15-20% off a premium wire brand is funding that discount with missing copper, thinner conductors, weaker insulation, or an outright counterfeit."),
+    ("What is reference pricing and how do I use it?", "Reference pricing means checking any seller's quote against a trusted distributor's quote before you buy. Message your full material list to Mount Cable on +91 88676 76700 and you'll get an exact quote within 60 minutes — with no pressure to buy from us. If your seller is far below our price, suspect duplicate; far above it, you're overpaying."),
+    ("My contractor has a with-material contract. How do I stay safe?", "Require four things in writing: sealed boxes shown to you before installation, QR verification of every product in your presence, GST bills in your name that state each brand, and your right to cross-check prices with a reference distributor. Honest contractors accept all four readily."),
+    ("Are big electrical showrooms always genuine?", "Showroom size proves marketing budget, not authenticity. In some areas large showrooms are set up precisely to make duplicate material look credible. Judge any shop by its brand authorisation certificate, QR-verifiable sealed stock and brand-named GST bills - not its interiors."),
+    ("Does Mount Cable check its own products with QR codes?", "Yes. Every product we deliver is 100% genuine and QR-verifiable - we encourage you to scan every single box at your site before paying, since we work on pay-on-delivery. If you ever find any issue with any product, we solve it immediately."),
   ]},
 ]
 
@@ -240,7 +278,7 @@ FAQS = [
     ("Is Mount Cable India an authorized Finolex distributor?",
      "Yes. Mount Cable India is one of the largest distributors of Finolex cables in India. Our surety to every customer is that we sell only 100% original Finolex wires, sealed and warranty-backed, at genuine distributor prices."),
     ("Do you deliver electrical material across Bangalore?",
-     "Yes — we offer free delivery across Bangalore. Once your order is confirmed, we deliver to your site within 3 hours, and you can pay right at your site in any mode."),
+     "Yes — we offer free delivery across Bangalore. Once your order is confirmed, we deliver to your site by the next day, and you can pay right at your site in any mode."),
     ("How do I get a quote for my home wiring?",
      "The fastest way is to upload a photo of your wiring list, estimate or requirement on our Get a Quote page. You can also WhatsApp or call us at " + PHONE + " and we'll prepare a complete quote."),
     ("Which Finolex ranges do you keep in stock?",
@@ -249,6 +287,22 @@ FAQS = [
      "We accept all payment modes — cash, UPI, cards and bank transfer — and we collect payment right at your site, so there are no advance hassles."),
     ("How long have you been in business?",
      "We have served Bengaluru's home builders for over " + YEARS + " years. That experience is why families trust us to wire their homes with the right products at the right price."),
+    ("How fast is delivery, and what does it cost?",
+     "Delivery is free across Bangalore, and your material reaches your site by the next day of confirming the order — often the same day. There is no minimum order for free delivery."),
+    ("Can I pay on delivery?",
+     "Yes — we work on pay on delivery. Inspect and verify your material at your site first, then pay in any mode you prefer: cash, UPI, card or bank transfer. No advances required."),
+    ("How do I verify the products you deliver are genuine?",
+     "Every single product we deliver is 100% genuine and QR-verifiable. Scan the QR code on each box at your site before paying — and if you ever find an issue with any product, we solve it immediately with a replacement first."),
+    ("How do I get the exact price for my requirement?",
+     "Message your product list to us on WhatsApp at " + PHONE + " and you will receive an exact, itemised quote within 60 minutes. Our brand-wise price list pages give approximate rates to plan with; the WhatsApp quote gives you today's exact price."),
+    ("Why are the prices on your price list pages approximate?",
+     "Wire and cable prices track the copper market and change frequently, so published figures go stale. Our price lists show honest approximate ranges so you know the fair band; for today's exact rate, WhatsApp us at " + PHONE + " for a quote within 60 minutes."),
+    ("Can I use your quote just to cross-check another shop's price?",
+     "Absolutely — and we encourage it. Send us your list on " + PHONE + ", get our quote within 60 minutes and use it as your reference price, with no pressure to buy from us. Genuine electrical is a 3-5% margin business: if another seller is far below our reference, you are almost certainly looking at duplicate material."),
+    ("Do you supply earthing and networking products too?",
+     "Yes. Along with wires, switches, switchgear and lighting, we supply complete earthing solutions (electrodes, strips, chemical compounds, lightning arresters) and internet and networking products (Cat6 LAN cable, patch cords, RJ45, co-axial and telephone cables)."),
+    ("What happens if a delivered product has a problem?",
+     "We solve it immediately. Report any issue — wrong item, damage, or any doubt about a product — and we replace or resolve it right away. With QR verification at your site and pay on delivery, you are never stuck with a product you have doubts about."),
 ]
 
 # Blog posts (original content). slug, title, excerpt, tag, body(html, prefix="../")
@@ -317,7 +371,7 @@ BLOG = [
 <h2>What about 180M and 300M coils?</h2>
 <p>Larger Finolex coils (180M, 300M) are genuine, economical choices for a full house — and we stock them all. The point isn't that only 90M is genuine; it's that the 90M carton is the <em>easiest for a first-time buyer to verify independently</em> at an unfamiliar shop. Once you trust the seller — an authorised distributor with a <a href="../blog/authorised-finolex-dealer-check.html">certificate to show it</a> — larger coils give you better per-metre value.</p>
 <h2>Buy sealed, scan every box, pay after checking</h2>
-<p>Mount Cable India delivers every Finolex range — <a href="../brands/finolex.html">90M Silver, 90M Gold, 90M FRLS, 180M, 300M, 300M FRLS and Ultra</a> — sealed and QR-verifiable, free to your site in 3 hours, with payment collected only at your site. Scan the boxes before you pay; that's how confident we are. <a href="../quote.html">Get your quote here.</a></p>""",
+<p>Mount Cable India delivers every Finolex range — <a href="../brands/finolex.html">90M Silver, 90M Gold, 90M FRLS, 180M, 300M, 300M FRLS and Ultra</a> — sealed and QR-verifiable, free to your site by the next day, with payment collected only at your site. Scan the boxes before you pay; that's how confident we are. <a href="../quote.html">Get your quote here.</a></p>""",
      NEW_POST_DATE),
 
     ("authorised-finolex-dealer-check", "Is Your Shop an Authorised Finolex Dealer? Ask for the Certificate",
@@ -361,7 +415,7 @@ BLOG = [
 <p>Finolex wires come in 90-metre, 180-metre and 300-metre coils. As a rough starting point, a 2BHK often needs several 90M coils across the common gauges, while a 3BHK or duplex needs more. The exact count depends on your floor plan and number of points — the easiest way is to share your wiring list with us for a precise material estimate.</p>
 <h2>Don't forget FR vs FR-LSH</h2>
 <p>For most homes, Finolex FR (flame-retardant) is the standard choice. If you want lower smoke and halogen emission in case of fire — recommended for bedrooms, kids' rooms and enclosed spaces — choose <a href="../brands/finolex.html">Finolex FR-LSH or Finolex Ultra</a>. Read our <a href="../blog/fr-vs-frls-vs-finolex-ultra.html">FR vs FR-LSH vs Ultra comparison</a> to decide.</p>
-<p><strong>Not sure what to order?</strong> <a href="../quote.html">Upload your wiring list</a> and we'll prepare a complete, correctly-sized Finolex quote — delivered to your site in 3 hours.</p>"""),
+<p><strong>Not sure what to order?</strong> <a href="../quote.html">Upload your wiring list</a> and we'll prepare a complete, correctly-sized Finolex quote — delivered to your site by the next day.</p>"""),
 
     ("finolex-wire-price-bangalore", "Finolex Wire Price in Bangalore: How to Buy at Distributor Rate",
      "Why wire prices move, how MRP differs from distributor price, and the simplest way to get today's genuine rate for your home.", "Pricing",
@@ -376,7 +430,7 @@ BLOG = [
 <h2>MRP vs distributor price</h2>
 <p>Local shops typically sell near MRP. As one of India's largest Finolex distributors, we pass the distributor rate on to you — the same rate your local shop pays. For a full house, that difference adds up significantly.</p>
 <h2>How to get today's rate</h2>
-<p>Because prices change with copper, we don't publish fixed figures — instead, we give you a live quote. The fastest way: <a href="../quote.html">upload a photo of your wiring list or estimate</a>, or WhatsApp us at """ + PHONE + """. You'll get a complete, itemised quote at distributor pricing, plus free 3-hour delivery and payment collected at your site.</p>
+<p>Because prices change with copper, we don't publish fixed figures — instead, we give you a live quote. The fastest way: <a href="../quote.html">upload a photo of your wiring list or estimate</a>, or WhatsApp us at """ + PHONE + """. You'll get a complete, itemised quote at distributor pricing, plus free next-day delivery and payment collected at your site.</p>
 <p>See the full <a href="../wires-and-cables.html">wires &amp; cables range</a> we stock, or read our <a href="../blog/house-wiring-wire-size-guide.html">wire-size guide</a> first.</p>"""),
 
     ("fr-vs-frls-vs-finolex-ultra", "FR vs FR-LSH vs Finolex Ultra: Which House Wire Should You Choose?",
@@ -429,7 +483,7 @@ BLOG = [
 <li>Earthing wire/strip and accessories</li>
 <li>3M insulation tape, connectors, lugs and cable ties</li>
 </ul>
-<p>Don't want to itemise it all yourself? <a href="../quote.html">Upload your house plan or estimate</a> and we'll build the complete material list for you — at distributor prices, delivered free in 3 hours.</p>"""),
+<p>Don't want to itemise it all yourself? <a href="../quote.html">Upload your house plan or estimate</a> and we'll build the complete material list for you — at distributor prices, delivered free by the next day.</p>"""),
 
     ("how-to-identify-original-finolex-wire", "How to Identify 100% Original Finolex Wire (and Avoid Fakes)",
      "Counterfeit wire is a real safety risk. Here's how to make sure the Finolex wire you buy is genuine.", "Safety",
@@ -475,6 +529,21 @@ BLOG = [
 <h2>The bottom line</h2>
 <p>There's no single "best" brand — the right choice depends on your budget and where the product is used. A good distributor helps you mix the right brands for each part of your home. <a href="../quote.html">Share your requirement</a> and we'll recommend a complete, value-for-money package — delivered free across Bangalore.</p>"""),
 ]
+
+# Brand-wise price lists, knowledge-hub brand guides and duplicate-identification
+# blog posts live in separate data modules to keep this file manageable.
+from data_price_lists import PRICE_LISTS
+from data_knowledge import KNOWLEDGE
+from data_blog_duplicates import DUPLICATE_BLOGS
+BLOG = BLOG + DUPLICATE_BLOGS
+
+PRICE_GROUPS = ["Wires & Cables", "Switches & Sockets", "MCBs & Switchgear", "Conduits & Accessories", "By Category"]
+
+def price_page_path(p):
+    return f"price-lists/{p['slug']}-price-list.html"
+
+def knowledge_page_path(k):
+    return f"knowledge/{k['slug']}-guide.html"
 
 # Featured Finolex products (image, name, desc)
 FINOLEX_PRODUCTS = [
@@ -600,7 +669,8 @@ def header(prefix=""):
       <a href="{prefix}index.html#finolex">Finolex</a>
       <a href="{prefix}index.html#categories">Categories</a>
       <a href="{prefix}index.html#brands">Brands</a>
-      <a href="{prefix}index.html#areas">Areas We Serve</a>
+      <a href="{prefix}price-lists.html">Price Lists</a>
+      <a href="{prefix}knowledge.html">Knowledge Hub</a>
       <a href="{prefix}blog.html">Blog</a>
     </nav>
     <div class="nav-cta">
@@ -631,7 +701,7 @@ def footer(prefix=""):
 <section class="cta-band">
   <div class="container">
     <h2>Building your home? Buy from the best brand distributor.</h2>
-    <p>100% original material, 3-hour site delivery, free across Bangalore — and {YEARS} years of trust behind every order.</p>
+    <p>100% genuine, QR-verified material · free next-day delivery across Bangalore · pay on delivery — and {YEARS} years of trust behind every order. Exact quote on WhatsApp within 60 minutes.</p>
     <div class="cta-actions">
       <a class="btn btn-gold" href="{prefix}quote.html">📷 Upload Your List — Get a Quote</a>
       <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}">💬 WhatsApp {PHONE}</a>
@@ -657,7 +727,10 @@ def footer(prefix=""):
       <div>
         <h4>Shop By Category</h4>
         {cats}
-        <h4 style="margin-top:18px">Finolex</h4>
+        <h4 style="margin-top:18px">Buyer Tools</h4>
+        <a href="{prefix}price-lists.html">Electrical Price Lists Bangalore</a>
+        <a href="{prefix}knowledge.html">Electrical Knowledge Hub</a>
+        <a href="{prefix}original-vs-duplicate-electrical-products.html">Original vs Duplicate Guide</a>
         <a href="{prefix}finolex-wire-price-list-bangalore.html">Finolex Price List Bangalore</a>
         <a href="{prefix}original-finolex-wires.html">Original Finolex Wires</a>
         <a href="{prefix}finolex-dealer-near-me.html">Finolex Dealer Near Me</a>
@@ -754,15 +827,16 @@ def build_index():
         f'<details class="faq"><summary>{html.escape(q)}</summary><div class="faq-a">{html.escape(a)}</div></details>'
         for q, a in FAQS)
     blog_teaser = "".join(blog_card(p, prefix="") for p in BLOG[:3])
-    desc = f"Building your home in Bengaluru? Mount Cable India is one of India's largest Finolex distributors & a multi-brand electrical dealer for {YEARS}+ years. 100% original Finolex wires, all ranges in stock, 3-hour free site delivery across Bangalore. Showrooms in Jayanagar & Chickpete."
-    body = head("Mount Cable India | Finolex Distributor & Electrical Dealer, Bengaluru", desc, "index.html", extra_jsonld=faq_jsonld)
+    price_chips = "".join(f'<a class="area-chip" href="{price_page_path(p)}">{html.escape(p["name"])} Price List</a>' for p in PRICE_LISTS)
+    desc = f"Mount Cable India — Bangalore's No.1 supplier of electrical wires, switches, earthing products, internet & networking and lighting. 100% genuine, QR-verifiable products at Bangalore's best pricing, free next-day delivery, pay on delivery. {YEARS}+ years. Showrooms in Jayanagar & Chickpete."
+    body = head("Mount Cable India | No.1 Electrical Supplier in Bangalore — Wires, Switches, Earthing, Networking & Lighting", desc, "index.html", extra_jsonld=faq_jsonld)
     body += header()
     body += f"""
 <section class="hero">
   <div class="container hero-inner">
-    <span class="hero-badge"><span class="dot"></span> Serving Bengaluru home builders for {YEARS}+ years</span>
-    <h1>Building your house? Get <span class="accent">100% original Finolex wires</span> at distributor prices.</h1>
-    <p class="lead">Mount Cable India is one of the largest distributors of Finolex cables in India. Every range is always in stock — and once your order is confirmed, we <strong>deliver to your site within 3 hours</strong> and collect payment right there. Free delivery across Bangalore.</p>
+    <span class="hero-badge"><span class="dot"></span> Bangalore's No.1 electrical supplier · {YEARS}+ years</span>
+    <h1>100% genuine <span class="accent">electrical products</span> at Bangalore's best pricing.</h1>
+    <p class="lead">Mount Cable India is Bangalore's No.1 supplier of <strong>electrical wires, switches, earthing products, internet &amp; networking and lighting</strong> — every product 100% genuine and QR-verifiable at your site. <strong>Free next-day delivery, pay on delivery</strong>, and if anything is ever wrong, we solve it immediately. Need exact prices? Message us on {PHONE} and get a quote within 60 minutes.</p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="quote.html">📷 Upload Your List — Get a Quote</a>
       <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}?text=Hi,%20I'm%20building%20my%20home%20and%20need%20a%20quote%20for%20electrical%20material">💬 WhatsApp 88676 76700</a>
@@ -772,9 +846,9 @@ def build_index():
 <div class="trust">
   <div class="container">
     <div class="item"><div class="n">{YEARS}+</div><div class="l">Years in Business</div></div>
-    <div class="item"><div class="n">100%</div><div class="l">Original Finolex Wires</div></div>
-    <div class="item"><div class="n">3 Hrs</div><div class="l">Free Site Delivery</div></div>
-    <div class="item"><div class="n">Always</div><div class="l">In Stock</div></div>
+    <div class="item"><div class="n">100%</div><div class="l">Genuine · QR-Verified</div></div>
+    <div class="item"><div class="n">Next Day</div><div class="l">Free Delivery · Pay on Delivery</div></div>
+    <div class="item"><div class="n">60 Min</div><div class="l">Exact Quote on WhatsApp</div></div>
   </div>
 </div>
 
@@ -793,7 +867,7 @@ def build_index():
         </div>
         <ul class="tick-list">
           <li><strong>Always in stock</strong> — every Finolex range is available and ready to dispatch, no waiting.</li>
-          <li><strong>3-hour site delivery</strong> — confirm your order and we deliver to your site within 3 hours.</li>
+          <li><strong>next-day site delivery</strong> — confirm your order and we deliver to your site by the next day.</li>
           <li><strong>Pay at your site</strong> — we collect payment right at your site, in any mode you prefer.</li>
         </ul>
         <a class="btn btn-dark" href="brands/finolex.html">Explore Finolex range →</a>
@@ -802,7 +876,7 @@ def build_index():
         <img src="assets/img/banner-finolex-wires.webp" alt="Finolex wires and cables" loading="lazy">
         <div class="fs-floatcard">
           <div class="fs-badge">★ 100% Original · All Ranges In Stock</div>
-          <p>Send us your wiring list — we'll prepare a complete Finolex quote and deliver to your site in <strong>3 hours</strong>.</p>
+          <p>Send us your wiring list — we'll prepare a complete Finolex quote and deliver to your site by the <strong>next day</strong>.</p>
           <a class="btn btn-gold" style="width:100%;justify-content:center" href="quote.html">📷 Get a Finolex Quote</a>
         </div>
       </div>
@@ -818,6 +892,18 @@ def build_index():
       <p>From the first switch to the final cable run — Mount Cable India stocks every category your house needs.</p>
     </div>
     <div class="cat-grid">{cats}</div>
+  </div>
+</section>
+
+<section id="price-lists-home">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Know the Fair Price Before You Buy</p>
+      <h2>Brand-wise electrical price lists for Bangalore</h2>
+      <p>Approximate rates for every brand we supply — so you always know the honest price band. For exact prices, message your list to {PHONE} and get a quote within 60 minutes.</p>
+    </div>
+    <div class="area-grid">{price_chips}</div>
+    <p class="area-note"><a href="price-lists.html">See all electrical price lists →</a> &nbsp;·&nbsp; <a href="original-vs-duplicate-electrical-products.html">Original vs duplicate: how buyers get fooled →</a> &nbsp;·&nbsp; <a href="knowledge.html">Electrical brand knowledge hub →</a></p>
   </div>
 </section>
 
@@ -852,9 +938,12 @@ def build_index():
     </div>
     <div class="feat-grid">
       <div class="feat"><div class="ic">🏅</div><h3>{YEARS} Years of Trust</h3><p>Three generations of Bengaluru home builders have wired their homes through us — experience you can rely on.</p></div>
-      <div class="feat"><div class="ic">✓</div><h3>100% Original Material</h3><p>Genuine, brand-sealed and warranty-backed — especially our 100% original Finolex wires. What you pay for is what you get.</p></div>
-      <div class="feat"><div class="ic">⏱️</div><h3>3-Hour Site Delivery</h3><p>Confirm your order and your material reaches your site within 3 hours — free across Bangalore.</p></div>
-      <div class="feat"><div class="ic">💳</div><h3>Pay At Your Site</h3><p>We collect payment right at your site, in any mode — cash, UPI, card or bank transfer. No advance hassles.</p></div>
+      <div class="feat"><div class="ic">✓</div><h3>100% Genuine, QR-Verified</h3><p>Every single product is genuine and QR-verifiable — scan each box at your site before you pay. What you pay for is what you get.</p></div>
+      <div class="feat"><div class="ic">⏱️</div><h3>Free Next-Day Delivery</h3><p>Confirm your order and your material reaches your site by the next day — free across Bangalore, often the same day.</p></div>
+      <div class="feat"><div class="ic">💳</div><h3>Pay on Delivery</h3><p>Inspect and verify first, pay after — at your site, in any mode: cash, UPI, card or bank transfer. No advance hassles.</p></div>
+      <div class="feat"><div class="ic">🛠️</div><h3>Any Issue, Solved Immediately</h3><p>Find a problem with any product? We resolve it immediately — replacement first, questions later.</p></div>
+      <div class="feat"><div class="ic">📋</div><h3>Reference Pricing, No Pressure</h3><p>Send your list to {PHONE} and get an exact quote in 60 minutes. Use it to cross-check any shop — no obligation to buy from us.</p></div>
+      <div class="feat"><div class="ic">🏬</div><h3>Every Brand, One Roof</h3><p>Finolex, Polycab, KEI, RR Kabel, Anchor, Schneider, Legrand and more — collated under a single roof at justified, transparent pricing.</p></div>
       <div class="feat"><div class="ic">↩️</div><h3>Free Pickup of Excess Stock</h3><p>Ordered a little extra? If you have surplus material left over, we'll pick it up free of charge.</p></div>
       <div class="feat"><div class="ic">🧭</div><h3>Expert Guidance</h3><p>First time wiring a home? We'll help you choose the right wires, gauges and brands for every room of your house.</p></div>
     </div>
@@ -866,7 +955,7 @@ def build_index():
     <div class="section-head">
       <p class="eyebrow">Free Delivery · All Bengaluru</p>
       <h2>We serve all of Bangalore</h2>
-      <p>Wherever your home or site is in Bengaluru, we deliver 100% original material free, within 3 hours of confirmation. Here are some of the localities we cover — tap yours for local stock &amp; pricing:</p>
+      <p>Wherever your home or site is in Bengaluru, we deliver 100% original material free, by the next day — often the same day. Here are some of the localities we cover — tap yours for local stock &amp; pricing:</p>
     </div>
     <div class="area-grid">{areas}</div>
     <p class="area-note">…and every other locality across Bengaluru — North, South, East &amp; West. <a href="quote.html">Tell us your area</a> and we'll deliver to you.</p>
@@ -931,7 +1020,7 @@ def build_brand(b):
 </section>"""
     path = f"brands/{slug}.html"
     title = f"{name} Dealer & Distributor in Bengaluru | Mount Cable India"
-    desc = f"Authorized {name} dealer & distributor in Bengaluru. {tagline} 100% original material, free 3-hour delivery across Bangalore, distributor prices. {YEARS} years of trust. Showrooms in Jayanagar & Chickpete."
+    desc = f"Authorized {name} dealer & distributor in Bengaluru. {tagline} 100% original material, free next-day delivery across Bangalore, distributor prices. {YEARS} years of trust. Showrooms in Jayanagar & Chickpete."
     crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Brands", SITE_URL + "/index.html#brands"), (name, url_for(path))])
     body = head(title, desc, path, css_prefix="../", extra_jsonld=crumbs)
     body += header(prefix="../")
@@ -964,7 +1053,7 @@ def build_brand(b):
       <ul class="tick-list">
         <li><strong>{YEARS} years of trust</strong> — one of Bengaluru's longest-serving electrical distributors.</li>
         <li><strong>100% genuine &amp; warranty-backed</strong> — sourced through authorized channels only.</li>
-        <li><strong>Free 3-hour site delivery</strong> across Bangalore, and free pickup of any excess stock.</li>
+        <li><strong>Free next-day site delivery</strong> across Bangalore, and free pickup of any excess stock.</li>
         <li><strong>All payment modes accepted</strong> plus expert guidance for everyone building their home.</li>
       </ul>
     </div>
@@ -1000,7 +1089,7 @@ def build_category(c):
     chips = "".join(f'<span class="chip">{html.escape(p)}</span>' for p in prods)
     path = f"{slug}.html"
     title = f"{name} in Bangalore | Buy at Distributor Price — Mount Cable India"
-    desc = f"Buy {name.lower()} in Bangalore at distributor prices. {intro} 100% original, free 3-hour site delivery, {YEARS} years of trust. Showrooms in Jayanagar & Chickpete."
+    desc = f"Buy {name.lower()} in Bangalore at distributor prices. {intro} 100% original, free next-day site delivery, {YEARS} years of trust. Showrooms in Jayanagar & Chickpete."
     crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Categories", SITE_URL + "/index.html#categories"), (name, url_for(path))])
     banner_html = f'<div class="cat-banner"><img src="assets/img/{banner}" alt="{html.escape(name)} in Bangalore" loading="lazy"></div>' if banner else ""
     body = head(title, desc, path, css_prefix="", extra_jsonld=crumbs)
@@ -1037,7 +1126,7 @@ def build_category(c):
     <div class="feat-grid">
       <div class="feat"><div class="ic">🏅</div><h3>{YEARS} Years of Trust</h3><p>One of Bengaluru's longest-serving electrical distributors — relied on by thousands of home builders.</p></div>
       <div class="feat"><div class="ic">✓</div><h3>100% Original</h3><p>Every product is genuine, sealed and warranty-backed, sourced through authorized channels.</p></div>
-      <div class="feat"><div class="ic">⏱️</div><h3>Free 3-Hour Delivery</h3><p>Confirm your order and we deliver to your site within 3 hours, free across Bangalore — pay at your site.</p></div>
+      <div class="feat"><div class="ic">⏱️</div><h3>Free Next-Day Delivery</h3><p>Confirm your order and we deliver to your site by the next day, free across Bangalore — pay at your site.</p></div>
     </div>
   </div>
 </section>
@@ -1054,19 +1143,19 @@ def build_area(a):
     main = OFFICES[0]  # BVK Iyengar Road showroom
     if is_chick:
         title = f"Finolex Wire Dealer in Chickpet (BVK Iyengar Road), Bangalore | Mount Cable India"
-        desc = f"Mount Cable India is a Finolex wire dealer & wholesale distributor in Chickpet, Bangalore — at {main['street']}, 560053. 100% original Finolex wires, all ranges in stock, distributor prices, free 3-hour delivery. {YEARS} years. Call {PHONE}."
+        desc = f"Mount Cable India is a Finolex wire dealer & wholesale distributor in Chickpet, Bangalore — at {main['street']}, 560053. 100% original Finolex wires, all ranges in stock, distributor prices, free next-day delivery. {YEARS} years. Call {PHONE}."
         badge = "📍 Our Showroom · BVK Iyengar Road, Chickpet"
         h1 = "Finolex wire dealer in Chickpet — BVK Iyengar Road, Bangalore"
         intro = (f"Our main showroom is right here in Chickpet, at {main['street']}, near Rama Temple (560053). "
                  f"Mount Cable India is one of India's largest Finolex distributors and a wholesale wire dealer in Chickpet — "
-                 f"walk in, or get 100% original Finolex wires delivered free across Bangalore within 3 hours.")
+                 f"walk in, or get 100% original Finolex wires delivered free across Bangalore by the next day.")
     else:
         title = f"Electrical Shop & Finolex Wire Dealer in {name}, Bangalore | Mount Cable India"
-        desc = f"Looking for electrical products or a Finolex wire dealer in {name}, Bangalore? Mount Cable India delivers 100% original Finolex wires, switches, cables, pipes & lighting to {name} in 3 hours, free. {YEARS} years of trust. Call {PHONE}."
-        badge = f"📍 Free 3-Hour Delivery in {name}"
+        desc = f"Looking for electrical products or a Finolex wire dealer in {name}, Bangalore? Mount Cable India delivers 100% original Finolex wires, switches, cables, pipes & lighting to {name} by the next day, free. {YEARS} years of trust. Call {PHONE}."
+        badge = f"📍 Free Next-Day Delivery in {name}"
         h1 = f"Electrical products &amp; Finolex wire dealer in {html.escape(name)}, Bangalore"
         intro = (f"Building or wiring a home in {html.escape(name)}? Mount Cable India delivers 100% original Finolex wires "
-                 f"and every electrical essential to {html.escape(name)} and nearby {html.escape(nearby)} — within 3 hours of confirmation, free of cost.")
+                 f"and every electrical essential to {html.escape(name)} and nearby {html.escape(nearby)} — by the next day — often the same day, free of cost.")
     crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Areas We Serve", SITE_URL + "/index.html#areas"), (name, url_for(path))])
     chick_map = (f"""
 <section>
@@ -1104,12 +1193,12 @@ def build_area(a):
     <div class="prose">
       <h2>Your local electrical distributor for {html.escape(name)}</h2>
       <p>For over {YEARS} years, home builders across South Bengaluru have trusted Mount Cable India for genuine electrical material at distributor prices. We deliver free to {html.escape(name)} and surrounding {html.escape(nearby)}, so you never have to leave your site or chase a local shop.</p>
-      <p>As one of India's largest Finolex distributors, our surety to {html.escape(name)} customers is simple: <strong>100% original Finolex wires</strong>, every range in stock, delivered in 3 hours — and you pay at your site, in any mode.</p>
+      <p>As one of India's largest Finolex distributors, our surety to {html.escape(name)} customers is simple: <strong>100% original Finolex wires</strong>, every range in stock, delivered by the next day — and you pay at your site, in any mode.</p>
       <h2 style="margin-top:30px">Shop by category</h2>
       <div class="area-grid">{cats}</div>
       <h2 style="margin-top:30px">Why {html.escape(name)} home builders choose us</h2>
       <ul class="tick-list">
-        <li><strong>Free 3-hour delivery</strong> to {html.escape(name)} and nearby {html.escape(nearby)}.</li>
+        <li><strong>Free next-day delivery</strong> to {html.escape(name)} and nearby {html.escape(nearby)}.</li>
         <li><strong>100% original Finolex</strong> and 12+ other trusted brands, always in stock.</li>
         <li><strong>Distributor prices</strong> with {YEARS} years of trust — better than any local outlet.</li>
         <li><strong>Pay at your site</strong>, all payment modes, plus free pickup of excess stock.</li>
@@ -1122,7 +1211,7 @@ def build_area(a):
         <div class="row"><span class="pi">📷</span> <a href="../quote.html">Upload your list for a quote</a></div>
         <div class="row"><span class="pi">💬</span> <a href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a></div>
         <div class="row"><span class="pi">📞</span> <a href="tel:{PHONE_HREF}">{PHONE}</a></div>
-        <div class="row"><span class="pi">🚚</span> Free 3-hour delivery in {html.escape(name)}</div>
+        <div class="row"><span class="pi">🚚</span> Free next-day delivery in {html.escape(name)}</div>
         <a class="btn btn-gold" style="width:100%;justify-content:center;margin-top:10px" href="../quote.html">Get a Quote</a>
       </div>
     </aside>
@@ -1142,7 +1231,7 @@ def build_area(a):
 def build_quote():
     path = "quote.html"
     title = "Get an Instant Quote — Upload Your Requirement | Mount Cable India"
-    desc = f"Building your home? Upload a photo of your wiring list or requirement and get an instant quote on 100% original Finolex wires & electrical material. Free 3-hour delivery across Bangalore. {YEARS} years of trust."
+    desc = f"Building your home? Upload a photo of your wiring list or requirement and get an instant quote on 100% original Finolex wires & electrical material. Free next-day delivery across Bangalore. {YEARS} years of trust."
     area_opts = "".join(f'<option value="{html.escape(a[1])}">{html.escape(a[1])}</option>' for a in AREAS)
     body = head(title, desc, path)
     body += header()
@@ -1152,7 +1241,7 @@ def build_quote():
     <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Get a Quote</div>
     <span class="badge">📷 Instant Quote · Free Delivery</span>
     <h1>Upload your requirement — get an instant quote</h1>
-    <p>Just snap a photo of your wiring list, estimate or site requirement. We'll prepare a quote on 100% original Finolex wires and any other material — and deliver to your site in 3 hours.</p>
+    <p>Just snap a photo of your wiring list, estimate or site requirement. We'll prepare a quote on 100% original Finolex wires and any other material — and deliver to your site by the next day.</p>
   </div>
 </section>
 
@@ -1226,7 +1315,7 @@ def build_quote():
         <ul class="tick-list">
           <li><strong>{YEARS} years</strong> of trust with Bengaluru home builders.</li>
           <li><strong>100% original Finolex</strong> — every range always in stock.</li>
-          <li><strong>Free 3-hour delivery</strong> across all of Bangalore.</li>
+          <li><strong>Free next-day delivery</strong> across all of Bangalore.</li>
           <li><strong>Pay at your site</strong> — cash, UPI, card or transfer.</li>
         </ul>
         <div class="qs-call">
@@ -1296,7 +1385,7 @@ def build_blog_index():
     <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Blog</div>
     <span class="badge">📖 Guides for Home Builders</span>
     <h1>Electrical guides for building your home</h1>
-    <p>Honest, practical advice on wires, brands, pricing and safety — from one of India's largest Finolex distributors.</p>
+    <p>Honest, practical advice on wires, brands, pricing and safety — including how to identify duplicate products of every major brand. Also see the <a href="original-vs-duplicate-electrical-products.html" style="color:inherit;text-decoration:underline">Original vs Duplicate buyer-protection guide</a> and our <a href="price-lists.html" style="color:inherit;text-decoration:underline">brand-wise price lists</a>.</p>
   </div>
 </section>
 <section>
@@ -1339,7 +1428,7 @@ def build_blog_post(p):
     </div>
     <div class="post-cta">
       <h3>Ready to order for your home?</h3>
-      <p>Upload your wiring list for an instant quote — 100% original material, free 3-hour delivery across Bangalore.</p>
+      <p>Upload your wiring list for an instant quote — 100% original material, free next-day delivery across Bangalore.</p>
       <div class="cta-actions">
         <a class="btn btn-gold" href="../quote.html">📷 Get a Quote</a>
         <a class="btn btn-outline" href="https://wa.me/{WHATSAPP}">💬 WhatsApp {PHONE}</a>
@@ -1420,7 +1509,7 @@ def build_finolex_product(r):
     rel = [x for x in FINOLEX_RANGE if x[0] != slug][:4]
     related = "".join(range_card(x, prefix="../") for x in rel)
     title = f"{name} — Buy in Bangalore at Distributor Price | Mount Cable India"
-    desc_meta = f"Buy {name} in Bangalore from Mount Cable India, an authorized Finolex distributor. {tagline} 100% original, in stock, free 3-hour delivery. Grade: {grade}, coil: {coil}."
+    desc_meta = f"Buy {name} in Bangalore from Mount Cable India, an authorized Finolex distributor. {tagline} 100% original, in stock, free next-day delivery. Grade: {grade}, coil: {coil}."
     prod_ld = ('<script type="application/ld+json">'
         + '{"@context":"https://schema.org","@type":"Product",'
         + f'"name":{_json(name)},"image":"{img_url}","description":{_json(desc)},'
@@ -1456,7 +1545,7 @@ def build_finolex_product(r):
         <li><strong>Grade:</strong> {html.escape(grade)}</li>
         <li><strong>Coil / pack:</strong> {html.escape(coil)}</li>
         <li><strong>100% original Finolex</strong> — sealed &amp; warranty-backed, in stock now.</li>
-        <li><strong>Free 3-hour delivery</strong> across Bangalore · pay at your site.</li>
+        <li><strong>Free next-day delivery</strong> across Bangalore · pay at your site.</li>
       </ul>
     </div>
     <aside>
@@ -1512,9 +1601,204 @@ def build_review():
     body += footer()
     write(path, body)
 
+def faq_details_html(faqs):
+    return "".join(
+        f'<details class="faq"><summary>{html.escape(q)}</summary><div class="faq-a">{html.escape(a)}</div></details>'
+        for q, a in faqs)
+
+def faq_jsonld_html(faqs):
+    faq_q = ",".join(
+        f'{{"@type":"Question","name":{_json(q)},"acceptedAnswer":{{"@type":"Answer","text":{_json(a)}}}}}'
+        for q, a in faqs)
+    return f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{faq_q}]}}</script>'
+
+def quote_cta_block(prefix=""):
+    return f"""
+    <div class="post-cta">
+      <h3>Need exact prices? Get a quote within 60 minutes.</h3>
+      <p>Prices above are approximate. Message your full product list to <strong>{PHONE}</strong> and you'll receive an exact, itemised quote within 60 minutes — free next-day delivery across Bangalore, pay on delivery, every product QR-verifiable at your site. No pressure to buy: use our quote as your reference price anywhere.</p>
+      <div class="cta-actions">
+        <a class="btn btn-gold" href="https://wa.me/{WHATSAPP}?text=Hi,%20please%20share%20exact%20pricing%20for%20my%20electrical%20list">💬 WhatsApp {PHONE}</a>
+        <a class="btn btn-outline" href="{prefix}quote.html">📷 Upload Your List</a>
+      </div>
+    </div>"""
+
+def build_price_hub():
+    path = "price-lists.html"
+    title = "Electrical Price List Bangalore (2026) — Brand-Wise Approx Rates | Mount Cable India"
+    desc = ("Brand-wise electrical price lists for Bangalore: Finolex, Polycab, KEI, RR Kabel, Anchor, Schneider, Legrand & more — wires, switches, MCBs, earthing, networking, lighting. "
+            f"Approx rates + exact quote on WhatsApp {PHONE} within 60 minutes.")
+    hub_faqs = [
+        ("Where can I find today's electrical material prices in Bangalore?", f"These price lists give honest approximate ranges for every major electrical brand in Bangalore. Because rates move with the copper market, message your list to Mount Cable on {PHONE} for an exact quote within 60 minutes."),
+        ("Are these prices MRP or the price I will actually pay?", "The ranges shown are approximate market/MRP-linked bands so you know the fair price. As a distributor, Mount Cable's actual quote is typically below these bands — WhatsApp your list for the exact figure."),
+        ("Can I use these price lists to check if another shop is quoting fairly?", f"Yes — that is exactly what they are for. Electrical is a 3-5% margin business, so genuine prices cluster in a narrow band. If a seller quotes far below the band, suspect duplicate material; far above it, you are overpaying. For a precise reference, get our exact quote on {PHONE} — no pressure to buy from us."),
+        ("Do you deliver everything on these lists?", "Yes. Every listed brand and category is stocked under one roof, with free next-day delivery across Bangalore, pay on delivery, and QR verification of every product at your site."),
+    ]
+    crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Price Lists", url_for(path))])
+    body = head(title, desc, path, extra_jsonld=faq_jsonld_html(hub_faqs) + crumbs)
+    body += header()
+    groups_html = ""
+    for g in PRICE_GROUPS:
+        items = [p for p in PRICE_LISTS if p["group"] == g]
+        if not items:
+            continue
+        chips = "".join(
+            f'<a class="area-chip" href="{price_page_path(p)}">{html.escape(p["name"])} Price{"s" if p["kind"] == "category" else " List"} Bangalore</a>'
+            for p in items)
+        groups_html += f'<h2 style="margin:26px 0 4px">{html.escape(g)}</h2><div class="area-grid" style="justify-content:flex-start">{chips}</div>'
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Price Lists</div>
+    <span class="badge">💰 Brand-Wise Approx Rates · Exact Quote in 60 Minutes</span>
+    <h1>Electrical price lists in Bangalore — today's approximate rates</h1>
+    <p>Know the fair price band before you buy. Approximate brand-wise rates for wires, switches, MCBs, earthing, networking and lighting — and when you want exact prices, just message your list to {PHONE}: you'll get an itemised quote within 60 minutes, with no pressure to buy from us.</p>
+  </div>
+</section>
+<article class="post"><div class="container narrow">
+  <div class="post-body">
+    {groups_html}
+    <h2>Why we publish approximate prices (and how to get exact ones)</h2>
+    <p>Wire and cable prices track the global copper market, and switchgear prices revise periodically — a fixed price list goes stale within weeks. So these pages show honest <strong>approximate ranges</strong> that tell you the fair band, and for the exact rate on any day, we quote live: message your list to <strong>{PHONE}</strong> and receive a complete quote within <strong>60 minutes</strong>.</p>
+    <p>One more reason these lists exist: <strong>protection against duplicates</strong>. Genuine electrical is a 3–5% margin trade, so honest prices cluster tightly. Any quote dramatically below these bands is a red flag — read <a href="original-vs-duplicate-electrical-products.html">how duplicate material is sold, and how to stay safe</a>.</p>
+  </div>
+  {quote_cta_block()}
+  <div class="section-head" style="margin-top:34px"><p class="eyebrow">Questions, Answered</p><h2>Price list FAQs</h2></div>
+  <div class="faq-list">{faq_details_html(hub_faqs)}</div>
+</div></article>
+"""
+    body += footer()
+    write(path, body)
+
+def build_price_list(p):
+    path = price_page_path(p)
+    crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Price Lists", SITE_URL + "/price-lists"), (p["name"], url_for(path))])
+    body = head(p["title"], p["desc"], path, css_prefix="../", extra_jsonld=faq_jsonld_html(p["faqs"]) + crumbs)
+    body += header(prefix="../")
+    tables_html = ""
+    for t in p["tables"]:
+        rows = "".join(
+            f"<tr><td>{html.escape(r[0])}</td><td>{html.escape(r[1])}</td><td>{html.escape(r[2])}</td></tr>"
+            for r in t["rows"])
+        tables_html += (f'<h2>{html.escape(t["title"])}</h2>'
+            '<div class="ptable-wrap"><table class="ptable">'
+            '<thead><tr><th>Product</th><th>Unit</th><th>Approx. Price*</th></tr></thead>'
+            f'<tbody>{rows}</tbody></table></div>')
+    note = p.get("note", "")
+    brand_link = ""
+    if p["kind"] == "brand":
+        brand_link = f'<p>See the full range we stock on the <a href="../brands/{p["slug"]}.html">{html.escape(p["name"])} brand page</a>, or read the <a href="../knowledge/{p["slug"]}-guide.html">{html.escape(p["name"])} brand knowledge guide</a>.</p>'
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../price-lists.html">Price Lists</a> &nbsp;/&nbsp; {html.escape(p["name"])}</div>
+    <span class="badge">💰 Approx Rates · Exact Quote in 60 Minutes on {PHONE}</span>
+    <h1>{html.escape(p["h1"])}</h1>
+    <p>{html.escape(p["intro"])}</p>
+  </div>
+</section>
+<article class="post"><div class="container narrow">
+  <div class="post-body">
+    {tables_html}
+    <p class="ptable-note">*Approximate market-linked ranges, shown so you know the fair price band — actual rates change with the copper market and brand revisions. Mount Cable's quote is typically below these bands.</p>
+    {note}
+    {brand_link}
+  </div>
+  {quote_cta_block(prefix="../")}
+  <div class="section-head" style="margin-top:34px"><p class="eyebrow">Questions, Answered</p><h2>FAQs</h2></div>
+  <div class="faq-list">{faq_details_html(p["faqs"])}</div>
+</div></article>
+"""
+    body += footer(prefix="../")
+    write(path, body)
+
+def build_knowledge_index():
+    path = "knowledge.html"
+    title = "Electrical Knowledge Hub — Every Brand Explained | Mount Cable India"
+    desc = ("Deep brand guides for every electrical brand we supply in Bangalore: Finolex, Polycab, KEI, RR Kabel, V-Guard, Anchor, Schneider, Legrand, Greatwhite, HPL, 3M & more — "
+            "ranges, series, genuine checks and fair pricing.")
+    crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Knowledge Hub", url_for(path))])
+    body = head(title, desc, path, extra_jsonld=crumbs)
+    body += header()
+    cards = "".join(f"""<a class="blog-card" href="{knowledge_page_path(k)}">
+      <span class="blog-tag">{html.escape(k["tag"])}</span>
+      <h3>{html.escape(k["name"])}: Complete Brand Guide</h3>
+      <p>{html.escape(k["excerpt"])}</p>
+      <span class="go">Read guide →</span>
+    </a>""" for k in KNOWLEDGE)
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Knowledge Hub</div>
+    <span class="badge">📚 The Electrical Knowledge Hub</span>
+    <h1>Every electrical brand, explained honestly</h1>
+    <p>Who makes what, which series fits your budget, how to verify genuine stock, and what a fair price looks like — one deep guide per brand, from Bangalore's No.1 electrical supplier. Also see our <a href="price-lists.html" style="color:inherit;text-decoration:underline">brand-wise price lists</a> and <a href="original-vs-duplicate-electrical-products.html" style="color:inherit;text-decoration:underline">original-vs-duplicate buyer guide</a>.</p>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="blog-grid">{cards}</div>
+  </div>
+</section>
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">More Reading</p><h2>Buyer-protection guides</h2></div>
+    <div class="blog-grid">{"".join(blog_card(p, prefix="") for p in BLOG[:6])}</div>
+  </div>
+</section>
+"""
+    body += footer()
+    write(path, body)
+
+def build_knowledge_article(k):
+    path = knowledge_page_path(k)
+    article_ld = ('<script type="application/ld+json">'
+        + '{"@context":"https://schema.org","@type":"Article",'
+        + f'"headline":{_json(k["title"])},"description":{_json(k["desc"])},'
+        + f'"datePublished":"2026-07-21","dateModified":"2026-07-21",'
+        + '"author":{"@type":"Organization","name":"Mount Cable India"},'
+        + '"publisher":{"@type":"Organization","name":"Mount Cable India"},'
+        + f'"mainEntityOfPage":"{url_for(path)}"}}</script>')
+    crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Knowledge Hub", SITE_URL + "/knowledge"), (k["name"], url_for(path))])
+    body = head(k["title"], k["desc"], path, css_prefix="../", extra_jsonld=article_ld + faq_jsonld_html(k["faqs"]) + crumbs)
+    body += header(prefix="../")
+    others = [x for x in KNOWLEDGE if x["slug"] != k["slug"]][:3]
+    related = "".join(f"""<a class="blog-card" href="../{knowledge_page_path(o)}">
+      <span class="blog-tag">{html.escape(o["tag"])}</span>
+      <h3>{html.escape(o["name"])}: Complete Brand Guide</h3>
+      <p>{html.escape(o["excerpt"])}</p>
+      <span class="go">Read guide →</span>
+    </a>""" for o in others)
+    body += f"""
+<article class="post">
+  <div class="container narrow">
+    <div class="crumbs"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../knowledge.html">Knowledge Hub</a> &nbsp;/&nbsp; {html.escape(k["name"])}</div>
+    <span class="blog-tag">{html.escape(k["tag"])}</span>
+    <h1>{html.escape(k["name"])}: The Complete Brand Guide</h1>
+    <p class="post-meta">By Mount Cable India · July 21, 2026 · {YEARS} years serving Bengaluru</p>
+    <div class="post-body">
+      {k["body"]}
+    </div>
+    {quote_cta_block(prefix="../")}
+    <div class="section-head" style="margin-top:34px"><p class="eyebrow">Questions, Answered</p><h2>{html.escape(k["name"])} FAQs</h2></div>
+    <div class="faq-list">{faq_details_html(k["faqs"])}</div>
+  </div>
+</article>
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">Keep Reading</p><h2>More brand guides</h2></div>
+    <div class="blog-grid">{related}</div>
+  </div>
+</section>
+"""
+    body += footer(prefix="../")
+    write(path, body)
+
 def build_sitemap():
-    paths = ["index.html", "quote.html", "blog.html", "review.html", "thank-you.html"]
+    paths = ["index.html", "quote.html", "blog.html", "review.html", "thank-you.html", "price-lists.html", "knowledge.html"]
     paths += [f"{p['slug']}.html" for p in SEO_PAGES]
+    paths += [price_page_path(p) for p in PRICE_LISTS]
+    paths += [knowledge_page_path(k) for k in KNOWLEDGE]
     paths += [f"{c[0]}.html" for c in CATEGORIES]
     paths += [f"brands/{b[0]}.html" for b in BRANDS]
     paths += [f"finolex/{r[0]}.html" for r in FINOLEX_RANGE]
@@ -1547,9 +1831,14 @@ if __name__ == "__main__":
     for p in BLOG: build_blog_post(p)
     for p in SEO_PAGES: build_seo_page(p)
     for r in FINOLEX_RANGE: build_finolex_product(r)
+    build_price_hub()
+    for p in PRICE_LISTS: build_price_list(p)
+    build_knowledge_index()
+    for k in KNOWLEDGE: build_knowledge_article(k)
     build_review()
     build_sitemap()
-    total = 1 + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 3 + len(BLOG) + len(SEO_PAGES) + len(FINOLEX_RANGE)
+    total = 1 + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 5 + len(BLOG) + len(SEO_PAGES) + len(FINOLEX_RANGE) + len(PRICE_LISTS) + len(KNOWLEDGE)
     print(f"Done — {total} pages + sitemap.xml + robots.txt")
     print(f"  1 home, {len(BRANDS)} brands, {len(CATEGORIES)} categories, {len(AREAS)} areas, "
-          f"{len(SEO_PAGES)} Finolex SEO pages, blog index + {len(BLOG)} posts, quote, thank-you")
+          f"{len(SEO_PAGES)} SEO pages, blog index + {len(BLOG)} posts, price hub + {len(PRICE_LISTS)} price lists, "
+          f"knowledge hub + {len(KNOWLEDGE)} brand guides, quote, thank-you")
