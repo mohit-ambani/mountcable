@@ -252,7 +252,97 @@ FAQS = [
 ]
 
 # Blog posts (original content). slug, title, excerpt, tag, body(html, prefix="../")
+# Optional 6th element: (iso_date, display_date) — defaults to BLOG_DATE.
+NEW_POST_DATE = ("2026-07-21", "July 21, 2026")
 BLOG = [
+    ("finolex-qr-code-scan-genuine", "Scan the QR Code: Verify Your Finolex Wire Is Genuine in 30 Seconds",
+     "Finolex packaging carries a QR code that lets you verify authenticity with your phone. Here's exactly how to scan it, what a genuine result looks like, and the red flags that expose a fake.", "Safety",
+     """<p>The fastest way to know whether the Finolex wire in your hands is genuine is printed right on the box: a <strong>QR code</strong>. Finolex puts a scannable code on its packaging so that any customer — not just dealers — can verify a coil before paying for it. Here's how to use it properly.</p>
+<h2>Step 1: Find the QR code on the box</h2>
+<p>Genuine Finolex coils come in printed cartons with the QR code on the label, alongside the batch details, size (sq mm), grade (FR / FR-LSH / Ultra) and coil length. The print should be sharp, evenly aligned and consistent with the rest of the carton — not a sticker pasted over something else.</p>
+<h2>Step 2: Scan it with your phone camera</h2>
+<p>Open your phone camera or any QR scanner and point it at the code. A genuine code takes you to Finolex's <strong>official verification page</strong> — check that the link that opens belongs to Finolex's own domain, not a look-alike website or a random page.</p>
+<h2>Step 3: Match the details</h2>
+<p>The details shown after scanning should match what's printed on the carton in your hand — product range, size and batch. If the page shows a different product, an error, or says the code was already used many times, treat the coil as suspect.</p>
+<h2>Red flags that expose a duplicate</h2>
+<ul>
+<li><strong>No QR code at all</strong> on the carton, or a code that simply doesn't scan.</li>
+<li><strong>Blurry or smudged printing</strong> — copied codes lose sharpness when reprinted.</li>
+<li><strong>A code that opens a non-Finolex website</strong> or a generic page with no product details.</li>
+<li><strong>A pasted sticker</strong> carrying the QR instead of it being printed on the carton.</li>
+<li><strong>Loose or cut wire with no box</strong> — with no carton, there is no QR and no way to verify. Insist on sealed boxes.</li>
+</ul>
+<h2>Do the check yourself, at the counter</h2>
+<p>Scan the QR <em>before</em> you pay, at the shop, on the actual boxes being billed to you — not on a sample piece kept at the counter. If a seller resists letting you scan the boxes going to your site, walk away. Read our companion guides: <a href="../blog/how-to-identify-original-finolex-wire.html">how to identify original Finolex wire</a>, <a href="../blog/why-buy-finolex-90m-coils.html">why 90-metre coils are the safest buy</a> and <a href="../blog/authorised-finolex-dealer-check.html">how to check if a shop is an authorised Finolex dealer</a>.</p>
+<p>Or skip the worry entirely: Mount Cable India is one of India's largest Finolex distributors — every coil we deliver is sealed, QR-verifiable and warranty-backed. <a href="../quote.html">Get a quote</a> and scan the boxes yourself when they arrive at your site.</p>""",
+     NEW_POST_DATE),
+
+    ("electrician-retailer-nexus-duplicate-wires", "The Electrician–Retailer Nexus: How Duplicate Wire Reaches Your Home",
+     "In many cities, a quiet commission arrangement between some electricians and shops is how duplicate wire ends up inside honest customers' walls. Here's how the game works — and the simple habits that defeat it.", "Safety",
+     """<p>Most homeowners never buy their own wire. They hand the job to an electrician, the electrician "arranges the material", and the family trusts that what went into the walls is what they paid for. That trust is exactly what a small but real nexus between some electricians and some retailers exploits.</p>
+<h2>How the nexus works</h2>
+<ul>
+<li><strong>The steering.</strong> The electrician insists material must come from "his" shop — often with reasons like better rates or faster credit. You never visit the shop yourself.</li>
+<li><strong>The switch.</strong> That shop bills a premium brand like Finolex but supplies a duplicate or look-alike coil — same colours, near-identical printing. On a site full of material, nobody checks one box closely.</li>
+<li><strong>The commission.</strong> The margin on a duplicate is huge, and part of it goes back to the person who steered you there. You pay genuine-brand price; the wall gets counterfeit copper.</li>
+</ul>
+<p>To be clear: most electricians are honest professionals, and a good electrician is worth their weight in gold. But because wire disappears inside your walls for decades, this is one purchase where you should verify personally, every time — whoever is buying.</p>
+<h2>The habits that defeat it</h2>
+<h3>1. Do an individual self-check at a trusted shop</h3>
+<p>Even if your electrician buys the material, <strong>you</strong> personally verify it — at a shop <em>you</em> chose or trust, not only the one chosen for you. Open a box, <a href="../blog/finolex-qr-code-scan-genuine.html">scan the QR code on the carton</a>, check the printing and metre markings. Ten minutes of self-checking protects a lifetime of wiring.</p>
+<h3>2. Compare the price with 2–3 sellers — a "steal" is a warning</h3>
+<p>Genuine Finolex wire has a real copper cost, so every honest seller's price lands in the same narrow band around the day's rate. Call two or three shops and compare. <strong>If one price is dramatically cheaper than everyone else's, it is not a deal — it is almost certainly duplicate.</strong> Nobody sells genuine copper below what it costs them.</p>
+<h3>3. Prefer sealed 90-metre boxes when unsure of the shop</h3>
+<p>Finolex 90M coils come in printed, QR-coded cartons that are much harder to counterfeit than loose or cut wire. If you have any doubt about a shop, buy sealed 90M boxes and scan each one. <a href="../blog/why-buy-finolex-90m-coils.html">Here's why the 90-metre box is the safest buy.</a></p>
+<h3>4. Ask the authorised-dealer question — and ask to see the certificate</h3>
+<p>Authorised Finolex dealers and distributors hold a certificate from Finolex confirming their status. Ask directly: <em>"Are you an authorised Finolex dealer or distributor? May I see the certificate?"</em> A genuine channel partner shows it without hesitation. <a href="../blog/authorised-finolex-dealer-check.html">Full checklist here.</a></p>
+<h3>5. Take a proper GST bill naming the brand</h3>
+<p>Insist on an itemised invoice that names "Finolex", the range and the sizes. A seller passing off duplicates will resist putting the brand name on paper, because that bill is evidence.</p>
+<h2>The simplest protection: buy from the distributor directly</h2>
+<p>Mount Cable India has supplied Bengaluru's home builders for over 35 years as one of India's largest Finolex distributors — sourcing only through Finolex's official channel, at distributor prices your electrician can't beat with a commission deal. <a href="../quote.html">Upload your wiring list</a>, get a transparent itemised quote, and verify every sealed box at your site before you pay.</p>""",
+     NEW_POST_DATE),
+
+    ("why-buy-finolex-90m-coils", "Unsure of the Shop? Buy Finolex 90-Metre Boxes — Here's Why",
+     "Sealed Finolex 90M cartons carry a QR code and printed batch details that are very hard to duplicate. If you can't fully trust a seller, the 90-metre box is your safest purchase.", "Safety",
+     """<p>Here's a simple rule seasoned buyers follow: <strong>when you're not 100% sure about a shop, buy Finolex in sealed 90-metre boxes.</strong> It sounds almost too simple, but it closes off most of the ways duplicate wire gets sold.</p>
+<h2>Why the 90M box is hard to fake</h2>
+<ul>
+<li><strong>QR-coded carton.</strong> Every genuine 90M box carries a QR code you can <a href="../blog/finolex-qr-code-scan-genuine.html">scan and verify in 30 seconds</a>. Reproducing valid codes at scale is far harder than copying a label's look.</li>
+<li><strong>Factory-printed packaging.</strong> The carton's print quality, colours, batch number and grade markings come off Finolex's own line. Counterfeit cartons almost always give themselves away — blurry print, wrong shades, spelling slips, pasted stickers.</li>
+<li><strong>Sealed and tamper-evident.</strong> A sealed box means nobody has swapped the coil inside. A tampered or re-taped box is an instant red flag.</li>
+<li><strong>Verifiable length.</strong> Genuine Finolex wire carries sequential metre markings — unroll a little and the numbers should run continuously toward 90 metres. Short-length coils are one of the most common frauds.</li>
+</ul>
+<h2>Where buyers get cheated instead</h2>
+<p>Duplicates mostly enter through <strong>loose wire, cut lengths and unboxed coils</strong> — "we'll give you 60 metres from this bundle, saab, cheaper rate". No box means no QR, no batch, no seal, no way to verify. Whatever the saving, you cannot check what you're buying. The same goes for a price that's dramatically below every other shop's — genuine copper has a floor cost, and <a href="../blog/electrician-retailer-nexus-duplicate-wires.html">a "steal" price is the classic signature of a duplicate</a>.</p>
+<h2>What about 180M and 300M coils?</h2>
+<p>Larger Finolex coils (180M, 300M) are genuine, economical choices for a full house — and we stock them all. The point isn't that only 90M is genuine; it's that the 90M carton is the <em>easiest for a first-time buyer to verify independently</em> at an unfamiliar shop. Once you trust the seller — an authorised distributor with a <a href="../blog/authorised-finolex-dealer-check.html">certificate to show it</a> — larger coils give you better per-metre value.</p>
+<h2>Buy sealed, scan every box, pay after checking</h2>
+<p>Mount Cable India delivers every Finolex range — <a href="../brands/finolex.html">90M Silver, 90M Gold, 90M FRLS, 180M, 300M, 300M FRLS and Ultra</a> — sealed and QR-verifiable, free to your site in 3 hours, with payment collected only at your site. Scan the boxes before you pay; that's how confident we are. <a href="../quote.html">Get your quote here.</a></p>""",
+     NEW_POST_DATE),
+
+    ("authorised-finolex-dealer-check", "Is Your Shop an Authorised Finolex Dealer? Ask for the Certificate",
+     "Every authorised Finolex dealer and distributor holds a certificate from Finolex. Here's how to ask for it, what else to check, and why it's your strongest protection against duplicates.", "Safety",
+     """<p>There's one question that instantly separates genuine Finolex sellers from the rest, and almost nobody asks it: <strong>"Are you an authorised Finolex dealer or distributor — and may I see your certificate?"</strong></p>
+<h2>The certificate every authorised partner holds</h2>
+<p>Finolex appoints its dealers and distributors formally, and authorised channel partners hold a <strong>certificate from Finolex</strong> confirming their status. A genuine partner is proud of it — it usually hangs at the counter or is produced within a minute of asking. Hesitation, excuses ("it's with the owner", "it's at the other branch"), or offence at the question are all answers in themselves.</p>
+<h2>Why authorisation matters so much</h2>
+<ul>
+<li><strong>Supply chain you can trust.</strong> Authorised dealers buy through Finolex's official channel, so there's no gap where duplicates can enter. Unauthorised sellers buy from "the market" — and that's exactly where counterfeit stock circulates.</li>
+<li><strong>Warranty that actually stands.</strong> Brand warranty support flows through the authorised channel with proper billing.</li>
+<li><strong>Accountability.</strong> An authorised partner has a relationship with Finolex to protect. A roadside seller has nothing to lose by passing off a fake.</li>
+</ul>
+<h2>The full 5-point authorised-seller check</h2>
+<ul>
+<li><strong>1. Ask the question</strong> — authorised Finolex dealer or distributor? — and ask to see the certificate.</li>
+<li><strong>2. Scan the QR code</strong> on the cartons being billed to you. <a href="../blog/finolex-qr-code-scan-genuine.html">Here's how.</a></li>
+<li><strong>3. Compare the price with 2–3 shops.</strong> Genuine sellers all land near the same rate; if someone's price is a steal, <a href="../blog/electrician-retailer-nexus-duplicate-wires.html">it's a duplicate</a>.</li>
+<li><strong>4. Insist on sealed boxes</strong> — <a href="../blog/why-buy-finolex-90m-coils.html">90M cartons if you're unsure of the shop</a> — never loose or cut wire.</li>
+<li><strong>5. Take a GST bill naming the brand</strong>, range and sizes. It's your proof and your warranty trail.</li>
+</ul>
+<h2>Our answer to the question</h2>
+<p>Ask us the same question — happily. Mount Cable India is one of the largest distributors of Finolex cables in India, serving Bengaluru for over 35 years, and our authorisation credentials are available for any customer to see at our Jayanagar and Chickpete showrooms. Every coil we sell is sourced through Finolex's official channel: sealed, QR-verifiable, warranty-backed, at distributor prices. <a href="../quote.html">Upload your list for a quote</a> or visit us and see the certificate for yourself.</p>""",
+     NEW_POST_DATE),
+
     ("house-wiring-wire-size-guide", "House Wiring Wire-Size Guide: Which Finolex Gauge for Each Room",
      "0.75, 1.0, 1.5, 2.5, 4.0 or 6.0 sq mm? A simple room-by-room guide to choosing the right wire size for your new home.", "Guide",
      """<p>One of the first questions every home builder faces is: <em>which wire size do I need?</em> Indian house wires are sold by cross-sectional area in square millimetres (sq mm), and using the right gauge keeps your home safe and your bills low. Here's a simple, practical guide.</p>
@@ -345,15 +435,17 @@ BLOG = [
      "Counterfeit wire is a real safety risk. Here's how to make sure the Finolex wire you buy is genuine.", "Safety",
      """<p>Wire is hidden inside your walls for decades — so buying genuine, quality wire is one of the most important safety decisions in your home. Counterfeit and sub-standard wire uses less or impure copper and weaker insulation, which can overheat. Here's how to protect yourself.</p>
 <h2>1. Buy from an authorized distributor</h2>
-<p>The single best safeguard. Authorized distributors source directly through Finolex's official channel, so the product is guaranteed genuine and warranty-backed. Mount Cable India is one of India's largest Finolex distributors — our surety is 100% original Finolex, every time.</p>
-<h2>2. Check the packaging and printing</h2>
-<p>Genuine Finolex boxes are cleanly printed with consistent branding, batch details and grade markings (FR, FR-LSH, etc.). Be wary of blurry print, spelling errors or tampered seals.</p>
-<h2>3. Look for standards markings on the wire</h2>
+<p>The single best safeguard. Authorized distributors source directly through Finolex's official channel, so the product is guaranteed genuine and warranty-backed. Mount Cable India is one of India's largest Finolex distributors — our surety is 100% original Finolex, every time. Not sure about a shop? <a href="../blog/authorised-finolex-dealer-check.html">Ask to see their Finolex authorisation certificate</a> — every genuine channel partner holds one.</p>
+<h2>2. Scan the QR code on the box</h2>
+<p>Finolex packaging carries a QR code you can scan with your phone to verify authenticity — it should open Finolex's official verification page with details matching the carton. No QR, a blurry code, or a code that opens a random website means walk away. <a href="../blog/finolex-qr-code-scan-genuine.html">Step-by-step QR verification guide here.</a></p>
+<h2>3. Check the packaging and printing</h2>
+<p>Genuine Finolex boxes are cleanly printed with consistent branding, batch details and grade markings (FR, FR-LSH, etc.). Be wary of blurry print, spelling errors or tampered seals. When you're unsure of a seller, <a href="../blog/why-buy-finolex-90m-coils.html">buy sealed 90-metre cartons</a> — they're the hardest to fake and the easiest to verify.</p>
+<h2>4. Look for standards markings on the wire</h2>
 <p>Original wire carries clear, repeated printing along its length — brand, size (sq mm), grade and standards mark. The print should be sharp and evenly spaced.</p>
-<h2>4. Sequential metre marking</h2>
+<h2>5. Sequential metre marking</h2>
 <p>Quality wire is printed with running metre markings so you can verify coil length. Missing or irregular markings are a red flag.</p>
-<h2>5. Don't chase the lowest price</h2>
-<p>If a price looks far below the market, ask why. Genuine wire has a real copper cost. A distributor rate from an authorized seller is the right kind of saving — not a suspiciously cheap "deal".</p>
+<h2>6. Don't chase the lowest price</h2>
+<p>If a price looks far below the market, ask why. Genuine wire has a real copper cost, so every honest seller's rate lands in the same narrow band — compare 2–3 shops, and if one price is a steal, it's almost certainly duplicate. A distributor rate from an authorized seller is the right kind of saving — not a suspiciously cheap "deal". Also read: <a href="../blog/electrician-retailer-nexus-duplicate-wires.html">how the electrician–retailer nexus sells duplicates</a>, and the self-check habits that defeat it.</p>
 <p>Want certainty? Buy your <a href="../brands/finolex.html">Finolex wires</a> from us — sealed, genuine and delivered to your site. <a href="../quote.html">Get a quote here.</a></p>"""),
 
     ("best-electrical-brands-home-wiring-india", "Best Electrical Brands for Home Wiring in India (2026 Guide)",
@@ -1194,7 +1286,7 @@ def build_blog_index():
     path = "blog.html"
     cards = "".join(blog_card(p, prefix="") for p in BLOG)
     title = "Electrical Guides for Home Builders in Bangalore | Mount Cable India Blog"
-    desc = f"Practical guides for building your home: house-wiring wire sizes, Finolex wire prices in Bangalore, FR vs FR-LSH, materials checklists and how to buy 100% original wire. By Mount Cable India, {YEARS} years trusted."
+    desc = f"Practical guides for building your home: house-wiring wire sizes, Finolex wire prices in Bangalore, FR vs FR-LSH, materials checklists, QR-code verification and how to avoid duplicate wire scams. By Mount Cable India, {YEARS} years trusted."
     crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Blog", url_for(path))])
     body = head(title, desc, path, extra_jsonld=crumbs)
     body += header()
@@ -1217,13 +1309,14 @@ def build_blog_index():
     write(path, body)
 
 def build_blog_post(p):
-    slug, title, excerpt, tag, bodyhtml = p
+    slug, title, excerpt, tag, bodyhtml = p[:5]
+    date, date_disp = p[5] if len(p) > 5 else (BLOG_DATE, BLOG_DATE_DISP)
     path = f"blog/{slug}.html"
     desc = excerpt
     article_ld = ('<script type="application/ld+json">'
         + '{"@context":"https://schema.org","@type":"BlogPosting",'
         + f'"headline":{_json(title)},"description":{_json(excerpt)},'
-        + f'"datePublished":"{BLOG_DATE}","dateModified":"{BLOG_DATE}",'
+        + f'"datePublished":"{date}","dateModified":"{date}",'
         + f'"image":"{SITE_URL}/assets/img/banner-finolex-wires.jpg",'
         + '"author":{"@type":"Organization","name":"Mount Cable India"},'
         + '"publisher":{"@type":"Organization","name":"Mount Cable India",'
@@ -1240,7 +1333,7 @@ def build_blog_post(p):
     <div class="crumbs"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../blog.html">Blog</a> &nbsp;/&nbsp; {html.escape(tag)}</div>
     <span class="blog-tag">{html.escape(tag)}</span>
     <h1>{html.escape(title)}</h1>
-    <p class="post-meta">By Mount Cable India · {BLOG_DATE_DISP} · {YEARS} years serving Bengaluru</p>
+    <p class="post-meta">By Mount Cable India · {date_disp} · {YEARS} years serving Bengaluru</p>
     <div class="post-body">
       {bodyhtml}
     </div>
