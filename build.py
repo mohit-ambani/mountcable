@@ -55,6 +55,19 @@ LOGO = {
     "hpl": "hpl.png", "anchor-panasonic": "anchor-panasonic.svg",
 }
 
+# Brands to feature as a logo strip on the homepage. Where we have a real logo
+# image we show it; otherwise we render a clean brand-coloured text wordmark.
+# (slug, display name, wordmark_color-or-None). wordmark_color=None => use image.
+HOME_BRAND_LOGOS = [
+    ("finolex", "Finolex", None),
+    ("v-guard", "V-Guard", None),
+    ("havells", "Havells", "#E4002B"),
+    ("legrand", "legrand", "#E2001A"),
+    ("schneider", "Schneider", "#3DCD58"),
+    ("polycab", "Polycab", None),
+    ("kei", "KEI", None),
+]
+
 CATEGORIES = [
     ("switches-and-sockets", "🔌", "Switches & Sockets",
      "Modular switches, plates, sockets and wiring accessories from Anchor by Panasonic, Schneider, Legrand, Greatwhite, HPL & more.",
@@ -863,6 +876,16 @@ def build_index():
         for q, a in FAQS)
     blog_teaser = "".join(blog_card(p, prefix="") for p in BLOG[:3])
     price_chips = "".join(f'<a class="area-chip" href="{price_page_path(p)}">{html.escape(p["name"])} Price List</a>' for p in PRICE_LISTS)
+    brand_slugs = {b[0] for b in BRANDS}
+    def _home_logo(slug, name, color):
+        if color:
+            inner = f'<span class="hbl-word" style="--wc:{color}">{html.escape(name)}</span>'
+        else:
+            inner = f'<img src="assets/logos/{LOGO[slug]}" alt="{html.escape(name)} logo" loading="lazy">'
+        if slug in brand_slugs:
+            return f'<a class="hbl-item" href="brands/{slug}.html" title="{html.escape(name)}">{inner}</a>'
+        return f'<span class="hbl-item" title="{html.escape(name)}">{inner}</span>'
+    brand_logos = "".join(_home_logo(slug, name, color) for slug, name, color in HOME_BRAND_LOGOS)
     desc = f"Mount Cable India — Bangalore's No.1 supplier of electrical wires, switches, earthing products, internet & networking and lighting. 100% genuine, QR-verifiable products at Bangalore's best pricing, free next-day delivery, pay on delivery. {YEARS}+ years. Showrooms in Jayanagar & Chickpete."
     home_alternates = [(l[0], SITE_URL + "/" + ("" if l[0] == "en" else l[2])) for l in LANGUAGES]
     body = head("Mount Cable India | No.1 Electrical Supplier in Bangalore — Wires, Switches, Earthing, Networking & Lighting", desc, "index.html", extra_jsonld=faq_jsonld, alternates=home_alternates)
@@ -887,6 +910,14 @@ def build_index():
     <div class="item"><div class="n">60 Min</div><div class="l">Exact Quote on WhatsApp</div></div>
   </div>
 </div>
+
+<section class="home-brands" aria-label="Brands we deal with">
+  <div class="container">
+    <p class="hbl-title">Genuine products from the brands you trust</p>
+    <div class="hbl-strip">{brand_logos}</div>
+    <p class="hbl-note"><a href="index.html#brands">See all {len(BRANDS)} brands we stock →</a></p>
+  </div>
+</section>
 
 <section class="finolex-spot" id="finolex">
   <div class="container">

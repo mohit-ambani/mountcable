@@ -375,6 +375,18 @@ a.prod:hover .go{color:var(--blue)}
 @media(max-width:520px){
   .brand-grid,.cat-grid,.related{grid-template-columns:1fr}
 }
+.home-brands{padding:38px 0 8px}
+.hbl-title{text-align:center;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 22px}
+.hbl-strip{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:20px 40px}
+.hbl-item{display:flex;align-items:center;justify-content:center;height:44px;padding:6px 10px;filter:grayscale(1);opacity:.72;transition:.22s ease}
+.hbl-item:hover{filter:none;opacity:1;transform:translateY(-2px)}
+.hbl-item img{max-height:40px;max-width:150px;width:auto;object-fit:contain}
+.hbl-word{font-family:'Plus Jakarta Sans',Arial,sans-serif;font-weight:800;font-size:26px;letter-spacing:-.02em;white-space:nowrap;color:#3a4657}
+.hbl-item:hover .hbl-word{color:var(--wc,#3a4657)}
+.hbl-note{text-align:center;margin:24px 0 0;font-size:14px}
+.hbl-note a{color:var(--muted);font-weight:600}
+.hbl-note a:hover{color:var(--navy)}
+@media(max-width:600px){.hbl-strip{gap:16px 26px}.hbl-item{height:34px}.hbl-item img{max-height:30px;max-width:110px}}
 .lang-switch{position:relative}
 .lang-trigger{width:38px;height:38px;border-radius:50%;border:1px solid rgba(10,26,51,.15);background:#fff;font-size:16px;cursor:pointer;display:grid;place-items:center;line-height:1}
 .lang-trigger:hover{border-color:var(--gold)}
