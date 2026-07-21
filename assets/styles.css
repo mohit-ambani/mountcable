@@ -373,3 +373,9 @@ a.prod:hover .go{color:var(--blue)}
 @media(max-width:520px){
   .brand-grid,.cat-grid,.related{grid-template-columns:1fr}
 }
+.lang-bar{background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08)}
+.lang-bar-inner{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:7px 20px;font-size:12.5px}
+.lang-bar-label{color:rgba(255,255,255,.55);font-weight:600}
+.lang-bar-inner a{color:rgba(255,255,255,.75);text-decoration:none}
+.lang-bar-inner a:hover{color:#fff;text-decoration:underline}
+.lang-bar-inner a.lang-active{color:var(--gold-2);font-weight:700}

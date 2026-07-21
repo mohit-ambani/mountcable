@@ -536,7 +536,14 @@ from data_price_lists import PRICE_LISTS
 from data_knowledge import KNOWLEDGE
 from data_blog_duplicates import DUPLICATE_BLOGS
 from data_blog_buying_guides import BUYING_GUIDE_BLOGS
-BLOG = BLOG + DUPLICATE_BLOGS + BUYING_GUIDE_BLOGS
+from data_blog_brand_guides import BRAND_GUIDE_BLOGS
+BLOG = BLOG + DUPLICATE_BLOGS + BUYING_GUIDE_BLOGS + BRAND_GUIDE_BLOGS
+
+from data_i18n_kn import I18N as I18N_KN
+from data_i18n_ta import I18N as I18N_TA
+from data_i18n_te import I18N as I18N_TE
+from data_i18n_hi import I18N as I18N_HI
+I18N_LANGS = [I18N_KN, I18N_TA, I18N_TE, I18N_HI]
 
 PRICE_GROUPS = ["Wires & Cables", "Switches & Sockets", "MCBs & Switchgear", "Conduits & Accessories", "By Category"]
 
@@ -625,18 +632,28 @@ def local_business_jsonld():
 "address":[""" + addrs + """]}
 </script>""")
 
-def head(title, desc, path, css_prefix="", extra_jsonld=""):
+# Language switcher shown at the top of every page. code, native label, filename.
+# English is always first / default; the other four are homepage-only translations.
+LANGUAGES = [("en", "English", "index.html"), ("kn", "ಕನ್ನಡ", "kn.html"),
+             ("ta", "தமிழ்", "ta.html"), ("te", "తెలుగు", "te.html"), ("hi", "हिन्दी", "hi.html")]
+
+def head(title, desc, path, css_prefix="", extra_jsonld="", html_lang="en", alternates=None):
     canonical = url_for(path)
     img = SITE_URL + "/assets/img/banner-finolex-wires.jpg"
+    hreflang_tags = ""
+    if alternates:
+        for code, url in alternates:
+            hreflang_tags += f'<link rel="alternate" hreflang="{code}" href="{url}">\n'
+        hreflang_tags += f'<link rel="alternate" hreflang="x-default" href="{SITE_URL}/">\n'
     return f"""<!doctype html>
-<html lang="en">
+<html lang="{html_lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="{canonical}">
-<meta name="robots" content="index,follow">
+{hreflang_tags}<meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mount Cable India">
 <meta property="og:title" content="{html.escape(title)}">
@@ -658,8 +675,14 @@ def head(title, desc, path, css_prefix="", extra_jsonld=""):
 </head>
 <body>"""
 
-def header(prefix=""):
-    return f"""
+def lang_bar(prefix="", active="en"):
+    links = "".join(
+        f'<a href="{prefix}{fname}"{" class=\"lang-active\"" if code == active else ""}>{html.escape(label)}</a>'
+        for code, label, fname in LANGUAGES)
+    return f"""<div class="lang-bar"><div class="container lang-bar-inner"><span class="lang-bar-label">View in:</span>{links}</div></div>"""
+
+def header(prefix="", active_lang="en"):
+    return lang_bar(prefix, active_lang) + f"""
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="{prefix}index.html">
@@ -672,6 +695,7 @@ def header(prefix=""):
       <a href="{prefix}index.html#brands">Brands</a>
       <a href="{prefix}price-lists.html">Price Lists</a>
       <a href="{prefix}knowledge.html">Knowledge Hub</a>
+      <a href="{prefix}brand-selector.html">Brand Selector</a>
       <a href="{prefix}blog.html">Blog</a>
     </nav>
     <div class="nav-cta">
@@ -693,19 +717,25 @@ def logo_wrap(b, prefix=""):
         return f'<span class="logo-wrap">{img}{fb}</span>'
     return f'<span class="logo-wrap">{fb}</span>'
 
-def footer(prefix=""):
+def footer(prefix="", cta_override=None):
     half = (len(BRANDS) + 1) // 2
     col1 = "".join(f'<a href="{prefix}brands/{b[0]}.html">{html.escape(b[1])}</a>' for b in BRANDS[:half])
     col2 = "".join(f'<a href="{prefix}brands/{b[0]}.html">{html.escape(b[1])}</a>' for b in BRANDS[half:])
     cats = "".join(f'<a href="{prefix}{c[0]}.html">{html.escape(c[2])}</a>' for c in CATEGORIES)
+    c = cta_override or {
+        "h2": "Building your home? Buy from the best brand distributor.",
+        "p": f"100% genuine, QR-verified material · free next-day delivery across Bangalore · pay on delivery — and {YEARS} years of trust behind every order. Exact quote on WhatsApp within 60 minutes.",
+        "quote_btn": "📷 Upload Your List — Get a Quote",
+        "whatsapp_btn": f"💬 WhatsApp {PHONE}",
+    }
     return f"""
 <section class="cta-band">
   <div class="container">
-    <h2>Building your home? Buy from the best brand distributor.</h2>
-    <p>100% genuine, QR-verified material · free next-day delivery across Bangalore · pay on delivery — and {YEARS} years of trust behind every order. Exact quote on WhatsApp within 60 minutes.</p>
+    <h2>{html.escape(c["h2"])}</h2>
+    <p>{html.escape(c["p"])}</p>
     <div class="cta-actions">
-      <a class="btn btn-gold" href="{prefix}quote.html">📷 Upload Your List — Get a Quote</a>
-      <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}">💬 WhatsApp {PHONE}</a>
+      <a class="btn btn-gold" href="{prefix}quote.html">{html.escape(c["quote_btn"])}</a>
+      <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}">{html.escape(c["whatsapp_btn"])}</a>
     </div>
   </div>
 </section>
@@ -830,7 +860,8 @@ def build_index():
     blog_teaser = "".join(blog_card(p, prefix="") for p in BLOG[:3])
     price_chips = "".join(f'<a class="area-chip" href="{price_page_path(p)}">{html.escape(p["name"])} Price List</a>' for p in PRICE_LISTS)
     desc = f"Mount Cable India — Bangalore's No.1 supplier of electrical wires, switches, earthing products, internet & networking and lighting. 100% genuine, QR-verifiable products at Bangalore's best pricing, free next-day delivery, pay on delivery. {YEARS}+ years. Showrooms in Jayanagar & Chickpete."
-    body = head("Mount Cable India | No.1 Electrical Supplier in Bangalore — Wires, Switches, Earthing, Networking & Lighting", desc, "index.html", extra_jsonld=faq_jsonld)
+    home_alternates = [(l[0], SITE_URL + "/" + ("" if l[0] == "en" else l[2])) for l in LANGUAGES]
+    body = head("Mount Cable India | No.1 Electrical Supplier in Bangalore — Wires, Switches, Earthing, Networking & Lighting", desc, "index.html", extra_jsonld=faq_jsonld, alternates=home_alternates)
     body += header()
     body += f"""
 <section class="hero">
@@ -999,6 +1030,113 @@ def build_index():
 """
     body += footer()
     write("index.html", body)
+
+def build_lang_home(i18n):
+    """Homepage translated into one Indian language (kn/ta/te/hi). Only the
+    homepage is translated so far; nav links to other pages stay in English,
+    and the language switcher on every page routes back here for that language."""
+    code = i18n["code"]
+    path = f"{code}.html"
+    all_tiles = "".join(brand_tile(b) for b in BRANDS)
+    feat_cards = ""
+    for b in [x for x in BRANDS if x[3]]:
+        feat_cards += f"""
+      <a class="dist-card" href="brands/{b[0]}.html">
+        <div class="top-accent" style="background:linear-gradient(90deg,{b[2]},{b[2]}99)"></div>
+        <div class="dist-media">{logo_wrap(b)}</div>
+        <p>{html.escape(b[4])}</p>
+        <span class="go">View {html.escape(b[1])} range →</span>
+      </a>"""
+    cats = "".join(f"""<a class="cat" href="{c[0]}.html"><div class="ic">{c[1]}</div><h4>{html.escape(c[2])}</h4><p>{html.escape(c[3])}</p><span class="cat-go">Explore →</span></a>""" for c in CATEGORIES)
+
+    faq_q = ",".join(
+        f'{{"@type":"Question","name":{_json(f["q"])},"acceptedAnswer":{{"@type":"Answer","text":{_json(f["a"])}}}}}'
+        for f in i18n["faq"]["items"])
+    faq_jsonld = f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{faq_q}]}}</script>'
+    faq_html = "".join(
+        f'<details class="faq"><summary>{html.escape(f["q"])}</summary><div class="faq-a">{html.escape(f["a"])}</div></details>'
+        for f in i18n["faq"]["items"])
+    feat_items = "".join(
+        f'<div class="feat"><h3>{html.escape(it["title"])}</h3><p>{html.escape(it["desc"])}</p></div>'
+        for it in i18n["why_us"]["items"])
+
+    alternates = [(l[0], SITE_URL + "/" + ("" if l[0] == "en" else l[2])) for l in LANGUAGES]
+    body = head(i18n["title"], i18n["desc"], path, extra_jsonld=faq_jsonld, html_lang=i18n["html_lang"], alternates=alternates)
+    body += header(active_lang=code)
+    body += f"""
+<section class="hero">
+  <div class="container hero-inner">
+    <span class="hero-badge"><span class="dot"></span> {html.escape(i18n["hero"]["badge"])}</span>
+    <h1>{html.escape(i18n["hero"]["h1_pre"])}<span class="accent">{html.escape(i18n["hero"]["h1_accent"])}</span>{html.escape(i18n["hero"]["h1_post"])}</h1>
+    <p class="lead">{html.escape(i18n["hero"]["lead"])}</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="quote.html">📷 {html.escape(i18n["hero"]["cta_quote"])}</a>
+      <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}">💬 {html.escape(i18n["hero"]["cta_whatsapp"])}</a>
+    </div>
+  </div>
+</section>
+<div class="trust">
+  <div class="container">
+    {"".join(f'<div class="item"><div class="n">{html.escape(t["n"])}</div><div class="l">{html.escape(t["l"])}</div></div>' for t in i18n["trust"])}
+  </div>
+</div>
+
+<section class="bg-soft" id="categories">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{html.escape(i18n["categories_section"]["eyebrow"])}</p>
+      <h2>{html.escape(i18n["categories_section"]["h2"])}</h2>
+      <p>{html.escape(i18n["categories_section"]["p"])}</p>
+    </div>
+    <div class="cat-grid">{cats}</div>
+  </div>
+</section>
+
+<section id="featured">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{html.escape(i18n["brands_section"]["eyebrow"])}</p>
+      <h2>{html.escape(i18n["brands_section"]["h2"])}</h2>
+      <p>{html.escape(i18n["brands_section"]["p"])}</p>
+    </div>
+    <div class="dist-grid">{feat_cards}</div>
+  </div>
+</section>
+
+<section class="bg-soft" id="brands">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{html.escape(i18n["brand_directory_section"]["eyebrow"])}</p>
+      <h2>{html.escape(i18n["brand_directory_section"]["h2"])}</h2>
+      <p>{html.escape(i18n["brand_directory_section"]["p"])}</p>
+    </div>
+    <div class="brand-grid">{all_tiles}</div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{html.escape(i18n["why_us"]["eyebrow"])}</p>
+      <h2>{html.escape(i18n["why_us"]["h2"])}</h2>
+      <p>{html.escape(i18n["why_us"]["p"])}</p>
+    </div>
+    <div class="feat-grid">{feat_items}</div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container narrow">
+    <div class="section-head">
+      <p class="eyebrow">{html.escape(i18n["faq"]["eyebrow"])}</p>
+      <h2>{html.escape(i18n["faq"]["h2"])}</h2>
+    </div>
+    <div class="faq-list">{faq_html}</div>
+  </div>
+</section>
+"""
+    body += footer(cta_override=i18n["footer_cta"])
+    write(path, body)
 
 def build_brand(b):
     slug, name, color, featured, tagline, prods, blurb = b
@@ -1572,6 +1710,203 @@ def build_finolex_product(r):
     body += footer(prefix="../")
     write(path, body)
 
+def build_brand_selector():
+    path = "brand-selector.html"
+    title = "Brand Selector Tool: Which Switch or Wire Brand Should You Buy? | Mount Cable India"
+    desc = ("Answer a couple of quick questions and get an honest brand recommendation for switches (budget or priority based) "
+            "and house wires — from Bangalore's No.1 electrical supplier. No obligation to buy from us.")
+    faqs = [
+        ("How does the brand selector tool decide its recommendation?", "For switches, it matches your stated budget per switch or your top priority (durability, looks, or value) to the brand generally known for that position in the market. For wires, it asks what matters most to you and your budget comfort, then recommends accordingly — defaulting to Finolex for most home-wiring needs and Polycab when you specifically want one brand across wires, fans, lighting and switchgear."),
+        ("Is this recommendation biased toward brands Mount Cable sells?", "No. The tool gives the same independent recommendation regardless of what we stock — including brands like Hifi, Elleys, Lisha, GM and Norisys that we do not currently carry. Where we do stock the recommended brand (Finolex, Polycab, Legrand, Anchor, Greatwhite, Schneider), we'll show you a link to check pricing; where we don't, we'll say so honestly."),
+        ("Can I get an exact price after using the tool?", "Yes. Once you have a brand in mind, message your full list to +91 88676 76700 and you'll get an exact, itemised quote within 60 minutes — with no pressure to buy from us."),
+    ]
+    crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Brand Selector", url_for(path))])
+    body = head(title, desc, path, extra_jsonld=faq_jsonld_html(faqs) + crumbs)
+    body += header()
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Brand Selector</div>
+    <span class="badge">🧭 Independent Brand Selector · No Obligation to Buy</span>
+    <h1>Which brand should you buy?</h1>
+    <p>Answer a couple of quick questions on switches or house wires and get an honest recommendation — whether or not we stock that brand. For an exact price on anything, message {PHONE} and get a quote within 60 minutes.</p>
+  </div>
+</section>
+<section><div class="container narrow">
+
+  <div class="bsel-tabs" role="tablist">
+    <button class="btn btn-dark bsel-tab" data-tab="switches" aria-selected="true">Switches</button>
+    <button class="btn btn-outline bsel-tab" data-tab="wires" aria-selected="false">Wires &amp; Cables</button>
+  </div>
+
+  <div class="bsel-panel" id="bsel-switches">
+    <div class="section-head" style="margin-top:28px"><p class="eyebrow">Step 1</p><h2>How do you want to choose?</h2></div>
+    <div class="bsel-tabs">
+      <button class="btn btn-dark bsel-subtab" data-sub="budget" aria-selected="true">By budget per switch</button>
+      <button class="btn btn-outline bsel-subtab" data-sub="priority" aria-selected="false">By what matters to me</button>
+    </div>
+
+    <div class="bsel-sub" id="bsel-sw-budget">
+      <p class="muted" style="margin-top:18px">Tap the price band closest to what you'd like to spend per switch:</p>
+      <div class="chip-row" id="bsel-budget-chips">
+        <button class="chip bsel-choice" data-band="0">₹8 – ₹12</button>
+        <button class="chip bsel-choice" data-band="1">₹13 – ₹17</button>
+        <button class="chip bsel-choice" data-band="2">₹18 – ₹22</button>
+        <button class="chip bsel-choice" data-band="3">₹23 – ₹28</button>
+        <button class="chip bsel-choice" data-band="4">₹30 – ₹50</button>
+        <button class="chip bsel-choice" data-band="5">₹75 – ₹85</button>
+      </div>
+    </div>
+
+    <div class="bsel-sub" id="bsel-sw-priority" style="display:none">
+      <p class="muted" style="margin-top:18px">What matters most to you in a switch?</p>
+      <div class="chip-row">
+        <button class="chip bsel-choice" data-pri="quality">High quality &amp; durability</button>
+        <button class="chip bsel-choice" data-pri="fashion">More colours &amp; modern look</button>
+        <button class="chip bsel-choice" data-pri="value">Best value for money</button>
+      </div>
+    </div>
+
+    <div id="bsel-sw-result" class="bsel-result" style="display:none"></div>
+  </div>
+
+  <div class="bsel-panel" id="bsel-wires" style="display:none">
+    <div class="section-head" style="margin-top:28px"><p class="eyebrow">Step 1</p><h2>What matters most for your wiring?</h2></div>
+    <div class="chip-row" id="bsel-wire-need">
+      <button class="chip bsel-choice" data-need="safety">Safety-first, standard house wiring</button>
+      <button class="chip bsel-choice" data-need="value">Best value for money</button>
+      <button class="chip bsel-choice" data-need="brand">Most recognised, trusted name</button>
+      <button class="chip bsel-choice" data-need="fmeg">One brand for wires + fans + lighting + switchgear</button>
+    </div>
+
+    <div class="section-head" style="margin-top:24px"><p class="eyebrow">Step 2</p><h2>What's your budget comfort?</h2></div>
+    <div class="chip-row" id="bsel-wire-budget">
+      <button class="chip bsel-choice" data-budget="economical">Economical</button>
+      <button class="chip bsel-choice" data-budget="mid">Mid-range</button>
+      <button class="chip bsel-choice" data-budget="premium">Premium, no compromise</button>
+    </div>
+
+    <div id="bsel-wire-result" class="bsel-result" style="display:none"></div>
+  </div>
+
+</div></section>
+
+<script>
+(function(){{
+  var STOCKED = {{
+    "Legrand": "price-lists/legrand-price-list.html",
+    "Anchor by Panasonic": "price-lists/anchor-panasonic-price-list.html",
+    "Greatwhite": "price-lists/greatwhite-price-list.html",
+    "Schneider Electric": "price-lists/schneider-price-list.html",
+    "Finolex": "price-lists/finolex-price-list.html",
+    "Polycab": "price-lists/polycab-price-list.html"
+  }};
+  var SW_BUDGET = [
+    {{brand:"Hifi", note:"A very economical entry-level choice — a sensible pick for utility areas, store rooms and back-of-house points where budget matters more than finish."}},
+    {{brand:"Elleys", note:"A step up in fit and finish while still keeping the budget tight — a good all-round pick for bedrooms and secondary rooms."}},
+    {{brand:"Lisha", note:"A solid mid-economy choice with decent variety — a dependable pick across most rooms of a mid-budget home."}},
+    {{brand:"GM", note:"GM Modular is known for a wide range of colours and modern finishes at a reasonable price — good if looks matter as much as function."}},
+    {{brand:"Legrand", note:"International engineering with strong durability and a long service life — the safe premium pick for living rooms, entries and anywhere first impressions matter."}},
+    {{brand:"Norisys", note:"A top-tier designer/luxury pick for statement interiors where switches are part of the decor."}}
+  ];
+  var SW_PRIORITY = {{
+    quality: {{brand:"Legrand", note:"For pure durability and long-term reliability, Legrand's international engineering is the safest bet."}},
+    fashion: {{brand:"GM", note:"For the widest range of colours and a modern, fashion-forward look, GM Modular is the standout choice."}},
+    value: {{brand:"Lisha, Vinay or Elleys", note:"For the best balance of price and performance, Lisha, Vinay and Elleys are all reasonable, dependable picks."}}
+  }};
+  var WIRE_RANGE = {{
+    economical: {{Finolex:"Finolex FR", Polycab:"Polycab FR"}},
+    mid: {{Finolex:"Finolex FR-LSH (Flamegard)", Polycab:"Polycab FRLS"}},
+    premium: {{Finolex:"Finolex Ultra", Polycab:"Polycab's premium FRLS/LSZH range"}}
+  }};
+
+  function stockedLine(brand){{
+    if (STOCKED[brand]) {{
+      return '<p>Mount Cable stocks <strong>'+brand+'</strong> directly — <a href="'+STOCKED[brand]+'">check approximate pricing here</a>, or message '+{_json(PHONE)}+' for an exact quote within 60 minutes.</p>';
+    }}
+    return '<p>We don\\'t currently stock '+brand+' directly, but we can help you cross-check its price against the market and verify you\\'re getting a genuine product. Message '+{_json(PHONE)}+' for reference pricing, or read our <a href="original-vs-duplicate-electrical-products.html">guide to avoiding duplicates</a>.</p>';
+  }}
+
+  function renderSwitchResult(brand, note){{
+    var el = document.getElementById('bsel-sw-result');
+    el.style.display = 'block';
+    el.innerHTML = '<h3>Our recommendation: '+brand+'</h3><p>'+note+'</p>' + stockedLine(brand) +
+      '<div class="cta-actions"><a class="btn btn-gold" href="https://wa.me/{WHATSAPP}?text=Hi,%20I%27d%20like%20a%20quote%20for%20'+encodeURIComponent(brand)+'%20switches">💬 WhatsApp for a Quote</a> <a class="btn btn-outline" href="blog/best-modular-switch-brands-india-2026.html">Read the full switch brand guide →</a></div>';
+    el.scrollIntoView({{behavior:'smooth', block:'nearest'}});
+  }}
+
+  function renderWireResult(need, budget){{
+    var brand = (need === 'fmeg') ? 'Polycab' : 'Finolex';
+    var range = WIRE_RANGE[budget] ? WIRE_RANGE[budget][brand] : brand;
+    var reason = (need === 'fmeg')
+      ? 'You want one brand across wires, fans, lighting and switchgear — Polycab\\'s catalogue breadth across categories is its real differentiator, so it fits this specific need best.'
+      : 'For safety, value, brand recognition or a standard home-wiring job, Finolex is the most broadly trusted and specified name for FR/FR-LSH house wire in Bangalore — the right call for the large majority of home-wiring decisions.';
+    var el = document.getElementById('bsel-wire-result');
+    el.style.display = 'block';
+    el.innerHTML = '<h3>Our recommendation: '+brand+' — '+range+'</h3><p>'+reason+'</p>' + stockedLine(brand) +
+      '<div class="cta-actions"><a class="btn btn-gold" href="https://wa.me/{WHATSAPP}?text=Hi,%20I%27d%20like%20a%20quote%20for%20'+encodeURIComponent(range)+'">💬 WhatsApp for a Quote</a> <a class="btn btn-outline" href="blog/finolex-vs-polycab-vs-rr-kabel-vs-kei-wire-comparison.html">Read the full wire brand comparison →</a></div>';
+    el.scrollIntoView({{behavior:'smooth', block:'nearest'}});
+  }}
+
+  document.querySelectorAll('.bsel-tab').forEach(function(btn){{
+    btn.addEventListener('click', function(){{
+      document.querySelectorAll('.bsel-tab').forEach(function(b){{b.classList.remove('btn-dark');b.classList.add('btn-outline');b.setAttribute('aria-selected','false');}});
+      btn.classList.remove('btn-outline'); btn.classList.add('btn-dark'); btn.setAttribute('aria-selected','true');
+      document.getElementById('bsel-switches').style.display = (btn.dataset.tab === 'switches') ? '' : 'none';
+      document.getElementById('bsel-wires').style.display = (btn.dataset.tab === 'wires') ? '' : 'none';
+    }});
+  }});
+  document.querySelectorAll('.bsel-subtab').forEach(function(btn){{
+    btn.addEventListener('click', function(){{
+      document.querySelectorAll('.bsel-subtab').forEach(function(b){{b.classList.remove('btn-dark');b.classList.add('btn-outline');b.setAttribute('aria-selected','false');}});
+      btn.classList.remove('btn-outline'); btn.classList.add('btn-dark'); btn.setAttribute('aria-selected','true');
+      document.getElementById('bsel-sw-budget').style.display = (btn.dataset.sub === 'budget') ? '' : 'none';
+      document.getElementById('bsel-sw-priority').style.display = (btn.dataset.sub === 'priority') ? '' : 'none';
+      document.getElementById('bsel-sw-result').style.display = 'none';
+    }});
+  }});
+  document.querySelectorAll('#bsel-budget-chips .bsel-choice').forEach(function(btn){{
+    btn.addEventListener('click', function(){{
+      var r = SW_BUDGET[parseInt(btn.dataset.band, 10)];
+      renderSwitchResult(r.brand, r.note);
+    }});
+  }});
+  document.querySelectorAll('#bsel-sw-priority .bsel-choice').forEach(function(btn){{
+    btn.addEventListener('click', function(){{
+      var r = SW_PRIORITY[btn.dataset.pri];
+      renderSwitchResult(r.brand, r.note);
+    }});
+  }});
+  var wireNeed = null, wireBudget = null;
+  function tryWireResult(){{
+    if (wireNeed && wireBudget) renderWireResult(wireNeed, wireBudget);
+  }}
+  document.querySelectorAll('#bsel-wire-need .bsel-choice').forEach(function(btn){{
+    btn.addEventListener('click', function(){{
+      document.querySelectorAll('#bsel-wire-need .bsel-choice').forEach(function(b){{b.classList.remove('chip-active');}});
+      btn.classList.add('chip-active'); wireNeed = btn.dataset.need; tryWireResult();
+    }});
+  }});
+  document.querySelectorAll('#bsel-wire-budget .bsel-choice').forEach(function(btn){{
+    btn.addEventListener('click', function(){{
+      document.querySelectorAll('#bsel-wire-budget .bsel-choice').forEach(function(b){{b.classList.remove('chip-active');}});
+      btn.classList.add('chip-active'); wireBudget = btn.dataset.budget; tryWireResult();
+    }});
+  }});
+}})();
+</script>
+
+<style>
+.bsel-tabs {{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px }}
+.bsel-result {{ margin-top:24px; padding:20px; border-radius:14px; background:var(--navy-3,#12233f); color:#fff }}
+.bsel-result h3 {{ margin-top:0 }}
+.bsel-result a {{ color:inherit; text-decoration:underline }}
+.chip-active {{ outline:2px solid var(--gold,#d9a441) }}
+</style>
+"""
+    body += footer()
+    write(path, body)
+
 def build_review():
     path = "review.html"
     title = "Review Mount Cable India on Google | Finolex Distributor, Bengaluru"
@@ -1827,7 +2162,8 @@ def build_knowledge_article(k):
 SITE_LASTMOD = "2026-07-22"
 
 def build_sitemap():
-    paths = ["index.html", "quote.html", "blog.html", "review.html", "thank-you.html", "price-lists.html", "knowledge.html"]
+    paths = ["index.html", "quote.html", "blog.html", "review.html", "thank-you.html", "price-lists.html", "knowledge.html", "brand-selector.html"]
+    paths += [l[2] for l in LANGUAGES if l[0] != "en"]
     paths += [f"{p['slug']}.html" for p in SEO_PAGES]
     paths += [price_page_path(p) for p in PRICE_LISTS]
     paths += [f"{c[0]}.html" for c in CATEGORIES]
@@ -1889,6 +2225,7 @@ def write(path, content):
 
 if __name__ == "__main__":
     build_index()
+    for i18n in I18N_LANGS: build_lang_home(i18n)
     for b in BRANDS: build_brand(b)
     for c in CATEGORIES: build_category(c)
     for a in AREAS: build_area(a)
@@ -1902,9 +2239,10 @@ if __name__ == "__main__":
     for p in PRICE_LISTS: build_price_list(p)
     build_knowledge_index()
     for k in KNOWLEDGE: build_knowledge_article(k)
+    build_brand_selector()
     build_review()
     build_sitemap()
-    total = 1 + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 5 + len(BLOG) + len(SEO_PAGES) + len(FINOLEX_RANGE) + len(PRICE_LISTS) + len(KNOWLEDGE)
+    total = 1 + len(I18N_LANGS) + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 6 + len(BLOG) + len(SEO_PAGES) + len(FINOLEX_RANGE) + len(PRICE_LISTS) + len(KNOWLEDGE)
     print(f"Done — {total} pages + sitemap.xml + robots.txt")
     print(f"  1 home, {len(BRANDS)} brands, {len(CATEGORIES)} categories, {len(AREAS)} areas, "
           f"{len(SEO_PAGES)} SEO pages, blog index + {len(BLOG)} posts, price hub + {len(PRICE_LISTS)} price lists, "
