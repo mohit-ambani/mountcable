@@ -675,14 +675,17 @@ def head(title, desc, path, css_prefix="", extra_jsonld="", html_lang="en", alte
 </head>
 <body>"""
 
-def lang_bar(prefix="", active="en"):
+def lang_switch(prefix="", active="en", menu_id="langmenu"):
     links = "".join(
         f'<a href="{prefix}{fname}"{" class=\"lang-active\"" if code == active else ""}>{html.escape(label)}</a>'
         for code, label, fname in LANGUAGES)
-    return f"""<div class="lang-bar"><div class="container lang-bar-inner"><span class="lang-bar-label">View in:</span>{links}</div></div>"""
+    return f"""<div class="lang-switch">
+        <button type="button" class="lang-trigger" aria-label="Change language" onclick="document.getElementById('{menu_id}').classList.toggle('open')">🌐</button>
+        <div class="lang-menu" id="{menu_id}">{links}</div>
+      </div>"""
 
 def header(prefix="", active_lang="en"):
-    return lang_bar(prefix, active_lang) + f"""
+    return f"""
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="{prefix}index.html">
@@ -700,6 +703,7 @@ def header(prefix="", active_lang="en"):
     </nav>
     <div class="nav-cta">
       <a class="btn btn-outline" href="tel:{PHONE_HREF}">📞 {PHONE}</a>
+      {lang_switch(prefix, active_lang)}
       <a class="btn btn-gold" href="{prefix}quote.html">Get a Quote</a>
       <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">
         <span></span><span></span><span></span>

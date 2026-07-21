@@ -9,3 +9,9 @@ document.addEventListener('click', function (e) {
 document.querySelectorAll('#navlinks a').forEach(a =>
   a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open'))
 );
+// close language dropdown on outside click
+document.addEventListener('click', function (e) {
+  document.querySelectorAll('.lang-menu.open').forEach(function (menu) {
+    if (!e.target.closest('.lang-switch')) menu.classList.remove('open');
+  });
+});
