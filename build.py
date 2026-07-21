@@ -1904,7 +1904,8 @@ def build_brand_selector():
 .bsel-tabs {{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px }}
 .bsel-result {{ margin-top:24px; padding:20px; border-radius:14px; background:var(--navy-3,#12233f); color:#fff }}
 .bsel-result h3 {{ margin-top:0 }}
-.bsel-result a {{ color:inherit; text-decoration:underline }}
+.bsel-result a:not(.btn) {{ color:inherit; text-decoration:underline }}
+.bsel-result .btn-outline {{ background:#fff; color:var(--ink,#1a2233); border-color:transparent }}
 .chip-active {{ outline:2px solid var(--gold,#d9a441) }}
 </style>
 """
