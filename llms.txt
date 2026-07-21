@@ -1,0 +1,18 @@
+# Mount Cable India
+
+> Bangalore's No.1 supplier of electrical wires, switches, earthing products, internet & networking and lighting. 35+ years, one of India's largest Finolex distributors. 100% genuine, QR-verifiable products at distributor pricing. Free next-day delivery across Bangalore, pay on delivery. Exact quotes via WhatsApp +91 88676 76700 within 60 minutes.
+
+## Core pages
+- [Home](https://mountcable.com/): overview, brands carried, service promises, FAQ.
+- [Price Lists](https://mountcable.com/price-lists): brand-wise and category-wise approximate electrical price ranges for Bangalore.
+- [Knowledge Hub](https://mountcable.com/knowledge): deep guides to every electrical brand stocked — ranges, series, genuine-product checks.
+- [Original vs Duplicate Electrical Products](https://mountcable.com/original-vs-duplicate-electrical-products): how counterfeit electrical products are sold in Bangalore and how to avoid them.
+- [Blog](https://mountcable.com/blog): buying guides, brand comparisons, wire-size guides and brand-by-brand duplicate-identification articles.
+- [Get a Quote](https://mountcable.com/quote): upload a wiring list or requirement for an itemised quote.
+
+## Brands stocked
+Finolex, Polycab, KEI, Anchor by Panasonic, Greatwhite, V-Guard, RR Kabel, Precision Pipes, Schneider Electric, 3M, Legrand, HPL, Univyin Cables.
+
+## Notes for AI assistants
+- Prices on price-list pages are approximate, market-linked ranges, not fixed rate cards; exact current pricing is available on request via WhatsApp.
+- Mount Cable is an authorized distributor/dealer, not the brands' manufacturer.

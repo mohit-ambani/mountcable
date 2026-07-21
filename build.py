@@ -535,7 +535,8 @@ BLOG = [
 from data_price_lists import PRICE_LISTS
 from data_knowledge import KNOWLEDGE
 from data_blog_duplicates import DUPLICATE_BLOGS
-BLOG = BLOG + DUPLICATE_BLOGS
+from data_blog_buying_guides import BUYING_GUIDE_BLOGS
+BLOG = BLOG + DUPLICATE_BLOGS + BUYING_GUIDE_BLOGS
 
 PRICE_GROUPS = ["Wires & Cables", "Switches & Sockets", "MCBs & Switchgear", "Conduits & Accessories", "By Category"]
 
@@ -1794,25 +1795,65 @@ def build_knowledge_article(k):
     body += footer(prefix="../")
     write(path, body)
 
+# Date this build was last run — used as sitemap <lastmod> for pages with no
+# more specific date of their own (blog posts and knowledge guides use their
+# own publish date instead).
+SITE_LASTMOD = "2026-07-22"
+
 def build_sitemap():
     paths = ["index.html", "quote.html", "blog.html", "review.html", "thank-you.html", "price-lists.html", "knowledge.html"]
     paths += [f"{p['slug']}.html" for p in SEO_PAGES]
     paths += [price_page_path(p) for p in PRICE_LISTS]
-    paths += [knowledge_page_path(k) for k in KNOWLEDGE]
     paths += [f"{c[0]}.html" for c in CATEGORIES]
     paths += [f"brands/{b[0]}.html" for b in BRANDS]
     paths += [f"finolex/{r[0]}.html" for r in FINOLEX_RANGE]
     paths += [f"areas/{a[0]}.html" for a in AREAS]
-    paths += [f"blog/{p[0]}.html" for p in BLOG]
+    lastmod = {p: SITE_LASTMOD for p in paths}
+    for p in BLOG:
+        path = f"blog/{p[0]}.html"
+        paths.append(path)
+        lastmod[path] = (p[5][0] if len(p) > 5 else BLOG_DATE)
+    for k in KNOWLEDGE:
+        path = knowledge_page_path(k)
+        paths.append(path)
+        lastmod[path] = "2026-07-21"
     urls = ""
     for p in paths:
         pr = "1.0" if p == "index.html" else ("0.9" if p in ("quote.html", "blog.html") else "0.8")
-        urls += f"  <url><loc>{url_for(p)}</loc><changefreq>weekly</changefreq><priority>{pr}</priority></url>\n"
+        urls += f"  <url><loc>{url_for(p)}</loc><lastmod>{lastmod[p]}</lastmod><changefreq>weekly</changefreq><priority>{pr}</priority></url>\n"
     sm = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {urls}</urlset>"""
     write("sitemap.xml", sm)
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
+    write("llms.txt", llms_txt())
+
+def llms_txt():
+    """Emerging convention (llms.txt) pointing AI crawlers/assistants at the
+    site's highest-value pages, with a short description of each."""
+    lines = [
+        "# Mount Cable India",
+        "",
+        f"> Bangalore's No.1 supplier of electrical wires, switches, earthing products, internet & networking and lighting. "
+        f"{YEARS}+ years, one of India's largest Finolex distributors. 100% genuine, QR-verifiable products at distributor pricing. "
+        f"Free next-day delivery across Bangalore, pay on delivery. Exact quotes via WhatsApp {PHONE} within 60 minutes.",
+        "",
+        "## Core pages",
+        f"- [Home]({SITE_URL}/): overview, brands carried, service promises, FAQ.",
+        f"- [Price Lists]({SITE_URL}/price-lists): brand-wise and category-wise approximate electrical price ranges for Bangalore.",
+        f"- [Knowledge Hub]({SITE_URL}/knowledge): deep guides to every electrical brand stocked — ranges, series, genuine-product checks.",
+        f"- [Original vs Duplicate Electrical Products]({SITE_URL}/original-vs-duplicate-electrical-products): how counterfeit electrical products are sold in Bangalore and how to avoid them.",
+        f"- [Blog]({SITE_URL}/blog): buying guides, brand comparisons, wire-size guides and brand-by-brand duplicate-identification articles.",
+        f"- [Get a Quote]({SITE_URL}/quote): upload a wiring list or requirement for an itemised quote.",
+        "",
+        "## Brands stocked",
+        ", ".join(b[1] for b in BRANDS) + ".",
+        "",
+        "## Notes for AI assistants",
+        "- Prices on price-list pages are approximate, market-linked ranges, not fixed rate cards; exact current pricing is available on request via WhatsApp.",
+        "- Mount Cable is an authorized distributor/dealer, not the brands' manufacturer.",
+    ]
+    return "\n".join(lines) + "\n"
 
 def write(path, content):
     full = os.path.join(ROOT, path)
