@@ -9,7 +9,7 @@ Generates: home, per-brand pages, product-category pages, Bengaluru area
 
 Run:  python3 build.py
 """
-import os, html, json, urllib.parse, hashlib
+import os, html, json, urllib.parse, hashlib, re
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -621,7 +621,7 @@ def local_business_jsonld():
 "foundingDate":"1991","areaServed":"Bengaluru, Karnataka, India",
 "description":"One of India's largest distributors of Finolex cables and a multi-brand electrical products dealer in Bengaluru, serving individual home builders for over """ + YEARS + """ years.",
 "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"20:00"},
-"sameAs":["https://www.justdial.com/Bangalore/Mount-Cable-INDIA-Near-Rama-Temple-Bvk-Iyengar-Road/080PXX80-XX80-120530111557-V4V6_BZDET","https://www.indiamart.com/mountcableindia/","https://share.google/G4NjwO8AuH9Ae5wJ1"],
+"sameAs":["https://www.justdial.com/Bangalore/Mount-Cable-INDIA-Near-Rama-Temple-Bvk-Iyengar-Road/080PXX80-XX80-120530111557-V4V6_BZDET","https://www.indiamart.com/mountcableindia/","https://share.google/G4NjwO8AuH9Ae5wJ1","https://share.google/D7NyOqHOiUpTtWwbe"],
 "address":[""" + addrs + """]}
 </script>""")
 
@@ -1671,10 +1671,36 @@ def build_price_hub():
     body += footer()
     write(path, body)
 
+def _parse_price_range(s):
+    """'₹1,350 – ₹1,550' -> (1350, 1550); tolerates a single figure too."""
+    nums = [int(n.replace(",", "")) for n in re.findall(r"[\d,]+", s)]
+    if not nums:
+        return None
+    return (min(nums), max(nums))
+
+def product_offer_jsonld(p):
+    """One Product+AggregateOffer block per price-list page, built from its
+    own table rows — keeps the approximate ranges eligible for Google's
+    product/price rich results without asserting a single fixed price."""
+    all_rows = [r for t in p["tables"] for r in t["rows"]]
+    parsed = [_parse_price_range(r[2]) for r in all_rows]
+    parsed = [x for x in parsed if x]
+    if not parsed:
+        return ""
+    low = min(x[0] for x in parsed)
+    high = max(x[1] for x in parsed)
+    return ('<script type="application/ld+json">{"@context":"https://schema.org",'
+        '"@type":"Product","name":' + _json(p["name"] + " Electrical Products") +
+        ',"description":' + _json(p["desc"]) +
+        ',"brand":{"@type":"Brand","name":' + _json(p["name"]) + '},'
+        '"offers":{"@type":"AggregateOffer","priceCurrency":"INR","lowPrice":' + str(low) +
+        ',"highPrice":' + str(high) + ',"offerCount":' + str(len(all_rows)) +
+        ',"seller":{"@type":"Organization","name":"Mount Cable India"}}}</script>')
+
 def build_price_list(p):
     path = price_page_path(p)
     crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Price Lists", SITE_URL + "/price-lists"), (p["name"], url_for(path))])
-    body = head(p["title"], p["desc"], path, css_prefix="../", extra_jsonld=faq_jsonld_html(p["faqs"]) + crumbs)
+    body = head(p["title"], p["desc"], path, css_prefix="../", extra_jsonld=faq_jsonld_html(p["faqs"]) + crumbs + product_offer_jsonld(p))
     body += header(prefix="../")
     tables_html = ""
     for t in p["tables"]:
