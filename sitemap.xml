@@ -1,81 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://mountcable.com/</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://mountcable.com/quote</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://mountcable.com/blog</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://mountcable.com/review</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/thank-you</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/knowledge</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brand-selector</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/kn</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/ta</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/te</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/hi</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/finolex-wire-price-list-bangalore</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/finolex-dealer-near-me</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/original-finolex-wires</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/original-vs-duplicate-electrical-products</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/finolex-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/polycab-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/kei-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/rr-kabel-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/v-guard-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/univyin-cables-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/anchor-panasonic-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/greatwhite-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/schneider-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/legrand-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/hpl-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/3m-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/precision-pipes-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/earthing-products-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/internet-networking-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/price-lists/led-lighting-price-list</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/switches-and-sockets</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/wires-and-cables</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/pipes-and-conduits</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/lighting</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/switchgear-and-mcb</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/earthing-products</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/internet-networking</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/finolex</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/polycab</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/kei</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/anchor-panasonic</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/greatwhite</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/v-guard</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/rr-kabel</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/precision-pipes</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/schneider</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/3m</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/legrand</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/hpl</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/brands/univyin-cables</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/finolex/90m-silver</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/finolex/90m-gold</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/finolex/90m-frls</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/finolex/180m</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/finolex/300m</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/finolex/300m-frls</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/finolex/ultra</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/finolex/co-axial-cables</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/finolex/telephone-cables</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/finolex/internet-lan-cables</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/jayanagar</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/chickpete</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/basavanagudi</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/jp-nagar</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/banashankari</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/btm-layout</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/koramangala</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/hsr-layout</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/indiranagar</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/rajajinagar</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/malleshwaram</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/whitefield</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/electronic-city</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mountcable.com/areas/yelahanka</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>https://mountcable.com/</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>1.0</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/happy-homeowner-couple-new-house-wiring.jpg</image:loc><image:title>Happy homeowners with new house wiring cable delivered to their home in Bangalore</image:title></image:image>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/happy-electrician-installing-modular-switch.jpg</image:loc><image:title>Electrician in Bangalore installing a modular switch plate with genuine material</image:title></image:image>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/happy-house-builder-electrical-delivery.jpg</image:loc><image:title>House builder receiving free next-day delivery of electrical material in Bangalore</image:title></image:image>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/happy-electrical-contractor-site-team.jpg</image:loc><image:title>Electrical contractor and his team at a residential site in Bangalore</image:title></image:image>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/electrician-scanning-qr-code-wire-coil.jpg</image:loc><image:title>Electrician scanning the QR code on a wire coil to verify it is genuine</image:title></image:image>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/happy-family-new-home-lights-on.jpg</image:loc><image:title>Family in their new home in Bangalore with the lights switched on for the first time</image:title></image:image></url>
+  <url><loc>https://mountcable.com/quote</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mountcable.com/blog</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mountcable.com/review</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/thank-you</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/knowledge</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brand-selector</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/tools</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mountcable.com/tools/wire-size-calculator</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/electrician-hands-stripping-wire-closeup.jpg</image:loc><image:title>Copper house wire being prepared for a circuit</image:title></image:image></url>
+  <url><loc>https://mountcable.com/tools/wire-quantity-calculator</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/wire-coils-warehouse-electrical-distributor.jpg</image:loc><image:title>Coils of house wire stacked at a distributor warehouse</image:title></image:image></url>
+  <url><loc>https://mountcable.com/tools/house-wiring-cost-calculator</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/happy-homeowner-couple-new-house-wiring.jpg</image:loc><image:title>A couple planning the wiring of their newly built house</image:title></image:image></url>
+  <url><loc>https://mountcable.com/tools/voltage-drop-calculator</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/house-under-construction-conduit-wiring.jpg</image:loc><image:title>Conduit runs laid through a house under construction</image:title></image:image></url>
+  <url><loc>https://mountcable.com/tools/mcb-selector</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/electrician-installing-mcb-distribution-board.jpg</image:loc><image:title>MCBs being installed in a home distribution board</image:title></image:image></url>
+  <url><loc>https://mountcable.com/tools/load-calculator</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/builder-architect-site-electrical-planning.jpg</image:loc><image:title>A builder and architect planning the electrical layout of a house</image:title></image:image></url>
+  <url><loc>https://mountcable.com/tools/material-list-builder</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/contractor-bulk-order-loading-warehouse.jpg</image:loc><image:title>An order of electrical material being loaded for delivery in Bangalore</image:title></image:image></url>
+  <url><loc>https://mountcable.com/kn</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/ta</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/te</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/hi</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/finolex-wire-price-list-bangalore</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/finolex-dealer-near-me</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/original-finolex-wires</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/original-vs-duplicate-electrical-products</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/finolex-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/polycab-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/kei-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/rr-kabel-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/v-guard-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/univyin-cables-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/anchor-panasonic-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/greatwhite-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/schneider-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/legrand-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/hpl-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/3m-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/precision-pipes-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/earthing-products-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/internet-networking-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/price-lists/led-lighting-price-list</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/switches-and-sockets</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/wires-and-cables</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/pipes-and-conduits</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/lighting</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/switchgear-and-mcb</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/earthing-products</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/internet-networking</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/finolex</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/polycab</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/kei</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/anchor-panasonic</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/greatwhite</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/v-guard</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/rr-kabel</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/precision-pipes</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/schneider</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/3m</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/legrand</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/hpl</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/brands/univyin-cables</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/finolex/90m-silver</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/finolex/90m-gold</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/finolex/90m-frls</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/finolex/180m</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/finolex/300m</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/finolex/300m-frls</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/finolex/ultra</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/finolex/co-axial-cables</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/finolex/telephone-cables</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/finolex/internet-lan-cables</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/jayanagar</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/chickpete</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/basavanagudi</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/jp-nagar</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/banashankari</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/btm-layout</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/koramangala</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/hsr-layout</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/indiranagar</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/rajajinagar</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/malleshwaram</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/whitefield</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/electronic-city</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/areas/yelahanka</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mountcable.com/blog/electrical-material-list-for-new-house-bangalore</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/happy-house-builder-electrical-delivery.jpg</image:loc><image:title>A house builder in Bangalore receiving a delivery of electrical material at his site</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/how-much-wire-required-2bhk-3bhk-house</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/wire-coils-warehouse-electrical-distributor.jpg</image:loc><image:title>Coils of house wiring cable stacked on racks at an electrical distributor warehouse in Bangalore</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/copper-price-and-wire-rates-explained</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/shop-owner-explaining-wire-quality.jpg</image:loc><image:title>An electrical shop owner explaining copper wire quality to a customer at the counter</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/mcb-rccb-rcbo-guide-for-homes</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/electrician-installing-mcb-distribution-board.jpg</image:loc><image:title>An electrician wiring miniature circuit breakers into a home distribution board</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/distribution-board-selection-guide-home</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/electrician-installing-mcb-distribution-board.jpg</image:loc><image:title>A distribution board being wired and labelled in a Bangalore home</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/modular-switch-buying-guide-bangalore</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/woman-homeowner-choosing-modular-switches.jpg</image:loc><image:title>A homeowner choosing modular switches and sockets from a display board in an electrical showroom</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/led-lighting-buying-guide-home-bangalore</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/warm-led-lighting-living-room-family.jpg</image:loc><image:title>A living room lit by warm LED ceiling lights in an Indian home in the evening</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/ceiling-fan-buying-guide-bldc-vs-induction</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/happy-family-new-home-lights-on.jpg</image:loc><image:title>A family in the living room of their new home with fans and lights running</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/house-earthing-guide-cost-bangalore</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/earthing-rod-installation-house-site.jpg</image:loc><image:title>Workers installing a copper earthing electrode beside a newly built house</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/cat6-lan-cable-home-networking-guide</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/networking-cable-installation-home-office.jpg</image:loc><image:title>A technician terminating a Cat6 network cable into a wall data socket in a home office</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/flexible-cable-submersible-pump-cable-guide</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/electrician-hands-stripping-wire-closeup.jpg</image:loc><image:title>Close-up of an electrician stripping the insulation from a copper cable</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/wire-price-comparison-brands-bangalore</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/contractor-checking-price-list-phone.jpg</image:loc><image:title>An electrical contractor comparing wire price quotations on his phone at a construction site</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/switchgear-brands-comparison-india</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/electrician-installing-mcb-distribution-board.jpg</image:loc><image:title>Switchgear being installed in a residential distribution board</image:title></image:image></url>
+  <url><loc>https://mountcable.com/blog/ac-geyser-wiring-wire-size-mcb-guide</loc><lastmod>2026-08-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>https://mountcable.com/assets/img/people/happy-electrician-installing-modular-switch.jpg</image:loc><image:title>An electrician completing a high-load appliance point in a Bangalore home</image:title></image:image></url>
   <url><loc>https://mountcable.com/blog/finolex-qr-code-scan-genuine</loc><lastmod>2026-07-21</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mountcable.com/blog/electrician-retailer-nexus-duplicate-wires</loc><lastmod>2026-07-21</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mountcable.com/blog/why-buy-finolex-90m-coils</loc><lastmod>2026-07-21</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>

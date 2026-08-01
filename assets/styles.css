@@ -43,7 +43,7 @@ img{max-width:100%;display:block}
 
 /* Header */
 .site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
 .brand{display:flex;align-items:center;gap:12px;font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--navy);flex-shrink:0;white-space:nowrap}
 .brand .mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--navy-3),var(--navy));display:grid;place-items:center;color:var(--gold);font-weight:800;box-shadow:var(--shadow);flex-shrink:0}
 .brand small{display:block;font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;white-space:nowrap}
@@ -395,3 +395,45 @@ a.prod:hover .go{color:var(--blue)}
 .lang-menu a{padding:8px 12px;border-radius:7px;color:var(--navy);text-decoration:none;font-size:14px}
 .lang-menu a:hover{background:rgba(200,162,75,.12)}
 .lang-menu a.lang-active{color:var(--gold);font-weight:700}
+
+/* ---------- photography (home wall, post heroes) ---------- */
+.photo-wall{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.photo-fig{margin:0}
+.photo-fig img,.photo-tile{width:100%;height:auto;border-radius:var(--radius);box-shadow:var(--shadow);object-fit:cover;aspect-ratio:3/2}
+.photo-fig figcaption{margin-top:10px;font-size:14px;color:var(--muted);line-height:1.5}
+.post-hero{width:100%;height:auto;border-radius:var(--radius);box-shadow:var(--shadow);margin:22px 0 6px;aspect-ratio:3/2;object-fit:cover}
+.post-body .photo-fig{margin:26px 0}
+@media (max-width:900px){.photo-wall{grid-template-columns:repeat(2,1fr);gap:16px}}
+@media (max-width:600px){.photo-wall{grid-template-columns:1fr}}
+
+/* ---------- blog FAQ block ---------- */
+.post-faq{margin:40px 0 8px;padding-top:32px;border-top:1px solid var(--line)}
+.post-faq h2{font-size:26px;margin-bottom:18px}
+
+/* ---------- free calculators ---------- */
+.calc{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:26px;margin:26px 0}
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.calc label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:var(--ink)}
+.calc-sub{font-weight:400;color:var(--muted);font-size:12.5px}
+.calc input,.calc select{padding:11px 13px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:15px;background:#fff;color:var(--ink);width:100%}
+.calc input:focus,.calc select:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:transparent}
+.calc-go{margin-top:20px}
+.calc-out{margin-top:22px}
+.calc-result{background:var(--navy);color:#fff;border-radius:13px;padding:22px 24px;text-align:center}
+.calc-result p{margin:8px 0 0;color:#C9D6E8;font-size:15px}
+.calc-result strong{color:#fff}
+.calc-big{font-family:'Plus Jakarta Sans',sans-serif;font-size:34px;font-weight:800;color:var(--gold-2);letter-spacing:-.02em;display:block}
+.calc-note{font-size:14px;color:var(--muted);margin-top:14px;line-height:1.6}
+.calc-warn{background:#FFF6E5;border:1px solid #F0D48A;border-radius:11px;padding:14px 16px;font-size:14.5px;color:#6B4D06;margin-top:14px}
+.calc-pass{color:#7FE0A8;font-weight:700}
+.calc-warnbadge{color:var(--gold-2);font-weight:700}
+.calc-fail{color:#FF9A8A;font-weight:700}
+.calc .ptable{background:#fff}
+
+/* ---------- material list builder ---------- */
+.mlb{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.mlb-group{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 20px}
+.mlb-group h3{font-size:15px;color:var(--navy);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.mlb-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0;font-size:14px;color:var(--ink)}
+.mlb-row input{width:74px;flex:0 0 74px;padding:7px 9px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:14px;text-align:center}
+.mlb-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}

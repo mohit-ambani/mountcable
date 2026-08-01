@@ -221,7 +221,7 @@ SEO_PAGES = [
     ("Areas we deliver to across Bangalore",
      "<p>We deliver to all major localities — find yours below for local stock and pricing.</p>{areas}"),
     ("How to order from your nearest Finolex dealer",
-     "<p>It takes a minute: <a href=\"quote.html\">upload a photo of your wiring list</a> for an instant quote, WhatsApp us, or call <a href=\"tel:+918867676700\">+91 88676 76700</a>. Confirm, and your genuine Finolex wires arrive at your site by the next day.</p>"),
+     "<p>It takes a minute: <a href=\"quote.html\">upload a photo of your wiring list</a> for an instant quote, or WhatsApp us at <a href=\"https://wa.me/918867676700\">+91 88676 76700</a>. Confirm, and your genuine Finolex wires arrive at your site by the next day.</p>"),
   ],
   "faqs": [
     ("Is there a Finolex dealer near me in Bangalore?", "Yes — Mount Cable India is an authorized Finolex dealer serving all of Bangalore. Rather than asking you to travel, we deliver 100% original Finolex wires free to your site by the next day, so the nearest Finolex dealer effectively comes to you."),
@@ -293,7 +293,7 @@ FAQS = [
     ("Do you deliver electrical material across Bangalore?",
      "Yes — we offer free delivery across Bangalore. Once your order is confirmed, we deliver to your site by the next day, and you can pay right at your site in any mode."),
     ("How do I get a quote for my home wiring?",
-     "The fastest way is to upload a photo of your wiring list, estimate or requirement on our Get a Quote page. You can also WhatsApp or call us at " + PHONE + " and we'll prepare a complete quote."),
+     "The fastest way is to upload a photo of your wiring list, estimate or requirement on our Get a Quote page. You can also WhatsApp us at " + PHONE + " or email " + EMAIL + " and we'll prepare a complete quote. (We handle orders on WhatsApp and email only — we don't take phone calls.)"),
     ("Which Finolex ranges do you keep in stock?",
      "All of them — Finolex 90M Silver, 90M Gold, 90M FRLS, 180M, 300M, 300M FRLS, Finolex Ultra, plus co-axial, telephone and internet/LAN cables. Every range is in stock and always available."),
     ("What payment modes do you accept?",
@@ -550,7 +550,63 @@ from data_knowledge import KNOWLEDGE
 from data_blog_duplicates import DUPLICATE_BLOGS
 from data_blog_buying_guides import BUYING_GUIDE_BLOGS
 from data_blog_brand_guides import BRAND_GUIDE_BLOGS
-BLOG = BLOG + DUPLICATE_BLOGS + BUYING_GUIDE_BLOGS + BRAND_GUIDE_BLOGS
+from data_blog_2026 import BLOG_2026
+from data_tools import TOOLS
+BLOG = BLOG_2026 + BLOG + DUPLICATE_BLOGS + BUYING_GUIDE_BLOGS + BRAND_GUIDE_BLOGS
+
+# Lifestyle photography (assets/img/people). Real people using electrical
+# material — used on the home page and as blog hero images. Every entry needs a
+# descriptive, keyword-bearing alt text: these are the site's image-SEO surface.
+PEOPLE_IMG_DIR = "assets/img/people"
+
+def people_img(fname, alt, cls="", prefix="", eager=False, cap=None):
+    path = os.path.join(ROOT, PEOPLE_IMG_DIR, fname)
+    w, h = 1536, 1024
+    try:
+        with open(path, "rb") as f:
+            d = f.read()
+        i = 2
+        while i < len(d) - 9:
+            if d[i] != 0xFF:
+                i += 1; continue
+            m = d[i + 1]
+            if m in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF):
+                h = (d[i + 5] << 8) + d[i + 6]
+                w = (d[i + 7] << 8) + d[i + 8]
+                break
+            i += 2 + (d[i + 2] << 8) + d[i + 3]
+    except Exception:
+        pass
+    loading = 'fetchpriority="high"' if eager else 'loading="lazy"'
+    img = (f'<img src="{prefix}{PEOPLE_IMG_DIR}/{fname}" alt="{html.escape(alt)}" '
+           f'width="{w}" height="{h}" {loading} decoding="async"'
+           + (f' class="{cls}"' if cls else '') + '>')
+    if cap:
+        return f'<figure class="photo-fig">{img}<figcaption>{html.escape(cap)}</figcaption></figure>'
+    return img
+
+# Home-page photo wall. (filename, alt, caption) — alt text carries the search
+# intent, caption carries the human story.
+HOME_PHOTOS = [
+    ("happy-homeowner-couple-new-house-wiring.jpg",
+     "Happy homeowners with new house wiring cable delivered to their home in Bangalore",
+     "The wiring goes in once. Get it right and nobody thinks about it again for thirty years."),
+    ("happy-electrician-installing-modular-switch.jpg",
+     "Electrician in Bangalore installing a modular switch plate with genuine material",
+     "Electricians keep coming back because the material is right and the replacement is immediate."),
+    ("happy-house-builder-electrical-delivery.jpg",
+     "House builder receiving free next-day delivery of electrical material in Bangalore",
+     "Free next-day delivery across Bangalore. Often the same day."),
+    ("happy-electrical-contractor-site-team.jpg",
+     "Electrical contractor and his team at a residential site in Bangalore",
+     "Contractors use our quote as their reference price, whether or not they buy from us."),
+    ("electrician-scanning-qr-code-wire-coil.jpg",
+     "Electrician scanning the QR code on a wire coil to verify it is genuine",
+     "Scan the QR on every box at your site, before you pay."),
+    ("happy-family-new-home-lights-on.jpg",
+     "Family in their new home in Bangalore with the lights switched on for the first time",
+     "The day the lights come on is the only review that matters to us."),
+]
 
 from data_i18n_kn import I18N as I18N_KN
 from data_i18n_ta import I18N as I18N_TA
@@ -650,9 +706,9 @@ def local_business_jsonld():
 LANGUAGES = [("en", "English", "index.html"), ("kn", "ಕನ್ನಡ", "kn.html"),
              ("ta", "தமிழ்", "ta.html"), ("te", "తెలుగు", "te.html"), ("hi", "हिन्दी", "hi.html")]
 
-def head(title, desc, path, css_prefix="", extra_jsonld="", html_lang="en", alternates=None):
+def head(title, desc, path, css_prefix="", extra_jsonld="", html_lang="en", alternates=None, og_image=None):
     canonical = url_for(path)
-    img = SITE_URL + "/assets/img/banner-finolex-wires.jpg"
+    img = og_image or (SITE_URL + "/assets/img/banner-finolex-wires.jpg")
     hreflang_tags = ""
     if alternates:
         for code, url in alternates:
@@ -711,11 +767,11 @@ def header(prefix="", active_lang="en"):
       <a href="{prefix}index.html#brands">Brands</a>
       <a href="{prefix}price-lists.html">Price Lists</a>
       <a href="{prefix}knowledge.html">Knowledge Hub</a>
-      <a href="{prefix}brand-selector.html">Brand Selector</a>
+      <a href="{prefix}tools.html">Free Tools</a>
       <a href="{prefix}blog.html">Blog</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-outline" href="tel:{PHONE_HREF}">📞 {PHONE}</a>
+      <a class="btn btn-outline" href="https://wa.me/{WHATSAPP}">💬 {PHONE}</a>
       {lang_switch(prefix, active_lang)}
       <a class="btn btn-gold" href="{prefix}quote.html">Get a Quote</a>
       <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">
@@ -762,7 +818,8 @@ def footer(prefix="", cta_override=None):
       <div>
         <div class="foot-brand"><span class="mark" style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--navy-3),var(--navy));display:grid;place-items:center;color:var(--gold)">M</span> Mount Cable India</div>
         <p>One of India's largest distributors of Finolex cables, and a multi-brand electrical dealer in Bengaluru for over {YEARS} years. 100% original material, free delivery across Bangalore and distributor pricing for everyone building their home.</p>
-        <p>📞 <a href="tel:{PHONE_HREF}">{PHONE}</a><br>✉️ <a href="mailto:{EMAIL}">{EMAIL}</a></p>
+        <p>💬 <a href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a><br>✉️ <a href="mailto:{EMAIL}">{EMAIL}</a></p>
+        <p class="contact-note" style="font-size:13px;opacity:.75;margin-top:6px">Orders and enquiries on WhatsApp &amp; email only — we don't take phone calls.</p>
       </div>
       <div>
         <h4>Brands</h4>
@@ -776,6 +833,10 @@ def footer(prefix="", cta_override=None):
         <h4>Shop By Category</h4>
         {cats}
         <h4 style="margin-top:18px">Buyer Tools</h4>
+        <a href="{prefix}tools.html">Free Electrical Calculators</a>
+        <a href="{prefix}tools/wire-size-calculator.html">Wire Size Calculator</a>
+        <a href="{prefix}tools/house-wiring-cost-calculator.html">House Wiring Cost Calculator</a>
+        <a href="{prefix}brand-selector.html">Brand Selector</a>
         <a href="{prefix}price-lists.html">Electrical Price Lists Bangalore</a>
         <a href="{prefix}knowledge.html">Electrical Knowledge Hub</a>
         <a href="{prefix}original-vs-duplicate-electrical-products.html">Original vs Duplicate Guide</a>
@@ -853,6 +914,9 @@ def build_index():
         <span class="go">View {html.escape(b[1])} range →</span>
       </a>"""
 
+    home_photos = "".join(
+        people_img(f, a, cls="photo-tile", cap=cap, eager=(i == 0))
+        for i, (f, a, cap) in enumerate(HOME_PHOTOS))
     all_tiles = "".join(brand_tile(b) for b in BRANDS)
     cats = "".join(f"""<a class="cat" href="{c[0]}.html"><div class="ic">{c[1]}</div><h4>{html.escape(c[2])}</h4><p>{html.escape(c[3])}</p><span class="cat-go">Explore →</span></a>""" for c in CATEGORIES)
     areas = "".join(f'<a class="area-chip" href="areas/{a[0]}.html">{html.escape(a[1])}</a>' for a in AREAS)
@@ -861,7 +925,7 @@ def build_index():
         <span class="tag">{o['tag']}</span>
         <h3>{o['area']}</h3>
         <p><span class="pi">📍</span> {html.escape(o['addr'])}</p>
-        <p><span class="pi">📞</span> <a href="tel:{PHONE_HREF}">{PHONE}</a></p>
+        <p><span class="pi">💬</span> <a href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></p>
         <p><span class="pi">🕘</span> Mon–Sat, 10:00 AM – 8:00 PM</p>
         <a class="office-dir" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query={urllib.parse.quote(o['map'])}">🧭 Get directions →</a>
         <iframe class="map-embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q={urllib.parse.quote(o['map'])}&output=embed" title="{html.escape(o['area'])} map"></iframe>
@@ -1014,6 +1078,20 @@ def build_index():
       <div class="feat"><div class="ic">↩️</div><h3>Free Pickup of Excess Stock</h3><p>Ordered a little extra? If you have surplus material left over, we'll pick it up free of charge.</p></div>
       <div class="feat"><div class="ic">🧭</div><h3>Expert Guidance</h3><p>First time wiring a home? We'll help you choose the right wires, gauges and brands for every room of your house.</p></div>
     </div>
+  </div>
+</section>
+
+<section id="people">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">The People We Supply</p>
+      <h2>Home builders, electricians and contractors across Bengaluru</h2>
+      <p>Homeowners wiring their first house. Electricians who need the right coil today, not next week. Contractors checking a price before they commit. This is who walks into Jayanagar and Chickpete, and who we deliver to every morning.</p>
+    </div>
+    <div class="photo-wall">
+      {home_photos}
+    </div>
+    <p class="center muted" style="margin-top:22px">Send your list to <a href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a> and get an exact quote within 60 minutes — no pressure to buy.</p>
   </div>
 </section>
 
@@ -1211,7 +1289,7 @@ def build_brand(b):
     <p>{html.escape(tagline)}</p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="../quote.html">📷 Get {html.escape(name)} Quote</a>
-      <a class="btn btn-ghost" href="tel:{PHONE_HREF}">📞 Call {PHONE}</a>
+      <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}">💬 WhatsApp {PHONE}</a>
     </div>
   </div>
 </section>
@@ -1237,7 +1315,7 @@ def build_brand(b):
         <p class="muted" style="font-size:14.5px;margin:6px 0 0">Get pricing &amp; stock availability in minutes.</p>
         <div class="row"><span class="pi">📷</span> <a href="../quote.html">Upload your list for a quote</a></div>
         <div class="row"><span class="pi">💬</span> <a href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a></div>
-        <div class="row"><span class="pi">📞</span> <a href="tel:{PHONE_HREF}">{PHONE}</a></div>
+        <div class="row"><span class="pi">✉️</span> <a href="mailto:{EMAIL}">{EMAIL}</a></div>
         <div class="row"><span class="pi">📍</span> Jayanagar &amp; Chickpete, Bengaluru</div>
         <a class="btn btn-gold" style="width:100%;justify-content:center;margin-top:10px" href="../quote.html">Request a Quote</a>
       </div>
@@ -1338,7 +1416,7 @@ def build_area(a):
       <span class="tag">Visit Our Showroom</span>
       <h3>Mount Cable India — Chickpet</h3>
       <p><span class="pi">📍</span> {html.escape(main['addr'])}</p>
-      <p><span class="pi">📞</span> <a href="tel:{PHONE_HREF}">{PHONE}</a></p>
+      <p><span class="pi">💬</span> <a href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></p>
       <p><span class="pi">🕘</span> Mon–Sat, 10:00 AM – 8:00 PM</p>
       <a class="office-dir" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query={urllib.parse.quote(main['map'])}">🧭 Get directions →</a>
       <iframe class="map-embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q={urllib.parse.quote(main['map'])}&output=embed" title="Mount Cable India Chickpet map"></iframe>
@@ -1356,7 +1434,7 @@ def build_area(a):
     <p>{intro}</p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="../quote.html">📷 Upload Your List — Get a Quote</a>
-      <a class="btn btn-ghost" href="tel:{PHONE_HREF}">📞 Call {PHONE}</a>
+      <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}">💬 WhatsApp {PHONE}</a>
     </div>
   </div>
 </section>
@@ -1384,7 +1462,7 @@ def build_area(a):
         <p class="muted" style="font-size:14.5px;margin:6px 0 0">Snap your wiring list — get an instant quote.</p>
         <div class="row"><span class="pi">📷</span> <a href="../quote.html">Upload your list for a quote</a></div>
         <div class="row"><span class="pi">💬</span> <a href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a></div>
-        <div class="row"><span class="pi">📞</span> <a href="tel:{PHONE_HREF}">{PHONE}</a></div>
+        <div class="row"><span class="pi">✉️</span> <a href="mailto:{EMAIL}">{EMAIL}</a></div>
         <div class="row"><span class="pi">🚚</span> Free next-day delivery in {html.escape(name)}</div>
         <a class="btn btn-gold" style="width:100%;justify-content:center;margin-top:10px" href="../quote.html">Get a Quote</a>
       </div>
@@ -1475,7 +1553,7 @@ def build_quote():
 
       <button type="submit" class="btn btn-gold qsubmit">Get My Instant Quote →</button>
       <div class="qtrust"><span>🔒 Your details stay private</span><span>·</span><span>⚡ Reply within minutes</span></div>
-      <p class="qalt">Prefer to chat? <a href="https://wa.me/{WHATSAPP}?text=Hi,%20here's%20my%20requirement%20for%20a%20quote">Send your photo on WhatsApp</a> or call <a href="tel:{PHONE_HREF}">{PHONE}</a></p>
+      <p class="qalt">Prefer to chat? <a href="https://wa.me/{WHATSAPP}?text=Hi,%20here's%20my%20requirement%20for%20a%20quote">Send your photo on WhatsApp</a> or email <a href="mailto:{EMAIL}">{EMAIL}</a></p>
     </form>
 
     <aside class="quote-side">
@@ -1494,7 +1572,7 @@ def build_quote():
         </ul>
         <div class="qs-call">
           <span>Need it urgently?</span>
-          <a class="btn" style="background:#fff;color:var(--navy);width:100%;justify-content:center" href="tel:{PHONE_HREF}">📞 Call {PHONE}</a>
+          <a class="btn" style="background:#fff;color:var(--navy);width:100%;justify-content:center" href="https://wa.me/{WHATSAPP}">💬 WhatsApp {PHONE}</a>
         </div>
       </div>
     </aside>
@@ -1574,21 +1652,35 @@ def build_blog_index():
 def build_blog_post(p):
     slug, title, excerpt, tag, bodyhtml = p[:5]
     date, date_disp = p[5] if len(p) > 5 else (BLOG_DATE, BLOG_DATE_DISP)
+    faqs = p[6] if len(p) > 6 else []
+    hero = p[7] if len(p) > 7 else None
     path = f"blog/{slug}.html"
     desc = excerpt
+    hero_url = (f"{SITE_URL}/{PEOPLE_IMG_DIR}/{hero[0]}" if hero
+                else f"{SITE_URL}/assets/img/banner-finolex-wires.jpg")
     article_ld = ('<script type="application/ld+json">'
         + '{"@context":"https://schema.org","@type":"BlogPosting",'
         + f'"headline":{_json(title)},"description":{_json(excerpt)},'
         + f'"datePublished":"{date}","dateModified":"{date}",'
-        + f'"image":"{SITE_URL}/assets/img/banner-finolex-wires.jpg",'
+        + (f'"image":{{"@type":"ImageObject","url":"{hero_url}",'
+           f'"caption":{_json(hero[1])}}},' if hero else f'"image":"{hero_url}",')
         + '"author":{"@type":"Organization","name":"Mount Cable India"},'
         + '"publisher":{"@type":"Organization","name":"Mount Cable India",'
         + f'"logo":{{"@type":"ImageObject","url":"{SITE_URL}/assets/logos/finolex.svg"}}}},'
         + f'"mainEntityOfPage":"{url_for(path)}"}}</script>')
     crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Blog", SITE_URL + "/blog.html"), (title, url_for(path))])
-    rel = [x for x in BLOG if x[0] != slug][:3]
+    if faqs:
+        crumbs += faq_jsonld_html(faqs)
+    hero_html = (people_img(hero[0], hero[1], cls="post-hero", prefix="../", eager=True)
+                 if hero else "")
+    faq_html = (f'<div class="post-faq"><h2>Frequently asked questions</h2>'
+                f'<div class="faq-list">{faq_details_html(faqs)}</div></div>' if faqs else "")
+    same_tag = [x for x in BLOG if x[0] != slug and x[3] == tag]
+    others = [x for x in BLOG if x[0] != slug and x[3] != tag]
+    rel = (same_tag + others)[:3]
     related = "".join(blog_card(x, prefix="../") for x in rel)
-    body = head(f"{title} | Mount Cable India", desc, path, css_prefix="../", extra_jsonld=article_ld + crumbs)
+    body = head(f"{title} | Mount Cable India", desc, path, css_prefix="../",
+                extra_jsonld=article_ld + crumbs, og_image=hero_url)
     body += header(prefix="../")
     body += f"""
 <article class="post">
@@ -1597,9 +1689,11 @@ def build_blog_post(p):
     <span class="blog-tag">{html.escape(tag)}</span>
     <h1>{html.escape(title)}</h1>
     <p class="post-meta">By Mount Cable India · {date_disp} · {YEARS} years serving Bengaluru</p>
+    {hero_html}
     <div class="post-body">
       {bodyhtml}
     </div>
+    {faq_html}
     <div class="post-cta">
       <h3>Ready to order for your home?</h3>
       <p>Upload your wiring list for an instant quote — 100% original material, free next-day delivery across Bangalore.</p>
@@ -1728,7 +1822,7 @@ def build_finolex_product(r):
         <p class="muted" style="font-size:14.5px;margin:6px 0 0">Distributor pricing · all gauges in stock.</p>
         <div class="row"><span class="pi">📷</span> <a href="../quote.html">Upload your list for a quote</a></div>
         <div class="row"><span class="pi">💬</span> <a href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a></div>
-        <div class="row"><span class="pi">📞</span> <a href="tel:{PHONE_HREF}">{PHONE}</a></div>
+        <div class="row"><span class="pi">✉️</span> <a href="mailto:{EMAIL}">{EMAIL}</a></div>
         <a class="btn btn-gold" style="width:100%;justify-content:center;margin-top:10px" href="../quote.html">Request a Quote</a>
       </div>
     </aside>
@@ -2195,10 +2289,117 @@ def build_knowledge_article(k):
 # Date this build was last run — used as sitemap <lastmod> for pages with no
 # more specific date of their own (blog posts and knowledge guides use their
 # own publish date instead).
-SITE_LASTMOD = "2026-07-22"
+
+# ---------- free calculators ----------
+def tool_path(t):
+    return f"tools/{t['slug']}.html"
+
+def build_tools_hub():
+    cards = "".join(
+        f'''<a class="blog-card" href="tools/{t["slug"]}.html">
+      <span class="blog-tag">Calculator</span>
+      <h3>{html.escape(t["name"])}</h3>
+      <p>{html.escape(t["tagline"])}</p>
+      <span class="go">Open calculator &rarr;</span>
+    </a>''' for t in TOOLS)
+    items = ",".join(
+        f'{{"@type":"ListItem","position":{i+1},"name":{_json(t["name"])},"url":"{url_for(tool_path(t))}"}}'
+        for i, t in enumerate(TOOLS))
+    ld = ('<script type="application/ld+json">{"@context":"https://schema.org",'
+          f'"@type":"ItemList","name":"Free electrical calculators","itemListElement":[{items}]}}</script>')
+    ld += breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Free Tools", url_for("tools.html"))])
+    body = head("Free Electrical Calculators — Wire Size, Load, Cost | Mount Cable India",
+                "Free calculators for Indian house wiring: wire size, wire quantity, house wiring cost, "
+                "voltage drop, MCB rating, electrical load and a material list builder. By Mount Cable India, Bangalore.",
+                "tools.html", extra_jsonld=ld)
+    body += header()
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Free Tools</div>
+    <p class="eyebrow">Free Tools</p>
+    <h1>Electrical calculators for people building a house</h1>
+    <p class="muted">Seven free calculators built from the questions we are actually asked at the counter — how thick the wire should be, how many coils a house needs, what the whole thing will cost, and why a long run keeps tripping. No sign-up, nothing stored.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="tools/material-list-builder.html">Build your material list</a>
+      <a class="btn btn-outline" href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="blog-grid">{cards}</div>
+  </div>
+</section>
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">How to use them</p><h2>Size it, cost it, then get it priced</h2></div>
+    <div class="prose narrow">
+      <p>Start with the <a href="tools/wire-size-calculator.html">wire size calculator</a> for each circuit, then the <a href="tools/wire-quantity-calculator.html">quantity calculator</a> to turn point counts into coils, then the <a href="tools/house-wiring-cost-calculator.html">cost calculator</a> for a budget band. When the list looks right, the <a href="tools/material-list-builder.html">material list builder</a> sends it to us and you get an exact itemised quote within 60 minutes.</p>
+      <p>Every figure these tools produce is a planning estimate. Prices track the copper market and site conditions change cable sizing, so treat the output as your reference and let us confirm the exact rate. There is no obligation to buy from us — plenty of people use our quote purely to check someone else's.</p>
+    </div>
+  </div>
+</section>
+"""
+    body += footer()
+    write("tools.html", body)
+
+def build_tool(t):
+    path = tool_path(t)
+    others = "".join(
+        f'''<a class="blog-card" href="{o["slug"]}.html">
+      <span class="blog-tag">Calculator</span>
+      <h3>{html.escape(o["name"])}</h3>
+      <p>{html.escape(o["tagline"])}</p>
+      <span class="go">Open calculator &rarr;</span>
+    </a>''' for o in TOOLS if o["slug"] != t["slug"])[:100000]
+    ld = ('<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication",'
+          f'"name":{_json(t["name"])},"description":{_json(t["desc"])},'
+          f'"url":"{url_for(path)}","applicationCategory":"UtilitiesApplication",'
+          '"operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},'
+          '"publisher":{"@type":"Organization","name":"Mount Cable India"}}</script>')
+    ld += breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Free Tools", url_for("tools.html")),
+                             (t["name"], url_for(path))])
+    ld += faq_jsonld_html(t["faqs"])
+    hero = t.get("hero")
+    og = f"{SITE_URL}/{PEOPLE_IMG_DIR}/{hero[0]}" if hero else None
+    body = head(t["title"], t["desc"], path, css_prefix="../", extra_jsonld=ld, og_image=og)
+    body += header(prefix="../")
+    body += f"""
+<article class="post">
+  <div class="container narrow">
+    <div class="crumbs"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../tools.html">Free Tools</a> &nbsp;/&nbsp; {html.escape(t["name"])}</div>
+    <span class="blog-tag">Free Calculator</span>
+    <h1>{html.escape(t["h1"])}</h1>
+    <p class="post-meta">Mount Cable India · Bengaluru · {YEARS} years in electrical distribution</p>
+    {people_img(hero[0], hero[1], cls="post-hero", prefix="../", eager=True) if hero else ""}
+    <div class="post-body">
+      <p>{t["intro"]}</p>
+      {t["body"]}
+    </div>
+    <div class="post-faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-list">{faq_details_html(t["faqs"])}</div>
+    </div>
+    {quote_cta_block(prefix="../")}
+  </div>
+</article>
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">More Tools</p><h2>Other calculators</h2></div>
+    <div class="blog-grid">{others}</div>
+  </div>
+</section>
+"""
+    body += footer(prefix="../")
+    write(path, body)
+
+
+SITE_LASTMOD = "2026-08-01"
 
 def build_sitemap():
-    paths = ["index.html", "quote.html", "blog.html", "review.html", "thank-you.html", "price-lists.html", "knowledge.html", "brand-selector.html"]
+    paths = ["index.html", "quote.html", "blog.html", "review.html", "thank-you.html", "price-lists.html", "knowledge.html", "brand-selector.html", "tools.html"]
+    paths += [tool_path(t) for t in TOOLS]
     paths += [l[2] for l in LANGUAGES if l[0] != "en"]
     paths += [f"{p['slug']}.html" for p in SEO_PAGES]
     paths += [price_page_path(p) for p in PRICE_LISTS]
@@ -2215,12 +2416,28 @@ def build_sitemap():
         path = knowledge_page_path(k)
         paths.append(path)
         lastmod[path] = "2026-07-21"
+    # Image sitemap entries — Google indexes these separately, and photography is
+    # a real discovery surface for "electrician bangalore" style searches.
+    images = {}
+    for p in BLOG:
+        if len(p) > 7 and p[7]:
+            images[f"blog/{p[0]}.html"] = [(p[7][0], p[7][1])]
+    for t in TOOLS:
+        if t.get("hero"):
+            images[tool_path(t)] = [(t["hero"][0], t["hero"][1])]
+    images["index.html"] = [(f, a) for f, a, _cap in HOME_PHOTOS]
+
     urls = ""
     for p in paths:
-        pr = "1.0" if p == "index.html" else ("0.9" if p in ("quote.html", "blog.html") else "0.8")
-        urls += f"  <url><loc>{url_for(p)}</loc><lastmod>{lastmod[p]}</lastmod><changefreq>weekly</changefreq><priority>{pr}</priority></url>\n"
+        pr = "1.0" if p == "index.html" else ("0.9" if p in ("quote.html", "blog.html", "tools.html") else "0.8")
+        imgs = "".join(
+            f"\n    <image:image><image:loc>{SITE_URL}/{PEOPLE_IMG_DIR}/{f}</image:loc>"
+            f"<image:title>{html.escape(a)}</image:title></image:image>"
+            for f, a in images.get(p, []))
+        urls += (f"  <url><loc>{url_for(p)}</loc><lastmod>{lastmod.get(p, SITE_LASTMOD)}</lastmod>"
+                 f"<changefreq>weekly</changefreq><priority>{pr}</priority>{imgs}</url>\n")
     sm = f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 {urls}</urlset>"""
     write("sitemap.xml", sm)
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
@@ -2277,8 +2494,10 @@ if __name__ == "__main__":
     for k in KNOWLEDGE: build_knowledge_article(k)
     build_brand_selector()
     build_review()
+    build_tools_hub()
+    for t in TOOLS: build_tool(t)
     build_sitemap()
-    total = 1 + len(I18N_LANGS) + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 6 + len(BLOG) + len(SEO_PAGES) + len(FINOLEX_RANGE) + len(PRICE_LISTS) + len(KNOWLEDGE)
+    total = 1 + len(I18N_LANGS) + len(BRANDS) + len(CATEGORIES) + len(AREAS) + 7 + len(BLOG) + len(SEO_PAGES) + len(FINOLEX_RANGE) + len(PRICE_LISTS) + len(KNOWLEDGE) + len(TOOLS)
     print(f"Done — {total} pages + sitemap.xml + robots.txt")
     print(f"  1 home, {len(BRANDS)} brands, {len(CATEGORIES)} categories, {len(AREAS)} areas, "
           f"{len(SEO_PAGES)} SEO pages, blog index + {len(BLOG)} posts, price hub + {len(PRICE_LISTS)} price lists, "
