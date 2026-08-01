@@ -551,6 +551,7 @@ from data_blog_duplicates import DUPLICATE_BLOGS
 from data_blog_buying_guides import BUYING_GUIDE_BLOGS
 from data_blog_brand_guides import BRAND_GUIDE_BLOGS
 from data_blog_2026 import BLOG_2026
+from data_blog_retrofit import RETROFIT
 from data_tools import TOOLS
 BLOG = BLOG_2026 + BLOG + DUPLICATE_BLOGS + BUYING_GUIDE_BLOGS + BRAND_GUIDE_BLOGS
 
@@ -1654,6 +1655,8 @@ def build_blog_post(p):
     date, date_disp = p[5] if len(p) > 5 else (BLOG_DATE, BLOG_DATE_DISP)
     faqs = p[6] if len(p) > 6 else []
     hero = p[7] if len(p) > 7 else None
+    if not faqs and slug in RETROFIT:
+        faqs, hero = RETROFIT[slug]
     path = f"blog/{slug}.html"
     desc = excerpt
     hero_url = (f"{SITE_URL}/{PEOPLE_IMG_DIR}/{hero[0]}" if hero
@@ -2420,8 +2423,9 @@ def build_sitemap():
     # a real discovery surface for "electrician bangalore" style searches.
     images = {}
     for p in BLOG:
-        if len(p) > 7 and p[7]:
-            images[f"blog/{p[0]}.html"] = [(p[7][0], p[7][1])]
+        h = p[7] if len(p) > 7 else (RETROFIT.get(p[0], (None, None))[1])
+        if h:
+            images[f"blog/{p[0]}.html"] = [(h[0], h[1])]
     for t in TOOLS:
         if t.get("hero"):
             images[tool_path(t)] = [(t["hero"][0], t["hero"][1])]
