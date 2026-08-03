@@ -283,6 +283,102 @@ SEO_PAGES = [
   ]},
 ]
 
+
+# --- "alternative to" landing pages -------------------------------------------
+# Named-competitor pages. Same legal discipline as data_blog_vs.py: only public
+# facts about them, structural comparison rather than accusation, and every
+# question we pose is one the reader is invited to ask us too.
+def _alt_page(slug, brand, blurb, funding):
+    return {
+        "slug": slug,
+        "title": f"{brand} Alternative for Electrical Products & Finolex Wires | Mount Cable India",
+        "h1": f"A {brand} alternative for electrical material and Finolex wires",
+        "badge": "Compare",
+        "desc": (f"Looking for a {brand} alternative for electrical products and Finolex wires in Bangalore? "
+                 f"Mount Cable India is an authorised distributor with published prices, sealed QR-verifiable "
+                 f"stock, free next-day delivery and pay on delivery."),
+        "answer": (f"Mount Cable India is an authorised electrical distributor in Bengaluru and an alternative to "
+                   f"{brand} for anyone buying Finolex wires and electrical material. The difference is structural: "
+                   f"we hold brand authorisation directly, sell sealed cartons you scan and verify at your own site "
+                   f"before paying, and publish our prices in full. {brand} competes on delivery speed, which is a "
+                   f"genuine advantage when a job has stopped."),
+        "intro": (f"{blurb} This page sets out where each of us fits, so you can decide which one your particular "
+                  f"purchase calls for."),
+        "sections": [
+            ("What " + brand + " does well", f"<p>{funding} Quick commerce solves a real problem in building "
+             "materials: work stops because something ran out, and waiting until tomorrow costs more than the item. "
+             "If that is your situation, use it — we would.</p>"),
+            ("Where a distributor is the better fit",
+             "<p>The purchase this page is really about is different: the electrical material for a whole house, "
+             "going inside walls for thirty years. There, three things matter more than speed.</p>"
+             "<ul>"
+             "<li><strong>Authorisation held directly.</strong> Ask any seller for the brand certificate and check "
+             "the name matches their billing entity. A platform aggregating stock from several suppliers may not be "
+             "able to answer for the specific coil arriving at your door.</li>"
+             "<li><strong>Verification before payment.</strong> Every carton we deliver carries a QR outside and a "
+             "second QR inside the box. Scan both at your site; pay after. A genuine coil passes both, a refilled "
+             "carton passes only the outer one.</li>"
+             "<li><strong>Recourse in month eight.</strong> Ask who you call when something is wrong later, and "
+             "whether the relationship that makes a manufacturer claim possible still exists.</li>"
+             "</ul>"),
+            ("Side by side",
+             '<div class="ptable-wrap"><table class="ptable">'
+             f"<thead><tr><th></th><th>{brand}</th><th>Mount Cable India</th></tr></thead><tbody>"
+             "<tr><td>Model</td><td>Quick-commerce aggregator</td><td>Authorised distributor, 35 years</td></tr>"
+             "<tr><td>Speed</td><td>Very fast</td><td>Free next-day across Bangalore, often same day</td></tr>"
+             "<tr><td>Brand authorisation</td><td>Ask them</td><td>Held directly, shown on request</td></tr>"
+             "<tr><td>Verify before paying</td><td>Depends on the flow</td><td>Scan every carton, pay after</td></tr>"
+             "<tr><td>Prices</td><td>In app</td><td>Published in full on our buy page</td></tr>"
+             "<tr><td>Advice</td><td>Catalogue and chat support</td><td>People who have sold this for 35 years</td></tr>"
+             "<tr><td>Category</td><td>All building materials</td><td>Electrical only, deliberately</td></tr>"
+             "</tbody></table></div>"
+             '<p>Our full Finolex pricing is on the <a href="buy-finolex-wires.html">buy Finolex wires page</a> — '
+             "every size, grade and coil length, so you can compare without asking anyone for a quote.</p>"),
+            ("Ask all of us the same three questions",
+             "<ol><li>Are you an authorised dealer for this brand, and can I see the certificate?</li>"
+             "<li>Can I scan the QR on every carton before I pay?</li>"
+             "<li>If a coil is wrong in eight months, who fixes it?</li></ol>"
+             "<p>Ask us too. A seller who is comfortable with all three is a seller worth buying from, whoever "
+             "they are.</p>"),
+        ],
+        "faqs": [
+            (f"What is a good {brand} alternative in Bangalore?",
+             f"For electrical material and Finolex wires specifically, Mount Cable India is an authorised distributor "
+             f"with showrooms in Jayanagar and Chickpete, published prices, sealed QR-verifiable stock, free next-day "
+             f"delivery across Bangalore and payment on delivery after you have inspected the material."),
+            (f"Is {brand} good for buying electrical wire?",
+             f"It is genuinely good at speed, which matters when a job has stopped and you need an item immediately. "
+             f"For the electrical material of a whole house, ask about brand authorisation for the specific item and "
+             f"whether you can scan every carton before paying, because wire quality is invisible once installed."),
+            ("Why does authorisation matter for wire?",
+             "Because you cannot tell by looking whether a coil carries full-section copper. Under-specification "
+             "copper looks identical, weighs slightly less, and shows up years later as a circuit running warm inside "
+             "a wall. The chain the product travelled through is the thing worth verifying."),
+            ("Are your prices higher than an app?",
+             "Compare them — they are published in full on our buy page, so you do not have to ask. Larger quantities "
+             "are priced better than the listed rates. If another seller is far below, ask to see the carton, the "
+             "batch number and the QR verification result before paying."),
+            ("Do you deliver as fast?",
+             "Free next-day delivery across Bangalore, and often the same day, with no minimum order. If you need "
+             "something within the hour, a quick-commerce platform is the right tool and we will say so."),
+            ("Can I verify your stock before buying?",
+             "Yes, any single coil or the entire stock, at either showroom or at your site on delivery. We work on "
+             "pay on delivery so verification happens before money changes hands."),
+        ],
+    }
+
+SEO_PAGES.append(_alt_page(
+    "homerun-alternative-electrical-finolex",
+    "HomeRun",
+    "HomeRun, from ProjectHero, delivers construction materials across Bangalore in 60 minutes with cash on delivery and no minimum order.",
+    "HomeRun has raised around $7.6 million across two rounds and offers cement, plywood, tiles, paint, plumbing and electrical supplies with 60-minute delivery in Bangalore."))
+
+SEO_PAGES.append(_alt_page(
+    "fixxly-alternative-electrical-finolex",
+    "Fixxly",
+    "Fixxly brings the quick-commerce model to building materials, backed by Accel, Fireside Ventures and Lightspeed.",
+    "Fixxly raised $5.5 million (about Rs 52.6 crore) in a seed round from Accel, Fireside Ventures and Lightspeed India Partners, founded by DesignCafe co-founder Shezan Bhojani with Sachith Varma."))
+
 BLOG_DATE = "2026-06-02"
 BLOG_DATE_DISP = "June 2, 2026"
 
@@ -552,14 +648,20 @@ from data_blog_buying_guides import BUYING_GUIDE_BLOGS
 from data_blog_brand_guides import BRAND_GUIDE_BLOGS
 from data_blog_2026 import BLOG_2026
 from data_blog_finolex import BLOG_FINOLEX
+from data_blog_finolex_prices import BLOG_FINOLEX_PRICES
+from data_blog_vs import BLOG_VS
 from data_blog_karnataka import BLOG_KARNATAKA
 from data_blog_retrofit import RETROFIT
 from data_tools import TOOLS
+from data_finolex_mrp import (HOUSE_WIRE, LONG_LEN, FLEXIBLE, FLEX_COLS, TELEPHONE,
+                              TELEPHONE_COLS, CCTV, COAXIAL, SPEAKER_100M, LAN,
+                              FLAT_SUBMERSIBLE, SOLAR_DC, EFFECTIVE_FROM,
+                              MRP_IMAGES, TAX_NOTE, offer, house_wire_rows)
 from data_stories import (STORIES, ILLUSTRATIONS, PACK_PHOTOS, NARRATIVE,
                           FAQS as STORY_FAQS)
 from data_karnataka import KARNATAKA_CITIES
 from data_seo_dealers import DEALER_SEO_PAGES, TWO_QR as DEALER_TWO_QR
-BLOG = (BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
+BLOG = (BLOG_VS + BLOG_FINOLEX_PRICES + BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
         + BUYING_GUIDE_BLOGS + BRAND_GUIDE_BLOGS)
 SEO_PAGES = SEO_PAGES + DEALER_SEO_PAGES
 
@@ -2878,12 +2980,156 @@ function showNarr(code){{
     write(path, body)
 
 
-SITE_LASTMOD = "2026-08-01"
+
+# ---------- Finolex buy page ----------
+def _rupee(n):
+    return "\u20B9" + format(int(n), ",d")
+
+def _wire_table():
+    head = ("<thead><tr><th>Finolex product</th><th>Size</th><th>Coil</th>"
+            "<th>Price</th><th></th></tr></thead>")
+    rows = ""
+    for size in HOUSE_WIRE:
+        for label, length, mrp, price in house_wire_rows(size):
+            item = f"{label} {size} sq mm {length}"
+            msg = urllib.parse.quote(f"Hi Mount Cable, I want to order: {item}. Please confirm price and delivery.")
+            rows += (f"<tr><td>{html.escape(label)}</td><td>{size} sq mm</td><td>{length}</td>"
+                     f"<td class='off'>{_rupee(price)}</td>"
+                     f"<td><a class='buy-btn' href='https://wa.me/{WHATSAPP}?text={msg}'>Order</a></td></tr>")
+    return f'<div class="ptable-wrap"><table class="ptable buy-table">{head}<tbody>{rows}</tbody></table></div>'
+
+def _simple_table(title, data, cols=None, unit=""):
+    if cols:
+        head = "<thead><tr><th>Size</th>" + "".join(f"<th>{c}</th>" for c in cols) + "</tr></thead>"
+        rows = ""
+        for k, vals in data.items():
+            cells = ""
+            for v in vals:
+                cells += "<td>&mdash;</td>" if not v else f"<td class='off'>{_rupee(offer(v))}</td>"
+            rows += f"<tr><td>{k}{unit}</td>{cells}</tr>"
+    else:
+        head = "<thead><tr><th>Item</th><th>Price</th></tr></thead>"
+        rows = "".join(f"<tr><td>{k}</td><td class='off'>{_rupee(offer(v))}</td></tr>" for k, v in data.items())
+    return (f'<h3 class="buy-h3">{title}</h3><div class="ptable-wrap">'
+            f'<table class="ptable buy-table">{head}<tbody>{rows}</tbody></table></div>')
+
+def build_buy_finolex():
+    path = "buy-finolex-wires.html"
+    imgs = "".join(
+        f'<figure class="mrp-fig"><img src="assets/img/{f}" alt="{html.escape(a)}" loading="lazy" decoding="async">'
+        f'<figcaption>{html.escape(a)}</figcaption></figure>' for f, a in MRP_IMAGES)
+
+    faqs = [
+      ("How do I order Finolex wire from Mount Cable India?",
+       f"Tap Order against any line and it opens WhatsApp with that item filled in, or send your whole list to {PHONE}. We confirm price and stock, deliver free across Bangalore the next day and often the same day, and you pay after inspecting and QR-verifying the material at your site."),
+      ("Are these prices inclusive of tax?",
+       f"No — {TAX_NOTE} The WhatsApp quotation states the tax position explicitly, itemised line by line, so there is nothing to discover at delivery."),
+      ("Do prices change?",
+       f"Yes. A wire coil is mostly copper, and copper is an internationally traded commodity, so Finolex revises its list periodically and our prices move with it. The rates here are current to the list effective {EFFECTIVE_FROM} — WhatsApp for today's confirmed figure before you order."),
+      ("Is there a better rate for larger quantities?",
+       f"Yes. The prices shown are our standard rates; larger quantities are priced better. Send your full list to {PHONE} for an itemised quote within 60 minutes."),
+      ("Do I have to pay in advance?",
+       "No. We work on pay on delivery. The material reaches your site, you scan the outer QR on every carton and the inner QR inside the box, and you pay only once everything verifies."),
+      ("What if I only need one or two coils?",
+       "That is fine — there is no minimum order, and delivery across Bangalore is free either way."),
+      ("How do I know the wire I receive is genuine?",
+       "Every coil is QR-verifiable at your site before you pay. Scan the QR printed on the outside of the carton and then open the box and scan the second QR inside it. A genuine coil passes both; a genuine carton refilled with duplicate wire passes only the outer scan."),
+    ]
+    ld = faq_jsonld_html(faqs)
+    ld += breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Buy Finolex Wires", url_for(path))])
+    ld += ('<script type="application/ld+json">{"@context":"https://schema.org","@type":"OfferCatalog",'
+           '"name":"Finolex wires and cables","url":"' + url_for(path) + '",'
+           '"provider":{"@type":"Organization","name":"Mount Cable India","url":"' + SITE_URL + '/"}}</script>')
+
+    desc = ("Buy genuine Finolex wires and cables online in Bangalore — house wire, flexible, submersible, "
+            "LAN, coaxial and telephone cable with live prices and WhatsApp ordering. Free next-day delivery, "
+            "pay on delivery, every coil QR-verifiable at your site.")
+    body = head("Buy Finolex Wires Online in Bangalore | Mount Cable India", desc, path, extra_jsonld=ld)
+    body += header()
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Buy Finolex Wires</div>
+    <p class="eyebrow">Buy Online</p>
+    <h1>Buy genuine Finolex wires in Bangalore</h1>
+    <p class="lead-answer">Live prices on every Finolex line we stock — house wire, flexible, submersible, LAN, coaxial and telephone cable. Tap Order on any row to send it straight to us on WhatsApp. Free next-day delivery across Bangalore, pay on delivery, and every coil is QR-verifiable at your site before you pay. {TAX_NOTE}</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="https://wa.me/{WHATSAPP}?text=Hi%20Mount%20Cable%2C%20please%20quote%20for%20my%20Finolex%20list">Send your list on WhatsApp</a>
+      <a class="btn btn-ghost" href="quote.html">Upload a photo of your list</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="buy-note">
+      <h2>What you get at these prices</h2>
+      <p><strong>100% genuine Finolex stock, and you verify it yourself before paying.</strong> Every carton carries a QR on the outside and a second QR inside the box. Scan both at your own site. A genuine coil passes both; a genuine carton refilled with duplicate wire passes only the outer scan. If anything does not verify, it goes back on the vehicle and you pay nothing.</p>
+      <p>We have sold wire and cable in Bengaluru for {YEARS} years and we hold the authorisation to distribute what we sell. {TAX_NOTE} Larger quantities are priced better than the rates shown — send your full list and we will quote it.</p>
+      <p>Use our quote as your reference price anywhere in the city. There is no obligation to buy from us, and plenty of people ask us purely to cross-check another shop.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">House Wire</p>
+      <h2>Finolex house wire &mdash; all sizes and coil lengths</h2>
+      <p>Silver and Gold are 90 m coils, FR and FR-LSH also come in 180 m, and the long coil is 300 m for 1.0&ndash;2.5 sq mm and 200 m for 4.0 and 6.0 sq mm. MRP effective {EFFECTIVE_FROM}.</p>
+    </div>
+    {_wire_table()}
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Everything Else</p>
+      <h2>Flexible, submersible, networking and more</h2>
+      <p>Prices for every other Finolex range we stock. {TAX_NOTE}</p>
+    </div>
+    {_simple_table("Flexible multi-core cable (per coil)", FLEXIBLE, FLEX_COLS, " sq mm")}
+    {_simple_table("Flat submersible pump cable", FLAT_SUBMERSIBLE)}
+    {_simple_table("Telephone cable", TELEPHONE, TELEPHONE_COLS)}
+    {_simple_table("LAN cable (305 m box)", LAN)}
+    {_simple_table("Co-axial cable", COAXIAL)}
+    {_simple_table("CCTV Gen-Z cable", CCTV)}
+    {_simple_table("Speaker cable (100 m)", SPEAKER_100M)}
+    <p class="muted" style="margin-top:14px">Solar DC cable 4.0 sq mm is priced per metre &mdash; ask on WhatsApp for the current rate.</p>
+  </div>
+</section>
+
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">The Printed List</p>
+      <h2>Our Finolex MRP sheet, photographed</h2>
+      <p>This is the manufacturer's list our pricing is built from, effective {EFFECTIVE_FROM}. We publish it because a seller who will not show you where their numbers come from is a seller worth questioning.</p>
+    </div>
+    <div class="mrp-grid">{imgs}</div>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <div class="section-head"><p class="eyebrow">Questions, Answered</p><h2>Frequently asked questions</h2></div>
+    <div class="faq-list">{faq_details_html(faqs)}</div>
+    {quote_cta_block()}
+  </div>
+</section>
+"""
+    body += footer()
+    write(path, body)
+
+
+SITE_LASTMOD = "2026-08-03"
 
 def build_sitemap():
     paths = ["index.html", "quote.html", "blog.html", "review.html", "thank-you.html", "price-lists.html", "knowledge.html", "brand-selector.html", "tools.html"]
     paths += [tool_path(t) for t in TOOLS]
     paths.append("finolex-wires-stories.html")
+    paths.append("buy-finolex-wires.html")
     paths += [l[2] for l in LANGUAGES if l[0] != "en"]
     paths += [f"{p['slug']}.html" for p in SEO_PAGES]
     paths += [price_page_path(p) for p in PRICE_LISTS]
@@ -3059,6 +3305,7 @@ if __name__ == "__main__":
     build_brand_selector()
     build_review()
     build_stories()
+    build_buy_finolex()
     build_tools_hub()
     for t in TOOLS: build_tool(t)
     build_sitemap()
