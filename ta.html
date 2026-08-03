@@ -1,6 +1,28 @@
 <!doctype html>
 <html lang="ta">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-413119035"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-413119035');
+
+  // Google Ads conversion. Call from a link/button, or let thank-you.html fire it.
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') { window.location = url; }
+    };
+    gtag('event', 'conversion', {
+      'send_to': 'AW-413119035/-717COi_i9scELvk_sQB',
+      'transaction_id': '',
+      'event_callback': callback
+    });
+    return false;
+  }
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mount Cable India | பெங்களூருவின் No.1 எலெக்ட்ரிக்கல் சப்ளையர் — வயர்கள், சுவிட்சுகள், எர்த்திங், நெட்வொர்க்கிங் &amp; லைட்டிங்</title>
@@ -28,7 +50,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=47ecee7d">
+<link rel="stylesheet" href="assets/styles.css?v=ce48a366">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ElectronicsStore","name":"Mount Cable India",
 "image":"https://mountcable.com/assets/img/banner-finolex-wires.jpg","url":"https://mountcable.com",

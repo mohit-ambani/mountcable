@@ -555,6 +555,8 @@ from data_blog_finolex import BLOG_FINOLEX
 from data_blog_karnataka import BLOG_KARNATAKA
 from data_blog_retrofit import RETROFIT
 from data_tools import TOOLS
+from data_stories import (STORIES, ILLUSTRATIONS, PACK_PHOTOS, NARRATIVE,
+                          FAQS as STORY_FAQS)
 from data_karnataka import KARNATAKA_CITIES
 from data_seo_dealers import DEALER_SEO_PAGES, TWO_QR as DEALER_TWO_QR
 BLOG = (BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
@@ -728,6 +730,28 @@ def head(title, desc, path, css_prefix="", extra_jsonld="", html_lang="en", alte
     return f"""<!doctype html>
 <html lang="{html_lang}">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-413119035"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-413119035');
+
+  // Google Ads conversion. Call from a link/button, or let thank-you.html fire it.
+  function gtag_report_conversion(url) {{
+    var callback = function () {{
+      if (typeof(url) != 'undefined') {{ window.location = url; }}
+    }};
+    gtag('event', 'conversion', {{
+      'send_to': 'AW-413119035/-717COi_i9scELvk_sQB',
+      'transaction_id': '',
+      'event_callback': callback
+    }});
+    return false;
+  }}
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)}</title>
@@ -1788,6 +1812,17 @@ def build_thankyou():
   </div>
 </section>
 """
+    body += """
+<script>
+  (function () {
+    try {
+      if (sessionStorage.getItem('mc_quote_conv') === '1') return;
+      sessionStorage.setItem('mc_quote_conv', '1');
+    } catch (e) { /* private mode — still report once per load */ }
+    if (typeof gtag_report_conversion === 'function') { gtag_report_conversion(); }
+  })();
+</script>
+"""
     body += footer()
     write(path, body)
 
@@ -2640,11 +2675,155 @@ def build_tool(t):
     write(path, body)
 
 
+
+# ---------- Finolex Wires Stories ----------
+def story_img(fname, alt, folder, cls="", eager=False):
+    loading = 'fetchpriority="high"' if eager else 'loading="lazy"'
+    return (f'<img src="{folder}/{fname}" alt="{html.escape(alt)}" {loading} decoding="async"'
+            + (f' class="{cls}"' if cls else '') + '>')
+
+def build_stories():
+    path = "finolex-wires-stories.html"
+
+    packs = "".join(
+        f'<figure class="pack-fig">{story_img(f, a, "assets/img/finolex-packs")}'
+        f'<figcaption>{html.escape(a)}</figcaption></figure>'
+        for f, a in PACK_PHOTOS)
+
+    illus = "".join(
+        f'<figure class="story-fig">{story_img(f, a, "assets/img/stories")}'
+        f'<figcaption>{html.escape(a)}</figcaption></figure>'
+        for f, a in ILLUSTRATIONS)
+
+    tabs = "".join(
+        f'<button type="button" class="lang-tab{" active" if i == 0 else ""}" '
+        f'data-lang="{code}" onclick="showNarr(\'{code}\')">{html.escape(v["label"])}</button>'
+        for i, (code, v) in enumerate(NARRATIVE.items()))
+    panels = "".join(
+        f'<div class="narr-panel{" active" if i == 0 else ""}" id="narr-{code}">{v["html"]}</div>'
+        for i, (code, v) in enumerate(NARRATIVE.items()))
+
+    # Real customer stories. Deliberately renders an honest collection state when
+    # none have been gathered yet — never padded with invented entries.
+    if STORIES:
+        cards = ""
+        for st in STORIES:
+            photo = (f'<div class="story-photo">{story_img(st["photo"], st["name"] + " — Mount Cable India customer", "assets/img/stories-real")}</div>'
+                     if st.get("photo") else "")
+            quotes = "".join(
+                f'<blockquote lang="{lang}"><p>{html.escape(st[lang])}</p></blockquote>'
+                for lang in ("en", "kn", "hi") if st.get(lang))
+            meta = " · ".join(x for x in [st.get("role"), st.get("area"), st.get("bought")] if x)
+            cards += (f'<article class="story-card">{photo}<div class="story-body">{quotes}'
+                      f'<p class="story-meta"><strong>{html.escape(st["name"])}</strong>'
+                      + (f' · {html.escape(meta)}' if meta else "") + '</p></div></article>')
+        stories_block = f'<div class="story-grid">{cards}</div>'
+        count_line = f"{len(STORIES)} customer stories, published with permission."
+    else:
+        cards = ""
+        stories_block = f'''<div class="story-empty">
+      <h3>We are collecting these properly</h3>
+      <p>This section will fill with real customers — their own words, their first name, their area, and their photograph if they are happy to share it. Every one will be someone who actually bought from us and actually gave permission.</p>
+      <p>We could have filled this page in an afternoon with invented quotes and stock faces. Most sites do. We would rather it took a few months and was true, because a page of fake testimonials is exactly the kind of thing this page is warning you about.</p>
+      <p><strong>Bought Finolex wire from us?</strong> Send us a line about why on WhatsApp and we will ask before publishing anything.</p>
+      <div class="cta-actions">
+        <a class="btn btn-gold" href="https://wa.me/{WHATSAPP}?text=Hi%20Mount%20Cable%2C%20I%27d%20like%20to%20share%20my%20experience%20of%20buying%20Finolex%20wires%20from%20you.">Share your story on WhatsApp</a>
+        <a class="btn btn-outline" href="{REVIEW_URL}" target="_blank" rel="noopener">Read our Google reviews</a>
+      </div>
+    </div>'''
+        count_line = "Real customer stories, published only with permission."
+
+    faq_html = faq_details_html(STORY_FAQS)
+    ld = faq_jsonld_html(STORY_FAQS)
+    ld += breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Finolex Wires Stories", url_for(path))])
+
+    desc = ("Why customers across Bangalore buy their Finolex wires from Mount Cable India — "
+            "what to check before you pay, how to scan the outer and inner QR on every coil, "
+            "and real customer stories in English, Kannada and Hindi.")
+    body = head("Finolex Wires Stories | Why Customers Buy From Mount Cable India", desc, path,
+                extra_jsonld=ld, og_image=f"{SITE_URL}/assets/img/stories/{ILLUSTRATIONS[0][0]}")
+    body += header()
+    body += f'''
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Finolex Wires Stories</div>
+    <p class="eyebrow">Finolex Wires Stories</p>
+    <h1>Why people buy their Finolex wires from us</h1>
+    <p class="lead-answer">Most customers who buy Finolex wire from Mount Cable India are buying it for the second time — they bought once elsewhere, something went wrong or a doubt was never settled, and they came looking for a dealer who would let them scan every coil before paying. This page tells you exactly what to check, whether you buy from us or from anyone else.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a>
+      <a class="btn btn-ghost" href="{REVIEW_URL}" target="_blank" rel="noopener">Read our Google reviews</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <div class="lang-tabs">{tabs}</div>
+    <div class="post-body narr-wrap">{panels}</div>
+  </div>
+</section>
+
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">What Genuine Looks Like</p>
+      <h2>The packs we actually sell</h2>
+      <p>These are photographs of real Finolex stock from our own godown — not renders, not catalogue art. Look at the print quality, the grade and size markings, and the QR on the wrapper. That QR is the first of the two checks.</p>
+    </div>
+    <div class="pack-grid">{packs}</div>
+    <p class="center muted" style="margin-top:20px">Scan the QR on the outside, then open the box and scan the one inside. A refilled carton passes the first and fails the second — the full method is in our <a href="blog/original-finolex-wire-checklist-before-paying.html">12-point checklist</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Customer Stories</p>
+      <h2>In their own words</h2>
+      <p>{count_line}</p>
+    </div>
+    {stories_block}
+  </div>
+</section>
+
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Illustrations</p>
+      <h2>The people we supply</h2>
+      <p>Homeowners, electricians, contractors and builders across Bengaluru and Karnataka. <strong>The photographs in this section are illustrations, not customer photographs</strong> — we label them plainly rather than passing them off as customers.</p>
+    </div>
+    <div class="story-illus">{illus}</div>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <div class="section-head"><p class="eyebrow">Questions, Answered</p><h2>Frequently asked questions</h2></div>
+    <div class="faq-list">{faq_html}</div>
+    {quote_cta_block()}
+  </div>
+</section>
+<script>
+function showNarr(code){{
+  document.querySelectorAll('.narr-panel').forEach(function(p){{p.classList.remove('active');}});
+  document.querySelectorAll('.lang-tab').forEach(function(t){{t.classList.remove('active');}});
+  var panel=document.getElementById('narr-'+code); if(panel) panel.classList.add('active');
+  var tab=document.querySelector('.lang-tab[data-lang="'+code+'"]'); if(tab) tab.classList.add('active');
+}}
+</script>
+'''
+    body += footer()
+    write(path, body)
+
+
 SITE_LASTMOD = "2026-08-01"
 
 def build_sitemap():
     paths = ["index.html", "quote.html", "blog.html", "review.html", "thank-you.html", "price-lists.html", "knowledge.html", "brand-selector.html", "tools.html"]
     paths += [tool_path(t) for t in TOOLS]
+    paths.append("finolex-wires-stories.html")
     paths += [l[2] for l in LANGUAGES if l[0] != "en"]
     paths += [f"{p['slug']}.html" for p in SEO_PAGES]
     paths += [price_page_path(p) for p in PRICE_LISTS]
@@ -2819,6 +2998,7 @@ if __name__ == "__main__":
     for k in KNOWLEDGE: build_knowledge_article(k)
     build_brand_selector()
     build_review()
+    build_stories()
     build_tools_hub()
     for t in TOOLS: build_tool(t)
     build_sitemap()
