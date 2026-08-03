@@ -48,7 +48,7 @@ KNOWLEDGE = [
         "slug": "polycab",
         "name": "Polycab",
         "tag": "Brand Guide",
-        "title": "Polycab Wires &amp; FMEG: Complete Brand Guide (2026) — Ranges, Genuine Checks | Mount Cable India",
+        "title": "Polycab Wires & FMEG: Complete Brand Guide (2026) — Ranges, Genuine Checks | Mount Cable India",
         "desc": "A practical Polycab guide for Bangalore home builders: FR and FRLS wire ranges, fans and FMEG lines, honest positioning, genuine-product checks and pricing.",
         "excerpt": "Polycab is India's largest wire and cable maker and now a full electrical brand. Here is what to buy from Polycab and how to make sure it is genuine.",
         "body": """<p>Polycab is the largest wires and cables company in India by sales, and over the last decade it has grown into a full electrical brand — fans, switches, lighting, pumps and conduit alongside its core cable business. For a home builder, that means you can specify a large part of your electrical bill of materials from one brand.</p>
@@ -88,7 +88,7 @@ KNOWLEDGE = [
         "slug": "kei",
         "name": "KEI",
         "tag": "Brand Guide",
-        "title": "KEI Wires &amp; Cables: Complete Brand Guide (2026) — Ranges, Genuine Checks | Mount Cable India",
+        "title": "KEI Wires & Cables: Complete Brand Guide (2026) — Ranges, Genuine Checks | Mount Cable India",
         "desc": "KEI wires and cables explained for Bangalore home builders: house wire ranges, where KEI fits on quality and price, genuine-stock checks and local buying.",
         "excerpt": "KEI is a serious cable manufacturer with strong industrial credentials. Here is where KEI fits for home wiring and how to buy genuine stock in Bangalore.",
         "body": """<p>KEI Industries is one of India's major cable manufacturers, with deep roots in industrial and institutional projects — the kind of buyer who tests cable before paying for it. That engineering-first background is exactly why KEI house wire is a smart pick for homeowners who care about what is inside the insulation.</p>
@@ -167,7 +167,7 @@ KNOWLEDGE = [
         "slug": "v-guard",
         "name": "V-Guard",
         "tag": "Brand Guide",
-        "title": "V-Guard Wires &amp; Electricals: Complete Brand Guide (2026) — Ranges, Genuine Checks | Mount Cable India",
+        "title": "V-Guard Wires & Electricals: Complete Brand Guide (2026) — Ranges, Genuine Checks | Mount Cable India",
         "desc": "V-Guard brand guide for Bangalore homes: house wires, stabilizers, fans, water heaters and pumps, where V-Guard fits on price, and genuine-product checks.",
         "excerpt": "V-Guard grew from voltage stabilizers into a full home-electrical brand strong in South India. Here is what to buy from V-Guard and how to verify it.",
         "body": """<p>V-Guard is a household name in South India. Many Bangalore homes already own a V-Guard product — typically a voltage stabilizer or water heater — and the same brand now supplies house wires, fans, pumps and switchgear. For a home builder in Karnataka, V-Guard's service network in this region is a real advantage.</p>

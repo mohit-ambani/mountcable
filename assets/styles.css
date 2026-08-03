@@ -341,6 +341,10 @@ a.prod:hover .go{color:var(--blue)}
 .post-body ul{margin:0 0 18px;padding-left:22px}
 .post-body li{margin:9px 0}
 .post-body a{color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.post-body ol{margin:0 0 18px;padding-left:22px}
+.post-body h3{font-size:19px;margin:26px 0 10px}
+.lead-answer{font-size:18.5px;line-height:1.7;color:var(--navy);background:var(--bg);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:18px 22px;margin:0 0 26px}
+.lead-answer strong{font-weight:700}
 .post-cta{margin-top:44px;background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#fff;border-radius:var(--radius);padding:34px;text-align:center}
 .post-cta h3{color:#fff;font-size:23px;margin-bottom:10px}
 .post-cta p{color:#C7D3E6;margin:0 auto 22px;max-width:520px}
