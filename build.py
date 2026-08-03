@@ -656,7 +656,7 @@ from data_tools import TOOLS
 from data_finolex_mrp import (HOUSE_WIRE, LONG_LEN, FLEXIBLE, FLEX_COLS, TELEPHONE,
                               TELEPHONE_COLS, CCTV, COAXIAL, SPEAKER_100M, LAN,
                               FLAT_SUBMERSIBLE, SOLAR_DC, EFFECTIVE_FROM,
-                              MRP_IMAGES, TAX_NOTE, offer, house_wire_rows)
+                              TAX_NOTE, offer, house_wire_rows)
 from data_stories import (STORIES, ILLUSTRATIONS, PACK_PHOTOS, NARRATIVE,
                           FAQS as STORY_FAQS)
 from data_karnataka import KARNATAKA_CITIES
@@ -3015,10 +3015,6 @@ def _simple_table(title, data, cols=None, unit=""):
 
 def build_buy_finolex():
     path = "buy-finolex-wires.html"
-    imgs = "".join(
-        f'<figure class="mrp-fig"><img src="assets/img/{f}" alt="{html.escape(a)}" loading="lazy" decoding="async">'
-        f'<figcaption>{html.escape(a)}</figcaption></figure>' for f, a in MRP_IMAGES)
-
     faqs = [
       ("How do I order Finolex wire from Mount Cable India?",
        f"Tap Order against any line and it opens WhatsApp with that item filled in, or send your whole list to {PHONE}. We confirm price and stock, deliver free across Bangalore the next day and often the same day, and you pay after inspecting and QR-verifying the material at your site."),
@@ -3027,7 +3023,7 @@ def build_buy_finolex():
       ("Do prices change?",
        f"Yes. A wire coil is mostly copper, and copper is an internationally traded commodity, so Finolex revises its list periodically and our prices move with it. The rates here are current to the list effective {EFFECTIVE_FROM} — WhatsApp for today's confirmed figure before you order."),
       ("Is there a better rate for larger quantities?",
-       f"Yes. The prices shown are our standard rates; larger quantities are priced better. Send your full list to {PHONE} for an itemised quote within 60 minutes."),
+       f"Yes. The prices shown are our current rates; larger quantities are priced better. Send your full list to {PHONE} for an itemised quote within 60 minutes."),
       ("Do I have to pay in advance?",
        "No. We work on pay on delivery. The material reaches your site, you scan the outer QR on every carton and the inner QR inside the box, and you pay only once everything verifies."),
       ("What if I only need one or two coils?",
@@ -3100,16 +3096,6 @@ def build_buy_finolex():
   </div>
 </section>
 
-<section class="bg-soft">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">The Printed List</p>
-      <h2>Our Finolex MRP sheet, photographed</h2>
-      <p>This is the manufacturer's list our pricing is built from, effective {EFFECTIVE_FROM}. We publish it because a seller who will not show you where their numbers come from is a seller worth questioning.</p>
-    </div>
-    <div class="mrp-grid">{imgs}</div>
-  </div>
-</section>
 
 <section>
   <div class="container narrow">

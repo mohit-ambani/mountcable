@@ -2,14 +2,14 @@
 """Finolex price-keyword blog cluster, generated from the real MRP list.
 
 Keyword volumes from the owner's Google Keyword Planner export (Aug 2026):
-  finolex wire price ...................... 5,000/mo  (High competition)
+  finolex wire price ...................... 5,000/mo (High competition)
   finolex wire price list ................. 5,000/mo
   finolex 2.5 mm wire price ............... 5,000/mo
   finolex 1.5 mm wire price ............... 5,000/mo
   cost of finolex wire .................... 5,000/mo
   finolex 1 mm / 1 sq mm / 0.75 / 0.5 ..... 500/mo each
   4 mm / 6 mm finolex wire price .......... 500/mo each
-  finolex 1.5 mm wire price 90 / 180 meter  500/mo each
+  finolex 1.5 mm wire price 90 / 180 meter 500/mo each
 
 Every price on every page comes from data_finolex_mrp.py, so the blogs, the buy
 page and the price-list pages can never drift apart. Discounts are always
@@ -28,19 +28,19 @@ SIZE_INFO = {
     "0.75": dict(use="light points, fan points and low-load lighting circuits",
                  mcb="6A, Curve B", rooms="lighting circuits in smaller rooms",
                  qty="3–5 coils in a 2BHK", note="Below 1.0 sq mm is only for lighting; never use it for a socket circuit."),
-    "1.0":  dict(use="light and fan points, and short 6A lighting runs",
+    "1.0": dict(use="light and fan points, and short 6A lighting runs",
                  mcb="6A, Curve B", rooms="ceiling lights, fans, wall lights",
                  qty="3–4 coils in a 2BHK, 5–7 in a 3BHK", note="The most common lighting-circuit size in Indian homes."),
-    "1.5":  dict(use="light circuits and 6A socket points",
+    "1.5": dict(use="light circuits and 6A socket points",
                  mcb="6A–10A, Curve B", rooms="lighting, bedroom sockets, fan regulators",
                  qty="4–6 coils in a 2BHK, 7–10 in a 3BHK", note="The highest-volume house wire size — most homes use more 1.5 than anything else."),
-    "2.5":  dict(use="16A power sockets, kitchen points and geysers",
+    "2.5": dict(use="16A power sockets, kitchen points and geysers",
                  mcb="16A, Curve C", rooms="kitchen, fridge, washing machine, geyser",
                  qty="3–5 coils in a 2BHK, 5–8 in a 3BHK", note="Anything intended for a fridge, microwave or washing machine belongs on 2.5, not 1.5."),
-    "4.0":  dict(use="air conditioners, larger geysers and heavy appliance circuits",
+    "4.0": dict(use="air conditioners, larger geysers and heavy appliance circuits",
                  mcb="20A, Curve C", rooms="AC points, 3000W geysers, ovens",
                  qty="1–2 coils in a 2BHK, 2–4 in a 3BHK", note="Every AC and large geyser should have its own dedicated 4.0 sq mm circuit."),
-    "6.0":  dict(use="the mains run from the energy meter to the distribution board",
+    "6.0": dict(use="the mains run from the energy meter to the distribution board",
                  mcb="40A–63A incomer", rooms="meter to DB, sub-mains to a floor DB",
                  qty="1 coil in a 2BHK, 1–2 in a 3BHK", note="Often the single longest run in the house, so check voltage drop as well as current."),
 }
@@ -99,11 +99,10 @@ def _size_post(size, slug, title, excerpt, keywords_extra, hero):
     """One price page per conductor size, with size-specific engineering context."""
     info = SIZE_INFO[size]
     d = HOUSE_WIRE[size]
-    silver, gold, frls = offer(d["silver"]), offer(d["gold"]), offer(d["frls90"])
-    body = f"""<p><strong>A Finolex {size} sq mm 90 m coil costs {_rs(d['silver'])} at MRP for the Silver FR range and
-{_rs(d['gold'])} for Gold FR. At Mount Cable India you pay from {_rs(silver)} and {_rs(gold)} respectively —
-a minimum our standard rate, with larger quantities earning more.</strong> FR-LSH in the same size is
-{_rs(d['frls90'])} at MRP and from {_rs(frls)} with us. Prices below are from the Finolex list effective {EFFECTIVE_FROM}.</p>
+    silver = offer(d["silver"], "silver")
+    gold = offer(d["gold"], "gold")
+    frls = offer(d["frls90"], "frls90")
+    body = f"""<p><strong>A Finolex {size} sq mm 90 m coil is {_rs(silver)} in Silver FR and {_rs(gold)} in Gold FR at Mount Cable India, with FR-LSH at {_rs(frls)}. Larger quantities are priced better.</strong> Every pack and coil length is listed below, current to {EFFECTIVE_FROM}. {TAX_NOTE}</p>
 
 <h2>Finolex {size} sq mm price — every pack</h2>
 {_size_table(size)}
@@ -123,7 +122,7 @@ purely because of voltage drop.</p>
 
 <h2>Why the price moves</h2>
 <p>A wire coil is mostly copper, and copper is an internationally traded commodity priced in dollars. Finolex revises
-MRP periodically as copper and the rupee move, so the figures above are accurate to the {EFFECTIVE_FROM} list and will
+its list periodically as copper and the rupee move, so the figures above are current to {EFFECTIVE_FROM} and will
 change again. That is also why no honest seller publishes a single fixed rate — the full explanation is in
 <a href="copper-price-and-wire-rates-explained.html">why wire prices keep changing</a>.</p>
 
@@ -139,19 +138,17 @@ and fails the second.</li>
 <li>Take a <strong>GST invoice in your own name</strong> listing brand, size, grade and quantity.</li>
 </ul>
 
-<p>Order any size at our standard rate on our <a href="../buy-finolex-wires.html">buy Finolex wires page</a>.</p>
+<p>Order any size at our current prices on our <a href="../buy-finolex-wires.html">buy Finolex wires page</a>.</p>
 {CTA}"""
     faqs = [
         (f"What is the price of Finolex {size} sq mm wire?",
-         f"A 90 m coil is {_rs(d['silver']).replace('&#8377;','Rs ')} at MRP for Silver FR and {_rs(d['gold']).replace('&#8377;','Rs ')} for Gold FR, on the list effective {EFFECTIVE_FROM}. Mount Cable India sells from Rs {silver:,} and Rs {gold:,} respectively, a minimum our standard rate, with larger quantities earning more."),
+         f"At Mount Cable India a 90 m coil is Rs {silver:,} in Silver FR, Rs {gold:,} in Gold FR and Rs {frls:,} in FR-LSH, current to {EFFECTIVE_FROM}. Larger quantities are priced better. Taxes extra as applicable. WhatsApp your list for a confirmed quote within 60 minutes."),
         (f"What is Finolex {size} sq mm wire used for?",
          f"It is the size for {info['use']} — in a normal house, {info['rooms']}. The matching protection is a {info['mcb']} breaker. {info['note']}"),
         (f"How many coils of {size} sq mm wire does a house need?",
          f"Typically {info['qty']}. The real number depends on your point count and the run length from the distribution board, so use the wire quantity calculator rather than a rule of thumb, and remember that a long run may need the next size up because of voltage drop."),
-        (f"Is our standard rate a genuine discount?",
-         f"Yes, because MRP is not the market rate. Finolex MRP is set well above the price wire actually transacts at in the trade, so our standard rate lands at roughly the normal Bangalore rate for genuine stock rather than below it. A seller quoting 15% or more below the real market rate is a different matter, and that does signal copper shortfall, a short coil or counterfeit material."),
         (f"What is the difference between Finolex Silver, Gold and FR-LSH in {size} sq mm?",
-         f"Silver and Gold are both 90 m coils of flame-retardant wire, with Gold the higher line — {_rs(d['gold']).replace('&#8377;','Rs ')} against {_rs(d['silver']).replace('&#8377;','Rs ')} at MRP. FR-LSH at {_rs(d['frls90']).replace('&#8377;','Rs ')} is flame retardant low smoke and halogen, which matters in flats and enclosed stairwells where smoke, not flame, is what disables people."),
+         f"Silver and Gold are both 90 m coils of flame-retardant wire, with Gold the higher line — Rs {gold:,} against Rs {silver:,} with us. FR-LSH at Rs {frls:,} is flame retardant low smoke and halogen, which matters in flats and enclosed stairwells where smoke, not flame, is what disables people."),
         ("How do I check the coil I receive is genuine?",
          "Buy sealed cartons, scan the QR printed on the outside of the carton and then open the box and scan the second QR inside it. A genuine coil passes both; a genuine carton refilled with duplicate wire passes only the outer scan. Then check the printed markings along the insulation and take a GST invoice in your own name."),
     ]
@@ -188,10 +185,9 @@ BLOG_FINOLEX_PRICES = [
 
 
 # ---------------------------------------------------------------- hub pages
-_hub_body = f"""<p><strong>The full Finolex wire price list below is taken from the manufacturer's MRP sheet effective
-{EFFECTIVE_FROM}, with Mount Cable India's price alongside it at a minimum our standard rate.</strong> Larger
-quantities earn more. Every figure can be checked against the photographed MRP sheet on our
-<a href="../buy-finolex-wires.html">buy Finolex wires page</a>.</p>
+_hub_body = f"""<p><strong>The full Finolex wire price list below shows Mount Cable India's current prices, effective
+{EFFECTIVE_FROM}.</strong> Larger
+quantities are priced better. Order any size on our <a href="../buy-finolex-wires.html">buy Finolex wires page</a>.</p>
 
 <h2>Finolex house wire price list — 90 m coils</h2>
 {_all_sizes_table()}
@@ -225,13 +221,11 @@ out coil quantities with the <a href="../tools/wire-quantity-calculator.html">wi
 
 _hub_faqs = [
     ("What is the Finolex wire price list for 2026?",
-     f"On the manufacturer's list effective {EFFECTIVE_FROM}, a 90 m Silver FR coil runs from Rs {HOUSE_WIRE['1.0']['silver']:,} for 1.0 sq mm to Rs {HOUSE_WIRE['6.0']['silver']:,} for 6.0 sq mm, with Gold FR and FR-LSH priced above that and 180 m and 300 m coils priced proportionally. Mount Cable India sells every line at a minimum our standard rate off those MRP figures."),
+     f"Mount Cable India's Finolex prices run from about Rs {offer(HOUSE_WIRE['1.0']['silver'],'silver'):,} for a 90 m Silver FR coil in 1.0 sq mm to Rs {offer(HOUSE_WIRE['6.0']['silver'],'silver'):,} in 6.0 sq mm, with Gold FR, Ultra and FR-LSH above that and 180 m and 300 m coils priced proportionally. Full table above, current to {EFFECTIVE_FROM}. {TAX_NOTE}"),
     ("How much does Finolex wire cost in Bangalore?",
-     f"At a minimum our standard rate, a 90 m Silver FR coil works out from about Rs {offer(HOUSE_WIRE['1.0']['silver']):,} for 1.0 sq mm, Rs {offer(HOUSE_WIRE['1.5']['silver']):,} for 1.5 sq mm and Rs {offer(HOUSE_WIRE['2.5']['silver']):,} for 2.5 sq mm. Larger quantities earn a bigger discount, so send your full list for an itemised quote."),
-    ("Why is Finolex MRP higher than the selling price?",
-     "Because MRP in Indian wire is a ceiling rather than a transacting price — it is set well above the rate wire actually changes hands at in the trade. Every seller quotes below MRP; the number that matters is the final rate, which is what we publish. Compare our figure against any other quotation in the city."),
+     f"A 90 m Silver FR coil is about Rs {offer(HOUSE_WIRE['1.0']['silver'],'silver'):,} for 1.0 sq mm, Rs {offer(HOUSE_WIRE['1.5']['silver'],'silver'):,} for 1.5 sq mm and Rs {offer(HOUSE_WIRE['2.5']['silver'],'silver'):,} for 2.5 sq mm at Mount Cable India. Larger quantities are priced better, so send your full list for an itemised quote."),
     ("What is the difference between Finolex Silver and Gold?",
-     f"Both are 90 m coils of flame-retardant house wire; Gold is the higher line and carries a higher MRP — for example Rs {HOUSE_WIRE['1.5']['gold']:,} against Rs {HOUSE_WIRE['1.5']['silver']:,} in 1.5 sq mm. FR-LSH is a separate low-smoke, halogen-reduced grade that matters in flats and enclosed stairwells."),
+     f"Both are 90 m coils of flame-retardant house wire and Gold is the higher line — Rs {offer(HOUSE_WIRE['1.5']['gold'],'gold'):,} against Rs {offer(HOUSE_WIRE['1.5']['silver'],'silver'):,} in 1.5 sq mm with us. FR-LSH is a separate low-smoke, halogen-reduced grade that matters in flats and enclosed stairwells."),
     ("Which Finolex coil length is most economical?",
      "Longer coils cost less per metre and waste less at joints. FR and FR-LSH come in 180 m as well as 90 m, and in a long coil that is 300 m for 1.0 to 2.5 sq mm and 200 m for 4.0 and 6.0 sq mm. If a single size needs four or more 90 m coils, ask for the longer pack."),
     ("Do these prices include GST?",
@@ -241,7 +235,7 @@ _hub_faqs = [
 BLOG_FINOLEX_PRICES += [
     ("finolex-wire-price-list-bangalore-2026",
      "Finolex Wire Price List 2026: Full Current Prices in Bangalore",
-     f"The complete Finolex wire price list effective {EFFECTIVE_FROM} — Prices for Silver, Gold, Ultra, FR and FR-LSH in 90 m, 180 m, 200 m and 300 m coils, with Mount Cable India's price at our standard rate.",
+     f"The complete Finolex wire price list effective {EFFECTIVE_FROM} — Prices for Silver, Gold, Ultra, FR and FR-LSH in 90 m, 180 m, 200 m and 300 m coils, with Mount Cable India's price at our current prices.",
      "Pricing", _hub_body, D, _hub_faqs,
      ("wire-coils-warehouse-electrical-distributor.jpg",
       "Finolex wire coils across all sizes stocked at Mount Cable India in Bangalore"), None),
@@ -250,8 +244,7 @@ BLOG_FINOLEX_PRICES += [
      "Cost of Finolex Wire for a House in Bangalore (2026)",
      "What Finolex wire actually costs to wire a 2BHK, 3BHK or villa — coil quantities by size, current prices, and the total wire budget.",
      "Pricing",
-     f"""<p><strong>Wiring a 2BHK with genuine Finolex costs roughly &#8377;28,000&ndash;&#8377;45,000 in wire alone at our
-our standard rate-off-MRP rate, and a 3BHK &#8377;48,000&ndash;&#8377;78,000.</strong> The spread comes from grade
+     f"""<p><strong>Wiring a 2BHK with genuine Finolex costs roughly &#8377;28,000&ndash;&#8377;45,000 in wire alone at our current prices, and a 3BHK &#8377;48,000&ndash;&#8377;78,000.</strong> The spread comes from grade
 (Silver, Gold or FR-LSH), coil length and how many air conditioner circuits the house has. Below is the build-up, size
 by size, so you can price your own list rather than accept a lump sum.</p>
 
@@ -289,7 +282,7 @@ list</a> and the <a href="../tools/house-wiring-cost-calculator.html">house wiri
 {CTA}""",
      D,
      [("How much does Finolex wire cost for a 2BHK house?",
-       f"Roughly Rs 28,000 to 45,000 in wire alone at a our standard rate rate, depending on whether you choose Silver, Gold or FR-LSH and how many air conditioner circuits the house has. That is wire only — conduit, switches, switchgear, earthing, fans and lights are separate."),
+       f"Roughly Rs 28,000 to 45,000 in wire alone at a our current prices rate, depending on whether you choose Silver, Gold or FR-LSH and how many air conditioner circuits the house has. That is wire only — conduit, switches, switchgear, earthing, fans and lights are separate."),
       ("How much Finolex wire does a 3BHK need?",
        "Typically 24 to 36 coils of 90 m across all sizes for around 110 points, including earth wire. The exact number depends on point count, floor layout and the distance from the meter to the distribution board, which alone can consume a full coil of 6.0 sq mm."),
       ("How can I reduce the wire cost without compromising safety?",
@@ -299,7 +292,7 @@ list</a> and the <a href="../tools/house-wiring-cost-calculator.html">house wiri
       ("Does the wire cost include labour?",
        "No. These are material figures only. Wiring labour in Bangalore is usually quoted per point or as a percentage of material value, and you should ask for it as a separate line so you can compare contractors properly."),
       ("How do I get an exact figure for my house?",
-       f"Send your list or your contractor's estimate to WhatsApp {PH} and you will have an itemised quote within 60 minutes, at a minimum our standard rate with more on larger quantities. There is no obligation to buy.")],
+       f"Send your list or your contractor's estimate to WhatsApp {PH} and you will have an itemised quote within 60 minutes, at our current prices with more on larger quantities. There is no obligation to buy.")],
      ("happy-homeowner-couple-new-house-wiring.jpg",
       "Homeowners planning the Finolex wire budget for their new house in Bangalore"), None),
 ]
@@ -319,8 +312,7 @@ BLOG_FINOLEX_PRICES += [
      "Pricing",
      f"""<p><strong>Finolex does not make 0.75 sq mm or 0.5 sq mm in the house-wire range. These are flexible
 multi-core cable sizes, used for appliance leads, extension boards and light fittings — not for wiring a wall.</strong>
-A 0.75 sq mm single-core flexible coil is {_rs(FLEXIBLE['0.75'][0])} at MRP and from
-{_rs(offer(FLEXIBLE['0.75'][0]))} with us, a minimum our standard rate off. If you were quoted 0.75 sq mm for a lighting
+A 0.75 sq mm single-core flexible coil is {_rs(offer(FLEXIBLE['0.75'][0]))} at Mount Cable India. If you were quoted 0.75 sq mm for a lighting
 circuit in a house, that is a specification error worth correcting before the wire goes into the wall.</p>
 
 <h2>Finolex 0.75 sq mm flexible cable price</h2>
@@ -356,17 +348,17 @@ the reverse, is a common and avoidable mistake — the difference is explained i
 {CTA}""",
      D,
      [("What is the price of Finolex 0.75 mm wire?",
-       f"A 0.75 sq mm single-core flexible coil is Rs {FLEXIBLE['0.75'][0]:,} at MRP and from Rs {offer(FLEXIBLE['0.75'][0]):,} at Mount Cable India, a minimum our standard rate off. Note that 0.75 sq mm is a flexible-cable size — Finolex does not make it in the house-wire range."),
+       f"A 0.75 sq mm single-core flexible coil is Rs {offer(FLEXIBLE['0.75'][0]):,} at Mount Cable India, taxes extra as applicable. Note that 0.75 sq mm is a flexible-cable size — Finolex does not make it in the house-wire range."),
       ("Is 0.75 sq mm wire suitable for house wiring?",
        "No. It is a flexible-cable size for appliance leads, extension boards and light fittings, not for concealed circuits in a wall. The smallest size used for house lighting circuits in India is 1.0 sq mm, and most homes use 1.5 sq mm for lighting and 6A socket points."),
       ("What is the price of Finolex 0.5 mm wire?",
-       f"A 0.5 sq mm single-core flexible coil is Rs {FLEXIBLE['0.5'][0]:,} at MRP and from Rs {offer(FLEXIBLE['0.5'][0]):,} with us. Like 0.75 sq mm it is a flexible-cable size for leads and fittings rather than a house-wiring size."),
+       f"A 0.5 sq mm single-core flexible coil is Rs {offer(FLEXIBLE['0.5'][0]):,} at Mount Cable India. Like 0.75 sq mm it is a flexible-cable size for leads and fittings rather than a house-wiring size."),
       ("What is the difference between flexible cable and house wire?",
        "House wire is single-core with relatively few strands and is built to sit still inside conduit for decades. Flexible cable has many fine strands and a tougher sheath so it can bend and be handled repeatedly. They are different products for different jobs and are not interchangeable."),
       ("My electrician quoted 0.75 sq mm for lighting — is that wrong?",
        "It is a specification error worth correcting before the wire goes into the wall. Indian house lighting circuits use 1.0 sq mm at minimum and more commonly 1.5 sq mm. Concealed circuits should be single-core house wire of the correct size, protected by a matching MCB."),
       ("Do you stock Finolex flexible cable in Bangalore?",
-       f"Yes, in 1, 2, 3 and 4 core across 0.5 to 16 sq mm, all at a minimum our standard rate. Send your list to WhatsApp {PH} for an itemised quote within 60 minutes, with free next-day delivery across Bangalore.")],
+       f"Yes, in 1, 2, 3 and 4 core across 0.5 to 16 sq mm, all current to that date. Send your list to WhatsApp {PH} for an itemised quote within 60 minutes, with free next-day delivery across Bangalore.")],
      ("shop-owner-explaining-wire-quality.jpg", "Explaining the difference between flexible cable and house wire at an electrical counter"),
      None),
 ]
