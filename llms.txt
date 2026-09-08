@@ -7,7 +7,7 @@
 - [Price Lists](https://mountcable.com/price-lists): full Finolex price list (list wef 4 Sep 2026, every range), Legrand MPL 2026, Anchor Panasonic April 2026 and Polycab lists, plus approximate bands for other brands.
 - [Finolex Wire Scanner](https://mountcable.com/finolex-wire-scanner): scan the QR on a Finolex coil in the browser; the code is verified live against Finolex's own server (the service behind check.finolex.com) and the reply shown on the page.
 - [Legrand MCB Price List 2026](https://mountcable.com/price-lists/legrand-mcb-price-list): DX3 MCB MRP by pole, rating band and curve.
-- [Legrand Dealer Bangalore](https://mountcable.com/legrand-dealer-bangalore): full Legrand range in stock, sold below MRP, with pages on original Legrand MCBs (seven checks), best price on switches, best price on MCBs and DBs, and the complete product range.
+- [Legrand Dealer Bangalore](https://mountcable.com/legrand-dealer-bangalore): full Legrand range in stock at 65% off MRP (one of the highest Legrand discounts in Bangalore), with pages on original Legrand MCBs (seven checks), best price on switches, best price on MCBs and DBs, and the complete product range.
 - [Knowledge Hub](https://mountcable.com/knowledge): deep guides to every electrical brand stocked — ranges, series, genuine-product checks.
 - [Original vs Duplicate Electrical Products](https://mountcable.com/original-vs-duplicate-electrical-products): how counterfeit electrical products are sold in Bangalore and how to avoid them.
 - [Blog](https://mountcable.com/blog): buying guides, brand comparisons, wire-size guides and brand-by-brand duplicate-identification articles.

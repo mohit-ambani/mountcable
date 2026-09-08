@@ -15,7 +15,7 @@ cannot drift from the price-list pages. Mount Cable's own selling price is
 never published for Legrand; "best price" is argued as below-MRP dealer
 pricing plus a reference quote, never as a percentage.
 """
-from data_brand_prices import (LEGRAND_MCB_C, LEGRAND_RCCB_AC, LEGRAND_SPN_DB, LEGRAND_SWITCH_CMP,
+from data_brand_prices import (LEGRAND_DISCOUNT, lnet, with_net, LEGRAND_MCB_C, LEGRAND_RCCB_AC, LEGRAND_SPN_DB, LEGRAND_SWITCH_CMP,
                                LEGRAND_ISOLATORS, LEGRAND_BRITZY_PLATES, LEGRAND_LYNCUS_PLATES,
                                LEGRAND_MYRIUS_PLATES, _mcb_rows, rs)
 
@@ -31,7 +31,7 @@ CTA = (f'<p class="muted"><strong>Get your Legrand price.</strong> WhatsApp the 
 def _tbl(cols, rows):
     head = "".join(f"<th>{c}</th>" for c in cols)
     body = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows)
-    return f'<div class="ptable-wrap"><table class="ptable"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
+    return with_net(f'<div class="ptable-wrap"><table class="ptable"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>')
 
 
 MCB_TABLE = _tbl(["Rating", "SP", "SPN", "DP", "TP", "TPN", "FP"], _mcb_rows(LEGRAND_MCB_C))
@@ -42,7 +42,7 @@ DB_TABLE = _tbl(["Ways", "IP30", "IP43 metal door", "IP43 acrylic door", "IP54"]
 SWITCH_TABLE = _tbl(["Item", "Britzy", "Allzy", "Lyncus", "Myrius"],
                     [(d,) + tuple(rs(x) if x else "—" for x in (b, a, l, m)) for d, b, a, l, m in LEGRAND_SWITCH_CMP])
 ISO_TABLE = _tbl(["Rating", "DP", "TP", "FP"], [(r[0], rs(r[1]), rs(r[2]), rs(r[3])) for r in LEGRAND_ISOLATORS])
-MRP_LINE = '<p class="ptable-note">MRP per unit inclusive of GST, Legrand Corp MPL 2026. Mount Cable India sells below MRP; the exact rate comes with your quote.</p>'
+MRP_LINE = '<p class="ptable-note">Struck-through figures are Legrand MRP per unit inclusive of GST, Corp MPL 2026. Bold figures are Mount Cable India\'s price at <strong>65% off MRP</strong>, one of the highest Legrand discounts in Bangalore, on every Legrand product.</p>'
 
 # A 3BHK DB costed at MRP so the "where the money goes" argument uses real figures.
 DB_EXAMPLE = _tbl(["Item", "Qty", "MRP each", "MRP total"], [
@@ -80,11 +80,11 @@ LEGRAND_SEO_PAGES = [
 # ---------------------------------------------------------------- pillar
 {"slug": "legrand-dealer-bangalore", "cluster": "legrand",
  "title": "Legrand Dealer in Bangalore — Original Legrand Switches, MCBs, RCCBs and DBs at the Best Price | Mount Cable India",
- "desc": "Legrand dealer in Bangalore: every Legrand range in stock, DX3 MCBs and RCCBs, Ekinox DBs, Myrius, Lyncus, Allzy and Britzy switches, 100% original and sold below MRP. MPL 2026 prices, free next-day delivery, pay after checking. Mount Cable India, Jayanagar and Chickpete.",
+ "desc": "Legrand dealer in Bangalore: every Legrand range in stock, DX3 MCBs and RCCBs, Ekinox DBs, Myrius, Lyncus, Allzy and Britzy switches, 100% original at 65% off MRP, one of the highest Legrand discounts in the city. MPL 2026 prices, free next-day delivery, pay after checking. Mount Cable India, Jayanagar and Chickpete.",
  "h1": "Legrand dealer in Bangalore: original switches, MCBs and DBs at the best price",
- "badge": "Full Legrand range in stock · Below MRP · Verify before you pay",
- "intro": "Mount Cable India stocks the complete Legrand range in Bangalore, bought through Legrand's authorised distribution and sold below MRP: DX3 MCBs, RCCBs and RCBOs, Ekinox distribution boards, and the Myrius, Lyncus, Allzy and Britzy modular switch ranges. Send your list to WhatsApp for an itemised Legrand quote within 60 minutes, take free next-day delivery anywhere in Bangalore, and pay after you have checked every piece at your site.",
- "answer": "Mount Cable India is a Legrand stockist in Bangalore with the DX3 switchgear, Ekinox distribution board and Myrius, Lyncus, Allzy and Britzy switch ranges in stock at Jayanagar and Chickpete. Every item is original, bought through Legrand's authorised distribution, and sold below the MPL 2026 MRP. WhatsApp 88676 76700 for a Legrand quote within 60 minutes.",
+ "badge": "Full Legrand range in stock · 65% off MRP · Verify before you pay",
+ "intro": "Mount Cable India stocks the complete Legrand range in Bangalore, bought through Legrand's authorised distribution and sold at 65% off MRP, one of the highest Legrand discounts in the city: DX3 MCBs, RCCBs and RCBOs, Ekinox distribution boards, and the Myrius, Lyncus, Allzy and Britzy modular switch ranges. Send your list to WhatsApp for an itemised Legrand quote within 60 minutes, take free next-day delivery anywhere in Bangalore, and pay after you have checked every piece at your site.",
+ "answer": "Mount Cable India is a Legrand stockist in Bangalore with the DX3 switchgear, Ekinox distribution board and Myrius, Lyncus, Allzy and Britzy switch ranges in stock at Jayanagar and Chickpete. Every item is original, bought through Legrand's authorised distribution, and sold at 65% off the MPL 2026 MRP, one of the highest Legrand discounts in Bangalore. WhatsApp 88676 76700 for a Legrand quote within 60 minutes.",
  "hero": ("electrician-installing-mcb-distribution-board.jpg", "Electrician fitting Legrand DX3 MCBs into an Ekinox distribution board in a Bangalore home"),
  "sections": [
   ("Why buy Legrand from a stockist rather than a shop",
@@ -93,7 +93,7 @@ LEGRAND_SEO_PAGES = [
   ("What is in stock",
    "<p>All of it, in the ranges below. Items printed in bold in the Legrand MPL are the ones Legrand keeps with its stockists; those are on our shelves. The non-bold items, mostly special ratings, Arteor automation and cable management, are 4 to 8 weeks from Legrand and we order them against your requirement.</p>" + RANGES.replace('href="price-lists/', 'href="price-lists/')),
   ("Legrand prices: MRP, and what best price means",
-   "<p>Every Legrand product has an MRP printed on the pack from the Corp MPL 2026, and every dealer sells below it. How far below depends on the range, the quantity and how the dealer buys. A stockist buying by the carton from the distributor has more room than a shop buying a box at a time, which is why our Legrand quote is usually the lowest a Bangalore buyer sees for original stock. What no genuine dealer can do is sell a DX3 RCCB at a third of MRP; at that price the device is a copy, a returned unit or grey stock without warranty. Use our quote as your reference: if another price is far below it, ask why.</p>"
+   "<p>Every Legrand product has an MRP printed on the pack from the Corp MPL 2026, and every dealer sells below it, because Legrand's MRP is a list price set well above what the trade pays. How far below depends on the range, the quantity and how the dealer buys. A stockist buying by the carton from the distributor has the most room, and Mount Cable India gives <strong>65% off MRP on every Legrand product</strong>, one of the highest Legrand discounts available in Bangalore: a ₹494 DX3 single-pole MCB is ₹173, a ₹6,360 RCCB is ₹2,226. That is close to the floor for original stock. A quote well below it is a copy, a returned unit or grey stock without warranty. Use our price as your reference: if another price is far under it, ask why.</p>"
    "<p>The MRP tables for every range are on the <a href=\"price-lists/legrand-price-list.html\">Legrand price list 2026</a>, the <a href=\"price-lists/legrand-mcb-price-list.html\">MCB price list</a>, the <a href=\"price-lists/legrand-switchgear-price-list.html\">switchgear price list</a> and the <a href=\"price-lists/legrand-switches-price-list.html\">switches price list</a>. A snapshot of the items most homes buy:</p>"
    + _tbl(["Item", "MRP"], [("DX3 SP MCB 6 to 32 A, C curve", rs(494)), ("DX3 DP MCB 6 to 32 A", rs(1693)), ("DX3 DP RCCB 40 A 30 mA", rs(6360)),
                              ("DX3 DP isolator 40 A", rs(961)), ("Ekinox SPN 8-way DB, IP43 metal door", rs(4065)), ("Ekinox SPN 12-way DB, IP43 metal door", rs(4884)),
@@ -109,10 +109,10 @@ LEGRAND_SEO_PAGES = [
   ("Delivery across Bangalore", "<p>Free next-day delivery, usually same day for Legrand switchgear, to every area of the city:</p>{areas}"),
  ],
  "faqs": [
-  ("Is Mount Cable an authorised Legrand dealer in Bangalore?", "Mount Cable India stocks the full Legrand range at Jayanagar and Chickpete, bought through Legrand's authorised distribution, and can show the invoice chain for any item. Every piece is original and sold below MRP."),
+  ("Is Mount Cable an authorised Legrand dealer in Bangalore?", "Mount Cable India stocks the full Legrand range at Jayanagar and Chickpete, bought through Legrand's authorised distribution, and can show the invoice chain for any item. Every piece is original and sold at 65% off MRP."),
   ("What Legrand products do you keep in stock?", "DX3 MCBs (all poles, C and D curve), RCCBs and RCBOs, isolators and changeovers, Ekinox SPN, TPN and vertical TPN distribution boards, SPDs, and the Myrius, Lyncus, Allzy and Britzy switch ranges with plates in every module count. Arteor, MCCBs and cable management are ordered against requirement."),
-  ("What is the Legrand MCB price in Bangalore?", "A DX3 single-pole 6 to 32 A C-curve MCB is ₹494 MRP; double pole ₹1,693; a 40 A DP 30 mA RCCB ₹6,360; an Ekinox 8-way SPN DB ₹4,065 with a metal door. Mount Cable India sells below MRP; WhatsApp for the rate."),
-  ("How do I get the best price on Legrand switches and MCBs?", "Send the complete list at once, with plate module counts and the DB schedule, so it can be quoted as one Legrand order. Mount Cable India quotes below MRP within 60 minutes, and larger lists are priced better."),
+  ("What is the Legrand MCB price in Bangalore?", "A DX3 single-pole 6 to 32 A C-curve MCB is ₹494 MRP; double pole ₹1,693; a 40 A DP 30 mA RCCB ₹6,360; an Ekinox 8-way SPN DB ₹4,065 with a metal door. At Mount Cable India's 65% off MRP those are ₹173, ₹593, ₹2,226 and ₹1,423."),
+  ("How do I get the best price on Legrand switches and MCBs?", "Send the complete list at once, with plate module counts and the DB schedule, so it can be quoted as one Legrand order. Mount Cable India gives 65% off MRP on every Legrand item and quotes within 60 minutes."),
   ("How do I know the Legrand MCB is original?", "Check the cat number on the product and pack against the invoice, the laser-printed rating label, the DX3 features such as the integrated label holder and biconnect terminals, and the price against MRP. Mount Cable India lets you do all of this at delivery before paying."),
   ("Do you deliver Legrand outside Bangalore?", "Yes. WhatsApp the list with your address and we quote the material and the transport. Karnataka towns are served by road, usually within two to three days."),
  ]},
@@ -124,7 +124,7 @@ LEGRAND_SEO_PAGES = [
  "h1": "Legrand MCB 100% original: how to be sure, and where to buy in Bangalore",
  "badge": "Check every MCB at delivery · Pay after",
  "intro": "A miniature circuit breaker is the one product in a house you cannot test by using it. A counterfeit Legrand MCB switches the light on just like the real one; the difference shows only in a fault, when the copy may not trip. This page gives the seven checks that separate a genuine DX3 from a copy, explains why the copies exist, and describes how Mount Cable India lets you run every check at your site before you pay.",
- "answer": "A genuine Legrand DX3 MCB carries a six-digit Legrand cat number on the product and the pack that matches the invoice, a crisp laser-printed rating label, the integrated label holder and biconnect lower terminals of the DX3 design, the ISI mark to IS/IEC 60898-1, and comes packed 10 to a box for single pole. A price far below the ₹494 MRP for a 6 to 32 A single pole is the strongest warning of a copy.",
+ "answer": "A genuine Legrand DX3 MCB carries a six-digit Legrand cat number on the product and the pack that matches the invoice, a crisp laser-printed rating label, the integrated label holder and biconnect lower terminals of the DX3 design, the ISI mark to IS/IEC 60898-1, and comes packed 10 to a box for single pole. A price well below a stockist's net, which at Mount Cable India's 65% off MRP is ₹173 for a 6 to 32 A single pole, is the strongest warning of a copy.",
  "hero": ("homeowner-electrician-discussing-switchboard.jpg", "Homeowner and electrician checking Legrand DX3 MCBs against the invoice before fitting the distribution board"),
  "sections": [
   ("Why Legrand MCBs are copied",
@@ -137,7 +137,7 @@ LEGRAND_SEO_PAGES = [
    "<li><strong>ISI mark and standard.</strong> DX3 AC MCBs up to 63 A are ISI marked to IS/IEC 60898-1; RCCBs to IS 12640-1; RCBOs to IS 12640-2. The mark and the standard number are moulded or printed on the device.</li>"
    "<li><strong>Weight and feel.</strong> A genuine DX3 single pole has a solid, dense feel and a crisp dolly action with a definite snap. Copies are lighter, the dolly is soft, and the moulding seams are rough.</li>"
    "<li><strong>Packing.</strong> Single-pole DX3 MCBs come 1/10/120: one per inner pack, ten per box, 120 per carton. SPN units 1/5/60, DP 1/40, TP and FP 1/32. A single pole sold in a box of 12, or loose without a Legrand pack, did not come through the Legrand chain.</li>"
-   "<li><strong>Price against MRP.</strong> The MPL 2026 MRP for a 6 to 32 A single pole is ₹494, for a 40 to 63 A single pole ₹1,180, for a DP 6 to 32 A ₹1,693. Dealers sell below MRP, but nobody sells a genuine DX3 at a third of it. If the price is that low, the product is not what the box says.</li>"
+   "<li><strong>Price against MRP.</strong> The MPL 2026 MRP for a 6 to 32 A single pole is ₹494, for a 40 to 63 A single pole ₹1,180, for a DP 6 to 32 A ₹1,693. Legrand's MRP is a list price and the trade sells far below it; Mount Cable India's 65% off MRP puts the single pole at ₹173. That is close to the floor for original stock. A price well under a stockist's net, or a seller who cannot show the invoice chain behind such a price, means the product is not what the box says.</li>"
    "</ol>"
    "<p>The full list of DX3 MCB prices, so you can run the seventh check on any quote, is on the <a href=\"price-lists/legrand-mcb-price-list.html\">Legrand MCB price list</a>. Our step-by-step guide with photographs of the tells is <a href=\"blog/how-to-identify-duplicate-legrand-mcb.html\">how to identify a duplicate Legrand MCB</a>.</p>"),
   ("Legrand DX3 MCB MRP, for the price test", MCB_TABLE + MRP_LINE),
@@ -159,12 +159,12 @@ LEGRAND_SEO_PAGES = [
 
 # ---------------------------------------------------------------- switches best price
 {"slug": "legrand-switches-best-price", "cluster": "legrand",
- "title": "Best Price on Legrand Switches in Bangalore — Myrius, Lyncus, Allzy, Britzy Below MRP | Mount Cable India",
- "desc": "Best price on Legrand modular switches in Bangalore: Myrius, Lyncus, Allzy and Britzy mechanisms, plates and boxes sold below MPL 2026 MRP. How Legrand switch pricing works, a costed switchboard in each range, how to send a list for the lowest quote, and the 10-year replacement policy.",
+ "title": "Best Price on Legrand Switches in Bangalore — Myrius, Lyncus, Allzy, Britzy at 65% Off MRP | Mount Cable India",
+ "desc": "Best price on Legrand modular switches in Bangalore: Myrius, Lyncus, Allzy and Britzy mechanisms, plates and boxes sold at 65% off MPL 2026 MRP. How Legrand switch pricing works, a costed switchboard in each range, how to send a list for the lowest quote, and the 10-year replacement policy.",
  "h1": "Best price on Legrand switches in Bangalore: Myrius, Lyncus, Allzy and Britzy",
- "badge": "All four ranges in stock · Below MRP · 10-year replacement on switches and sockets",
- "intro": "Legrand prices every switch range as a kit of parts: the mechanism, the cover plate with its support frame, and the flush box. The best price on a Legrand switchboard therefore comes from quoting the whole board, and the whole house, as one list. Mount Cable India stocks Myrius, Lyncus, Allzy and Britzy in every module count and sells below MRP; send the board count and the quote comes back within 60 minutes.",
- "answer": "Legrand switches are sold below the MPL 2026 MRP by dealers. At MRP a 6A one-way switch is ₹56 in Britzy and Allzy, ₹100 in Lyncus and ₹180 in Myrius, and a 6-module white plate ₹254, ₹332 and ₹676. Mount Cable India, a Legrand stockist in Bangalore, quotes the full list below MRP within 60 minutes on WhatsApp 88676 76700.",
+ "badge": "All four ranges in stock · 65% off MRP · 10-year replacement on switches and sockets",
+ "intro": "Legrand prices every switch range as a kit of parts: the mechanism, the cover plate with its support frame, and the flush box. The best price on a Legrand switchboard therefore comes from quoting the whole board, and the whole house, as one list. Mount Cable India stocks Myrius, Lyncus, Allzy and Britzy in every module count at 65% off MRP, one of the highest Legrand discounts in Bangalore; send the board count and the quote comes back within 60 minutes.",
+ "answer": "Mount Cable India sells Legrand switches at 65% off the MPL 2026 MRP. A 6A one-way switch is ₹56 MRP in Britzy and Allzy, ₹100 in Lyncus and ₹180 in Myrius, which is ₹20, ₹35 and ₹63 net; a 6-module white plate is ₹254, ₹332 and ₹676 MRP, or ₹89, ₹116 and ₹237 net. WhatsApp 88676 76700 for the full list within 60 minutes.",
  "hero": ("happy-electrician-installing-modular-switch.jpg", "Electrician fitting a Legrand Lyncus modular switch plate in a Bangalore apartment"),
  "sections": [
   ("How Legrand switch pricing works",
@@ -178,7 +178,7 @@ LEGRAND_SEO_PAGES = [
    "<li><strong>State the range and the plate finish</strong> for each area. Mixing Myrius in the living room with Lyncus elsewhere is normal and we quote it that way.</li>"
    "<li><strong>Include the boxes.</strong> Legrand metal flush boxes are priced separately and are often forgotten until the electrician asks.</li>"
    "<li><strong>Ask for the DB on the same quote.</strong> Legrand MCBs and switches together make one Legrand order, which is how a stockist buys and prices.</li>"
-   "<li><strong>Use the quote as a reference.</strong> If a shop beats it by a little, that is trade. If it beats it by a lot, the plates or modules are not what the pack says. See <a href=\"blog/how-to-identify-duplicate-legrand-switches.html\">how to identify duplicate Legrand switches</a>.</li></ol>"),
+   "<li><strong>Use the quote as a reference.</strong> 65% off MRP is close to the floor for original Legrand. If a shop beats it by a lot, the plates or modules are not what the pack says. See <a href=\"blog/how-to-identify-duplicate-legrand-switches.html\">how to identify duplicate Legrand switches</a>.</li></ol>"),
   ("Which range to choose",
    "<p>Britzy and Allzy give the Legrand mechanism at the lowest cost and suit rental flats, utility areas and budget builds; Allzy adds coloured plates and a BLDC fan regulator. Lyncus is the mid range most Bangalore homes settle on, with plates in white, chic grey, brushed silver, alu sunset and champagne and modules such as 20 W and 45 W USB-C chargers. Myrius is the premium range with glass and metallic plates, the antibacterial series and the widest hospitality and automation set. The full argument is in <a href=\"blog/legrand-myrius-vs-lyncus-vs-allzy-vs-britzy.html\">Myrius vs Lyncus vs Allzy vs Britzy</a>.</p>"),
   ("The 10-year replacement policy",
@@ -187,7 +187,7 @@ LEGRAND_SEO_PAGES = [
    "<p>The most common reason a Legrand board is delayed is a missing 8-module vertical or 12-module plate in the chosen finish. We stock the plate ranges in full. Lyncus classic white, for example, runs from ₹184 for 1 and 2 module to ₹974 for 18 module at MRP; Britzy from ₹132 to ₹622; Myrius regular white from ₹306 to ₹1,498. The tables are on the switches price list. Delivery is free next day across Bangalore, and boards are checked at your site before payment. The main <a href=\"legrand-dealer-bangalore.html\">Legrand dealer page</a> has the rest of the range.</p>"),
  ],
  "faqs": [
-  ("What is the best price for Legrand switches in Bangalore?", "Below MRP, from a stockist, quoted on the whole house at once. At MRP a 6A one-way switch is ₹56 in Britzy and Allzy, ₹100 in Lyncus and ₹180 in Myrius. Mount Cable India quotes the full list below MRP within 60 minutes."),
+  ("What is the best price for Legrand switches in Bangalore?", "65% off MRP at Mount Cable India, on every Legrand switch, plate and box. A 6A one-way switch is ₹56 MRP in Britzy and Allzy, ₹100 in Lyncus and ₹180 in Myrius, so ₹20, ₹35 and ₹63 net. The full list is quoted within 60 minutes."),
   ("What is the Legrand Myrius switch price?", "Myrius regular white at MRP: 6A one-way ₹180, 6A two-way ₹326, 16A one-way ₹442, 32A DP ₹1,510, 6/16A socket ₹684; white plates ₹306 (1 module) to ₹1,498 (18 module). Dealers sell below these figures."),
   ("What is the Legrand Lyncus switch price?", "Lyncus classic white at MRP: 6A one-way ₹100, 16A one-way ₹246, 32A DP ₹718, 6/16A socket ₹434, fan regulator ₹734; plates ₹184 to ₹974."),
   ("Are Legrand plates and switches priced separately?", "Yes. Mechanism, cover plate with support frame and flush box are three separate prices in every Legrand range. A board costs the sum of its modules plus the plate and box."),
@@ -197,12 +197,12 @@ LEGRAND_SEO_PAGES = [
 
 # ---------------------------------------------------------------- MCB best price
 {"slug": "legrand-mcb-best-price", "cluster": "legrand",
- "title": "Best Price on Legrand MCB, RCCB and DB in Bangalore — DX3 and Ekinox Below MRP | Mount Cable India",
+ "title": "Best Price on Legrand MCB, RCCB and DB in Bangalore — DX3 and Ekinox at 65% Off MRP | Mount Cable India",
  "desc": "Best pricing on Legrand DX3 MCBs, RCCBs, RCBOs, isolators and Ekinox distribution boards in Bangalore. MPL 2026 MRP tables, a 3BHK DB costed at MRP, how to send a DB schedule for the lowest quote, and where the money goes. Mount Cable India, Legrand stockist.",
  "h1": "Best price on Legrand MCBs, RCCBs and distribution boards in Bangalore",
- "badge": "Every DX3 pole and rating in stock · Below MRP · Check at delivery",
- "intro": "The best price on Legrand switchgear comes from sending the distribution board schedule as one list: incomer, RCCB, every outgoing MCB by rating and pole, and the Ekinox board itself. Mount Cable India stocks the complete DX3 and Ekinox ranges in Bangalore, quotes below MRP within 60 minutes, and lets you check every breaker at your site before you pay.",
- "answer": "Legrand DX3 MCBs are sold below the MPL 2026 MRP by dealers: ₹494 for a 6 to 32 A single pole, ₹1,693 for a double pole, ₹6,360 for a 40 A DP 30 mA RCCB, ₹4,884 for a 12-way Ekinox SPN DB with metal door. A 3BHK board costs about ₹17,000 at MRP. Mount Cable India in Bangalore quotes the schedule below MRP on WhatsApp 88676 76700.",
+ "badge": "Every DX3 pole and rating in stock · 65% off MRP · Check at delivery",
+ "intro": "The best price on Legrand switchgear comes from sending the distribution board schedule as one list: incomer, RCCB, every outgoing MCB by rating and pole, and the Ekinox board itself. Mount Cable India stocks the complete DX3 and Ekinox ranges in Bangalore at 65% off MRP, one of the highest Legrand discounts in the city, quotes within 60 minutes, and lets you check every breaker at your site before you pay.",
+ "answer": "Mount Cable India sells Legrand switchgear at 65% off the MPL 2026 MRP: a DX3 6 to 32 A single pole is ₹494 MRP and ₹173 net, a double pole ₹1,693 and ₹593, a 40 A DP 30 mA RCCB ₹6,360 and ₹2,226, a 12-way Ekinox SPN DB with metal door ₹4,884 and ₹1,709. A 3BHK board is about ₹17,000 at MRP and about ₹6,000 net. WhatsApp 88676 76700 with the schedule.",
  "hero": ("electrician-installing-mcb-distribution-board.jpg", "Legrand DX3 MCBs and RCCB being fitted into an Ekinox SPN distribution board"),
  "sections": [
   ("Legrand DX3 MCB MRP", "<p>Legrand prices MCBs in rating bands, so a 6 A and a 32 A of the same pole cost the same and the step comes at 40 A. C curve, 10 kA:</p>" + MCB_TABLE + MRP_LINE),
@@ -214,12 +214,12 @@ LEGRAND_SEO_PAGES = [
    "<ol><li><strong>Send the DB schedule</strong>, or a photo of the electrician's list: incomer rating, RCCB rating and sensitivity, each outgoing MCB by rating and pole, and the DB size and door.</li>"
    "<li><strong>Add the switches</strong> so the house is one Legrand order. Stockists buy Legrand by the carton and price a full order better than a DB alone.</li>"
    "<li><strong>Ask for stock items.</strong> C-curve DX3 in standard ratings, AC-type RCCBs and Ekinox SPN boards are stocked and priced best; special ratings and D-curve above 32 A are ordered from Legrand.</li>"
-   "<li><strong>Compare on MRP.</strong> Every quote you get should be readable against the tables above. A quote far below ours is not a better deal on the same product; read <a href=\"original-legrand-mcb.html\">Legrand MCB 100% original</a>.</li></ol>"),
+   "<li><strong>Compare on MRP.</strong> Every quote you get should be readable against the tables above. Our price is 65% off MRP on every line, close to the floor for original stock; a quote far below it is not a better deal on the same product. Read <a href=\"original-legrand-mcb.html\">Legrand MCB 100% original</a>.</li></ol>"),
   ("Legrand against the alternatives on price",
    "<p>Schneider is priced close to Legrand and the choice between them is usually availability and the look of the board; the <a href=\"blog/legrand-vs-schneider-mcb-and-switches.html\">Legrand vs Schneider</a> comparison goes through it. Anchor by Panasonic's UNO range is the budget alternative with the same 10 kA rating at roughly 60 percent of the MRP; its figures are on the <a href=\"price-lists/anchor-mcb-price-list.html\">Anchor MCB price list</a>. For a premium home or any building where the specification names Legrand, the DX3 and Ekinox combination is what we quote, and the <a href=\"legrand-dealer-bangalore.html\">Legrand dealer page</a> has the rest of the range.</p>"),
  ],
  "faqs": [
-  ("What is the best price for a Legrand MCB in Bangalore?", "Below the ₹494 MRP for a 6 to 32 A single-pole DX3, quoted on the whole DB schedule at once. Mount Cable India, a Legrand stockist, quotes below MRP within 60 minutes on WhatsApp."),
+  ("What is the best price for a Legrand MCB in Bangalore?", "65% off the ₹494 MRP, so ₹173 for a 6 to 32 A single-pole DX3 at Mount Cable India, quoted on the whole DB schedule within 60 minutes on WhatsApp."),
   ("What is the Legrand RCCB price?", "DX3 double-pole 30 mA AC type: ₹5,478 at 25 A, ₹6,360 at 40 A, ₹7,818 at 63 A MRP. Four pole 30 mA: ₹7,870, ₹8,068 and ₹8,976. HPI and Type S cost more."),
   ("How much does a Legrand DB for a 3BHK cost?", "About ₹17,000 at MRP for a 40 A DP isolator, a 40 A 30 mA RCCB, ten single-pole DX3 MCBs and a 12-way Ekinox SPN board with metal door. The dealer price is below that."),
   ("Is a Legrand 32A MCB more expensive than a 16A?", "No. Legrand prices DX3 MCBs in bands: every rating from 6 A to 32 A of the same pole has the same MRP. The step is at 40 A."),
@@ -234,7 +234,7 @@ LEGRAND_SEO_PAGES = [
  "h1": "All Legrand products available in Bangalore: the complete range",
  "badge": "Every Legrand range · Stock and order items · Original",
  "intro": "Legrand's Indian catalogue runs to more than 360 pages, from a 6 A single-pole MCB to KNX home automation. This page lists the whole of it as it is available from Mount Cable India in Bangalore: what is on the shelf at Jayanagar and Chickpete, what is ordered from Legrand against your requirement, and how to order any item by its cat number so that you get exactly the product the specification names.",
- "answer": "Mount Cable India stocks the full Legrand range in Bangalore: DX3 MCBs, RCCBs and RCBOs, isolators and changeovers, Ekinox SPN, TPN and vertical TPN distribution boards, SPDs, and the Britzy, Allzy, Lyncus and Myrius modular switch ranges with plates and boxes. Arteor, Arteor Advance, Mylinc, DPX3 MCCBs, EMDX3 meters and cable management are ordered from Legrand against requirement. Every item is original and sold below MRP.",
+ "answer": "Mount Cable India stocks the full Legrand range in Bangalore: DX3 MCBs, RCCBs and RCBOs, isolators and changeovers, Ekinox SPN, TPN and vertical TPN distribution boards, SPDs, and the Britzy, Allzy, Lyncus and Myrius modular switch ranges with plates and boxes. Arteor, Arteor Advance, Mylinc, DPX3 MCCBs, EMDX3 meters and cable management are ordered from Legrand against requirement. Every item is original and sold at 65% off MRP.",
  "hero": ("wire-coils-warehouse-electrical-distributor.jpg", "Legrand switchgear and switch stock on the shelves at Mount Cable India, Bangalore"),
  "sections": [
   ("The Legrand range, category by category", RANGES),
@@ -246,7 +246,7 @@ LEGRAND_SEO_PAGES = [
   ("How to order by cat number",
    "<p>Every Legrand product has a six-digit cat number printed as two groups of digits, and it is the only reliable way to specify an item across the range: 4085 90 is a 10 A single-pole C-curve DX3, 4118 52 a 40 A DP 30 mA RCCB, 5076 12 a 12-way IP43 SPN Ekinox board, 6772 00 a Lyncus 6A one-way switch, 6775 06 a Lyncus 6-module classic white plate. Consultants' BOMs and builders' specifications carry these numbers. Send the list as it is and we quote line by line against the MPL, with the MRP shown for each cat number and our price below it. If a list is written in words instead, we translate it to cat numbers on the quote so there is no substitution.</p>"),
   ("Prices for every range",
-   "<p>MRP for the whole range, from the Corp MPL 2026, is published on our price pages: the <a href=\"price-lists/legrand-price-list.html\">Legrand price list 2026 overview</a>, the <a href=\"price-lists/legrand-mcb-price-list.html\">MCB price list</a>, the <a href=\"price-lists/legrand-switchgear-price-list.html\">switchgear and DB price list</a> and the <a href=\"price-lists/legrand-switches-price-list.html\">switches price list</a>. Mount Cable India sells below MRP; see <a href=\"legrand-mcb-best-price.html\">best price on Legrand MCBs</a> and <a href=\"legrand-switches-best-price.html\">best price on Legrand switches</a> for how to get the lowest quote.</p>"),
+   "<p>MRP for the whole range, from the Corp MPL 2026, is published on our price pages: the <a href=\"price-lists/legrand-price-list.html\">Legrand price list 2026 overview</a>, the <a href=\"price-lists/legrand-mcb-price-list.html\">MCB price list</a>, the <a href=\"price-lists/legrand-switchgear-price-list.html\">switchgear and DB price list</a> and the <a href=\"price-lists/legrand-switches-price-list.html\">switches price list</a>. Mount Cable India sells all of it at 65% off MRP; see <a href=\"legrand-mcb-best-price.html\">best price on Legrand MCBs</a> and <a href=\"legrand-switches-best-price.html\">best price on Legrand switches</a> for how to get the lowest quote.</p>"),
   ("Projects, builders and electricians",
    "<p>For apartment projects and villas we supply Legrand against the consultant's schedule, floor by floor, with cat numbers on every invoice line and delivery timed to the electrician's programme. Bulk orders of DX3 MCBs, Ekinox boards and Lyncus or Myrius plates are priced as one Legrand order. Electricians and contractors get the same range, the same originality checks and trade pricing on repeat business. The main <a href=\"legrand-dealer-bangalore.html\">Legrand dealer page</a> has the delivery areas and the originality guarantee.</p>"),
  ],
@@ -256,32 +256,32 @@ LEGRAND_SEO_PAGES = [
   ("Can I order Legrand by catalogue number?", "Yes, and it is the best way. Send the six-digit cat numbers from the specification and the quote comes back line by line against the MPL with MRP and our price."),
   ("Are all your Legrand products original?", "Yes. Stock is bought through Legrand's authorised distribution, the invoice carries the cat number of each line, and every item can be checked at delivery before payment."),
   ("Do you supply Legrand for apartment projects?", "Yes, against the consultant's schedule, delivered floor by floor with cat numbers on every invoice line and priced as one Legrand order."),
-  ("What is the Legrand price list for 2026?", "The Legrand Corp MPL 2026 MRP for every range is on our Legrand price list pages, and Mount Cable India sells below it."),
+  ("What is the Legrand price list for 2026?", "The Legrand Corp MPL 2026 MRP for every range is on our Legrand price list pages, with Mount Cable India's price at 65% off beside each figure."),
  ]},
 
 # ---------------------------------------------------------------- best prices of Legrand products (broad)
 {"slug": "legrand-best-price-bangalore", "cluster": "legrand",
- "title": "Best Prices on Legrand Products in Bangalore — MCB, RCCB, DB and Switches Below MRP | Mount Cable India",
- "desc": "Best prices on Legrand products in Bangalore from a stockist: DX3 MCBs and RCCBs, Ekinox DBs and the Myrius, Lyncus, Allzy and Britzy switch ranges sold below MPL 2026 MRP. Why a stockist's price is lower, what a too-low price means, a whole-house Legrand budget at MRP, and how to get a quote in 60 minutes.",
+ "title": "Best Prices on Legrand Products in Bangalore — MCB, RCCB, DB and Switches at 65% Off MRP | Mount Cable India",
+ "desc": "Best prices on Legrand products in Bangalore from a stockist: DX3 MCBs and RCCBs, Ekinox DBs and the Myrius, Lyncus, Allzy and Britzy switch ranges sold at 65% off MPL 2026 MRP. Why a stockist's price is lower, what a too-low price means, a whole-house Legrand budget at MRP, and how to get a quote in 60 minutes.",
  "h1": "Best prices on Legrand products in Bangalore",
- "badge": "Stockist pricing · Below MRP · Quote in 60 minutes",
- "intro": "Legrand publishes an MRP for every product and every dealer sells below it, so the question is not whether you can get a discount but who can give the largest one on original stock. A stockist who buys Legrand by the carton from the authorised distributor has more room than a shop that buys a box at a time. Mount Cable India is that stockist in Bangalore, with the full Legrand range at Jayanagar and Chickpete, free next-day delivery and payment after you have checked the goods.",
- "answer": "The best price on Legrand products in Bangalore comes from a stockist that buys by the carton through Legrand's authorised distribution and quotes the whole house as one order. Mount Cable India sells every Legrand range below the MPL 2026 MRP, delivers free the next day across Bangalore, and lets you check each item before paying. WhatsApp 88676 76700 for a quote within 60 minutes.",
+ "badge": "65% off MRP on every Legrand product · Quote in 60 minutes",
+ "intro": "Legrand publishes an MRP for every product and every dealer sells below it, so the question is not whether you can get a discount but who can give the largest one on original stock. Mount Cable India gives 65% off MRP on every Legrand product, one of the highest Legrand discounts in Bangalore, because a stockist buying by the carton from the authorised distributor has room a shop buying a box at a time does not. The full Legrand range is at Jayanagar and Chickpete, with free next-day delivery and payment after you have checked the goods.",
+ "answer": "The best price on Legrand products in Bangalore comes from a stockist that buys by the carton through Legrand's authorised distribution and quotes the whole house as one order. Mount Cable India sells every Legrand range at 65% off the MPL 2026 MRP, one of the highest Legrand discounts in Bangalore, delivers free the next day across the city, and lets you check each item before paying. WhatsApp 88676 76700 for a quote within 60 minutes.",
  "hero": ("contractor-checking-price-list-phone.jpg", "Contractor comparing a Legrand quote from Mount Cable India against the MRP on his phone"),
  "sections": [
   ("Why a stockist's Legrand price is lower",
-   "<p>Legrand's Indian channel is manufacturer, authorised distributor, dealer, buyer. A stockist buys from the distributor in carton quantities across the range and turns the stock quickly, so the buying price is lower and the margin needed per piece is smaller. A shop that keeps a few Legrand boxes buys them from the same distributor, or from a stockist, in small lots, and each piece carries more cost. Both sell below MRP; the stockist sells further below. That is the whole of the argument, and it is why our Legrand quote is usually the lowest a Bangalore buyer sees for original product.</p>"),
+   "<p>Legrand's Indian channel is manufacturer, authorised distributor, dealer, buyer. A stockist buys from the distributor in carton quantities across the range and turns the stock quickly, so the buying price is lower and the margin needed per piece is smaller. A shop that keeps a few Legrand boxes buys them from the same distributor, or from a stockist, in small lots, and each piece carries more cost. Both sell below MRP; the stockist sells further below. That is the whole of the argument, and it is why Mount Cable India can give 65% off MRP on every Legrand product, one of the highest Legrand discounts a Bangalore buyer will find for original stock.</p>"),
   ("What a too-low Legrand price means",
-   "<p>There is a floor under every genuine Legrand price: the distributor's price to the dealer. Nobody sells original DX3 or Myrius below it for long. A quote far below a stockist's price is therefore one of three things: a copy, which is common for DX3 MCBs and Myrius plates; returned or damaged stock; or grey stock that came from outside the Indian channel and carries no replacement policy. The <a href=\"original-legrand-mcb.html\">Legrand MCB 100% original page</a> gives the checks; the price test against MRP is the fastest of them.</p>"),
+   "<p>There is a floor under every genuine Legrand price: the distributor's price to the dealer. Our 65% off MRP sits close to that floor, and nobody sells original DX3 or Myrius much below it for long. A quote well under a stockist's net price is therefore one of three things: a copy, which is common for DX3 MCBs and Myrius plates; returned or damaged stock; or grey stock that came from outside the Indian channel and carries no replacement policy. The <a href=\"original-legrand-mcb.html\">Legrand MCB 100% original page</a> gives the checks; the price test against MRP is the fastest of them.</p>"),
   ("Legrand MRP for the items a house buys",
-   "<p>All prices are MRP per unit inclusive of GST from the Corp MPL 2026. Our price is below each of them.</p>"
+   "<p>Struck-through figures are MRP per unit inclusive of GST from the Corp MPL 2026; bold figures are our price at 65% off.</p>"
    + _tbl(["Item", "MRP"], [("DX3 SP MCB 6 to 32 A", rs(494)), ("DX3 SP MCB 40 to 63 A", rs(1180)), ("DX3 DP MCB 6 to 32 A", rs(1693)), ("DX3 DP isolator 40 A", rs(961)),
                              ("DX3 DP RCCB 40 A 30 mA", rs(6360)), ("DX3 DP RCBO 6 to 32 A 30 mA", rs(6974)), ("Ekinox SPN 8-way DB, IP43 metal door", rs(4065)), ("Ekinox SPN 12-way DB, IP43 metal door", rs(4884)),
                              ("Britzy 6A one-way switch", rs(56)), ("Allzy 6A one-way switch", rs(56)), ("Lyncus 6A one-way switch", rs(100)), ("Myrius 6A one-way switch", rs(180)),
                              ("Lyncus 6/16A socket with shutter", rs(434)), ("Lyncus fan regulator 100 W", rs(734)), ("Lyncus 6-module plate, classic white", rs(332)), ("Myrius 6-module plate, white", rs(676))])
    + MRP_LINE),
   ("A whole-house Legrand budget at MRP",
-   "<p>For a 3BHK: the distribution board at about ₹17,000 (worked on the <a href=\"legrand-mcb-best-price.html\">MCB best price page</a>), plus 20 switchboards. In Lyncus a typical board of two switches, a regulator and a socket on a 6-module plate is ₹1,926 at MRP including the box, so 20 boards are roughly ₹38,000; in Britzy about ₹31,000; in Myrius about ₹68,000. A Lyncus house with a DX3 board therefore lands near ₹55,000 at MRP, and the dealer discount comes off the whole of it. Send the board count and the DB schedule together and it is quoted as one order.</p>"),
+   "<p>Every figure here is MRP, and Mount Cable India takes 65% off all of it. For a 3BHK: the distribution board at about ₹17,000 (worked on the <a href=\"legrand-mcb-best-price.html\">MCB best price page</a>), plus 20 switchboards. In Lyncus a typical board of two switches, a regulator and a socket on a 6-module plate is ₹1,926 at MRP including the box, so 20 boards are roughly ₹38,000; in Britzy about ₹31,000; in Myrius about ₹68,000. A Lyncus house with a DX3 board therefore lands near ₹55,000 at MRP, which is about ₹19,000 at our 65% off. Send the board count and the DB schedule together and it is quoted as one order.</p>"),
   ("How to get the quote",
    "<ol><li>WhatsApp the list, the DB schedule, the consultant's BOM with cat numbers, or a photo of the electrician's memo to " + PH + ".</li>"
    "<li>Say which switch range and plate finish goes where; mixing ranges by room is normal.</li>"
@@ -290,10 +290,10 @@ LEGRAND_SEO_PAGES = [
    "<p>The full range is on <a href=\"legrand-products-bangalore.html\">all Legrand products available</a>, the MRP tables on the <a href=\"price-lists/legrand-price-list.html\">Legrand price list 2026</a>, and the rest of the story on the <a href=\"legrand-dealer-bangalore.html\">Legrand dealer page</a>.</p>"),
  ],
  "faqs": [
-  ("Who gives the best price on Legrand in Bangalore?", "A stockist buying by the carton through Legrand's authorised distribution. Mount Cable India stocks the full range and sells below MRP; its quote is usually the lowest a buyer sees for original product."),
-  ("How much below MRP are Legrand products sold?", "Every dealer sells below MRP and the gap depends on the range, the quantity and how the dealer buys. Mount Cable India does not publish a percentage; send the list and the quote shows MRP and our price on each line."),
-  ("What is a fair price for a Legrand DX3 MCB?", "Below the ₹494 MRP for a 6 to 32 A single pole, but not far below the price a stockist quotes. A price at a third of MRP is a copy or grey stock."),
-  ("What does a Legrand house cost?", "Around ₹55,000 at MRP for a 3BHK with a DX3 distribution board and 20 Lyncus switchboards; about ₹48,000 in Britzy and ₹85,000 in Myrius. Dealer prices are below these."),
+  ("Who gives the best price on Legrand in Bangalore?", "Mount Cable India, which stocks the full range and gives 65% off MRP on every Legrand product, one of the highest Legrand discounts in Bangalore for original stock bought through Legrand's authorised distribution."),
+  ("How much below MRP are Legrand products sold?", "Mount Cable India sells every Legrand product at 65% off MRP. Send the list and the quote shows MRP and the net price on each line."),
+  ("What is a fair price for a Legrand DX3 MCB?", "₹173, which is 65% off the ₹494 MRP, for a 6 to 32 A single pole at Mount Cable India. That is close to the floor for original stock; a price well under it is a copy or grey stock."),
+  ("What does a Legrand house cost?", "Around ₹55,000 at MRP for a 3BHK with a DX3 distribution board and 20 Lyncus switchboards; about ₹48,000 in Britzy and ₹85,000 in Myrius. At Mount Cable India's 65% off MRP those are roughly ₹19,000, ₹17,000 and ₹30,000."),
   ("Do you give better prices on bulk Legrand orders?", "Yes. Project quantities of DX3 MCBs, Ekinox boards and plates are priced as one Legrand order, and repeat trade customers get trade pricing."),
   ("How fast is a Legrand quote?", "Within 60 minutes on WhatsApp during working hours, itemised with MRP and our price on every line."),
  ]},
@@ -541,7 +541,7 @@ better MCB board enclosure.</p>
 <tr><td>SPN 12-way DB, metal double door</td><td>₹4,884 (IP43)</td><td>₹3,069</td></tr>
 <tr><td>3BHK board (isolator, RCCB, 10 SP, 12-way DB)</td><td>₹17,145</td><td>₹10,278</td></tr>
 </tbody></table></div>
-<p class="ptable-note">MRP from the Legrand Corp MPL 2026 and the Anchor Panasonic pricelist April 2026. Dealer prices are below MRP on both.</p>
+<p class="ptable-note">MRP from the Legrand Corp MPL 2026 and the Anchor Panasonic pricelist April 2026. Mount Cable India sells Legrand at 65% off MRP, so the DX3 single pole is ₹173 net and the 3BHK board about ₹6,000; Anchor is also sold below MRP, so compare net quotes rather than MRPs.</p>
 
 <h2>When to pay for Legrand</h2>
 <ul>
@@ -561,8 +561,7 @@ more than the badge on the board.</li>
 </ul>
 <p>Whichever you choose, buy it original. Legrand MCBs are copied precisely because of the premium; the checks are on
 <a href="../original-legrand-mcb.html">Legrand MCB 100% original</a>, and the budget alternative's figures are on the
-<a href="../price-lists/anchor-mcb-price-list.html">Anchor MCB price list</a>. Both are stocked at Mount Cable India and
-quoted below MRP; see the <a href="../legrand-dealer-bangalore.html">Legrand dealer page</a>.</p>
+<a href="../price-lists/anchor-mcb-price-list.html">Anchor MCB price list</a>. Both are stocked at Mount Cable India, Legrand at 65% off MRP; see the <a href="../legrand-dealer-bangalore.html">Legrand dealer page</a>.</p>
 """ + CTA,
  D,
  [("Why is Legrand MCB so expensive?", "Because of terminal and mechanism design, clip-on accessories, range depth and the brand's specification value. A DX3 single pole is ₹494 MRP against ₹308 for an Anchor UNO of the same 10 kA rating."),

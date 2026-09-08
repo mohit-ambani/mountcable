@@ -142,9 +142,9 @@ BRANDS = [
      ["Electrical Insulation Tapes", "Cable Connectors & Lugs", "Cable Jointing Kits", "Heat-shrink & Accessories"],
      "3M sets the global standard for electrical tapes, connectors and cable jointing solutions. Mount Cable India stocks genuine 3M electrical accessories for professional installations."),
     ("legrand", "Legrand", "#E2001A", False,
-     "Global leader in wiring devices and modular switches.",
+     "Full Legrand range at 65% off MRP, one of the highest Legrand discounts in Bangalore.",
      ["Modular Switches (Myrius, Arteor)", "Wiring Devices", "MCBs & DBs", "Home Automation", "Cable Management"],
-     "Legrand sets the global benchmark for premium modular switches and electrical infrastructure. Mount Cable India stocks Legrand's Myrius and Arteor ranges along with protection devices."),
+     "Legrand sets the global benchmark for premium modular switches and electrical infrastructure. Mount Cable India stocks the full Legrand range, DX3 switchgear, Ekinox boards and the Myrius, Lyncus, Allzy and Britzy switches, at 65% off MRP, one of the highest Legrand discounts in Bangalore."),
     ("hpl", "HPL", "#C8102E", False,
      "Switchgear, MCBs, wires, lighting and energy meters.",
      ["MCBs, RCCBs & Isolators", "Distribution Boards", "Wires & Cables", "LED Lighting", "Energy Meters"],
@@ -642,7 +642,7 @@ BLOG = [
 # Brand-wise price lists, knowledge-hub brand guides and duplicate-identification
 # blog posts live in separate data modules to keep this file manageable.
 from data_price_lists import PRICE_LISTS
-from data_brand_prices import merge_price_lists
+from data_brand_prices import merge_price_lists, with_net
 PRICE_LISTS = merge_price_lists(PRICE_LISTS)
 from data_blog_compare import BLOG_COMPARE
 from data_seo_scanner import SCANNER_PAGE
@@ -2618,7 +2618,7 @@ def build_price_hub():
     <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Price Lists</div>
     <span class="badge">💰 Brand-Wise Approx Rates · Exact Quote in 60 Minutes</span>
     <h1>Electrical price lists 2026: Finolex, Legrand, Anchor, Polycab and every brand we stock</h1>
-    <p>Four brands are published from their current price lists: the complete Finolex list at our net prices (wef 4 Sep 2026), the Legrand Corp MPL 2026 for MCBs, RCCBs, DBs and switches, the Anchor Panasonic April 2026 list and the Polycab distributor lists. The other brands are shown as approximate bands. When you want exact prices, just message your list to {PHONE}: you'll get an itemised quote within 60 minutes, with no pressure to buy from us.</p>
+    <p>Four brands are published from their current price lists: the complete Finolex list at our net prices (wef 4 Sep 2026), the Legrand Corp MPL 2026 for MCBs, RCCBs, DBs and switches with our price at 65% off MRP beside each figure, the Anchor Panasonic April 2026 list and the Polycab distributor lists. The other brands are shown as approximate bands. When you want exact prices, just message your list to {PHONE}: you'll get an itemised quote within 60 minutes, with no pressure to buy from us.</p>
   </div>
 </section>
 <article class="post"><div class="container narrow">
@@ -2696,6 +2696,8 @@ def build_price_list(p):
     body = head(p["title"], p["desc"], path, css_prefix="../", extra_jsonld=faq_jsonld_html(p["faqs"]) + crumbs + product_offer_jsonld(p))
     body += header(prefix="../")
     tables_html = "".join(_price_table_html(t) for t in p["tables"])
+    if p.get("discount"):
+        tables_html = with_net(tables_html, p["discount"])
     note = p.get("note", "")
     price_note = p.get("price_note") or APPROX_NOTE
     brand_link = ""
@@ -3268,7 +3270,7 @@ def llms_txt():
         f"- [Price Lists]({SITE_URL}/price-lists): full Finolex price list (list wef 4 Sep 2026, every range), Legrand MPL 2026, Anchor Panasonic April 2026 and Polycab lists, plus approximate bands for other brands.",
         f"- [Finolex Wire Scanner]({SITE_URL}/finolex-wire-scanner): scan the QR on a Finolex coil in the browser; the code is verified live against Finolex's own server (the service behind check.finolex.com) and the reply shown on the page.",
         f"- [Legrand MCB Price List 2026]({SITE_URL}/price-lists/legrand-mcb-price-list): DX3 MCB MRP by pole, rating band and curve.",
-        f"- [Legrand Dealer Bangalore]({SITE_URL}/legrand-dealer-bangalore): full Legrand range in stock, sold below MRP, with pages on original Legrand MCBs (seven checks), best price on switches, best price on MCBs and DBs, and the complete product range.",
+        f"- [Legrand Dealer Bangalore]({SITE_URL}/legrand-dealer-bangalore): full Legrand range in stock at 65% off MRP (one of the highest Legrand discounts in Bangalore), with pages on original Legrand MCBs (seven checks), best price on switches, best price on MCBs and DBs, and the complete product range.",
         f"- [Knowledge Hub]({SITE_URL}/knowledge): deep guides to every electrical brand stocked — ranges, series, genuine-product checks.",
         f"- [Original vs Duplicate Electrical Products]({SITE_URL}/original-vs-duplicate-electrical-products): how counterfeit electrical products are sold in Bangalore and how to avoid them.",
         f"- [Blog]({SITE_URL}/blog): buying guides, brand comparisons, wire-size guides and brand-by-brand duplicate-identification articles.",
