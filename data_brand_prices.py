@@ -330,7 +330,7 @@ LEGRAND_PAGE = {
     "slug": "legrand", "name": "Legrand", "kind": "brand", "group": "MCBs & Switchgear",
     "title": "Legrand Price List 2026 (India) — MCB, RCCB, DB, Myrius, Britzy, Lyncus, Allzy MRP | Mount Cable India",
     "h1": "Legrand price list 2026 for India",
-    "desc": "Legrand price list 2026 from the Corp MPL: DX3 MCB and RCCB MRP by pole and rating, Ekinox SPN and TPN distribution boards, and Myrius, Britzy, Lyncus and Allzy modular switch and plate prices. Mount Cable India, authorised Legrand stockist in Bangalore.",
+    "desc": "Legrand price list 2026 from the Corp MPL: DX3 MCB and RCCB MRP by pole and rating, Ekinox SPN and TPN distribution boards, and Myrius, Britzy, Lyncus and Allzy modular switch and plate prices. Mount Cable India, Legrand stockist in Bangalore.",
     "intro": "This is the Legrand India price list for 2026, taken from the Legrand Corp MPL 2026 and shown as MRP inclusive of GST. It covers the DX3 switchgear range (MCB, RCCB, RCBO, isolators), Ekinox distribution boards and the modular switch ranges Britzy, Allzy, Lyncus and Myrius. Mount Cable India stocks Legrand at Jayanagar and Chickpete in Bangalore and sells below MRP; the exact rate for your list comes on WhatsApp within 60 minutes.",
     "badge": "Legrand Corp MPL 2026 · MRP incl. GST",
     "effective": "Legrand Corp MPL 2026",
@@ -359,7 +359,8 @@ LEGRAND_PAGE = {
              "<h2>Legrand vs Schneider vs Anchor for switchgear</h2>"
              "<p>Legrand and Schneider are the two European brands at the top of the Indian market and are priced close to each other. Anchor by Panasonic's UNO range sits well below on MRP with a 10 kA rating on the same sizes. The <a href=\"../blog/switchgear-brands-comparison-india.html\">switchgear brands comparison</a> sets them side by side, and the <a href=\"anchor-mcb-price-list.html\">Anchor MCB price list</a> gives the UNO figures.</p>"
              + CTA_NOTE),
-    "related": [("legrand-mcb-price-list.html", "Legrand MCB price list 2026 (full DX3 table)"),
+    "related": [("../legrand-dealer-bangalore.html", "Legrand dealer in Bangalore: best price, full range"),
+                ("legrand-mcb-price-list.html", "Legrand MCB price list 2026 (full DX3 table)"),
                 ("legrand-switchgear-price-list.html", "Legrand switchgear price list: RCCB, RCBO, DB"),
                 ("legrand-switches-price-list.html", "Legrand switches price list: Myrius, Britzy, Lyncus, Allzy"),
                 ("schneider-price-list.html", "Schneider price list"),
@@ -419,7 +420,9 @@ LEGRAND_MCB_PAGE = {
              "<h2>Genuine DX3 vs copies</h2>"
              "<p>Legrand MCBs are copied because the brand carries a premium. A genuine DX3 has the integrated label holder, the biconnect lower terminals and the sliding bottom clamp described in the MPL, and a crisp laser-printed rating label. A soft, unevenly printed label or a breaker that feels light is the first warning. Our guide to <a href=\"../blog/how-to-identify-duplicate-legrand-mcb.html\">identifying a duplicate Legrand MCB</a> goes through it step by step.</p>"
              + CTA_NOTE),
-    "related": [("legrand-price-list.html", "Legrand price list 2026 overview"),
+    "related": [("../legrand-mcb-best-price.html", "Best price on Legrand MCBs and DBs"),
+                ("../original-legrand-mcb.html", "Legrand MCB 100% original: seven checks"),
+                ("legrand-price-list.html", "Legrand price list 2026 overview"),
                 ("legrand-switchgear-price-list.html", "Legrand RCCB, RCBO and DB prices"),
                 ("schneider-price-list.html", "Schneider MCB price list"),
                 ("anchor-mcb-price-list.html", "Anchor UNO MCB price list"),
@@ -488,7 +491,8 @@ LEGRAND_SWITCHGEAR_PAGE = {
              "<h2>Choosing the Ekinox board</h2>"
              "<p>Count the outgoing circuits, add two spare ways, and that is the SPN size. IP43 with a metal door is the normal indoor specification; acrylic doors are chosen for looks in a living area; IP54 is for damp or dusty locations such as a basement or a terrace pump room. A three-phase connection needs an ETPN or vertical TPN board instead. See the <a href=\"../blog/distribution-board-selection-guide-home.html\">distribution board selection guide</a>.</p>"
              + CTA_NOTE),
-    "related": [("legrand-price-list.html", "Legrand price list 2026 overview"),
+    "related": [("../legrand-mcb-best-price.html", "Best price on Legrand MCBs and DBs"),
+                ("legrand-price-list.html", "Legrand price list 2026 overview"),
                 ("legrand-mcb-price-list.html", "Legrand MCB price list"),
                 ("../blog/distribution-board-selection-guide-home.html", "How to choose a distribution board"),
                 ("../switchgear-and-mcb.html", "Switchgear and MCB range")],
@@ -552,7 +556,8 @@ LEGRAND_SWITCHES_PAGE = {
              "<h2>Which Legrand range to choose</h2>"
              "<p>Britzy and Allzy give you the Legrand mechanism at the lowest cost and are the right choice for rental flats, utility areas and budget builds. Lyncus adds a wider colour palette of plates, BLDC fan regulators and USB-C chargers at a moderate premium. Myrius is the range specified in premium apartments, with glass and metallic plates and the widest set of hospitality and automation modules. The <a href=\"../blog/best-modular-switch-brands-india-2026.html\">modular switch brands guide</a> compares Legrand with Anchor, Schneider and Greatwhite.</p>"
              + CTA_NOTE),
-    "related": [("legrand-price-list.html", "Legrand price list 2026 overview"),
+    "related": [("../legrand-switches-best-price.html", "Best price on Legrand switches"),
+                ("legrand-price-list.html", "Legrand price list 2026 overview"),
                 ("anchor-panasonic-price-list.html", "Anchor Panasonic switch price list"),
                 ("../blog/modular-switch-buying-guide-bangalore.html", "Modular switch buying guide"),
                 ("../blog/how-to-identify-duplicate-legrand-switches.html", "Spotting duplicate Legrand switches")],

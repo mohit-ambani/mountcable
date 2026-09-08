@@ -646,6 +646,7 @@ from data_brand_prices import merge_price_lists
 PRICE_LISTS = merge_price_lists(PRICE_LISTS)
 from data_blog_compare import BLOG_COMPARE
 from data_seo_scanner import SCANNER_PAGE
+from data_seo_legrand import LEGRAND_SEO_PAGES, LEGRAND_BLOG, LEGRAND_CLUSTER, LEGRAND_PAGE_LINKS
 from data_knowledge import KNOWLEDGE
 from data_blog_duplicates import DUPLICATE_BLOGS
 from data_blog_buying_guides import BUYING_GUIDE_BLOGS
@@ -666,9 +667,9 @@ from data_stories import (STORIES, ILLUSTRATIONS, PACK_PHOTOS, NARRATIVE,
                           FAQS as STORY_FAQS)
 from data_karnataka import KARNATAKA_CITIES
 from data_seo_dealers import DEALER_SEO_PAGES, TWO_QR as DEALER_TWO_QR
-BLOG = (BLOG_COMPARE + BLOG_AEO + BLOG_VS + BLOG_FINOLEX_PRICES + BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
+BLOG = (LEGRAND_BLOG + BLOG_COMPARE + BLOG_AEO + BLOG_VS + BLOG_FINOLEX_PRICES + BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
         + BUYING_GUIDE_BLOGS + BRAND_GUIDE_BLOGS)
-SEO_PAGES = SEO_PAGES + DEALER_SEO_PAGES + [SCANNER_PAGE]
+SEO_PAGES = SEO_PAGES + DEALER_SEO_PAGES + [SCANNER_PAGE] + LEGRAND_SEO_PAGES
 
 # Lifestyle photography (assets/img/people). Real people using electrical
 # material — used on the home page and as blog hero images. Every entry needs a
@@ -1010,6 +1011,8 @@ def footer(prefix="", cta_override=None):
         <a href="{prefix}original-vs-duplicate-electrical-products.html">Original vs Duplicate Guide</a>
         <a href="{prefix}finolex-wire-price-list-bangalore.html">Finolex Price List Bangalore</a>
         <a href="{prefix}original-finolex-wires.html">Original Finolex Wires</a>
+        <a href="{prefix}legrand-dealer-bangalore.html">Legrand Dealer Bangalore</a>
+        <a href="{prefix}finolex-wire-scanner.html">Finolex Wire Scanner</a>
         <a href="{prefix}finolex-dealer-near-me.html">Finolex Dealer Near Me</a>
         <a href="{prefix}finolex-dealers-karnataka.html">Finolex Dealers in Karnataka</a>
         <a href="{prefix}finolex-silver-90m-dealers.html">Finolex Silver 90M Dealers</a>
@@ -1465,6 +1468,12 @@ def build_brand(b):
     chips = "".join(f'<span class="chip">{html.escape(p)}</span>' for p in prods)
     rel_list = [x for x in BRANDS if x[0] != slug][:4]
     related = "".join(brand_tile(x, prefix="../") for x in rel_list)
+    brand_extra = ""
+    if slug == "legrand":
+        brand_extra = ('<h2 style="margin-top:34px">Legrand prices, originality and the best price</h2>'
+                       '<div class="area-grid" style="justify-content:flex-start">'
+                       + "".join(f'<a class="area-chip" href="../{h}">{html.escape(t)}</a>' for h, t in LEGRAND_PAGE_LINKS if not h.startswith("brands/"))
+                       + "</div>")
     products_section = ""
     if slug == "finolex":
         prods = "".join(range_card(r, prefix="../") for r in FINOLEX_RANGE)
@@ -1517,6 +1526,7 @@ def build_brand(b):
         <li><strong>Free next-day site delivery</strong> across Bangalore, and free pickup of any excess stock.</li>
         <li><strong>All payment modes accepted</strong> plus expert guidance for everyone building their home.</li>
       </ul>
+      {brand_extra}
     </div>
     <aside>
       <div class="side-card">
@@ -2129,7 +2139,9 @@ def build_seo_page(p):
     faq_ld = f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{faq_q}]}}</script>'
     crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), (p["h1"], url_for(path))])
     cluster_html = (finolex_cluster_html() if p["slug"] == "original-finolex-wires"
-                    else dealer_cluster_html() if p["slug"] == "finolex-dealers-karnataka" else "")
+                    else dealer_cluster_html() if p["slug"] == "finolex-dealers-karnataka"
+                    else legrand_cluster_html(full=(p["slug"] == "legrand-dealer-bangalore"), current=p["slug"]) if p.get("cluster") == "legrand"
+                    else "")
     og = f"{SITE_URL}/{PEOPLE_IMG_DIR}/{p['hero'][0]}" if p.get("hero") else None
     body = head(p["title"], p["desc"], path, extra_jsonld=faq_ld + crumbs, og_image=og)
     body += header()
@@ -2200,6 +2212,36 @@ DEALER_CLUSTER = [x[0] for x in BLOG_KARNATAKA] + [
     "original-finolex-wire-checklist-before-paying",
     "where-to-buy-original-finolex-wires-bangalore",
 ]
+
+def legrand_cluster_html(full=True, current=None, prefix=""):
+    chips = "".join(f'<a class="area-chip" href="{prefix}{h}">{html.escape(t)}</a>'
+                    for h, t in LEGRAND_PAGE_LINKS if not h.endswith(f"{current}.html"))
+    links = f"""
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Legrand in Bangalore</p>
+      <h2>Every Legrand page on this site</h2>
+      <p>Prices from the Corp MPL 2026, the full range in stock, how to confirm an original, and how to get the best price on switches, MCBs and distribution boards.</p>
+    </div>
+    <div class="area-grid" style="justify-content:flex-start">{chips}</div>
+  </div>
+</section>"""
+    if not full:
+        return links
+    by_slug = {x[0]: x for x in BLOG}
+    cards = "".join(blog_card(by_slug[s], prefix=prefix) for s in LEGRAND_CLUSTER if s in by_slug)
+    return links + f"""
+<section id="legrand-cluster">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Legrand Guides</p>
+      <h2>Choosing, sizing and verifying Legrand switchgear and switches</h2>
+      <p>Which switch range for which room, which DX3 breaker for each circuit, Legrand against Schneider and Anchor, what the premium buys, and how to tell a copy from the real thing.</p>
+    </div>
+    <div class="blog-grid">{cards}</div>
+  </div>
+</section>"""
 
 def dealer_cluster_html():
     by_slug = {x[0]: x for x in BLOG}
@@ -3226,6 +3268,7 @@ def llms_txt():
         f"- [Price Lists]({SITE_URL}/price-lists): full Finolex price list (list wef 4 Sep 2026, every range), Legrand MPL 2026, Anchor Panasonic April 2026 and Polycab lists, plus approximate bands for other brands.",
         f"- [Finolex Wire Scanner]({SITE_URL}/finolex-wire-scanner): scan the QR on a Finolex coil in the browser; the code is verified live against Finolex's own server (the service behind check.finolex.com) and the reply shown on the page.",
         f"- [Legrand MCB Price List 2026]({SITE_URL}/price-lists/legrand-mcb-price-list): DX3 MCB MRP by pole, rating band and curve.",
+        f"- [Legrand Dealer Bangalore]({SITE_URL}/legrand-dealer-bangalore): full Legrand range in stock, sold below MRP, with pages on original Legrand MCBs (seven checks), best price on switches, best price on MCBs and DBs, and the complete product range.",
         f"- [Knowledge Hub]({SITE_URL}/knowledge): deep guides to every electrical brand stocked — ranges, series, genuine-product checks.",
         f"- [Original vs Duplicate Electrical Products]({SITE_URL}/original-vs-duplicate-electrical-products): how counterfeit electrical products are sold in Bangalore and how to avoid them.",
         f"- [Blog]({SITE_URL}/blog): buying guides, brand comparisons, wire-size guides and brand-by-brand duplicate-identification articles.",
