@@ -642,6 +642,10 @@ BLOG = [
 # Brand-wise price lists, knowledge-hub brand guides and duplicate-identification
 # blog posts live in separate data modules to keep this file manageable.
 from data_price_lists import PRICE_LISTS
+from data_brand_prices import merge_price_lists
+PRICE_LISTS = merge_price_lists(PRICE_LISTS)
+from data_blog_compare import BLOG_COMPARE
+from data_seo_scanner import SCANNER_PAGE
 from data_knowledge import KNOWLEDGE
 from data_blog_duplicates import DUPLICATE_BLOGS
 from data_blog_buying_guides import BUYING_GUIDE_BLOGS
@@ -662,9 +666,9 @@ from data_stories import (STORIES, ILLUSTRATIONS, PACK_PHOTOS, NARRATIVE,
                           FAQS as STORY_FAQS)
 from data_karnataka import KARNATAKA_CITIES
 from data_seo_dealers import DEALER_SEO_PAGES, TWO_QR as DEALER_TWO_QR
-BLOG = (BLOG_AEO + BLOG_VS + BLOG_FINOLEX_PRICES + BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
+BLOG = (BLOG_COMPARE + BLOG_AEO + BLOG_VS + BLOG_FINOLEX_PRICES + BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
         + BUYING_GUIDE_BLOGS + BRAND_GUIDE_BLOGS)
-SEO_PAGES = SEO_PAGES + DEALER_SEO_PAGES
+SEO_PAGES = SEO_PAGES + DEALER_SEO_PAGES + [SCANNER_PAGE]
 
 # Lifestyle photography (assets/img/people). Real people using electrical
 # material — used on the home page and as blog hero images. Every entry needs a
@@ -922,7 +926,8 @@ def header(prefix="", active_lang="en"):
           <a href="{prefix}finolex-silver-90m-dealers.html"><strong>Finolex Silver 90M</strong><span>Dealer stock and pricing</span></a>
           <a href="{prefix}finolex-gold-90m-dealers.html"><strong>Finolex Gold 90M</strong><span>Dealer stock and pricing</span></a>
           <a href="{prefix}finolex-project-packing-dealers.html"><strong>Finolex Project Packing</strong><span>Bulk and site packs</span></a>
-          <a href="{prefix}price-lists/finolex-price-list.html"><strong>Finolex Price List</strong><span>Approximate current rates</span></a>
+          <a href="{prefix}price-lists/finolex-price-list.html"><strong>Finolex Price List</strong><span>Every range, list wef 4 Sep 2026</span></a>
+          <a href="{prefix}finolex-wire-scanner.html"><strong>Finolex Wire Scanner</strong><span>Check a coil is original here</span></a>
           <a href="{prefix}finolex-dealer-near-me.html"><strong>Finolex Dealer Near Me</strong><span>Jayanagar and Chickpete</span></a>
         </div>
       </div>
@@ -2180,7 +2185,7 @@ def finolex_cluster_html():
     <div class="section-head">
       <p class="eyebrow">Verify Before You Pay</p>
       <h2>Every way to confirm your Finolex wire is original</h2>
-      <p>Both QR codes, what the genuine reply proves, what a failed or already-used code means, the physical checks on the wire itself, and what to do if something is wrong. Written by a distributor who checks these boxes every day.</p>
+      <p>Both QR codes, what the genuine reply proves, what a failed or already-used code means, the physical checks on the wire itself, and what to do if something is wrong. Written by a distributor who checks these boxes every day. To check a coil right now, use the <a href="finolex-wire-scanner.html">Finolex wire scanner</a>.</p>
     </div>
     <div class="blog-grid">{cards}</div>
   </div>
@@ -2530,11 +2535,12 @@ def faq_jsonld_html(faqs):
         for q, a in faqs)
     return f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{faq_q}]}}</script>'
 
-def quote_cta_block(prefix=""):
+def quote_cta_block(prefix="", approx=True):
+    lead = "Prices above are approximate. " if approx else "Prices above are current list or net prices; larger quantities are priced better. "
     return f"""
     <div class="post-cta">
       <h3>Need exact prices? Get a quote within 60 minutes.</h3>
-      <p>Prices above are approximate. Message your full product list to <strong>{PHONE}</strong> and you'll receive an exact, itemised quote within 60 minutes — free next-day delivery across Bangalore, pay on delivery, every product QR-verifiable at your site. No pressure to buy: use our quote as your reference price anywhere.</p>
+      <p>{lead}Message your full product list to <strong>{PHONE}</strong> and you'll receive an exact, itemised quote within 60 minutes — free next-day delivery across Bangalore, pay on delivery, every product QR-verifiable at your site. No pressure to buy: use our quote as your reference price anywhere.</p>
       <div class="cta-actions">
         <a class="btn btn-gold" href="https://wa.me/{WHATSAPP}?text=Hi,%20please%20share%20exact%20pricing%20for%20my%20electrical%20list">💬 WhatsApp {PHONE}</a>
         <a class="btn btn-outline" href="{prefix}quote.html">📷 Upload Your List</a>
@@ -2543,8 +2549,8 @@ def quote_cta_block(prefix=""):
 
 def build_price_hub():
     path = "price-lists.html"
-    title = "Electrical Price List Bangalore (2026) — Brand-Wise Approx Rates | Mount Cable India"
-    desc = ("Brand-wise electrical price lists for Bangalore: Finolex, Polycab, KEI, RR Kabel, Anchor, Schneider, Legrand & more — wires, switches, MCBs, earthing, networking, lighting. "
+    title = "Electrical Price List 2026 Bangalore — Finolex, Legrand, Anchor, Polycab Lists + Brand-Wise Rates | Mount Cable India"
+    desc = ("Electrical price lists for 2026: the full Finolex list (wef 4 Sep 2026), Legrand MPL 2026, Anchor Panasonic April 2026 and Polycab distributor lists, plus approximate rates for KEI, RR Kabel, Schneider, Greatwhite, HPL and more. "
             f"Approx rates + exact quote on WhatsApp {PHONE} within 60 minutes.")
     hub_faqs = [
         ("Where can I find today's electrical material prices in Bangalore?", f"These price lists give honest approximate ranges for every major electrical brand in Bangalore. Because rates move with the copper market, message your list to Mount Cable on {PHONE} for an exact quote within 60 minutes."),
@@ -2561,7 +2567,7 @@ def build_price_hub():
         if not items:
             continue
         chips = "".join(
-            f'<a class="area-chip" href="{price_page_path(p)}">{html.escape(p["name"])} Price{"s" if p["kind"] == "category" else " List"} Bangalore</a>'
+            f'<a class="area-chip" href="{price_page_path(p)}">{html.escape(p["name"])} Price{"s" if p["kind"] == "category" else " List"}{" 2026" if any("cols" in t for t in p["tables"]) else " Bangalore"}</a>'
             for p in items)
         groups_html += f'<h2 style="margin:26px 0 4px">{html.escape(g)}</h2><div class="area-grid" style="justify-content:flex-start">{chips}</div>'
     body += f"""
@@ -2569,14 +2575,16 @@ def build_price_hub():
   <div class="container">
     <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Price Lists</div>
     <span class="badge">💰 Brand-Wise Approx Rates · Exact Quote in 60 Minutes</span>
-    <h1>Electrical price lists in Bangalore — today's approximate rates</h1>
-    <p>Know the fair price band before you buy. Approximate brand-wise rates for wires, switches, MCBs, earthing, networking and lighting — and when you want exact prices, just message your list to {PHONE}: you'll get an itemised quote within 60 minutes, with no pressure to buy from us.</p>
+    <h1>Electrical price lists 2026: Finolex, Legrand, Anchor, Polycab and every brand we stock</h1>
+    <p>Four brands are published from their current price lists: the complete Finolex list at our net prices (wef 4 Sep 2026), the Legrand Corp MPL 2026 for MCBs, RCCBs, DBs and switches, the Anchor Panasonic April 2026 list and the Polycab distributor lists. The other brands are shown as approximate bands. When you want exact prices, just message your list to {PHONE}: you'll get an itemised quote within 60 minutes, with no pressure to buy from us.</p>
   </div>
 </section>
 <article class="post"><div class="container narrow">
   <div class="post-body">
     {groups_html}
-    <h2>Why we publish approximate prices (and how to get exact ones)</h2>
+    <h2>Real lists for four brands, approximate bands for the rest</h2>
+    <p>Where we hold the manufacturer's current list, we publish it: <a href="price-lists/finolex-price-list.html">Finolex</a> (every range, as our selling prices), <a href="price-lists/legrand-price-list.html">Legrand</a>, <a href="price-lists/anchor-panasonic-price-list.html">Anchor Panasonic</a> and <a href="price-lists/polycab-price-list.html">Polycab</a> (as MRP or list price). Those pages carry the list date so you know which revision you are reading.</p>
+    <h2>Why the other brands show approximate prices (and how to get exact ones)</h2>
     <p>Wire and cable prices track the global copper market, and switchgear prices revise periodically — a fixed price list goes stale within weeks. So these pages show honest <strong>approximate ranges</strong> that tell you the fair band, and for the exact rate on any day, we quote live: message your list to <strong>{PHONE}</strong> and receive a complete quote within <strong>60 minutes</strong>.</p>
     <p>One more reason these lists exist: <strong>protection against duplicates</strong>. Genuine electrical is a 3–5% margin trade, so honest prices cluster tightly. Any quote dramatically below these bands is a red flag — read <a href="original-vs-duplicate-electrical-products.html">how duplicate material is sold, and how to stay safe</a>.</p>
   </div>
@@ -2590,53 +2598,79 @@ def build_price_hub():
 
 def _parse_price_range(s):
     """'₹1,350 – ₹1,550' -> (1350, 1550); tolerates a single figure too."""
-    nums = [int(n.replace(",", "")) for n in re.findall(r"[\d,]+", s)]
+    nums = [int(n) for n in (m.replace(",", "") for m in re.findall(r"[\d,]+", s)) if n.isdigit()]
     if not nums:
         return None
     return (min(nums), max(nums))
 
 def product_offer_jsonld(p):
     """One Product+AggregateOffer block per price-list page, built from its
-    own table rows — keeps the approximate ranges eligible for Google's
-    product/price rich results without asserting a single fixed price."""
-    all_rows = [r for t in p["tables"] for r in t["rows"]]
-    parsed = [_parse_price_range(r[2]) for r in all_rows]
-    parsed = [x for x in parsed if x]
-    if not parsed:
+    own table rows. Legacy tables keep the price in column 3; the newer tables
+    with explicit "cols" carry rupee figures in any column after the first."""
+    nums = []
+    for t in p["tables"]:
+        for r in t["rows"]:
+            cells = r[2:3] if "cols" not in t else [c for c in r[1:] if "₹" in str(c)]
+            for c in cells:
+                x = _parse_price_range(str(c))
+                if x:
+                    nums.append(x)
+    if not nums:
         return ""
-    low = min(x[0] for x in parsed)
-    high = max(x[1] for x in parsed)
+    low = min(x[0] for x in nums)
+    high = max(x[1] for x in nums)
+    brand = p["name"].split(" ")[0] if p["kind"] == "sub" else p["name"]
     return ('<script type="application/ld+json">{"@context":"https://schema.org",'
         '"@type":"Product","name":' + _json(p["name"] + " Electrical Products") +
         ',"description":' + _json(p["desc"]) +
-        ',"brand":{"@type":"Brand","name":' + _json(p["name"]) + '},'
+        ',"brand":{"@type":"Brand","name":' + _json(brand) + '},'
         '"offers":{"@type":"AggregateOffer","priceCurrency":"INR","lowPrice":' + str(low) +
-        ',"highPrice":' + str(high) + ',"offerCount":' + str(len(all_rows)) +
+        ',"highPrice":' + str(high) + ',"offerCount":' + str(len(nums)) +
         ',"seller":{"@type":"Organization","name":"Mount Cable India"}}}</script>')
+
+APPROX_NOTE = ('<p class="ptable-note">*Approximate market-linked ranges, shown so you know the fair price band '
+               "— actual rates change with the copper market and brand revisions. Mount Cable's quote is typically below these bands.</p>")
+
+def _price_table_html(t):
+    cols = t.get("cols") or ["Product", "Unit", "Approx. Price*"]
+    head = "".join(f"<th>{html.escape(c)}</th>" for c in cols)
+    rows = "".join("<tr>" + "".join(f"<td>{html.escape(str(c))}</td>" for c in r) + "</tr>" for r in t["rows"])
+    return (f'<h2>{html.escape(t["title"])}</h2>'
+            '<div class="ptable-wrap"><table class="ptable">'
+            f'<thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table></div>'
+            + t.get("note", ""))
 
 def build_price_list(p):
     path = price_page_path(p)
-    crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Price Lists", SITE_URL + "/price-lists"), (p["name"], url_for(path))])
+    real = any("cols" in t for t in p["tables"])
+    crumb_items = [("Home", SITE_URL + "/"), ("Price Lists", SITE_URL + "/price-lists")]
+    parent = None
+    if p["kind"] == "sub":
+        parent = next((q for q in PRICE_LISTS if q["slug"] == p.get("parent")), None)
+    if parent:
+        crumb_items.append((parent["name"], url_for(price_page_path(parent))))
+    crumb_items.append((p["name"], url_for(path)))
+    crumbs = breadcrumb_jsonld(crumb_items)
     body = head(p["title"], p["desc"], path, css_prefix="../", extra_jsonld=faq_jsonld_html(p["faqs"]) + crumbs + product_offer_jsonld(p))
     body += header(prefix="../")
-    tables_html = ""
-    for t in p["tables"]:
-        rows = "".join(
-            f"<tr><td>{html.escape(r[0])}</td><td>{html.escape(r[1])}</td><td>{html.escape(r[2])}</td></tr>"
-            for r in t["rows"])
-        tables_html += (f'<h2>{html.escape(t["title"])}</h2>'
-            '<div class="ptable-wrap"><table class="ptable">'
-            '<thead><tr><th>Product</th><th>Unit</th><th>Approx. Price*</th></tr></thead>'
-            f'<tbody>{rows}</tbody></table></div>')
+    tables_html = "".join(_price_table_html(t) for t in p["tables"])
     note = p.get("note", "")
+    price_note = p.get("price_note") or APPROX_NOTE
     brand_link = ""
     if p["kind"] == "brand":
         brand_link = f'<p>See the full range we stock on the <a href="../brands/{p["slug"]}.html">{html.escape(p["name"])} brand page</a>, or read the <a href="../knowledge/{p["slug"]}-guide.html">{html.escape(p["name"])} brand knowledge guide</a>.</p>'
+    related = ""
+    if p.get("related"):
+        related = ('<div class="section-head" style="margin-top:30px"><p class="eyebrow">Related</p><h2>Related price lists and guides</h2></div>'
+                   '<div class="area-grid" style="justify-content:flex-start">'
+                   + "".join(f'<a class="area-chip" href="{h}">{html.escape(t)}</a>' for h, t in p["related"]) + "</div>")
+    badge = p.get("badge") or f"💰 Approx Rates · Exact Quote in 60 Minutes on {PHONE}"
+    parent_crumb = (f' &nbsp;/&nbsp; <a href="{price_page_path(parent).split("/")[-1]}">{html.escape(parent["name"])}</a>' if parent else "")
     body += f"""
 <section class="bp-hero">
   <div class="container">
-    <div class="crumbs"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../price-lists.html">Price Lists</a> &nbsp;/&nbsp; {html.escape(p["name"])}</div>
-    <span class="badge">💰 Approx Rates · Exact Quote in 60 Minutes on {PHONE}</span>
+    <div class="crumbs"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../price-lists.html">Price Lists</a>{parent_crumb} &nbsp;/&nbsp; {html.escape(p["name"])}</div>
+    <span class="badge">{html.escape(badge)}</span>
     <h1>{html.escape(p["h1"])}</h1>
     <p>{html.escape(p["intro"])}</p>
   </div>
@@ -2644,11 +2678,12 @@ def build_price_list(p):
 <article class="post"><div class="container narrow">
   <div class="post-body">
     {tables_html}
-    <p class="ptable-note">*Approximate market-linked ranges, shown so you know the fair price band — actual rates change with the copper market and brand revisions. Mount Cable's quote is typically below these bands.</p>
+    {price_note}
     {note}
     {brand_link}
+    {related}
   </div>
-  {quote_cta_block(prefix="../")}
+  {quote_cta_block(prefix="../", approx=not real)}
   <div class="section-head" style="margin-top:34px"><p class="eyebrow">Questions, Answered</p><h2>FAQs</h2></div>
   <div class="faq-list">{faq_details_html(p["faqs"])}</div>
 </div></article>
@@ -3119,7 +3154,7 @@ def build_buy_finolex():
     write(path, body)
 
 
-SITE_LASTMOD = "2026-08-03"
+SITE_LASTMOD = "2026-09-08"
 
 def build_sitemap():
     paths = ["index.html", "quote.html", "blog.html", "review.html", "thank-you.html", "price-lists.html", "knowledge.html", "brand-selector.html", "tools.html"]
@@ -3188,7 +3223,9 @@ def llms_txt():
         "",
         "## Core pages",
         f"- [Home]({SITE_URL}/): overview, brands carried, service promises, FAQ.",
-        f"- [Price Lists]({SITE_URL}/price-lists): brand-wise and category-wise approximate electrical price ranges for Bangalore.",
+        f"- [Price Lists]({SITE_URL}/price-lists): full Finolex price list (list wef 4 Sep 2026, every range), Legrand MPL 2026, Anchor Panasonic April 2026 and Polycab lists, plus approximate bands for other brands.",
+        f"- [Finolex Wire Scanner]({SITE_URL}/finolex-wire-scanner): scan the QR on a Finolex coil in the browser; the code is verified live against Finolex's own server (the service behind check.finolex.com) and the reply shown on the page.",
+        f"- [Legrand MCB Price List 2026]({SITE_URL}/price-lists/legrand-mcb-price-list): DX3 MCB MRP by pole, rating band and curve.",
         f"- [Knowledge Hub]({SITE_URL}/knowledge): deep guides to every electrical brand stocked — ranges, series, genuine-product checks.",
         f"- [Original vs Duplicate Electrical Products]({SITE_URL}/original-vs-duplicate-electrical-products): how counterfeit electrical products are sold in Bangalore and how to avoid them.",
         f"- [Blog]({SITE_URL}/blog): buying guides, brand comparisons, wire-size guides and brand-by-brand duplicate-identification articles.",

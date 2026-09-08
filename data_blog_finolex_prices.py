@@ -307,13 +307,19 @@ def _flex_rows(size):
 
 BLOG_FINOLEX_PRICES += [
     ("finolex-0-75-mm-wire-price",
-     "Finolex 0.75 mm Wire Price (2026): Why It Is Not a House-Wire Size",
-     "Finolex 0.75 sq mm and 0.5 sq mm prices — these are flexible-cable sizes, not house wire. Current prices, plus what these sizes are and are not for.",
+     "Finolex 0.75 mm Wire Price (2026): Flexible Coils and the 0.75 House-Wire Pack",
+     "Finolex 0.75 sq mm and 0.5 sq mm prices in flexible cable, plus the 0.75 sq mm Silver, Gold and FR-LSH house-wire packs Finolex now lists. What each size is and is not for.",
      "Pricing",
-     f"""<p><strong>Finolex does not make 0.75 sq mm or 0.5 sq mm in the house-wire range. These are flexible
-multi-core cable sizes, used for appliance leads, extension boards and light fittings — not for wiring a wall.</strong>
+     f"""<p><strong>0.75 sq mm and 0.5 sq mm are flexible-cable sizes, used for appliance leads, extension boards and light
+fittings, not for wiring a wall. Finolex's {EFFECTIVE_FROM} list also carries a 0.75 sq mm house-wire coil in the Silver, Gold
+and FR-LSH packs, priced below, but it is not a size to run inside a concealed circuit.</strong>
 A 0.75 sq mm single-core flexible coil is {_rs(offer(FLEXIBLE['0.75'][0]))} at Mount Cable India. If you were quoted 0.75 sq mm for a lighting
 circuit in a house, that is a specification error worth correcting before the wire goes into the wall.</p>
+
+<h2>Finolex 0.75 sq mm house-wire packs</h2>
+<div class="ptable-wrap"><table class="ptable">
+<thead><tr><th>Pack</th><th>Coil</th><th>Our price</th></tr></thead>
+<tbody>{"".join(f"<tr><td>{l}</td><td>{ln}</td><td><strong>{_rs(pr)}</strong></td></tr>" for l, ln, mrp, pr in house_wire_rows('0.75'))}</tbody></table></div>
 
 <h2>Finolex 0.75 sq mm flexible cable price</h2>
 <div class="ptable-wrap"><table class="ptable">
@@ -348,7 +354,7 @@ the reverse, is a common and avoidable mistake — the difference is explained i
 {CTA}""",
      D,
      [("What is the price of Finolex 0.75 mm wire?",
-       f"A 0.75 sq mm single-core flexible coil is Rs {offer(FLEXIBLE['0.75'][0]):,} at Mount Cable India, taxes extra as applicable. Note that 0.75 sq mm is a flexible-cable size — Finolex does not make it in the house-wire range."),
+       f"A 0.75 sq mm single-core flexible coil is Rs {offer(FLEXIBLE['0.75'][0]):,} at Mount Cable India, taxes extra as applicable. Finolex also lists a 0.75 sq mm Silver Pack 90 m house-wire coil, but 0.75 sq mm is a flexible-cable size in practice and is not used for concealed circuits."),
       ("Is 0.75 sq mm wire suitable for house wiring?",
        "No. It is a flexible-cable size for appliance leads, extension boards and light fittings, not for concealed circuits in a wall. The smallest size used for house lighting circuits in India is 1.0 sq mm, and most homes use 1.5 sq mm for lighting and 6A socket points."),
       ("What is the price of Finolex 0.5 mm wire?",
