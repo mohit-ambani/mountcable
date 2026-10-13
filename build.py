@@ -63,7 +63,7 @@ HOME_BRAND_LOGOS = [
     ("legrand", "legrand", "#E2001A"),
     ("polycab", "Polycab", None),
     ("gm-modular", "GM", None),
-    ("hpl", "HPL Hi-Fi", None),
+    ("hifi", "Hi-Fi", "#1B4F9C"),
     ("anchor-panasonic", "Anchor", None),
 ]
 
@@ -75,15 +75,15 @@ HOME_BRANDS = {
     "legrand": ("Legrand", "Full Legrand range at 65% off MRP, one of the highest Legrand discounts in Bangalore."),
     "polycab": ("Polycab", "India's largest wires & cables maker and a complete FMEG brand."),
     "gm-modular": ("GM Modular", "Designer modular switches, plates and LED lighting in a wide range of colours and finishes."),
-    "hpl": ("HPL Hi-Fi", "Hi-Fi and Hi-Class modular switches, sockets and MCBs from HPL at value pricing."),
+    "hifi": ("Hi-Fi", "Economical modular switches, sockets and accessories from the Elleys group."),
     "anchor-panasonic": ("Anchor by Panasonic", "Switches, wiring devices, lighting and fans backed by Panasonic."),
 }
 HOME_CAT_BLURBS = {
-    "switches-and-sockets": "Modular switches, plates, sockets and wiring accessories from Legrand, GM, HPL Hi-Fi and Anchor by Panasonic.",
+    "switches-and-sockets": "Modular switches, plates, sockets and wiring accessories from Legrand, GM, Hi-Fi and Anchor by Panasonic.",
     "wires-and-cables": "House wiring, power, control and flexible cables from Finolex and Polycab, every gauge for your home.",
     "pipes-and-conduits": "PVC electrical conduits, casing-capping, pipes, bends and fittings from Finolex and Polycab for clean, safe cable runs.",
     "lighting": "LED bulbs, panels, battens, downlights and decorative lighting from Finolex, Polycab, GM and Anchor.",
-    "switchgear-and-mcb": "MCBs, RCCBs, isolators and distribution boards from Legrand, HPL, Polycab and Anchor for safe circuit protection.",
+    "switchgear-and-mcb": "MCBs, RCCBs, isolators and distribution boards from Legrand, Polycab and Anchor for safe circuit protection.",
     "internet-networking": "Cat5e/Cat6 LAN cables, patch cords, RJ45 connectors, keystones, co-axial and telephone cables from Finolex and Polycab for a fast, stable wired home network.",
 }
 def home_brands():
@@ -94,7 +94,7 @@ def home_brands():
         out.append(tuple(b))
     return out
 _OTHER_BRAND_WORDS = ("KEI", "RR Kabel", "V-Guard", "Greatwhite", "GreatWhite", "Schneider", "3M",
-                      "Precision Pipes", "Univyin", "Havells")
+                      "Precision Pipes", "Univyin", "Havells", "HPL")
 def mentions_other_brand(text):
     return any(w in text for w in _OTHER_BRAND_WORDS)
 
@@ -183,6 +183,10 @@ BRANDS = [
      "Designer modular switches, plates and LED lighting in a wide range of colours and finishes.",
      ["Modular Switches & Plates", "Sockets & USB Chargers", "LED Bulbs & Battens", "Insulation Tapes & Accessories", "Home Automation"],
      "GM Modular is known for design-led modular switches and plates in a wide range of colours and finishes, plus LED lighting and wiring accessories. Mount Cable India supplies the GM range across Bengaluru, 100% original, with free next-day delivery and payment at your site."),
+    ("hifi", "Hi-Fi", "#1B4F9C", False,
+     "Economical modular switches, sockets and accessories from the Elleys group.",
+     ["Modular Switches & Sockets", "Plates & Frames", "Fan Regulators & Dimmers", "Bell Pushes & Indicators", "Holders & Accessories"],
+     "Hi-Fi, from the Elleys group, is a value-priced modular switch range that keeps the budget tight without giving up a dependable switch action, a sensible pick for bedrooms, utility areas and back-of-house points. Mount Cable India supplies the Hi-Fi range across Bengaluru, 100% original, with free next-day delivery and payment at your site."),
     ("univyin-cables", "Univyin Cables", "#1E6BD6", False,
      "Reliable wires and flexible cables at value pricing.",
      ["House Wires", "Multi-core Flexible Cables", "Submersible Cables", "Power Cables"],
@@ -1159,7 +1163,7 @@ def build_index():
         f'<details class="faq"><summary>{html.escape(q)}</summary><div class="faq-a">{html.escape(a)}</div></details>'
         for q, a in FAQS)
     blog_teaser = "".join(blog_card(p, prefix="") for p in [x for x in BLOG if not mentions_other_brand(x[1] + x[2])][:3])
-    price_chips = "".join(f'<a class="area-chip" href="{price_page_path(p)}">{html.escape(p["name"])} Price List</a>' for p in PRICE_LISTS if not mentions_other_brand(p["name"]) and p["name"] != "HPL")
+    price_chips = "".join(f'<a class="area-chip" href="{price_page_path(p)}">{html.escape(p["name"])} Price List</a>' for p in PRICE_LISTS if not mentions_other_brand(p["name"]))
     brand_slugs = {b[0] for b in BRANDS}
     def _home_logo(slug, name, color):
         if color:
@@ -1310,7 +1314,7 @@ def build_index():
       <div class="feat"><div class="ic">💳</div><h3>Pay on Delivery</h3><p>Inspect and verify first, pay after — at your site, in any mode: cash, UPI, card or bank transfer. No advance hassles.</p></div>
       <div class="feat"><div class="ic">🛠️</div><h3>Any Issue, Solved Immediately</h3><p>Find a problem with any product? We resolve it immediately — replacement first, questions later.</p></div>
       <div class="feat"><div class="ic">📋</div><h3>Reference Pricing, No Pressure</h3><p>Send your list to {PHONE} and get an exact quote in 60 minutes. Use it to cross-check any shop — no obligation to buy from us.</p></div>
-      <div class="feat"><div class="ic">🏬</div><h3>Every Brand, One Roof</h3><p>Finolex, Legrand, Polycab, GM, HPL Hi-Fi and Anchor — collated under a single roof at justified, transparent pricing.</p></div>
+      <div class="feat"><div class="ic">🏬</div><h3>Every Brand, One Roof</h3><p>Finolex, Legrand, Polycab, GM, Hi-Fi and Anchor — collated under a single roof at justified, transparent pricing.</p></div>
       <div class="feat"><div class="ic">↩️</div><h3>Free Pickup of Excess Stock</h3><p>Ordered a little extra? If you have surplus material left over, we'll pick it up free of charge.</p></div>
       <div class="feat"><div class="ic">🧭</div><h3>Expert Guidance</h3><p>First time wiring a home? We'll help you choose the right wires, gauges and brands for every room of your house.</p></div>
     </div>
@@ -2371,7 +2375,7 @@ def build_brand_selector():
             "and house wires — from Bangalore's No.1 electrical supplier. No obligation to buy from us.")
     faqs = [
         ("How does the brand selector tool decide its recommendation?", "For switches, it matches your stated budget per switch or your top priority (durability, looks, or value) to the brand generally known for that position in the market. For wires, it asks what matters most to you and your budget comfort, then recommends accordingly — defaulting to Finolex for most home-wiring needs and Polycab when you specifically want one brand across wires, fans, lighting and switchgear."),
-        ("Is this recommendation biased toward brands Mount Cable sells?", "No. The tool gives the same independent recommendation regardless of what we stock — including brands like Elleys, Lisha and Norisys that we do not currently carry. Where we do stock the recommended brand (Finolex, Polycab, Legrand, GM, HPL Hi-Fi, Anchor, Greatwhite, Schneider), we'll show you a link to check pricing; where we don't, we'll say so honestly."),
+        ("Is this recommendation biased toward brands Mount Cable sells?", "No. The tool gives the same independent recommendation regardless of what we stock — including brands like Elleys, Lisha and Norisys that we do not currently carry. Where we do stock the recommended brand (Finolex, Polycab, Legrand, GM, Hi-Fi, Anchor, Greatwhite, Schneider), we'll show you a link to check pricing; where we don't, we'll say so honestly."),
         ("Can I get an exact price after using the tool?", "Yes. Once you have a brand in mind, message your full list to +91 88676 76700 and you'll get an exact, itemised quote within 60 minutes — with no pressure to buy from us."),
     ]
     crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Brand Selector", url_for(path))])
@@ -2455,7 +2459,7 @@ def build_brand_selector():
     "Finolex": "price-lists/finolex-price-list.html",
     "Polycab": "price-lists/polycab-price-list.html",
     "GM": "brands/gm-modular.html",
-    "Hifi": "brands/hpl.html"
+    "Hifi": "brands/hifi.html"
   }};
   var SW_BUDGET = [
     {{brand:"Hifi", note:"A very economical entry-level choice — a sensible pick for utility areas, store rooms and back-of-house points where budget matters more than finish."}},
