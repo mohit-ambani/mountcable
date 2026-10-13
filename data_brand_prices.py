@@ -921,12 +921,13 @@ BRAND_PRICE_PAGES = [FINOLEX_PAGE, FINOLEX_GOLD_PAGE, POLYCAB_PAGE, ANCHOR_PAGE,
                      LEGRAND_PAGE, LEGRAND_MCB_PAGE, LEGRAND_SWITCHGEAR_PAGE, LEGRAND_SWITCHES_PAGE]
 
 
-def merge_price_lists(price_lists):
+def merge_price_lists(price_lists, extra=()):
     """Replace the old approximate-range entries for these brands with the real
     lists, keeping hub order, and slot the sub-pages after their parent."""
-    override = {p["slug"]: p for p in BRAND_PRICE_PAGES if p["kind"] == "brand"}
+    pages = BRAND_PRICE_PAGES + list(extra)
+    override = {p["slug"]: p for p in pages if p["kind"] == "brand"}
     subs = {}
-    for p in BRAND_PRICE_PAGES:
+    for p in pages:
         if p["kind"] == "sub":
             subs.setdefault(p["parent"], []).append(p)
     out = []

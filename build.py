@@ -681,7 +681,8 @@ BLOG = [
 # blog posts live in separate data modules to keep this file manageable.
 from data_price_lists import PRICE_LISTS
 from data_brand_prices import merge_price_lists, with_net
-PRICE_LISTS = merge_price_lists(PRICE_LISTS)
+from data_price_pages_more import MORE_PRICE_PAGES
+PRICE_LISTS = merge_price_lists(PRICE_LISTS, extra=MORE_PRICE_PAGES)
 from data_blog_compare import BLOG_COMPARE
 from data_seo_scanner import SCANNER_PAGE
 from data_seo_legrand import LEGRAND_SEO_PAGES, LEGRAND_BLOG, LEGRAND_CLUSTER, LEGRAND_PAGE_LINKS
@@ -705,9 +706,10 @@ from data_stories import (STORIES, ILLUSTRATIONS, PACK_PHOTOS, NARRATIVE,
                           FAQS as STORY_FAQS)
 from data_karnataka import KARNATAKA_CITIES
 from data_seo_dealers import DEALER_SEO_PAGES, TWO_QR as DEALER_TWO_QR
+from data_seo_best import BEST_SEO_PAGES, BEST_PAGE_LINKS
 BLOG = (LEGRAND_BLOG + BLOG_COMPARE + BLOG_AEO + BLOG_VS + BLOG_FINOLEX_PRICES + BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
         + BUYING_GUIDE_BLOGS + BRAND_GUIDE_BLOGS)
-SEO_PAGES = SEO_PAGES + DEALER_SEO_PAGES + [SCANNER_PAGE] + LEGRAND_SEO_PAGES
+SEO_PAGES = SEO_PAGES + DEALER_SEO_PAGES + [SCANNER_PAGE] + LEGRAND_SEO_PAGES + BEST_SEO_PAGES
 
 # Lifestyle photography (assets/img/people). Real people using electrical
 # material — used on the home page and as blog hero images. Every entry needs a
@@ -1214,6 +1216,17 @@ def build_index():
     <p class="hbl-title">Genuine products from the brands you trust</p>
     <div class="hbl-strip">{brand_logos}</div>
     <p class="hbl-note"><a href="index.html#brands">See our brands →</a></p>
+  </div>
+</section>
+
+<section id="which-brand">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Which Brand Should You Buy?</p>
+      <h2>Finolex for wires. Legrand for switches and MCBs.</h2>
+      <p>Our straight answer after {YEARS} years of wiring Bangalore homes, with the reasons, the right grade for every room and real prices.</p>
+    </div>
+    <div class="area-grid">{"".join(f'<a class="area-chip" href="{h}">{html.escape(t)}</a>' for h, t in BEST_PAGE_LINKS)}</div>
   </div>
 </section>
 
@@ -2171,6 +2184,7 @@ def build_seo_page(p):
     cluster_html = (finolex_cluster_html() if p["slug"] == "original-finolex-wires"
                     else dealer_cluster_html() if p["slug"] == "finolex-dealers-karnataka"
                     else legrand_cluster_html(full=(p["slug"] == "legrand-dealer-bangalore"), current=p["slug"]) if p.get("cluster") == "legrand"
+                    else best_cluster_html(current=p["slug"]) if p.get("cluster") == "best"
                     else "")
     og = f"{SITE_URL}/{PEOPLE_IMG_DIR}/{p['hero'][0]}" if p.get("hero") else None
     body = head(p["title"], p["desc"], path, extra_jsonld=faq_ld + crumbs, og_image=og)
@@ -2242,6 +2256,25 @@ DEALER_CLUSTER = [x[0] for x in BLOG_KARNATAKA] + [
     "original-finolex-wire-checklist-before-paying",
     "where-to-buy-original-finolex-wires-bangalore",
 ]
+
+def best_cluster_html(current=None, prefix=""):
+    """Chip hub for the "which is best" cluster plus the Finolex / Legrand price pages."""
+    chips = "".join(f'<a class="area-chip" href="{prefix}{h}">{html.escape(t)}</a>'
+                    for h, t in BEST_PAGE_LINKS if h != f"{current}.html")
+    prices = "".join(f'<a class="area-chip" href="{prefix}{price_page_path(p)}">{html.escape(p["name"])} Price List</a>'
+                     for p in PRICE_LISTS if p["slug"].startswith(("finolex", "legrand")))
+    return f"""
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Choosing the right brand</p>
+      <h2>Finolex for wires, Legrand for switches and MCBs</h2>
+      <p>Straight answers to the questions every house builder asks, and the price list for every Finolex and Legrand range.</p>
+    </div>
+    <div class="area-grid" style="justify-content:flex-start">{chips}</div>
+    <div class="area-grid" style="justify-content:flex-start;margin-top:14px">{prices}</div>
+  </div>
+</section>"""
 
 def legrand_cluster_html(full=True, current=None, prefix=""):
     chips = "".join(f'<a class="area-chip" href="{prefix}{h}">{html.escape(t)}</a>'
