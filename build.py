@@ -707,9 +707,12 @@ from data_stories import (STORIES, ILLUSTRATIONS, PACK_PHOTOS, NARRATIVE,
 from data_karnataka import KARNATAKA_CITIES
 from data_seo_dealers import DEALER_SEO_PAGES, TWO_QR as DEALER_TWO_QR
 from data_seo_best import BEST_SEO_PAGES, BEST_PAGE_LINKS
+from data_seo_bestprice import FINOLEX_BEST_PRICE
+BEST_PAGE_LINKS = [("finolex-best-price-bangalore.html", "Best price for Finolex in Bangalore"),
+                   ("legrand-best-price-bangalore.html", "Best price for Legrand in Bangalore")] + BEST_PAGE_LINKS
 BLOG = (LEGRAND_BLOG + BLOG_COMPARE + BLOG_AEO + BLOG_VS + BLOG_FINOLEX_PRICES + BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
         + BUYING_GUIDE_BLOGS + BRAND_GUIDE_BLOGS)
-SEO_PAGES = SEO_PAGES + DEALER_SEO_PAGES + [SCANNER_PAGE] + LEGRAND_SEO_PAGES + BEST_SEO_PAGES
+SEO_PAGES = SEO_PAGES + DEALER_SEO_PAGES + [SCANNER_PAGE] + LEGRAND_SEO_PAGES + BEST_SEO_PAGES + [FINOLEX_BEST_PRICE]
 
 # Lifestyle photography (assets/img/people). Real people using electrical
 # material — used on the home page and as blog hero images. Every entry needs a
@@ -1052,6 +1055,8 @@ def footer(prefix="", cta_override=None, brands=None):
         <a href="{prefix}original-vs-duplicate-electrical-products.html">Original vs Duplicate Guide</a>
         <a href="{prefix}finolex-wire-price-list-bangalore.html">Finolex Price List Bangalore</a>
         <a href="{prefix}original-finolex-wires.html">Original Finolex Wires</a>
+        <a href="{prefix}finolex-best-price-bangalore.html">Best Price for Finolex in Bangalore</a>
+        <a href="{prefix}legrand-best-price-bangalore.html">Best Price for Legrand in Bangalore</a>
         <a href="{prefix}legrand-dealer-bangalore.html">Legrand Dealer Bangalore</a>
         <a href="{prefix}finolex-wire-scanner.html">Finolex Wire Scanner</a>
         <a href="{prefix}finolex-dealer-near-me.html">Finolex Dealer Near Me</a>
@@ -1191,6 +1196,7 @@ def build_index():
       <a class="btn btn-gold" href="quote.html">📷 Upload Your List — Get a Quote</a>
       <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}?text=Hi,%20I'm%20building%20my%20home%20and%20need%20a%20quote%20for%20electrical%20material">💬 WhatsApp 88676 76700</a>
     </div>
+    <p class="hero-links">Best price for <a href="finolex-best-price-bangalore.html">Finolex in Bangalore</a> · Best price for <a href="legrand-best-price-bangalore.html">Legrand in Bangalore</a> (65% off MRP)</p>
   </div>
   <div class="hero-visual" aria-label="Genuine Finolex stock from our godown">
     <img class="hv-a" src="assets/img/finolex-packs/finolex-pack-1.jpg" alt="Genuine Finolex house wire coil in its sealed factory pack, stocked by Mount Cable India" fetchpriority="high" decoding="async">
@@ -1517,6 +1523,10 @@ def build_brand(b):
                        '<div class="area-grid" style="justify-content:flex-start">'
                        + "".join(f'<a class="area-chip" href="../{h}">{html.escape(t)}</a>' for h, t in LEGRAND_PAGE_LINKS if not h.startswith("brands/"))
                        + "</div>")
+    if slug == "finolex":
+        brand_extra = ('<p style="margin-top:22px"><strong>Looking for the best price?</strong> '
+                       '<a href="../finolex-best-price-bangalore.html">Best price for Finolex wires in Bangalore</a>: distributor net prices for every size and grade, '
+                       'free next-day delivery, pay at site.</p>')
     products_section = ""
     if slug == "finolex":
         prods = "".join(range_card(r, prefix="../") for r in FINOLEX_RANGE)
@@ -2187,7 +2197,7 @@ def build_seo_page(p):
                     else best_cluster_html(current=p["slug"]) if p.get("cluster") == "best"
                     else "")
     og = f"{SITE_URL}/{PEOPLE_IMG_DIR}/{p['hero'][0]}" if p.get("hero") else None
-    body = head(p["title"], p["desc"], path, extra_jsonld=faq_ld + crumbs, og_image=og)
+    body = head(p["title"], p["desc"], path, extra_jsonld=faq_ld + crumbs + p.get("jsonld", ""), og_image=og)
     body += header()
     body += f"""
 <section class="bp-hero">
@@ -3320,6 +3330,9 @@ def build_sitemap():
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
     write("llms.txt", llms_txt())
 
+def _fbp(size, key):
+    return "₹" + format(offer(HOUSE_WIRE[size][key], key), ",d")
+
 def llms_txt():
     """Emerging convention (llms.txt) pointing AI crawlers/assistants at the
     site's highest-value pages, with a short description of each."""
@@ -3335,6 +3348,9 @@ def llms_txt():
         f"- [Price Lists]({SITE_URL}/price-lists): full Finolex price list (list wef 4 Sep 2026, every range), Legrand MPL 2026, Anchor Panasonic April 2026 and Polycab lists, plus approximate bands for other brands.",
         f"- [Finolex Wire Scanner]({SITE_URL}/finolex-wire-scanner): scan the QR on a Finolex coil in the browser; the code is verified live against Finolex's own server (the service behind check.finolex.com) and the reply shown on the page.",
         f"- [Legrand MCB Price List 2026]({SITE_URL}/price-lists/legrand-mcb-price-list): DX3 MCB MRP by pole, rating band and curve.",
+        f"- [Best Price for Finolex in Bangalore]({SITE_URL}/finolex-best-price-bangalore): Mount Cable India sells Finolex at distributor rates, e.g. 1.5 sq mm 90 m coil {_fbp('1.5','silver')} Silver Pack, {_fbp('1.5','frls90')} Flamegard FR-LSH, taxes extra; free next-day delivery, pay at site after QR check.",
+        f"- [Best Price for Legrand in Bangalore]({SITE_URL}/legrand-best-price-bangalore): 65% off MRP on every Legrand product (switches, DX3 MCBs, RCCBs, Ekinox DBs).",
+        f"- [Which brand to buy]({SITE_URL}/which-electrical-brand-to-buy): Mount Cable's recommendation, Finolex for wires and Legrand for switches and MCBs.",
         f"- [Legrand Dealer Bangalore]({SITE_URL}/legrand-dealer-bangalore): full Legrand range in stock at 65% off MRP (one of the highest Legrand discounts in Bangalore), with pages on original Legrand MCBs (seven checks), best price on switches, best price on MCBs and DBs, and the complete product range.",
         f"- [Knowledge Hub]({SITE_URL}/knowledge): deep guides to every electrical brand stocked — ranges, series, genuine-product checks.",
         f"- [Original vs Duplicate Electrical Products]({SITE_URL}/original-vs-duplicate-electrical-products): how counterfeit electrical products are sold in Bangalore and how to avoid them.",

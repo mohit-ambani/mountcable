@@ -42,6 +42,16 @@ DB_TABLE = _tbl(["Ways", "IP30", "IP43 metal door", "IP43 acrylic door", "IP54"]
 SWITCH_TABLE = _tbl(["Item", "Britzy", "Allzy", "Lyncus", "Myrius"],
                     [(d,) + tuple(rs(x) if x else "—" for x in (b, a, l, m)) for d, b, a, l, m in LEGRAND_SWITCH_CMP])
 ISO_TABLE = _tbl(["Rating", "DP", "TP", "FP"], [(r[0], rs(r[1]), rs(r[2]), rs(r[3])) for r in LEGRAND_ISOLATORS])
+import json as _json_mod
+LEGRAND_OFFER_LD = ('<script type="application/ld+json">' + _json_mod.dumps({
+    "@context": "https://schema.org", "@type": "Product",
+    "name": "Legrand switches, DX3 MCBs, RCCBs and Ekinox distribution boards",
+    "brand": {"@type": "Brand", "name": "Legrand"},
+    "offers": {"@type": "AggregateOffer", "priceCurrency": "INR", "lowPrice": lnet(56), "highPrice": lnet(6974),
+               "offerCount": 16, "availability": "https://schema.org/InStock",
+               "areaServed": {"@type": "City", "name": "Bengaluru"},
+               "seller": {"@type": "Organization", "name": "Mount Cable India"}},
+}, ensure_ascii=False) + "</script>")
 MRP_LINE = '<p class="ptable-note">Struck-through figures are Legrand MRP per unit inclusive of GST, Corp MPL 2026. Bold figures are Mount Cable India\'s price at <strong>65% off MRP</strong>, one of the highest Legrand discounts in Bangalore, on every Legrand product.</p>'
 
 # A 3BHK DB costed at MRP so the "where the money goes" argument uses real figures.
@@ -260,10 +270,10 @@ LEGRAND_SEO_PAGES = [
  ]},
 
 # ---------------------------------------------------------------- best prices of Legrand products (broad)
-{"slug": "legrand-best-price-bangalore", "cluster": "legrand",
- "title": "Best Prices on Legrand Products in Bangalore — MCB, RCCB, DB and Switches at 65% Off MRP | Mount Cable India",
- "desc": "Best prices on Legrand products in Bangalore from a stockist: DX3 MCBs and RCCBs, Ekinox DBs and the Myrius, Lyncus, Allzy and Britzy switch ranges sold at 65% off MPL 2026 MRP. Why a stockist's price is lower, what a too-low price means, a whole-house Legrand budget at MRP, and how to get a quote in 60 minutes.",
- "h1": "Best prices on Legrand products in Bangalore",
+{"slug": "legrand-best-price-bangalore", "cluster": "legrand", "jsonld": LEGRAND_OFFER_LD,
+ "title": "Best Price for Legrand in Bangalore (2026) | Best Legrand Pricing, 65% Off MRP — Mount Cable India",
+ "desc": "Best price for Legrand in Bangalore: 65% off MRP on every Legrand product from a stockist: DX3 MCBs and RCCBs, Ekinox DBs and the Myrius, Lyncus, Allzy and Britzy switch ranges sold at 65% off MPL 2026 MRP. Why a stockist's price is lower, what a too-low price means, a whole-house Legrand budget at MRP, and how to get a quote in 60 minutes.",
+ "h1": "Best price for Legrand in Bangalore: 65% off MRP on every product",
  "badge": "65% off MRP on every Legrand product · Quote in 60 minutes",
  "intro": "Legrand publishes an MRP for every product and every dealer sells below it, so the question is not whether you can get a discount but who can give the largest one on original stock. Mount Cable India gives 65% off MRP on every Legrand product, one of the highest Legrand discounts in Bangalore, because a stockist buying by the carton from the authorised distributor has room a shop buying a box at a time does not. The full Legrand range is at Jayanagar and Chickpete, with free next-day delivery and payment after you have checked the goods.",
  "answer": "The best price on Legrand products in Bangalore comes from a stockist that buys by the carton through Legrand's authorised distribution and quotes the whole house as one order. Mount Cable India sells every Legrand range at 65% off the MPL 2026 MRP, one of the highest Legrand discounts in Bangalore, delivers free the next day across the city, and lets you check each item before paying. WhatsApp 88676 76700 for a quote within 60 minutes.",
@@ -282,6 +292,8 @@ LEGRAND_SEO_PAGES = [
    + MRP_LINE),
   ("A whole-house Legrand budget at MRP",
    "<p>Every figure here is MRP, and Mount Cable India takes 65% off all of it. For a 3BHK: the distribution board at about ₹17,000 (worked on the <a href=\"legrand-mcb-best-price.html\">MCB best price page</a>), plus 20 switchboards. In Lyncus a typical board of two switches, a regulator and a socket on a 6-module plate is ₹1,926 at MRP including the box, so 20 boards are roughly ₹38,000; in Britzy about ₹31,000; in Myrius about ₹68,000. A Lyncus house with a DX3 board therefore lands near ₹55,000 at MRP, which is about ₹19,000 at our 65% off. Send the board count and the DB schedule together and it is quoted as one order.</p>"),
+  ("Best Legrand price, delivered across Bangalore",
+   "<p>The same 65% off MRP applies wherever you are building in Bengaluru, with free next-day delivery from our Jayanagar and Chickpete showrooms:</p>{areas}"),
   ("How to get the quote",
    "<ol><li>WhatsApp the list, the DB schedule, the consultant's BOM with cat numbers, or a photo of the electrician's memo to " + PH + ".</li>"
    "<li>Say which switch range and plate finish goes where; mixing ranges by room is normal.</li>"

@@ -148,7 +148,8 @@ FINOLEX_PAGE = {
              "<a href=\"../blog/finolex-0-75-mm-wire-price.html\">0.75 sq mm</a>. "
              "For the Gold Pack on its own see the <a href=\"finolex-gold-wire-price-list.html\">Finolex Gold wire price list</a>, and to order any line directly on WhatsApp use the <a href=\"../buy-finolex-wires.html\">buy Finolex wires page</a>.</p>"
              + CTA_NOTE),
-    "related": [("finolex-gold-wire-price-list.html", "Finolex Gold wire price list 2026"),
+    "related": [("../finolex-best-price-bangalore.html", "Best price for Finolex wires in Bangalore"),
+                ("finolex-gold-wire-price-list.html", "Finolex Gold wire price list 2026"),
                 ("../buy-finolex-wires.html", "Buy Finolex wires online (WhatsApp ordering)"),
                 ("../finolex-wire-scanner.html", "Finolex wire scanner: check a coil is original"),
                 ("../blog/finolex-silver-vs-gold-90m.html", "Finolex Silver vs Gold: the difference"),
@@ -384,7 +385,8 @@ LEGRAND_PAGE = {
              "<h2>Legrand vs Schneider vs Anchor for switchgear</h2>"
              "<p>Legrand and Schneider are the two European brands at the top of the Indian market and are priced close to each other. Anchor by Panasonic's UNO range sits well below on MRP with a 10 kA rating on the same sizes. The <a href=\"../blog/switchgear-brands-comparison-india.html\">switchgear brands comparison</a> sets them side by side, and the <a href=\"anchor-mcb-price-list.html\">Anchor MCB price list</a> gives the UNO figures.</p>"
              + CTA_NOTE),
-    "related": [("../legrand-dealer-bangalore.html", "Legrand dealer in Bangalore: best price, full range"),
+    "related": [("../legrand-best-price-bangalore.html", "Best price for Legrand in Bangalore"),
+                ("../legrand-dealer-bangalore.html", "Legrand dealer in Bangalore: best price, full range"),
                 ("legrand-mcb-price-list.html", "Legrand MCB price list 2026 (full DX3 table)"),
                 ("legrand-switchgear-price-list.html", "Legrand switchgear price list: RCCB, RCBO, DB"),
                 ("legrand-switches-price-list.html", "Legrand switches price list: Myrius, Britzy, Lyncus, Allzy"),

@@ -34,11 +34,13 @@ FIN_NOTE = (f"<p class=\"ptable-note\">Mount Cable India selling prices per coil
             f"effective {EFFECTIVE_FROM}. {TAX_NOTE} Larger quantities are priced better.</p>")
 LEG_BADGE = "Legrand Corp MPL 2026 · 65% off MRP at Mount Cable"
 
-FIN_RELATED = [("finolex-price-list.html", "Full Finolex price list, every range"),
+FIN_RELATED = [("../finolex-best-price-bangalore.html", "Best price for Finolex in Bangalore"),
+               ("finolex-price-list.html", "Full Finolex price list, every range"),
                ("../buy-finolex-wires.html", "Buy Finolex wires (WhatsApp ordering)"),
                ("../finolex-wire-scanner.html", "Finolex wire scanner: check a coil is original"),
                ("../best-wire-brand-in-india.html", "Which wire brand is best?")]
-LEG_RELATED = [("legrand-price-list.html", "Legrand price list 2026 overview"),
+LEG_RELATED = [("../legrand-best-price-bangalore.html", "Best price for Legrand in Bangalore"),
+               ("legrand-price-list.html", "Legrand price list 2026 overview"),
                ("legrand-switches-price-list.html", "All Legrand switch ranges side by side"),
                ("../legrand-dealer-bangalore.html", "Legrand dealer in Bangalore"),
                ("../best-switch-brand-in-india.html", "Which switch brand is best?")]
@@ -367,7 +369,8 @@ def _pole(pole):
     return rows
 
 
-_MCB_REL = [("legrand-mcb-price-list.html", "Legrand MCB price list, every pole and curve"),
+_MCB_REL = [("../legrand-best-price-bangalore.html", "Best price for Legrand in Bangalore"),
+            ("legrand-mcb-price-list.html", "Legrand MCB price list, every pole and curve"),
             ("legrand-rccb-price-list.html", "Legrand RCCB and RCBO price list"),
             ("legrand-distribution-board-price-list.html", "Legrand distribution board price list"),
             ("../best-mcb-brand.html", "Which MCB brand is best?")]
