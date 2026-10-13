@@ -58,7 +58,7 @@ I18N = {
             },
             {
                 "title": "అన్ని బ్రాండ్లు, ఒకే చోట",
-                "desc": "Finolex, Polycab, KEI, RR Kabel, Anchor, Schneider, Legrand ఇంకా మరెన్నో — ఒకే చోట, న్యాయమైన, పారదర్శక ధరలకు లభిస్తాయి.",
+                "desc": "Finolex, Legrand, Polycab, GM, HPL Hi-Fi, Anchor ఇంకా మరెన్నో — ఒకే చోట, న్యాయమైన, పారదర్శక ధరలకు లభిస్తాయి.",
             },
             {
                 "title": "మిగిలిన స్టాక్ ఉచిత పికప్",

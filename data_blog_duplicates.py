@@ -224,7 +224,7 @@ DUPLICATE_BLOGS = [
 <h2>The channel test</h2>
 <p>Insist on buying through authorised dealers. Ask to see the dealer's authorisation certificate for the brand, and take a GST bill that names GM Modular and the series ordered. A seller who discourages billing is quietly removing your only proof of purchase. Background reading: <a href="../original-vs-duplicate-electrical-products.html">original vs duplicate electrical products</a>.</p>
 <h2>Cross-check your quote with us</h2>
-<p>Mount Cable does not stock GM Modular, but we distribute Anchor, Legrand, Schneider and Greatwhite from the same segment, so we know exactly where genuine switch pricing sits in Bengaluru. WhatsApp your full switch list to <strong>+91 88676 76700</strong> for a reference benchmark within 60 minutes — no obligation to buy from us, and we can also arrange genuine equivalents from the brands we carry. If the quote in front of you is far below the genuine reference level, walk away. See our <a href="../price-lists.html">price lists</a> and <a href="../quote.html">instant quote page</a>.</p>""",
+<p>Mount Cable stocks 100% original GM Modular alongside Anchor, Legrand and HPL Hi-Fi, so we know exactly where genuine switch pricing sits in Bengaluru. WhatsApp your full switch list to <strong>+91 88676 76700</strong> for a reference benchmark within 60 minutes — no obligation to buy from us, and we can also arrange genuine equivalents from the brands we carry. If the quote in front of you is far below the genuine reference level, walk away. See our <a href="../price-lists.html">price lists</a> and <a href="../quote.html">instant quote page</a>.</p>""",
         ("2026-07-21", "July 21, 2026"),
     ),
 

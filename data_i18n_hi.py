@@ -58,7 +58,7 @@ I18N = {
             },
             {
                 "title": "हर ब्रांड, एक ही छत के नीचे",
-                "desc": "Finolex, Polycab, KEI, RR Kabel, Anchor, Schneider, Legrand और भी कई ब्रांड — एक ही जगह, जायज़ और पारदर्शी कीमत पर।",
+                "desc": "Finolex, Legrand, Polycab, GM, HPL Hi-Fi, Anchor और भी कई ब्रांड — एक ही जगह, जायज़ और पारदर्शी कीमत पर।",
             },
             {
                 "title": "अतिरिक्त सामान की फ्री पिकअप",
