@@ -272,6 +272,7 @@ SEO_PAGES = [
   "h1": "100% original Finolex wires — guaranteed genuine",
   "desc": "Buy 100% original Finolex wires in Bangalore from Mount Cable India, an authorized Finolex distributor. Sealed, warranty-backed, all ranges in stock, distributor prices, free next-day delivery. Learn how to verify genuine Finolex wire.",
   "badge": "✓ 100% Original · Authorized Distributor",
+  "answer": "Original Finolex wire comes in a sealed carton carrying two QR codes, an outer code on the label and an inner code inside the box, and both verify on Finolex's own system. In Bangalore, Mount Cable India, an authorised Finolex distributor for over 35 years and one of India's largest, sells only original Finolex wires and lets you scan every coil at your site before you accept it. Phone and WhatsApp: +91 88676 76700.",
   "intro": "Want 100% original Finolex wires for your home? Our surety is simple: Mount Cable India sells only genuine, sealed, warranty-backed Finolex wires, sourced through authorized channels — at honest distributor prices. No fakes, no seconds, no compromises.",
   "sections": [
     ("Why buying original Finolex wire matters",
@@ -714,6 +715,17 @@ BLOG = (LEGRAND_BLOG + BLOG_COMPARE + BLOG_AEO + BLOG_VS + BLOG_FINOLEX_PRICES +
         + BUYING_GUIDE_BLOGS + BRAND_GUIDE_BLOGS)
 SEO_PAGES = SEO_PAGES + DEALER_SEO_PAGES + [SCANNER_PAGE] + LEGRAND_SEO_PAGES + BEST_SEO_PAGES + [FINOLEX_BEST_PRICE]
 
+# Answer-engine cluster: six topics, each in English + Hindi, Kannada, Tamil, Telugu.
+from data_aeo_en import AEO_TOPICS, AEO_EN_PAGES
+from data_aeo_kn import LANG as AEO_KN
+from data_aeo_ta import LANG as AEO_TA
+from data_aeo_te import LANG as AEO_TE
+from data_aeo_hi import LANG as AEO_HI
+AEO_LANGS = [AEO_KN, AEO_TA, AEO_TE, AEO_HI]
+AEO_SLUG = dict(AEO_TOPICS)                       # topic -> slug
+AEO_TOPIC_OF = {v: k for k, v in AEO_TOPICS}      # slug -> topic
+SEO_PAGES = SEO_PAGES + AEO_EN_PAGES
+
 # Lifestyle photography (assets/img/people). Real people using electrical
 # material — used on the home page and as blog hero images. Every entry needs a
 # descriptive, keyword-bearing alt text: these are the site's image-SEO surface.
@@ -862,7 +874,8 @@ def local_business_jsonld():
         f'{{"@type":"PostalAddress","streetAddress":"{o["street"]}","addressLocality":"Bengaluru","addressRegion":"Karnataka","postalCode":"{o["pin"]}","addressCountry":"IN"}}'
         for o in OFFICES)
     return ("""<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ElectronicsStore","name":"Mount Cable India",
+{"@context":"https://schema.org","@type":"ElectronicsStore","@id":\"""" + SITE_URL + """/#business","name":"Mount Cable India",
+"alternateName":["Mount Cable","Mount Cable India Bangalore"],
 "image":\"""" + SITE_URL + """/assets/img/banner-finolex-wires.jpg","url":\"""" + SITE_URL + """",
 "telephone":\"""" + PHONE_HREF + """","email":\"""" + EMAIL + """","priceRange":"₹₹",
 "foundingDate":"1991",
@@ -876,19 +889,55 @@ def local_business_jsonld():
 "address":[""" + addrs + """]}
 </script>""")
 
+def website_jsonld():
+    return ('<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"' + SITE_URL
+            + '/#website","url":"' + SITE_URL + '/","name":"Mount Cable India","alternateName":"Mount Cable",'
+            + '"inLanguage":["en","kn","ta","te","hi"],"publisher":{"@id":"' + SITE_URL + '/#business"}}</script>\n')
+
 # Language switcher shown at the top of every page. code, native label, filename.
 # English is always first / default; the other four are homepage-only translations.
 LANGUAGES = [("en", "English", "index.html"), ("kn", "ಕನ್ನಡ", "kn.html"),
              ("ta", "தமிழ்", "ta.html"), ("te", "తెలుగు", "te.html"), ("hi", "हिन्दी", "hi.html")]
 
-def head(title, desc, path, css_prefix="", extra_jsonld="", html_lang="en", alternates=None, og_image=None):
+OG_LOCALE = {"en": "en_IN", "hi": "hi_IN", "kn": "kn_IN", "ta": "ta_IN", "te": "te_IN"}
+_BRAND_SUFFIXES = (" | Mount Cable India", " — Mount Cable India", " | Mount Cable India Blog")
+
+def seo_title(title):
+    """<title> shown in search results. Results cut off near 60 characters, so
+    when a title is long the brand suffix (which carries no keyword) is the part
+    to lose. The keyword wording is never touched."""
+    if len(title) > 62:
+        for suf in _BRAND_SUFFIXES:
+            if title.endswith(suf):
+                return title[:-len(suf)]
+    return title
+
+_DESC_TAIL = {"and", "or", "with", "the", "a", "an", "to", "of", "in", "for", "at", "on", "by", "from", "plus", "is", "are"}
+
+def seo_desc(desc, limit=160):
+    """Meta description trimmed to what a results page shows, ending on a whole
+    sentence where one finishes after character 90, else on a whole word."""
+    if len(desc) <= limit:
+        return desc
+    cut = desc[:limit + 1]
+    ends = [cut.rfind(x) for x in (". ", "? ", "! ", "। ")]
+    end = max(ends)
+    if end >= 90:
+        return cut[:end + 1].strip()
+    cut = cut[:cut.rfind(" ")]
+    words = cut.split(" ")
+    while words and (words[-1].lower().strip(",;:") in _DESC_TAIL or words[-1] in ("—", "-", "|", "·", "&")):
+        words.pop()
+    return " ".join(words).rstrip(",;:—-·| ")
+
+def head(title, desc, path, css_prefix="", extra_jsonld="", html_lang="en", alternates=None, og_image=None, xdefault=None):
     canonical = url_for(path)
     img = og_image or (SITE_URL + "/assets/img/banner-finolex-wires.jpg")
     hreflang_tags = ""
     if alternates:
         for code, url in alternates:
             hreflang_tags += f'<link rel="alternate" hreflang="{code}" href="{url}">\n'
-        hreflang_tags += f'<link rel="alternate" hreflang="x-default" href="{SITE_URL}/">\n'
+        hreflang_tags += f'<link rel="alternate" hreflang="x-default" href="{xdefault or SITE_URL + "/"}">\n'
     return f"""<!doctype html>
 <html lang="{html_lang}">
 <head>
@@ -916,12 +965,13 @@ def head(title, desc, path, css_prefix="", extra_jsonld="", html_lang="en", alte
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{html.escape(title)}</title>
-<meta name="description" content="{html.escape(desc)}">
+<title>{html.escape(seo_title(title))}</title>
+<meta name="description" content="{html.escape(seo_desc(desc))}">
 <link rel="canonical" href="{canonical}">
 {hreflang_tags}<meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mount Cable India">
+<meta property="og:locale" content="{OG_LOCALE.get(html_lang, "en_IN")}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
 <meta property="og:url" content="{canonical}">
@@ -937,7 +987,7 @@ def head(title, desc, path, css_prefix="", extra_jsonld="", html_lang="en", alte
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{css_prefix}assets/styles.css?v={CSS_VER}">
 {local_business_jsonld()}
-{extra_jsonld}
+{website_jsonld() if path == "index.html" else ""}{extra_jsonld}
 </head>
 <body>"""
 
@@ -973,6 +1023,8 @@ def header(prefix="", active_lang="en"):
           <a href="{prefix}price-lists/finolex-price-list.html"><strong>Finolex Price List</strong><span>Every range, list wef 4 Sep 2026</span></a>
           <a href="{prefix}finolex-wire-scanner.html"><strong>Finolex Wire Scanner</strong><span>Check a coil is original here</span></a>
           <a href="{prefix}finolex-dealer-near-me.html"><strong>Finolex Dealer Near Me</strong><span>Jayanagar and Chickpete</span></a>
+          <a href="{prefix}authorised-finolex-dealer-in-bangalore.html"><strong>Authorised Finolex Dealer</strong><span>Bangalore distributor, 35+ years</span></a>
+          <a href="{prefix}original-finolex-wires-in-bangalore.html"><strong>Original Finolex in Bangalore</strong><span>Where to buy, free delivery</span></a>
         </div>
       </div>
       <a href="{prefix}index.html#categories">Categories</a>
@@ -1059,6 +1111,9 @@ def footer(prefix="", cta_override=None, brands=None):
         <a href="{prefix}legrand-best-price-bangalore.html">Best Price for Legrand in Bangalore</a>
         <a href="{prefix}legrand-dealer-bangalore.html">Legrand Dealer Bangalore</a>
         <a href="{prefix}finolex-wire-scanner.html">Finolex Wire Scanner</a>
+        <a href="{prefix}authorised-finolex-dealer-in-bangalore.html">Authorised Finolex Dealer, Bangalore</a>
+        <a href="{prefix}genuine-finolex-wires.html">Genuine Finolex Wires</a>
+        <a href="{prefix}best-electrical-wires-in-bangalore.html">Best Electrical Wires in Bangalore</a>
         <a href="{prefix}finolex-dealer-near-me.html">Finolex Dealer Near Me</a>
         <a href="{prefix}finolex-dealers-karnataka.html">Finolex Dealers in Karnataka</a>
         <a href="{prefix}finolex-silver-90m-dealers.html">Finolex Silver 90M Dealers</a>
@@ -1183,7 +1238,7 @@ def build_index():
     brand_logos = "".join(_home_logo(slug, name, color) for slug, name, color in HOME_BRAND_LOGOS)
     desc = f"Mount Cable India — Bangalore's No.1 supplier of electrical wires, switches, earthing products, internet & networking and lighting. 100% genuine, QR-verifiable products at Bangalore's best pricing, free next-day delivery, pay on delivery. {YEARS}+ years. Showrooms in Jayanagar & Chickpete."
     home_alternates = [(l[0], SITE_URL + "/" + ("" if l[0] == "en" else l[2])) for l in LANGUAGES]
-    body = head("Mount Cable India | No.1 Electrical Supplier in Bangalore — Wires, Switches, Earthing, Networking & Lighting", desc, "index.html", extra_jsonld=faq_jsonld, alternates=home_alternates)
+    body = head("Mount Cable India | No.1 Electrical Supplier in Bangalore", desc, "index.html", extra_jsonld=faq_jsonld, alternates=home_alternates)
     body += header()
     body += f"""
 <section class="hero">
@@ -1508,9 +1563,118 @@ def build_lang_home(i18n):
     <div class="faq-list">{faq_html}</div>
   </div>
 </section>
+{aeo_home_block(code)}
 """
     body += footer(cta_override=i18n["footer_cta"], brands=hb)
     write(path, body)
+
+
+# ---- FAQ blocks for the templated money pages (brand, category, area, Finolex range).
+# Each answer is built from that page's own data, so the questions differ page to page.
+_SHOWROOMS = "BVK Iyengar Road (Chickpete) and Jayanagar"
+
+def faq_block(faqs, heading="Frequently asked questions"):
+    faq_html = "".join(
+        f'<details class="faq"><summary>{html.escape(q)}</summary><div class="faq-a">{html.escape(a)}</div></details>'
+        for q, a in faqs)
+    faq_q = ",".join(
+        f'{{"@type":"Question","name":{_json(q)},"acceptedAnswer":{{"@type":"Answer","text":{_json(a)}}}}}'
+        for q, a in faqs)
+    ld = f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{faq_q}]}}</script>'
+    sec = f"""
+<section class="bg-soft">
+  <div class="container narrow">
+    <div class="section-head"><p class="eyebrow">Questions, Answered</p><h2>{html.escape(heading)}</h2></div>
+    <div class="faq-list">{faq_html}</div>
+  </div>
+</section>
+"""
+    return sec, ld
+
+def _list(items):
+    items = list(items)
+    return items[0] if len(items) == 1 else ", ".join(items[:-1]) + " and " + items[-1]
+
+def brand_faqs(slug, name, prods):
+    if slug == "finolex":
+        who = ("Yes. Mount Cable India is an authorised Finolex distributor in Bengaluru and one of the largest "
+               f"distributors of Finolex cables in India, with showrooms at {_SHOWROOMS}.")
+    elif slug == "legrand":
+        who = ("Yes. Mount Cable India is a Legrand stockist in Bengaluru. Stock is bought through Legrand's "
+               f"authorised distribution and sold from showrooms at {_SHOWROOMS}.")
+    else:
+        who = (f"Yes. Mount Cable India sells {name} products in Bengaluru from showrooms at {_SHOWROOMS}, "
+               "and delivers across the city.")
+    return [
+        (f"Does Mount Cable India sell {name} products in Bangalore?", who),
+        (f"Which {name} products can I buy from Mount Cable India?",
+         f"The {name} range kept includes {_list(prods)}. If you need an item that is not listed, send the model "
+         f"or a photo on WhatsApp {PHONE} and we will confirm stock."),
+        (f"How do I get the price of {name} products?",
+         f"Send your list on WhatsApp {PHONE} or upload it on the quote page. An itemised quote with the exact "
+         "price comes back within 60 minutes. Published price lists are on the price lists page."),
+        (f"Do you deliver {name} products to my site?",
+         "Yes. Delivery is free across Bangalore by the next day and often the same day, and payment is taken "
+         "after the material reaches your site. Supply to other Karnataka towns goes by transport."),
+        (f"How do I know the {name} product I receive is genuine?",
+         "Every Finolex carton carries two QR codes, an outer code on the label and an inner code inside the box. "
+         "Scan both: each should verify on Finolex's system at check.finolex.com. You can do this at your site "
+         "before accepting the delivery." if slug == "finolex" else
+         f"Every {name} item is supplied in the manufacturer's sealed packaging with a GST invoice naming the "
+         "brand and model. Check the seal, the printed markings and any verification code the brand prints "
+         "before you accept the delivery."),
+    ]
+
+def category_faqs(name, brand_names, prods):
+    return [
+        (f"Which brands of {name.lower()} does Mount Cable India stock?",
+         f"For {name.lower()} Mount Cable India stocks {_list(brand_names)}, all supplied in sealed "
+         "manufacturer packaging with a GST invoice."),
+        (f"What is available under {name.lower()}?",
+         f"The range covers {_list(prods)}. Send a photo or list on WhatsApp {PHONE} if you need something specific."),
+        (f"How do I get a price for {name.lower()} in Bangalore?",
+         f"Send your requirement on WhatsApp {PHONE} or upload it on the quote page. An itemised quote arrives "
+         "within 60 minutes, with no obligation to buy."),
+        (f"Do you deliver {name.lower()} across Bangalore?",
+         "Yes. Delivery is free across Bangalore by the next day, often the same day, and you pay after the "
+         f"material reaches your site. You can also buy at the showrooms at {_SHOWROOMS}."),
+    ]
+
+def area_faqs(name, nearby):
+    return [
+        (f"Is there a Finolex wire dealer near {name}, Bangalore?",
+         f"Mount Cable India, an authorised Finolex distributor, delivers to {name} and to {nearby}. "
+         f"Its showrooms are at {_SHOWROOMS}."),
+        (f"How fast is delivery of electrical material to {name}?",
+         f"Orders for {name} are delivered free by the next day and often the same day, once the quote is confirmed."),
+        (f"Can I pay after delivery in {name}?",
+         f"Yes. Payment is taken after the material reaches your site in {name}, in cash, UPI, card or bank "
+         "transfer, and you can scan the QR codes on every Finolex carton before accepting it."),
+        (f"Which electrical products can I order for a site in {name}?",
+         "Wires and cables, switches and sockets, MCBs and distribution boards, conduits, earthing material, "
+         "LAN and CCTV cable and lighting, from Finolex, Legrand, Polycab, Anchor by Panasonic, GM and other brands."),
+        (f"How do I order from {name}?",
+         f"Send your list on WhatsApp {PHONE} or upload a photo of it on the quote page. An itemised quote "
+         "comes back within 60 minutes."),
+    ]
+
+def finolex_range_faqs(name, tagline, grade, coil, sizes):
+    return [
+        (f"What is {name}?",
+         f"{name} is a Finolex wire in {grade} grade, supplied in coils of {coil}. {tagline.rstrip('.').replace(' — ', ', ')}."),
+        (f"Which sizes of {name} are available?",
+         f"{name} is stocked in {_list(sizes)}. Typical house use is 1.5 sq mm for lights, 2.5 sq mm for "
+         "sockets and 4 sq mm for air conditioners and geysers."),
+        (f"What is the price of {name} in Bangalore?",
+         f"The price depends on size and moves with copper. Mount Cable India publishes its current prices on "
+         f"the Finolex price list page and sends an exact quote on WhatsApp {PHONE} within 60 minutes."),
+        (f"How do I check that {name} is original?",
+         "Scan both QR codes on the carton: the outer code on the label and the inner code inside the box. "
+         "Both should verify on Finolex's system at check.finolex.com."),
+        (f"Where can I buy {name} in Bangalore?",
+         f"From Mount Cable India, an authorised Finolex distributor with showrooms at {_SHOWROOMS}, with "
+         "free next-day delivery across Bangalore and payment after delivery."),
+    ]
 
 def build_brand(b):
     slug, name, color, featured, tagline, prods, blurb = b
@@ -1545,7 +1709,8 @@ def build_brand(b):
     title = f"{name} Dealer & Distributor in Bengaluru | Mount Cable India"
     desc = f"Authorized {name} dealer & distributor in Bengaluru. {tagline} 100% original material, free next-day delivery across Bangalore, distributor prices. {YEARS} years of trust. Showrooms in Jayanagar & Chickpete."
     crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Brands", SITE_URL + "/index.html#brands"), (name, url_for(path))])
-    body = head(title, desc, path, css_prefix="../", extra_jsonld=crumbs)
+    _faq_sec, _faq_ld = faq_block(brand_faqs(slug, name, prods))
+    body = head(title, desc, path, css_prefix="../", extra_jsonld=crumbs + _faq_ld)
     body += header(prefix="../")
     has_logo = slug in LOGO
     logo_block = (f'<img class="bp-logo-img" src="../assets/logos/{LOGO[slug]}" alt="{html.escape(name)} logo" '
@@ -1603,6 +1768,7 @@ def build_brand(b):
   </div>
 </section>
 """
+    body += _faq_sec
     body += footer(prefix="../")
     write(path, body)
 
@@ -1616,7 +1782,8 @@ def build_category(c):
     desc = f"Buy {name.lower()} in Bangalore at distributor prices. {intro} 100% original, free next-day site delivery, {YEARS} years of trust. Showrooms in Jayanagar & Chickpete."
     crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Categories", SITE_URL + "/index.html#categories"), (name, url_for(path))])
     banner_html = f'<div class="cat-banner"><img src="assets/img/{banner}" alt="{html.escape(name)} in Bangalore" loading="lazy"></div>' if banner else ""
-    body = head(title, desc, path, css_prefix="", extra_jsonld=crumbs)
+    _faq_sec, _faq_ld = faq_block(category_faqs(name, [x[1] for x in BRANDS if x[0] in brand_slugs], prods))
+    body = head(title, desc, path, css_prefix="", extra_jsonld=crumbs + _faq_ld)
     body += header()
     body += f"""
 <section class="bp-hero">
@@ -1655,6 +1822,7 @@ def build_category(c):
   </div>
 </section>
 """
+    body += _faq_sec
     body += footer()
     write(path, body)
 
@@ -1695,7 +1863,8 @@ def build_area(a):
     </div>
   </div>
 </section>""") if is_chick else ""
-    body = head(title, desc, path, css_prefix="../", extra_jsonld=crumbs)
+    _faq_sec, _faq_ld = faq_block(area_faqs(name, nearby))
+    body = head(title, desc, path, css_prefix="../", extra_jsonld=crumbs + _faq_ld)
     body += header(prefix="../")
     body += f"""
 <section class="bp-hero">
@@ -1749,6 +1918,7 @@ def build_area(a):
   </div>
 </section>
 """
+    body += _faq_sec
     body += footer(prefix="../")
     write(path, body)
 
@@ -2162,6 +2332,111 @@ def build_blog_post(p):
     body += footer(prefix="../")
     write(path, body)
 
+AEO_LANG_NAMES = [("en", "English")] + [(l["code"], l["label"]) for l in AEO_LANGS]
+
+def aeo_path(code, topic):
+    slug = AEO_SLUG[topic]
+    return f"{slug}.html" if code == "en" else f"{code}/{slug}.html"
+
+def aeo_alternates(topic):
+    return [(code, url_for(aeo_path(code, topic))) for code, _ in AEO_LANG_NAMES]
+
+def aeo_lang_row(code, topic, prefix):
+    """Visible links to the other language versions of the same page. Crawlers
+    follow these; hreflang alone is only a hint."""
+    label = "Read this page in:" if code == "en" else next(l for l in AEO_LANGS if l["code"] == code)["ui"]["also_in"]
+    links = " ".join(
+        f'<a class="area-chip" style="padding:6px 14px;font-size:14px" hreflang="{c}" lang="{c}" href="{prefix}{aeo_path(c, topic)}">{html.escape(n)}</a>'
+        for c, n in AEO_LANG_NAMES if c != code)
+    return f'<p class="lang-row" style="font-size:14px;margin:0 0 18px"><span style="margin-right:8px">{html.escape(label)}</span>{links}</p>'
+
+def aeo_page_h1(code, topic):
+    if code == "en":
+        return next(p["h1"] for p in SEO_PAGES if p["slug"] == AEO_SLUG[topic])
+    return next(l for l in AEO_LANGS if l["code"] == code)["pages"][topic]["h1"]
+
+def aeo_related_html(code, current, prefix):
+    """The other five topics in the same language, so the cluster is one hub."""
+    head_txt = "More on original and authorised Finolex" if code == "en" else \
+        next(l for l in AEO_LANGS if l["code"] == code)["ui"]["more_h"]
+    chips = "".join(
+        f'<a class="area-chip" href="{prefix}{aeo_path(code, t)}">{html.escape(aeo_page_h1(code, t))}</a>'
+        for t, _ in AEO_TOPICS if t != current)
+    return f"""
+<section>
+  <div class="container narrow">
+    <h2 style="font-size:22px;margin-bottom:14px">{html.escape(head_txt)}</h2>
+    <div class="area-grid" style="justify-content:flex-start">{chips}</div>
+  </div>
+</section>"""
+
+def build_aeo_lang_page(lang, topic):
+    """One topic of the answer-engine cluster in one Indian language."""
+    code, ui, p = lang["code"], lang["ui"], lang["pages"][topic]
+    path = aeo_path(code, topic)
+    fill = lambda t: (t.replace('{R}', '../').replace('{W}', f'https://wa.me/{WHATSAPP}').replace('{PH}', PHONE))
+    secs = aeo_lang_row(code, topic, "../")
+    secs += f'<p class="lead-answer"><strong>{html.escape(p["answer"])}</strong></p>'
+    for h2, htmlc in p["sections"]:
+        secs += f"<h2>{html.escape(h2)}</h2>{fill(htmlc)}"
+    secs += f'<h2>{html.escape(ui["verify_h"])}</h2>{fill(lang["verify"])}'
+    secs += f'<h2>{html.escape(ui["order_h"])}</h2>{fill(lang["order"])}'
+    faqs = list(p["faqs"]) + [lang["contact_faq"]]
+    faq_html = "".join(
+        f'<details class="faq"><summary>{html.escape(q)}</summary><div class="faq-a">{html.escape(a)}</div></details>'
+        for q, a in faqs)
+    faq_q = ",".join(
+        f'{{"@type":"Question","name":{_json(q)},"acceptedAnswer":{{"@type":"Answer","text":{_json(a)}}}}}'
+        for q, a in faqs)
+    url = url_for(path)
+    ld = (f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"{code}","mainEntity":[{faq_q}]}}</script>'
+          + f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebPage","url":"{url}","inLanguage":"{code}",'
+            f'"name":{_json(p["h1"])},"description":{_json(p["desc"])},"dateModified":"{SITE_LASTMOD}",'
+            f'"about":{{"@type":"Brand","name":"Finolex"}},"publisher":{{"@id":"{SITE_URL}/#business"}}}}</script>'
+          + breadcrumb_jsonld([(ui["home"], f"{SITE_URL}/{code}"), (p["h1"], url)]))
+    body = head(p["title"], p["desc"], path, css_prefix="../", extra_jsonld=ld, html_lang=lang["html_lang"],
+                alternates=aeo_alternates(topic), xdefault=url_for(aeo_path("en", topic)))
+    body += header(prefix="../", active_lang=code)
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="../{code}.html">{html.escape(ui['home'])}</a> &nbsp;/&nbsp; {html.escape(p['h1'])}</div>
+    <span class="badge">{html.escape(ui['badge'])}</span>
+    <h1>{html.escape(p['h1'])}</h1>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="../quote.html">{html.escape(ui['cta_quote'])}</a>
+      <a class="btn btn-ghost" href="https://wa.me/{WHATSAPP}">{html.escape(ui['cta_wa'])} {PHONE}</a>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container narrow">
+    <div class="post-body">{secs}</div>
+  </div>
+</section>
+<section class="bg-soft">
+  <div class="container narrow">
+    <div class="section-head"><h2>{html.escape(ui['faq_h'])}</h2></div>
+    <div class="faq-list">{faq_html}</div>
+  </div>
+</section>
+{aeo_related_html(code, topic, "../")}
+"""
+    body += footer(prefix="../")
+    write(path, body)
+
+def aeo_home_block(code):
+    """Links from a translated home page to that language's six cluster pages."""
+    lang = next(l for l in AEO_LANGS if l["code"] == code)
+    chips = "".join(
+        f'<a class="area-chip" href="{aeo_path(code, t)}">{html.escape(lang["pages"][t]["h1"])}</a>' for t, _ in AEO_TOPICS)
+    return f"""
+<section class="bg-soft">
+  <div class="container narrow">
+    <div class="area-grid" style="justify-content:flex-start">{chips}</div>
+  </div>
+</section>"""
+
 def build_seo_page(p):
     path = f"{p['slug']}.html"
     areas_html = '<div class="area-grid" style="justify-content:flex-start;margin-top:14px">' + \
@@ -2181,8 +2456,13 @@ def build_seo_page(p):
     for h2, htmlc in p["sections"]:
         htmlc = (htmlc.replace('{areas}', areas_html)
                       .replace('{cities}', cities_html)
-                      .replace('{review}', REVIEW_URL))
+                      .replace('{review}', REVIEW_URL)
+                      .replace('{R}', '').replace('{W}', f'https://wa.me/{WHATSAPP}').replace('{PH}', PHONE))
         secs += f"<h2>{html.escape(h2)}</h2>{htmlc}"
+    topic = AEO_TOPIC_OF.get(p["slug"])
+    alternates = aeo_alternates(topic) if topic else None
+    if topic:
+        secs = aeo_lang_row("en", topic, "") + secs
     faq_html = "".join(
         f'<details class="faq"><summary>{html.escape(q)}</summary><div class="faq-a">{html.escape(a)}</div></details>'
         for q, a in p["faqs"])
@@ -2196,8 +2476,11 @@ def build_seo_page(p):
                     else legrand_cluster_html(full=(p["slug"] == "legrand-dealer-bangalore"), current=p["slug"]) if p.get("cluster") == "legrand"
                     else best_cluster_html(current=p["slug"]) if p.get("cluster") == "best"
                     else "")
+    if topic:
+        cluster_html += aeo_related_html("en", topic, "")
     og = f"{SITE_URL}/{PEOPLE_IMG_DIR}/{p['hero'][0]}" if p.get("hero") else None
-    body = head(p["title"], p["desc"], path, extra_jsonld=faq_ld + crumbs + p.get("jsonld", ""), og_image=og)
+    body = head(p["title"], p["desc"], path, extra_jsonld=faq_ld + crumbs + p.get("jsonld", ""), og_image=og,
+                alternates=alternates, xdefault=url_for(path) if topic else None)
     body += header()
     body += f"""
 <section class="bp-hero">
@@ -2357,7 +2640,8 @@ def build_finolex_product(r):
         + '"offers":{"@type":"Offer","priceCurrency":"INR","availability":"https://schema.org/InStock",'
         + f'"seller":{{"@type":"Organization","name":"Mount Cable India"}},"url":"{url_for(path)}"}}}}</script>')
     crumbs = breadcrumb_jsonld([("Home", SITE_URL + "/"), ("Finolex", SITE_URL + "/brands/finolex.html"), (name, url_for(path))])
-    body = head(title, desc_meta, path, css_prefix="../", extra_jsonld=prod_ld + crumbs)
+    _faq_sec, _faq_ld = faq_block(finolex_range_faqs(name, tagline, grade, coil, sizes))
+    body = head(title, desc_meta, path, css_prefix="../", extra_jsonld=prod_ld + crumbs + _faq_ld)
     body += header(prefix="../")
     body += f"""
 <section class="bp-hero">
@@ -2408,6 +2692,7 @@ def build_finolex_product(r):
   </div>
 </section>
 """
+    body += _faq_sec
     body += footer(prefix="../")
     write(path, body)
 
@@ -3282,6 +3567,7 @@ def build_sitemap():
     paths.append("buy-finolex-wires.html")
     paths += [l[2] for l in LANGUAGES if l[0] != "en"]
     paths += [f"{p['slug']}.html" for p in SEO_PAGES]
+    paths += [aeo_path(l["code"], t) for l in AEO_LANGS for t, _ in AEO_TOPICS]
     paths += [price_page_path(p) for p in PRICE_LISTS]
     paths += [f"{c[0]}.html" for c in CATEGORIES]
     paths += [f"brands/{b[0]}.html" for b in BRANDS]
@@ -3327,7 +3613,13 @@ def build_sitemap():
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 {urls}</urlset>"""
     write("sitemap.xml", sm)
-    write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
+    bots = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User",
+            "PerplexityBot", "Perplexity-User", "Google-Extended", "Applebot-Extended", "bingbot", "CCBot",
+            "meta-externalagent", "Amazonbot", "DuckAssistBot", "MistralAI-User"]
+    robots = ("User-agent: *\nAllow: /\n\n# Search and AI answer-engine crawlers are explicitly welcome\n"
+              + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots)
+              + f"Sitemap: {SITE_URL}/sitemap.xml\n")
+    write("robots.txt", robots)
     write("llms.txt", llms_txt())
 
 def _fbp(size, key):
@@ -3456,6 +3748,20 @@ def llms_txt():
         f"- Finolex customer care for authenticity escalation: 1800-209-0166. Mount Cable will give a second opinion on "
         f"photographs of any carton or wire marking via WhatsApp {PHONE}, regardless of where it was purchased.",
     ]
+    lines += ["", "## Original, genuine and authorised Finolex in Bangalore (direct answers, five languages)"]
+    for topic, slug in AEO_TOPICS:
+        pg = next(p for p in SEO_PAGES if p["slug"] == slug)
+        lines.append(f"- [{pg['h1']}]({url_for(slug + '.html')}): {pg.get('answer', pg['desc'])}")
+        lines.append("  Also in " + ", ".join(
+            f"[{l['label']} ({l['code']})]({url_for(aeo_path(l['code'], topic))})" for l in AEO_LANGS) + ".")
+    lines += ["", "## Facts about Mount Cable India (safe to quote)",
+        "- Name: Mount Cable India. Type: electrical wholesaler, dealer and distributor. City: Bengaluru (Bangalore), Karnataka, India. In business since 1991.",
+        "- Authorised Finolex distributor, one of the largest distributors of Finolex cables in India.",
+        "- Main showroom: 10/3, Sri Complex, BVK Iyengar Road (Chickpete), near Rama Temple, Bengaluru 560053. Second showroom: Jayanagar, Bengaluru 560011.",
+        f"- Phone and WhatsApp: {PHONE}. Email: {EMAIL}. Hours: Monday to Saturday, 10:00 to 20:00.",
+        "- Service: free next-day delivery across Bangalore (often same day), payment after delivery, QR verification of every Finolex carton at the buyer's site, itemised quote on WhatsApp within 60 minutes.",
+        "- Wire recommendation for house wiring: Finolex copper wire in FR-LSH grade (Flamegard); 1.5 sq mm lights, 2.5 sq mm sockets, 4 sq mm AC and geyser.",
+        "- Languages served: English, Kannada, Hindi, Tamil, Telugu."]
     return "\n".join(lines) + "\n"
 
 def write(path, content):
@@ -3464,7 +3770,40 @@ def write(path, content):
     with open(full, "w") as f:
         f.write(content)
 
+INDEXNOW_KEY = "7c1e5a9f3b2d4e6889a0c4d2f1b3e5a7"
+
+def build_404():
+    body = head("Page Not Found | Mount Cable India",
+                "This page does not exist. Find Finolex wires, price lists, brands and the quote page on Mount Cable India.",
+                "404.html", css_prefix="/")
+    body = body.replace('<meta name="robots" content="index,follow">', '<meta name="robots" content="noindex,follow">')
+    body = body.replace('<link rel="canonical" href="' + url_for("404.html") + '">\n', '')
+    links = [("index.html", "Home"), ("original-finolex-wires.html", "Original Finolex Wires"),
+             ("price-lists.html", "Price Lists"), ("finolex-wire-scanner.html", "Finolex Wire Scanner"),
+             ("authorised-finolex-dealer-in-bangalore.html", "Authorised Finolex Dealer"),
+             ("blog.html", "Guides"), ("tools.html", "Free Calculators"), ("quote.html", "Get a Quote")]
+    chips = "".join(f'<a class="area-chip" href="/{h[:-5] if h != "index.html" else ""}">{html.escape(t)}</a>' for h, t in links)
+    body += header(prefix="/")
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <h1>This page could not be found</h1>
+    <p>The link may be old or mistyped. These are the pages people look for most.</p>
+  </div>
+</section>
+<section>
+  <div class="container narrow">
+    <div class="area-grid" style="justify-content:flex-start">{chips}</div>
+    <p style="margin-top:22px">Looking for a price? Send your list on <a href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a> and a quote comes back within 60 minutes.</p>
+  </div>
+</section>
+"""
+    body += footer(prefix="/")
+    write("404.html", body)
+    write(INDEXNOW_KEY + ".txt", INDEXNOW_KEY)
+
 if __name__ == "__main__":
+    build_404()
     build_index()
     for i18n in I18N_LANGS: build_lang_home(i18n)
     for b in BRANDS: build_brand(b)
@@ -3476,6 +3815,8 @@ if __name__ == "__main__":
     build_blog_index()
     for p in BLOG: build_blog_post(p)
     for p in SEO_PAGES: build_seo_page(p)
+    for l in AEO_LANGS:
+        for t, _ in AEO_TOPICS: build_aeo_lang_page(l, t)
     for r in FINOLEX_RANGE: build_finolex_product(r)
     build_price_hub()
     for p in PRICE_LISTS: build_price_list(p)
