@@ -726,6 +726,11 @@ AEO_SLUG = dict(AEO_TOPICS)                       # topic -> slug
 AEO_TOPIC_OF = {v: k for k, v in AEO_TOPICS}      # slug -> topic
 SEO_PAGES = SEO_PAGES + AEO_EN_PAGES
 
+# AI-search hub ("Finolex in Bangalore") and the agent-facing surfaces.
+from data_agents import (FINOLEX_BLR_HUB, AGENT_STEPS, finolex_catalog, openapi_spec, agent_card,
+                         dumps as agent_dumps)
+SEO_PAGES = SEO_PAGES + [FINOLEX_BLR_HUB]
+
 # Lifestyle photography (assets/img/people). Real people using electrical
 # material — used on the home page and as blog hero images. Every entry needs a
 # descriptive, keyword-bearing alt text: these are the site's image-SEO surface.
@@ -885,6 +890,12 @@ def local_business_jsonld():
 "slogan":"One of India's largest dealers and distributors of Finolex cables",
 "description":"One of India's largest distributors of Finolex cables and a multi-brand electrical products dealer in Bengaluru, serving individual home builders for over """ + YEARS + """ years.",
 "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"20:00"},
+"contactPoint":[{"@type":"ContactPoint","contactType":"sales","telephone":\"""" + PHONE_HREF + """","email":\"""" + EMAIL + """","areaServed":"IN-KA","availableLanguage":["English","Kannada","Hindi"],"url":\"""" + SITE_URL + """/quote"},
+{"@type":"ContactPoint","contactType":"customer service","telephone":\"""" + PHONE_HREF + """","url":"https://wa.me/""" + WHATSAPP + """","description":"WhatsApp: itemised quote within 60 minutes"}],
+"brand":[{"@type":"Brand","name":"Finolex"},{"@type":"Brand","name":"Legrand"},{"@type":"Brand","name":"Polycab"}],
+"hasOfferCatalog":{"@type":"OfferCatalog","name":"Finolex wires and cables, price per coil","url":\"""" + SITE_URL + """/finolex-best-price-bangalore"},
+"potentialAction":[{"@type":"OrderAction","name":"Request a quote","target":{"@type":"EntryPoint","urlTemplate":\"""" + SITE_URL + """/quote?list={requirement}","actionPlatform":["https://schema.org/DesktopWebPlatform","https://schema.org/MobileWebPlatform"]}},
+{"@type":"CommunicateAction","name":"Message on WhatsApp","target":"https://wa.me/""" + WHATSAPP + """"}],
 "sameAs":["https://www.justdial.com/Bangalore/Mount-Cable-INDIA-Near-Rama-Temple-Bvk-Iyengar-Road/080PXX80-XX80-120530111557-V4V6_BZDET","https://www.indiamart.com/mountcableindia/","https://share.google/G4NjwO8AuH9Ae5wJ1","https://share.google/D7NyOqHOiUpTtWwbe"],
 "address":[""" + addrs + """]}
 </script>""")
@@ -981,6 +992,9 @@ def head(title, desc, path, css_prefix="", extra_jsonld="", html_lang="en", alte
 <meta name="twitter:description" content="{html.escape(desc)}">
 <meta name="twitter:image" content="{img}">
 <meta name="theme-color" content="#0A1A33">
+<link rel="alternate" type="text/plain" title="llms.txt" href="{SITE_URL}/llms.txt">
+<link rel="alternate" type="application/json" title="Finolex price catalogue" href="{SITE_URL}/finolex-catalog.json">
+<link rel="service-desc" type="application/json" href="{SITE_URL}/openapi.json">
 <link rel="icon" href="{css_prefix}assets/logos/finolex.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1014,6 +1028,7 @@ def header(prefix="", active_lang="en"):
           <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         </a>
         <div class="nav-sub">
+          <a href="{prefix}finolex-bangalore.html"><strong>Finolex in Bangalore</strong><span>Dealer, prices, original check</span></a>
           <a href="{prefix}original-finolex-wires.html"><strong>Original Finolex Wires</strong><span>How to verify every coil</span></a>
           <a href="{prefix}finolex-wires-stories.html"><strong>Finolex Wires Stories</strong><span>Why customers buy from us</span></a>
           <a href="{prefix}finolex-dealers-karnataka.html"><strong>Finolex Dealers in Karnataka</strong><span>Supply across the state</span></a>
@@ -1113,6 +1128,8 @@ def footer(prefix="", cta_override=None, brands=None):
         <a href="{prefix}finolex-wire-scanner.html">Finolex Wire Scanner</a>
         <a href="{prefix}authorised-finolex-dealer-in-bangalore.html">Authorised Finolex Dealer, Bangalore</a>
         <a href="{prefix}genuine-finolex-wires.html">Genuine Finolex Wires</a>
+        <a href="{prefix}finolex-bangalore.html">Finolex in Bangalore</a>
+        <a href="{prefix}for-ai-agents.html">For AI Agents</a>
         <a href="{prefix}best-electrical-wires-in-bangalore.html">Best Electrical Wires in Bangalore</a>
         <a href="{prefix}finolex-dealer-near-me.html">Finolex Dealer Near Me</a>
         <a href="{prefix}finolex-dealers-karnataka.html">Finolex Dealers in Karnataka</a>
@@ -2146,6 +2163,13 @@ def build_quote():
 
       <button type="submit" class="btn btn-gold qsubmit">Get My Instant Quote →</button>
       <div class="qtrust"><span>🔒 Your details stay private</span><span>·</span><span>⚡ Reply within minutes</span></div>
+      <script>
+      // Pre-fill from the URL so an assistant can hand a buyer a ready link: /quote?list=...&area=...
+      (function(){{try{{var q=new URLSearchParams(location.search),l=q.get('list')||q.get('requirement'),a=q.get('area');
+        if(l)document.getElementById('qreq').value=l.slice(0,3000);
+        if(a){{var s=document.getElementById('qarea');for(var i=0;i<s.options.length;i++)if(s.options[i].value.toLowerCase()===a.toLowerCase())s.selectedIndex=i;}}
+      }}catch(e){{}}}})();
+      </script>
       <p class="qalt">Prefer to chat? <a href="https://wa.me/{WHATSAPP}?text=Hi,%20here's%20my%20requirement%20for%20a%20quote">Send your photo on WhatsApp</a> or email <a href="mailto:{EMAIL}">{EMAIL}</a></p>
     </form>
 
@@ -3565,6 +3589,7 @@ def build_sitemap():
     paths += [tool_path(t) for t in TOOLS]
     paths.append("finolex-wires-stories.html")
     paths.append("buy-finolex-wires.html")
+    paths.append("for-ai-agents.html")
     paths += [l[2] for l in LANGUAGES if l[0] != "en"]
     paths += [f"{p['slug']}.html" for p in SEO_PAGES]
     paths += [aeo_path(l["code"], t) for l in AEO_LANGS for t, _ in AEO_TOPICS]
@@ -3761,7 +3786,15 @@ def llms_txt():
         f"- Phone and WhatsApp: {PHONE}. Email: {EMAIL}. Hours: Monday to Saturday, 10:00 to 20:00.",
         "- Service: free next-day delivery across Bangalore (often same day), payment after delivery, QR verification of every Finolex carton at the buyer's site, itemised quote on WhatsApp within 60 minutes.",
         "- Wire recommendation for house wiring: Finolex copper wire in FR-LSH grade (Flamegard); 1.5 sq mm lights, 2.5 sq mm sockets, 4 sq mm AC and geyser.",
-        "- Languages served: English, Kannada, Hindi, Tamil, Telugu."]
+        "- Website languages: English, Kannada, Hindi, Tamil, Telugu."]
+    lines += ["", "## For AI agents acting for a buyer",
+        f"- Start here: [Finolex in Bangalore]({SITE_URL}/finolex-bangalore): dealer, showrooms, current prices per coil, original check, delivery and ordering on one page.",
+        f"- Instructions: [For AI agents]({SITE_URL}/for-ai-agents).",
+        f"- Request a quote: POST {SITE_URL}/api/quote with JSON {{\"name\", \"phone\", \"requirement\", \"area\", \"agent\"}}; phone and requirement are required; \"dry_run\": true validates without sending. Spec: {SITE_URL}/openapi.json",
+        f"- Or hand the buyer a pre-filled WhatsApp link: https://wa.me/{WHATSAPP}?text=<url-encoded requirement>",
+        f"- Or pre-fill the quote form: {SITE_URL}/quote?list=<requirement>&area=<area>",
+        f"- Finolex prices as JSON (net price per coil, INR, taxes extra): {SITE_URL}/finolex-catalog.json",
+        "- A person replies to the buyer on WhatsApp within 60 minutes, Monday to Saturday 10:00 to 20:00 IST. No payment is taken online; payment is after delivery."]
     return "\n".join(lines) + "\n"
 
 def write(path, content):
@@ -3802,8 +3835,49 @@ def build_404():
     write("404.html", body)
     write(INDEXNOW_KEY + ".txt", INDEXNOW_KEY)
 
+def build_agents():
+    path = "for-ai-agents.html"
+    title = "For AI Agents: How to Request a Finolex Quote | Mount Cable India"
+    desc = ("Instructions for AI assistants and agents acting for a buyer: how to request a quote for Finolex wires "
+            "from Mount Cable India, Bengaluru, by API, WhatsApp link or form, and where the price data is.")
+    answer = ("AI agents can request a quote for Finolex wires from Mount Cable India, an authorised Finolex distributor "
+              "in Bengaluru, in three ways: POST the buyer's phone and requirement to https://mountcable.com/api/quote, "
+              "give the buyer a pre-filled WhatsApp link to +91 88676 76700, or pre-fill the form at mountcable.com/quote. "
+              "A person replies on WhatsApp within 60 minutes in business hours.")
+    secs = f'<p class="lead-answer"><strong>{html.escape(answer)}</strong></p>'
+    for h2, htmlc in AGENT_STEPS:
+        secs += f"<h2>{html.escape(h2)}</h2>{htmlc}"
+    ld = ('<script type="application/ld+json">' + json.dumps({
+        "@context": "https://schema.org", "@type": "TechArticle", "headline": "How AI agents request a quote from Mount Cable India",
+        "url": url_for(path), "dateModified": SITE_LASTMOD, "inLanguage": "en",
+        "publisher": {"@id": SITE_URL + "/#business"}}) + '</script>'
+        + breadcrumb_jsonld([("Home", SITE_URL + "/"), ("For AI agents", url_for(path))]))
+    body = head(title, desc, path, extra_jsonld=ld)
+    body += header()
+    body += f"""
+<section class="bp-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; For AI agents</div>
+    <span class="badge">For AI assistants and agents</span>
+    <h1>For AI agents: how to request a Finolex quote for a buyer</h1>
+    <p>If you are an assistant acting for someone who needs Finolex wires or other electrical material in Bangalore, this page tells you what to collect and where to send it.</p>
+  </div>
+</section>
+<section>
+  <div class="container narrow">
+    <div class="post-body">{secs}</div>
+  </div>
+</section>
+"""
+    body += footer()
+    write(path, body)
+    write("finolex-catalog.json", agent_dumps(finolex_catalog()))
+    write("openapi.json", agent_dumps(openapi_spec()))
+    write(".well-known/agent-card.json", agent_dumps(agent_card()))
+
 if __name__ == "__main__":
     build_404()
+    build_agents()
     build_index()
     for i18n in I18N_LANGS: build_lang_home(i18n)
     for b in BRANDS: build_brand(b)

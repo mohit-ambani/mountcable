@@ -1,0 +1,83 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "Mount Cable India quote API",
+  "version": "1.0.0",
+  "description": "Request a quote for Finolex wires and other electrical material from Mount Cable India, Bengaluru. A person at Mount Cable replies to the buyer's phone on WhatsApp, normally within 60 minutes in business hours."
+ },
+ "servers": [
+  {
+   "url": "https://mountcable.com"
+  }
+ ],
+ "paths": {
+  "/finolex-catalog.json": {
+   "get": {
+    "operationId": "getFinolexCatalog",
+    "summary": "Finolex house-wire price list (net price per coil, INR)",
+    "responses": {
+     "200": {
+      "description": "Catalogue",
+      "content": {
+       "application/json": {}
+      }
+     }
+    }
+   }
+  },
+  "/api/quote": {
+   "post": {
+    "operationId": "requestQuote",
+    "summary": "Send a quote request on behalf of a buyer",
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "required": [
+         "phone",
+         "requirement"
+        ],
+        "properties": {
+         "name": {
+          "type": "string",
+          "description": "Buyer's name"
+         },
+         "phone": {
+          "type": "string",
+          "description": "Buyer's phone or WhatsApp number; the quote is sent here. Only send with the buyer's consent."
+         },
+         "requirement": {
+          "type": "string",
+          "description": "Items needed: brand, range, size in sq mm, number of coils or metres. Free text is fine."
+         },
+         "area": {
+          "type": "string",
+          "description": "Delivery area or PIN code"
+         },
+         "agent": {
+          "type": "string",
+          "description": "Name of the assistant or agent sending the request"
+         },
+         "dry_run": {
+          "type": "boolean",
+          "description": "If true, validate only and send nothing"
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Accepted, or validated when dry_run is true"
+     },
+     "400": {
+      "description": "Missing phone or requirement"
+     }
+    }
+   }
+  }
+ }
+}

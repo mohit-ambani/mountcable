@@ -1,0 +1,34 @@
+{
+ "name": "Mount Cable India",
+ "url": "https://mountcable.com/",
+ "description": "Authorised Finolex distributor in Bengaluru, India. Accepts quote requests for Finolex wires and other electrical material; a person replies to the buyer on WhatsApp within 60 minutes in business hours.",
+ "provider": {
+  "organization": "Mount Cable India",
+  "url": "https://mountcable.com/"
+ },
+ "documentationUrl": "https://mountcable.com/for-ai-agents",
+ "version": "1.0.0",
+ "skills": [
+  {
+   "id": "request-quote",
+   "name": "Request a quote",
+   "description": "Send a buyer's list of Finolex wires or other electrical material for an itemised quote.",
+   "endpoint": "https://mountcable.com/api/quote",
+   "method": "POST",
+   "spec": "https://mountcable.com/openapi.json"
+  },
+  {
+   "id": "finolex-prices",
+   "name": "Finolex price list",
+   "description": "Net price per coil for Finolex house wire by range and size.",
+   "endpoint": "https://mountcable.com/finolex-catalog.json",
+   "method": "GET"
+  }
+ ],
+ "contact": {
+  "phone": "+918867676700",
+  "whatsapp": "https://wa.me/918867676700",
+  "email": "mountcable@gmail.com",
+  "hours": "Mon-Sat 10:00-20:00 Asia/Kolkata"
+ }
+}

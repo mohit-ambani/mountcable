@@ -1,0 +1,436 @@
+{
+ "seller": {
+  "name": "Mount Cable India",
+  "role": "Authorised Finolex distributor",
+  "city": "Bengaluru",
+  "country": "IN",
+  "phone": "+918867676700",
+  "whatsapp": "https://wa.me/918867676700",
+  "url": "https://mountcable.com/"
+ },
+ "currency": "INR",
+ "price_list_effective": "4 September 2026",
+ "notes": [
+  "Prices are Mount Cable India selling prices per coil. Taxes extra as applicable.",
+  "Prices move with copper; confirm with a quote before quoting a total to a buyer.",
+  "Other Finolex cables (flexible, LAN, CCTV, co-axial, submersible, solar) and other brands are quoted on request."
+ ],
+ "how_to_order": {
+  "quote_api": "https://mountcable.com/api/quote",
+  "quote_form": "https://mountcable.com/quote",
+  "whatsapp_template": "https://wa.me/918867676700?text={url-encoded requirement}",
+  "instructions": "https://mountcable.com/for-ai-agents"
+ },
+ "items": [
+  {
+   "sku": "finolex-silver-0_75sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Silver FR",
+   "conductor": "copper",
+   "size_sq_mm": 0.75,
+   "coil_length_m": 90,
+   "price_inr": 1215,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-gold-0_75sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Gold FR",
+   "conductor": "copper",
+   "size_sq_mm": 0.75,
+   "coil_length_m": 90,
+   "price_inr": 1276,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-ultra-0_75sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Finoultra",
+   "conductor": "copper",
+   "size_sq_mm": 0.75,
+   "coil_length_m": 90,
+   "price_inr": 1362,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-fr180-0_75sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR",
+   "conductor": "copper",
+   "size_sq_mm": 0.75,
+   "coil_length_m": 180,
+   "price_inr": 2303,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-frls90-0_75sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR-LSH",
+   "conductor": "copper",
+   "size_sq_mm": 0.75,
+   "coil_length_m": 90,
+   "price_inr": 1234,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-frls180-0_75sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR-LSH",
+   "conductor": "copper",
+   "size_sq_mm": 0.75,
+   "coil_length_m": 180,
+   "price_inr": 2328,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-silver-1_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Silver FR",
+   "conductor": "copper",
+   "size_sq_mm": 1.0,
+   "coil_length_m": 90,
+   "price_inr": 1538,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-gold-1_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Gold FR",
+   "conductor": "copper",
+   "size_sq_mm": 1.0,
+   "coil_length_m": 90,
+   "price_inr": 1745,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-ultra-1_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Finoultra",
+   "conductor": "copper",
+   "size_sq_mm": 1.0,
+   "coil_length_m": 90,
+   "price_inr": 1755,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-fr45-1_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR",
+   "conductor": "copper",
+   "size_sq_mm": 1.0,
+   "coil_length_m": 45,
+   "price_inr": 753,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-fr180-1_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR",
+   "conductor": "copper",
+   "size_sq_mm": 1.0,
+   "coil_length_m": 180,
+   "price_inr": 3010,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-frls90-1_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR-LSH",
+   "conductor": "copper",
+   "size_sq_mm": 1.0,
+   "coil_length_m": 90,
+   "price_inr": 1559,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-frls180-1_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR-LSH",
+   "conductor": "copper",
+   "size_sq_mm": 1.0,
+   "coil_length_m": 180,
+   "price_inr": 3041,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-silver-1_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Silver FR",
+   "conductor": "copper",
+   "size_sq_mm": 1.5,
+   "coil_length_m": 90,
+   "price_inr": 2257,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-gold-1_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Gold FR",
+   "conductor": "copper",
+   "size_sq_mm": 1.5,
+   "coil_length_m": 90,
+   "price_inr": 2536,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-ultra-1_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Finoultra",
+   "conductor": "copper",
+   "size_sq_mm": 1.5,
+   "coil_length_m": 90,
+   "price_inr": 2467,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-fr45-1_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR",
+   "conductor": "copper",
+   "size_sq_mm": 1.5,
+   "coil_length_m": 45,
+   "price_inr": 1116,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-fr180-1_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR",
+   "conductor": "copper",
+   "size_sq_mm": 1.5,
+   "coil_length_m": 180,
+   "price_inr": 4359,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-frls90-1_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR-LSH",
+   "conductor": "copper",
+   "size_sq_mm": 1.5,
+   "coil_length_m": 90,
+   "price_inr": 2291,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-frls180-1_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR-LSH",
+   "conductor": "copper",
+   "size_sq_mm": 1.5,
+   "coil_length_m": 180,
+   "price_inr": 4402,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-silver-2_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Silver FR",
+   "conductor": "copper",
+   "size_sq_mm": 2.5,
+   "coil_length_m": 90,
+   "price_inr": 3683,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-gold-2_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Gold FR",
+   "conductor": "copper",
+   "size_sq_mm": 2.5,
+   "coil_length_m": 90,
+   "price_inr": 4032,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-ultra-2_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Finoultra",
+   "conductor": "copper",
+   "size_sq_mm": 2.5,
+   "coil_length_m": 90,
+   "price_inr": 4001,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-fr45-2_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR",
+   "conductor": "copper",
+   "size_sq_mm": 2.5,
+   "coil_length_m": 45,
+   "price_inr": 1835,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-fr180-2_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR",
+   "conductor": "copper",
+   "size_sq_mm": 2.5,
+   "coil_length_m": 180,
+   "price_inr": 7186,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-frls90-2_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR-LSH",
+   "conductor": "copper",
+   "size_sq_mm": 2.5,
+   "coil_length_m": 90,
+   "price_inr": 3739,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-frls180-2_5sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR-LSH",
+   "conductor": "copper",
+   "size_sq_mm": 2.5,
+   "coil_length_m": 180,
+   "price_inr": 7257,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-silver-4_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Silver FR",
+   "conductor": "copper",
+   "size_sq_mm": 4.0,
+   "coil_length_m": 90,
+   "price_inr": 5592,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-gold-4_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Gold FR",
+   "conductor": "copper",
+   "size_sq_mm": 4.0,
+   "coil_length_m": 90,
+   "price_inr": 5916,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-ultra-4_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Finoultra",
+   "conductor": "copper",
+   "size_sq_mm": 4.0,
+   "coil_length_m": 90,
+   "price_inr": 6364,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-fr45-4_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR",
+   "conductor": "copper",
+   "size_sq_mm": 4.0,
+   "coil_length_m": 45,
+   "price_inr": 2796,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-fr180-4_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR",
+   "conductor": "copper",
+   "size_sq_mm": 4.0,
+   "coil_length_m": 180,
+   "price_inr": 11200,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-frls90-4_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR-LSH",
+   "conductor": "copper",
+   "size_sq_mm": 4.0,
+   "coil_length_m": 90,
+   "price_inr": 5676,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-frls180-4_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR-LSH",
+   "conductor": "copper",
+   "size_sq_mm": 4.0,
+   "coil_length_m": 180,
+   "price_inr": 11312,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-silver-6_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Silver FR",
+   "conductor": "copper",
+   "size_sq_mm": 6.0,
+   "coil_length_m": 90,
+   "price_inr": 8494,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-gold-6_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Gold FR",
+   "conductor": "copper",
+   "size_sq_mm": 6.0,
+   "coil_length_m": 90,
+   "price_inr": 8874,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-ultra-6_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex Finoultra",
+   "conductor": "copper",
+   "size_sq_mm": 6.0,
+   "coil_length_m": 90,
+   "price_inr": 9435,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-fr45-6_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR",
+   "conductor": "copper",
+   "size_sq_mm": 6.0,
+   "coil_length_m": 45,
+   "price_inr": 4253,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-fr180-6_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR",
+   "conductor": "copper",
+   "size_sq_mm": 6.0,
+   "coil_length_m": 180,
+   "price_inr": 16824,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-frls90-6_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR-LSH",
+   "conductor": "copper",
+   "size_sq_mm": 6.0,
+   "coil_length_m": 90,
+   "price_inr": 8621,
+   "price_basis": "per coil, taxes extra"
+  },
+  {
+   "sku": "finolex-frls180-6_0sqmm",
+   "brand": "Finolex",
+   "range": "Finolex FR-LSH",
+   "conductor": "copper",
+   "size_sq_mm": 6.0,
+   "coil_length_m": 180,
+   "price_inr": 16991,
+   "price_basis": "per coil, taxes extra"
+  }
+ ]
+}

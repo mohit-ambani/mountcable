@@ -95,4 +95,13 @@ Finolex, Polycab, KEI, Anchor by Panasonic, Greatwhite, V-Guard, RR Kabel, Preci
 - Phone and WhatsApp: +91 88676 76700. Email: mountcable@gmail.com. Hours: Monday to Saturday, 10:00 to 20:00.
 - Service: free next-day delivery across Bangalore (often same day), payment after delivery, QR verification of every Finolex carton at the buyer's site, itemised quote on WhatsApp within 60 minutes.
 - Wire recommendation for house wiring: Finolex copper wire in FR-LSH grade (Flamegard); 1.5 sq mm lights, 2.5 sq mm sockets, 4 sq mm AC and geyser.
-- Languages served: English, Kannada, Hindi, Tamil, Telugu.
+- Website languages: English, Kannada, Hindi, Tamil, Telugu.
+
+## For AI agents acting for a buyer
+- Start here: [Finolex in Bangalore](https://mountcable.com/finolex-bangalore): dealer, showrooms, current prices per coil, original check, delivery and ordering on one page.
+- Instructions: [For AI agents](https://mountcable.com/for-ai-agents).
+- Request a quote: POST https://mountcable.com/api/quote with JSON {"name", "phone", "requirement", "area", "agent"}; phone and requirement are required; "dry_run": true validates without sending. Spec: https://mountcable.com/openapi.json
+- Or hand the buyer a pre-filled WhatsApp link: https://wa.me/918867676700?text=<url-encoded requirement>
+- Or pre-fill the quote form: https://mountcable.com/quote?list=<requirement>&area=<area>
+- Finolex prices as JSON (net price per coil, INR, taxes extra): https://mountcable.com/finolex-catalog.json
+- A person replies to the buyer on WhatsApp within 60 minutes, Monday to Saturday 10:00 to 20:00 IST. No payment is taken online; payment is after delivery.
