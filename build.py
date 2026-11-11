@@ -2336,6 +2336,50 @@ def build_blog_index():
     body += footer()
     write(path, body)
 
+def _blog_offer_ld(name, prices, url):
+    return ('<script type="application/ld+json">' + json.dumps({
+        "@context": "https://schema.org", "@type": "Product", "name": name,
+        "brand": {"@type": "Brand", "name": "Finolex"}, "category": "House wire",
+        "image": SITE_URL + "/assets/img/banner-finolex-wires.jpg",
+        "description": f"{name}: price per coil at Mount Cable India, Bengaluru, on the Finolex list effective {EFFECTIVE_FROM}. Taxes extra.",
+        "offers": {"@type": "AggregateOffer", "priceCurrency": "INR", "lowPrice": min(prices), "highPrice": max(prices),
+                   "offerCount": len(prices), "availability": "https://schema.org/InStock", "url": url,
+                   "seller": {"@id": SITE_URL + "/#business"}}}, ensure_ascii=False) + '</script>')
+
+def _hw_prices(sizes, keys):
+    return [offer(HOUSE_WIRE[s][k], k) for s in sizes for k in keys if HOUSE_WIRE[s].get(k)]
+
+_ALL_SZ = ["0.75", "1.0", "1.5", "2.5", "4.0", "6.0"]
+_ALL_PK = ["silver", "gold", "ultra", "fr180", "long", "frls90", "frls180", "frls_long"]
+# Price posts that are about one product: Search Console shows results with a
+# product snippet earn about twice the click rate, so these carry Product schema.
+BLOG_PRODUCT_LD = {
+    "finolex-0-75-mm-wire-price": ("Finolex 0.75 sq mm house wire", _hw_prices(["0.75"], _ALL_PK)),
+    "finolex-1-mm-wire-price": ("Finolex 1.0 sq mm house wire", _hw_prices(["1.0"], _ALL_PK)),
+    "finolex-1-5-mm-wire-price": ("Finolex 1.5 sq mm house wire", _hw_prices(["1.5"], _ALL_PK)),
+    "finolex-2-5-mm-wire-price": ("Finolex 2.5 sq mm house wire", _hw_prices(["2.5"], _ALL_PK)),
+    "finolex-4-mm-wire-price": ("Finolex 4.0 sq mm house wire", _hw_prices(["4.0"], _ALL_PK)),
+    "finolex-6-mm-wire-price": ("Finolex 6.0 sq mm house wire", _hw_prices(["6.0"], _ALL_PK)),
+    "finolex-300-meter-wire-price": ("Finolex house wire, long coil (300 m / 200 m)", _hw_prices(_ALL_SZ, ["long", "frls_long"])),
+    "finolex-180-meter-wire-price": ("Finolex house wire, 180 m coil", _hw_prices(_ALL_SZ, ["fr180", "frls180"])),
+    "finolex-wire-price-per-meter": ("Finolex house wire, 90 m coil", _hw_prices(_ALL_SZ, ["silver", "gold", "frls90"])),
+}
+
+def blog_focus_block(slug, tag):
+    """Posts about other brands bring in more than half the site's search
+    visitors. This sends them on to the two lines the shop leads with."""
+    if "finolex" in slug or "legrand" in slug:
+        return ""
+    return ('<div class="lead-answer" style="margin-top:30px"><strong>Buying for a house in Bangalore?</strong> '
+            'Mount Cable India is an authorised Finolex distributor and a Legrand stockist. '
+            f'Finolex wire from {_np("1.5", "silver")} per 90 m coil of 1.5 sq mm: '
+            '<a href="../finolex-best-price-bangalore.html">Finolex prices</a>, '
+            '<a href="../finolex-bangalore.html">Finolex in Bangalore</a>, '
+            '<a href="../finolex-wire-scanner.html">check a coil is original</a>. '
+            'Legrand switches and MCBs at 65% off MRP: '
+            '<a href="../legrand-best-price-bangalore.html">Legrand prices</a>. '
+            f'Quote on <a href="https://wa.me/{WHATSAPP}">WhatsApp {PHONE}</a> within 60 minutes.</div>')
+
 def build_blog_post(p):
     slug, title, excerpt, tag, bodyhtml = p[:5]
     # Data-module bodies are plain strings; resolve the shared placeholders here.
@@ -2380,6 +2424,9 @@ def build_blog_post(p):
     others = [x for x in BLOG if x[0] != slug and x[3] != tag]
     rel = (same_tag + others)[:3]
     related = "".join(blog_card(x, prefix="../") for x in rel)
+    if slug in BLOG_PRODUCT_LD:
+        crumbs += _blog_offer_ld(BLOG_PRODUCT_LD[slug][0], BLOG_PRODUCT_LD[slug][1], url_for(path))
+    bodyhtml += blog_focus_block(slug, tag)
     body = head(f"{title} | Mount Cable India", desc, path, css_prefix="../",
                 extra_jsonld=article_ld + crumbs, og_image=hero_url)
     body += header(prefix="../")
