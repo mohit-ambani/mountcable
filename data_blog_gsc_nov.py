@@ -294,6 +294,7 @@ BLOG_GSC_NOV = [
 # directly. Every figure is computed from data_finolex_mrp.py (net only).
 # ---------------------------------------------------------------------------
 from data_finolex_mrp import TAX_NOTE
+from data_blog_price_nov import PER_METRE_EXTRA, PER_METRE_FAQS
 
 _SZ = ["0.75", "1.0", "1.5", "2.5", "4.0", "6.0"]
 _P = lambda s, k: (offer(HOUSE_WIRE[s][k], k) if HOUSE_WIRE[s].get(k) else None)
@@ -392,7 +393,7 @@ _coil_rows2 = [[f"{s} sq mm", f"<strong>{_c(_P(s, 'silver'))}</strong>", f"<stro
                 f"<strong>{_c(_P(s, 'frls90'))}</strong>"] for s in _SZ]
 _POST_PM = (
  "finolex-wire-price-per-meter",
- "Finolex Wire Price Per Metre and Per Coil 2026: Every Size",
+ "Finolex Wire Price Per Metre and Per Coil (Bundle) 2026",
  f"Finolex wire price per metre: about {_m(_P('1.5','silver'),90)} for 1.5 sq mm and {_m(_P('2.5','silver'),90)} for 2.5 sq mm in Silver FR. Per-metre and 1-coil prices for every size and grade.",
  "Pricing",
  f"<p><strong>Finolex house wire works out to about {_m(_P('1.0','silver'),90)} a metre in 1.0 sq mm, "
@@ -403,7 +404,7 @@ _POST_PM = (
  + _tbl(["Size", "Silver FR 90 m", "Gold FR 90 m", "FR-LSH 90 m", "FR 180 m", "FR long coil"], _pm_rows) +
  '<p class="ptable-note">Coil price divided by coil length. The long coil is 300 m up to 2.5 sq mm and 200 m in 4.0 and 6.0 sq mm.</p>'
  "<h2>Finolex 1 coil price (90 m)</h2>"
- + _tbl(["Size", "Silver FR", "Gold FR", "FR-LSH (Flamegard)"], _coil_rows2) + _NOTE +
+ + _tbl(["Size", "Silver FR", "Gold FR", "FR-LSH (Flamegard)"], _coil_rows2) + _NOTE + PER_METRE_EXTRA +
  "<h2>Why wire is not sold by the metre</h2>"
  "<p>A sealed carton is what carries the batch number, both QR codes and the warranty. Wire cut loose from a coil "
  "has none of them, and cut wire is the easiest way for duplicate material to reach a site. Use the per-metre "
@@ -420,6 +421,7 @@ _POST_PM = (
    f"A 90 m coil of Finolex 2.5 sq mm is Rs {_P('2.5','silver'):,} in Silver FR, Rs {_P('2.5','gold'):,} in Gold FR and Rs {_P('2.5','frls90'):,} in FR-LSH at Mount Cable India, taxes extra."),
   ("What is the price of one coil of Finolex 6 mm wire?",
    f"A 90 m coil of Finolex 6.0 sq mm is Rs {_P('6.0','silver'):,} in Silver FR, Rs {_P('6.0','gold'):,} in Gold FR and Rs {_P('6.0','frls90'):,} in FR-LSH at Mount Cable India, taxes extra."),
+  *PER_METRE_FAQS,
   ("Can I buy Finolex wire by the metre?",
    "House wire is sold by the sealed coil, because the carton carries the batch number, the QR codes and the warranty. Loose cut wire cannot be verified. Buy the nearest whole coil; surplus sealed coils are easy to return or resell.")],
  ("electrician-hands-stripping-wire-closeup.jpg", "Finolex copper house wire measured out during a wiring job"))

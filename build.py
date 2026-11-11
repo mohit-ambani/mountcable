@@ -686,6 +686,7 @@ from data_price_pages_more import MORE_PRICE_PAGES
 PRICE_LISTS = merge_price_lists(PRICE_LISTS, extra=MORE_PRICE_PAGES)
 from data_blog_compare import BLOG_COMPARE
 from data_blog_gsc_nov import BLOG_GSC_NOV
+from data_blog_price_nov import BLOG_PRICE_NOV, GRADE_FAQS
 from data_seo_scanner import SCANNER_PAGE
 from data_seo_legrand import LEGRAND_SEO_PAGES, LEGRAND_BLOG, LEGRAND_CLUSTER, LEGRAND_PAGE_LINKS
 from data_knowledge import KNOWLEDGE
@@ -712,7 +713,7 @@ from data_seo_best import BEST_SEO_PAGES, BEST_PAGE_LINKS
 from data_seo_bestprice import FINOLEX_BEST_PRICE
 BEST_PAGE_LINKS = [("finolex-best-price-bangalore.html", "Best price for Finolex in Bangalore"),
                    ("legrand-best-price-bangalore.html", "Best price for Legrand in Bangalore")] + BEST_PAGE_LINKS
-BLOG = (BLOG_GSC_NOV + LEGRAND_BLOG + BLOG_COMPARE + BLOG_AEO + BLOG_VS + BLOG_FINOLEX_PRICES + BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
+BLOG = (BLOG_PRICE_NOV + BLOG_GSC_NOV + LEGRAND_BLOG + BLOG_COMPARE + BLOG_AEO + BLOG_VS + BLOG_FINOLEX_PRICES + BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
         + BUYING_GUIDE_BLOGS + BRAND_GUIDE_BLOGS)
 SEO_PAGES = SEO_PAGES + DEALER_SEO_PAGES + [SCANNER_PAGE] + LEGRAND_SEO_PAGES + BEST_SEO_PAGES + [FINOLEX_BEST_PRICE]
 
@@ -2363,6 +2364,9 @@ BLOG_PRODUCT_LD = {
     "finolex-300-meter-wire-price": ("Finolex house wire, long coil (300 m / 200 m)", _hw_prices(_ALL_SZ, ["long", "frls_long"])),
     "finolex-180-meter-wire-price": ("Finolex house wire, 180 m coil", _hw_prices(_ALL_SZ, ["fr180", "frls180"])),
     "finolex-wire-price-per-meter": ("Finolex house wire, 90 m coil", _hw_prices(_ALL_SZ, ["silver", "gold", "frls90"])),
+    "finolex-wire-price-today": ("Finolex house wire, 90 m coil", _hw_prices(_ALL_SZ, ["silver", "gold", "frls90", "ultra"])),
+    "finolex-wire-online-price": ("Finolex house wire, 90 m coil", _hw_prices(_ALL_SZ, ["silver", "gold", "frls90", "ultra"])),
+    "finolex-fr-vs-frls-price": ("Finolex FR-LSH (Flamegard) house wire", _hw_prices(_ALL_SZ, ["frls90", "frls180", "frls_long"])),
 }
 
 def blog_focus_block(slug, tag):
@@ -3898,6 +3902,12 @@ def llms_txt():
         f"- [Finolex 180 metre coil price]({SITE_URL}/blog/finolex-180-meter-wire-price): every size in FR and FR-LSH.",
         f"- [Finolex wire price per metre and per coil]({SITE_URL}/blog/finolex-wire-price-per-meter): per-metre and one-coil prices for every size and grade.",
         f"- [How many metres in one coil of wire]({SITE_URL}/blog/how-many-metres-in-one-coil-of-wire): 90 m standard, 180 m, 300 m and 200 m coils explained."]
+    lines += [
+        f"- [Finolex wire price today]({SITE_URL}/blog/finolex-wire-price-today): current price per 90 m coil for every size and grade.",
+        f"- [Finolex FR vs FRLS price]({SITE_URL}/blog/finolex-fr-vs-frls-price): price gap between FR and FR-LSH by size.",
+        f"- [Finolex wire online price]({SITE_URL}/blog/finolex-wire-online-price): ordering online in Bangalore, pay after delivery.",
+        f"- [Finolex telephone and speaker cable price]({SITE_URL}/blog/finolex-telephone-speaker-cable-price).",
+        f"- [Legrand MCB price by ampere]({SITE_URL}/blog/legrand-mcb-price-by-ampere): DX3 MRP and net price at 65% off for 6A to 125A, SP/DP/TP/FP."]
     lines += ["", "## For AI agents acting for a buyer",
         f"- Start here: [Finolex in Bangalore]({SITE_URL}/finolex-bangalore): dealer, showrooms, current prices per coil, original check, delivery and ordering on one page.",
         f"- Instructions: [For AI agents]({SITE_URL}/for-ai-agents).",
@@ -3985,6 +3995,10 @@ def build_agents():
     write("finolex-catalog.json", agent_dumps(finolex_catalog()))
     write("openapi.json", agent_dumps(openapi_spec()))
     write(".well-known/agent-card.json", agent_dumps(agent_card()))
+
+for _p in PRICE_LISTS:
+    if _p.get("slug") in GRADE_FAQS:
+        _p["faqs"] = list(_p.get("faqs", [])) + GRADE_FAQS[_p["slug"]]
 
 if __name__ == "__main__":
     build_404()
