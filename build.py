@@ -685,6 +685,7 @@ from data_brand_prices import merge_price_lists, with_net
 from data_price_pages_more import MORE_PRICE_PAGES
 PRICE_LISTS = merge_price_lists(PRICE_LISTS, extra=MORE_PRICE_PAGES)
 from data_blog_compare import BLOG_COMPARE
+from data_blog_gsc_nov import BLOG_GSC_NOV
 from data_seo_scanner import SCANNER_PAGE
 from data_seo_legrand import LEGRAND_SEO_PAGES, LEGRAND_BLOG, LEGRAND_CLUSTER, LEGRAND_PAGE_LINKS
 from data_knowledge import KNOWLEDGE
@@ -711,7 +712,7 @@ from data_seo_best import BEST_SEO_PAGES, BEST_PAGE_LINKS
 from data_seo_bestprice import FINOLEX_BEST_PRICE
 BEST_PAGE_LINKS = [("finolex-best-price-bangalore.html", "Best price for Finolex in Bangalore"),
                    ("legrand-best-price-bangalore.html", "Best price for Legrand in Bangalore")] + BEST_PAGE_LINKS
-BLOG = (LEGRAND_BLOG + BLOG_COMPARE + BLOG_AEO + BLOG_VS + BLOG_FINOLEX_PRICES + BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
+BLOG = (BLOG_GSC_NOV + LEGRAND_BLOG + BLOG_COMPARE + BLOG_AEO + BLOG_VS + BLOG_FINOLEX_PRICES + BLOG_KARNATAKA + BLOG_FINOLEX + BLOG_2026 + BLOG + DUPLICATE_BLOGS
         + BUYING_GUIDE_BLOGS + BRAND_GUIDE_BLOGS)
 SEO_PAGES = SEO_PAGES + DEALER_SEO_PAGES + [SCANNER_PAGE] + LEGRAND_SEO_PAGES + BEST_SEO_PAGES + [FINOLEX_BEST_PRICE]
 
@@ -941,7 +942,65 @@ def seo_desc(desc, limit=160):
         words.pop()
     return " ".join(words).rstrip(",;:—-·| ")
 
+def _np(size, key):
+    return "₹" + format(offer(HOUSE_WIRE[size][key], key), ",d")
+
+def _size_meta(size, label):
+    longlen = LONG_LEN[size]
+    return (f"Finolex {label} mm Wire Price 2026: 1 Coil, 180 m, {longlen} and Per Metre",
+            f"Finolex {size} sq mm wire price: 90 m coil {_np(size, 'silver')} Silver, {_np(size, 'gold')} Gold, {_np(size, 'frls90')} FR-LSH; "
+            f"180 m {_np(size, 'fr180')}; {longlen} {_np(size, 'long')}. Per-metre price and what the size is used for.")
+
+# Search-result titles and descriptions tuned from Search Console (Nov 2026):
+# pages with many impressions and few clicks. The page H1 and body are unchanged;
+# only what the results page shows. Prices are computed, so they cannot go stale.
+META_OVERRIDES = {
+    "finolex-wire-scanner.html": (
+        "Finolex Check Online: Scan the QR (check.finolex.com) | Wire Scanner",
+        "Finolex check online: point your phone at the QR code on a Finolex coil and get Finolex's own genuine or not-genuine reply on this page. Works for the outer and inner code."),
+    "blog/how-to-identify-original-finolex-wire.html": (
+        "How to Check Finolex Wire Is Original or Duplicate (QR + Markings)",
+        "How to check a Finolex wire is original: scan the two QR codes on the carton, read the markings on the insulation, check the seal and the price. Step by step, with what a fake looks like."),
+    "blog/finolex-qr-code-scan-genuine.html": (
+        "Finolex QR Code Scan: Check a Coil Is Genuine in 30 Seconds",
+        "Scan the QR code on a Finolex carton with your phone to check it is genuine. Where the code is, what the genuine reply looks like, and what to do if it fails or says already scanned."),
+    "blog/finolex-silver-vs-gold-90m.html": (
+        f"Finolex Silver vs Gold: Difference and Price ({_np('1.5', 'silver')} vs {_np('1.5', 'gold')})",
+        f"Finolex Silver and Gold are both FR house wire in 90 m coils; Gold is the higher line. A 1.5 sq mm coil is {_np('1.5', 'silver')} in Silver and {_np('1.5', 'gold')} in Gold. What differs and which to buy."),
+    "finolex-vs-polycab-wire.html": (
+        "Finolex vs Polycab Wire: Which Is Better? Price Compared (2026)",
+        "Finolex vs Polycab house wire: both are good ISI copper wire and list prices are close. Grades, 2026 prices side by side, how each is verified, and which we recommend for a house."),
+    "legrand-vs-anchor-switches.html": (
+        "Legrand vs Anchor Switches: Which Is Better? Price Compared (2026)",
+        "Legrand vs Anchor switches compared on range, price, sockets and replacement policy. At 65% off MRP Legrand costs about the same as Anchor: see the figures side by side."),
+    "blog/legrand-vs-schneider-mcb-and-switches.html": (
+        "Legrand vs Schneider: Which Is Better? MCB and Switches (2026)",
+        "Legrand vs Schneider for a home: MCBs, RCCBs and switch ranges compared on protection, price and availability, and which to choose."),
+    "price-lists/legrand-price-list.html": (
+        "Legrand Price List 2026: MRP and 65% Off Net Price (MCB, DB, Switches)",
+        "Legrand price list 2026 with MRP and our net price at 65% off: DX3 MCB and RCCB, Ekinox distribution boards, Myrius, Lyncus, Allzy and Britzy switches."),
+    "price-lists/legrand-mcb-price-list.html": (
+        "Legrand MCB Price List 2026: DX3 MRP and 65% Off Net Price",
+        "Legrand DX3 MCB price list 2026: MRP and net price at 65% off for SP, DP, TP and FP in C and D curve, every rating, plus isolators."),
+    "price-lists/finolex-price-list.html": (
+        "Finolex Wire Price List 2026: Every Size and Coil (Latest List)",
+        f"Finolex wire price list 2026 on the list effective {EFFECTIVE_FROM}: 1.5 sq mm {_np('1.5', 'silver')}, 2.5 sq mm {_np('2.5', 'silver')} per 90 m Silver coil. Gold, FR-LSH, 180 m, 300 m, flexible and LAN."),
+    "blog/finolex-wire-price-list-bangalore-2026.html": (
+        "Finolex Wire Price List 2026 in Bangalore: Net Price Per Coil",
+        f"Finolex wire prices in Bangalore on the list effective {EFFECTIVE_FROM}: 1.0 sq mm {_np('1.0', 'silver')}, 1.5 sq mm {_np('1.5', 'silver')}, 2.5 sq mm {_np('2.5', 'silver')} per 90 m coil. Every range and coil length."),
+    "blog/finolex-0-75-mm-wire-price.html": (
+        "Finolex 0.75 mm Wire Price 2026: 90 m Coil, 300 m and Flexible",
+        f"Finolex 0.75 sq mm wire price: 90 m coil {_np('0.75', 'silver')} Silver, {_np('0.75', 'gold')} Gold, {_np('0.75', 'frls90')} FR-LSH; 300 m {_np('0.75', 'long')}. Plus 0.75 and 0.5 sq mm flexible."),
+    "blog/finolex-1-mm-wire-price.html": _size_meta("1.0", "1"),
+    "blog/finolex-1-5-mm-wire-price.html": _size_meta("1.5", "1.5"),
+    "blog/finolex-2-5-mm-wire-price.html": _size_meta("2.5", "2.5"),
+    "blog/finolex-4-mm-wire-price.html": _size_meta("4.0", "4"),
+    "blog/finolex-6-mm-wire-price.html": _size_meta("6.0", "6"),
+}
+
 def head(title, desc, path, css_prefix="", extra_jsonld="", html_lang="en", alternates=None, og_image=None, xdefault=None):
+    if path in META_OVERRIDES:
+        title, desc = META_OVERRIDES[path]
     canonical = url_for(path)
     img = og_image or (SITE_URL + "/assets/img/banner-finolex-wires.jpg")
     hreflang_tags = ""
@@ -3787,6 +3846,11 @@ def llms_txt():
         "- Service: free next-day delivery across Bangalore (often same day), payment after delivery, QR verification of every Finolex carton at the buyer's site, itemised quote on WhatsApp within 60 minutes.",
         "- Wire recommendation for house wiring: Finolex copper wire in FR-LSH grade (Flamegard); 1.5 sq mm lights, 2.5 sq mm sockets, 4 sq mm AC and geyser.",
         "- Website languages: English, Kannada, Hindi, Tamil, Telugu."]
+    lines += ["", "## Finolex prices by coil length and per metre",
+        f"- [Finolex 300 metre coil price]({SITE_URL}/blog/finolex-300-meter-wire-price): long-coil price for every size in FR and FR-LSH, with price per metre.",
+        f"- [Finolex 180 metre coil price]({SITE_URL}/blog/finolex-180-meter-wire-price): every size in FR and FR-LSH.",
+        f"- [Finolex wire price per metre and per coil]({SITE_URL}/blog/finolex-wire-price-per-meter): per-metre and one-coil prices for every size and grade.",
+        f"- [How many metres in one coil of wire]({SITE_URL}/blog/how-many-metres-in-one-coil-of-wire): 90 m standard, 180 m, 300 m and 200 m coils explained."]
     lines += ["", "## For AI agents acting for a buyer",
         f"- Start here: [Finolex in Bangalore]({SITE_URL}/finolex-bangalore): dealer, showrooms, current prices per coil, original check, delivery and ordering on one page.",
         f"- Instructions: [For AI agents]({SITE_URL}/for-ai-agents).",

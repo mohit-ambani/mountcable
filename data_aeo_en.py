@@ -259,6 +259,8 @@ AEO_EN_PAGES = [
      "Yes. Mount Cable India buys Finolex stock through Finolex's authorised channel and shows its authorisation on request. Every carton is sealed, billed with GST and can be verified by scanning its two QR codes."),
     ("Does an authorised Finolex dealer deliver to site?",
      "Mount Cable India delivers free across Bangalore by the next day and often the same day. Payment is taken after delivery and the buyer can scan every carton at site."),
+    ("What is the Finolex distributor contact number in Bangalore?",
+     "Mount Cable India, authorised Finolex distributor in Bangalore, is on +91 88676 76700 by phone and WhatsApp. Finolex's own customer care number is 1800-209-0166."),
     ("What are the showroom timings?",
      "Monday to Saturday, 10 am to 8 pm, at BVK Iyengar Road (Chickpete) and Jayanagar. Orders and quotes are also handled on WhatsApp +91 88676 76700."),
     ("Do you supply Finolex wire outside Bangalore?",

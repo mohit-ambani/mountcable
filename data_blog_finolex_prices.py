@@ -49,7 +49,10 @@ GRADE_NOTE = ("<p><strong>Reading the grades.</strong> Finolex <em>Silver</em> a
               "Silver is the standard FR line and Gold sits above it. <em>FR-LSH</em> is flame retardant low smoke and "
               "halogen, which matters in flats, stairwells and any enclosed escape route, and costs a little more. "
               "FR and FR-LSH are also made in 180 m coils, and in a long coil that is 300 m for 1.0&ndash;2.5 sq mm and "
-              "200 m for 4.0 and 6.0 sq mm. Longer coils work out cheaper per metre and waste less at joints.</p>")
+              "200 m for 4.0 and 6.0 sq mm. Longer coils work out cheaper per metre and waste less at joints. See "
+              "<a href=\"finolex-300-meter-wire-price.html\">300 m coil prices</a>, "
+              "<a href=\"finolex-180-meter-wire-price.html\">180 m coil prices</a> and "
+              "<a href=\"finolex-wire-price-per-meter.html\">price per metre for every size</a>.</p>")
 
 DISCOUNT_NOTE = (
     "<h2>What you get at this price</h2>"
@@ -73,10 +76,11 @@ def _rs(n):
 
 def _size_table(size):
     rows = "".join(
-        f"<tr><td>{label}</td><td>{length}</td><td><strong>{_rs(price)}</strong></td></tr>"
+        f"<tr><td>{label}</td><td>{length}</td><td><strong>{_rs(price)}</strong></td>"
+        f"<td>&#8377;{price / int(length.split()[0]):.1f}</td></tr>"
         for label, length, mrp, price in house_wire_rows(size))
     return ('<div class="ptable-wrap"><table class="ptable">'
-            '<thead><tr><th>Finolex range</th><th>Coil</th><th>Our price</th></tr></thead>'
+            '<thead><tr><th>Finolex range</th><th>Coil</th><th>Our price</th><th>Per metre</th></tr></thead>'
             f"<tbody>{rows}</tbody></table></div>"
             f'<p class="ptable-note">{TAX_NOTE} Larger quantities are priced better than the rates shown.</p>')
 
@@ -102,7 +106,11 @@ def _size_post(size, slug, title, excerpt, keywords_extra, hero):
     silver = offer(d["silver"], "silver")
     gold = offer(d["gold"], "gold")
     frls = offer(d["frls90"], "frls90")
-    body = f"""<p><strong>A Finolex {size} sq mm 90 m coil is {_rs(silver)} in Silver FR and {_rs(gold)} in Gold FR at Mount Cable India, with FR-LSH at {_rs(frls)}. Larger quantities are priced better.</strong> Every pack and coil length is listed below, current to {EFFECTIVE_FROM}. {TAX_NOTE}</p>
+    fr180 = offer(d["fr180"], "fr180")
+    longp = offer(d["long"], "long")
+    longlen = LONG_LEN[size]
+    longm = int(longlen.split()[0])
+    body = f"""<p><strong>One 90 m coil of Finolex {size} sq mm is {_rs(silver)} in Silver FR, {_rs(gold)} in Gold FR and {_rs(frls)} in FR-LSH at Mount Cable India, which is about &#8377;{silver / 90:.1f} a metre. The 180 m FR coil is {_rs(fr180)} and the {longlen} coil is {_rs(longp)} (about &#8377;{longp / longm:.1f} a metre).</strong> Every pack and coil length is listed below, current to {EFFECTIVE_FROM}. {TAX_NOTE} Larger quantities are priced better.</p>
 
 <h2>Finolex {size} sq mm price — every pack</h2>
 {_size_table(size)}
@@ -143,6 +151,14 @@ and fails the second.</li>
     faqs = [
         (f"What is the price of Finolex {size} sq mm wire?",
          f"At Mount Cable India a 90 m coil is Rs {silver:,} in Silver FR, Rs {gold:,} in Gold FR and Rs {frls:,} in FR-LSH, current to {EFFECTIVE_FROM}. Larger quantities are priced better. Taxes extra as applicable. WhatsApp your list for a confirmed quote within 60 minutes."),
+        (f"What is the price of Finolex {size} mm {longlen.replace(' m', ' metre')} wire?",
+         f"The Finolex {size} sq mm {longlen} coil is Rs {longp:,} in FR at Mount Cable India, about Rs {longp / longm:.1f} a metre, and the 180 m FR coil is Rs {fr180:,}. Taxes extra, current to {EFFECTIVE_FROM}."),
+        (f"What is the price of one coil of Finolex {size} mm wire?",
+         f"One 90 m coil of Finolex {size} sq mm is Rs {silver:,} in Silver FR, Rs {gold:,} in Gold FR and Rs {frls:,} in FR-LSH at Mount Cable India, taxes extra."),
+        (f"What is the price of Finolex {size} mm wire per metre?",
+         f"About Rs {silver / 90:.1f} a metre in Silver FR and Rs {gold / 90:.1f} in Gold FR, worked out from the 90 m coil price. Wire is sold by the sealed coil, not cut by the metre."),
+        (f"What is the price of Finolex Gold {size} mm wire?",
+         f"A 90 m coil of Finolex Gold FR {size} sq mm is Rs {gold:,} at Mount Cable India, taxes extra, current to {EFFECTIVE_FROM}."),
         (f"What is Finolex {size} sq mm wire used for?",
          f"It is the size for {info['use']} — in a normal house, {info['rooms']}. The matching protection is a {info['mcb']} breaker. {info['note']}"),
         (f"How many coils of {size} sq mm wire does a house need?",

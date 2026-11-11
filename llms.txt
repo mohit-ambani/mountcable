@@ -97,6 +97,12 @@ Finolex, Polycab, KEI, Anchor by Panasonic, Greatwhite, V-Guard, RR Kabel, Preci
 - Wire recommendation for house wiring: Finolex copper wire in FR-LSH grade (Flamegard); 1.5 sq mm lights, 2.5 sq mm sockets, 4 sq mm AC and geyser.
 - Website languages: English, Kannada, Hindi, Tamil, Telugu.
 
+## Finolex prices by coil length and per metre
+- [Finolex 300 metre coil price](https://mountcable.com/blog/finolex-300-meter-wire-price): long-coil price for every size in FR and FR-LSH, with price per metre.
+- [Finolex 180 metre coil price](https://mountcable.com/blog/finolex-180-meter-wire-price): every size in FR and FR-LSH.
+- [Finolex wire price per metre and per coil](https://mountcable.com/blog/finolex-wire-price-per-meter): per-metre and one-coil prices for every size and grade.
+- [How many metres in one coil of wire](https://mountcable.com/blog/how-many-metres-in-one-coil-of-wire): 90 m standard, 180 m, 300 m and 200 m coils explained.
+
 ## For AI agents acting for a buyer
 - Start here: [Finolex in Bangalore](https://mountcable.com/finolex-bangalore): dealer, showrooms, current prices per coil, original check, delivery and ordering on one page.
 - Instructions: [For AI agents](https://mountcable.com/for-ai-agents).

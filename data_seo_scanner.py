@@ -197,7 +197,9 @@ SCANNER_PAGE = {
     "faqs": [
         ("How do I check if a Finolex wire is original?",
          "Scan the QR code on the carton with the scanner on this page or at check.finolex.com. Finolex's server replies genuine, not genuine or could not confirm. Scan the inner QR as well and check that the size and range printed on the wire match the carton."),
-        ("Is there a Finolex scanner app?",
+        ("Can I check Finolex wire by serial number or batch number?",
+     "The check works from the QR code on the carton, not from a typed serial or batch number. Scan the outer code on the label and the inner code inside the box. If a code is damaged and will not scan, call Finolex customer care on 1800-209-0166 with the batch details printed on the label."),
+    ("Is there a Finolex scanner app?",
          "No app is needed. The official Finolex check is the web page check.finolex.com, which uses the phone camera. This page does the same check by sending the scanned code to Finolex's verification service and showing the reply."),
         ("What is check.finolex.com?",
          "It is Finolex Cables' official product verification page. It opens the phone camera, reads the QR on a Finolex carton or coil and asks Finolex's server whether that code is registered and unused. The reply is shown on screen."),
